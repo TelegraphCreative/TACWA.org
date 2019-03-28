@@ -1,0 +1,85 @@
+.stat-card {
+    // General Layout
+    @apply pt-14 pb-14 px-8 mb-3 bg-green text-white
+    property-all duration-3 timing-1;
+
+    &__header {
+        @apply mb-10;
+    }
+
+    &:hover {
+        @apply bg-green;
+    }
+
+    // Screen
+    @screen md {
+        @apply pb-0 mb-0 bg-green-light;
+
+        &__header {
+            @apply flex items-center .justify-between;
+        }
+
+        &__content {
+            @apply mx-auto;
+            max-width: 23.125rem;
+        }
+
+        // Original State
+        .stat-card__descr {
+            opacity:0;
+            max-height:0;
+            padding-bottom:0; 
+            @apply property-all duration-3 timing-1;
+        }
+
+        // Active Hover
+        &.-active {
+            @apply bg-green;
+            .stat-card__descr {
+                opacity: 1;
+                max-height:15rem;
+                padding-bottom:4rem;   
+                transition-delay: .3s;
+            }
+        }
+    }
+}
+
+// @keyframes hideDescription {
+//     0% {
+//         opacity:1;
+//         max-height:15rem;
+//         padding-bottom:4rem;      
+//     }
+//     50% {
+//         opacity: 0;
+//         max-height:15rem;
+//         padding-bottom:4rem;      
+//     }
+//     100% {
+//         opacity:0;
+//         max-height:0;
+//         padding-bottom:0;      
+
+//     }
+// }
+
+// @keyframes showDescription {
+//     0% {
+//         opacity:0;
+//         max-height:0;
+//         padding-bottom:0;
+
+//     }
+//     50% {
+//         opacity:0;
+//         max-height:15rem;  
+//         padding-bottom:4rem;      
+//     }
+//     100% {
+//         opacity:1;
+//         max-height:15rem;
+//         padding-bottom:4rem;      
+
+//     }
+// }

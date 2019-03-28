@@ -1,0 +1,22 @@
+{#
+<h5 class="site-footer__header | header-">First Things</h5>
+#}
+<ul class="menu-list">  
+    {% set mainMenu = craft.navigation.nodes(content)%}
+    {% set mainMenu = mainMenu.all() %}
+    
+    {% for node in mainMenu %}
+    
+        <li class="menu-list__item | {% if node.classes|length %}{{ node.classes }}{% endif %}">
+                <a
+                    href="{{ node.url }}"
+                    {% if node.target %}target="_blank" rel="noopener"{% endif %}
+                    role="menuitem"
+                    aria-haspopup="false"
+                    
+                    class="menu-bar__link"
+                    tabindex="0">{{ node.title }}</a>
+            </li> 
+        
+    {% endfor %}
+</ul>

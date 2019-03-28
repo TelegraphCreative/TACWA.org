@@ -1,0 +1,25 @@
+.pattern {
+
+    background:url('/dist/assets/svg/pattern-crosshatch.svg') repeat;
+    
+    // -Green
+    &--green {
+        background:url('/dist/assets/svg/pattern-crosshatch--green.svg') repeat;
+    }
+    
+    // -white
+    &--white {
+        background:url('/dist/assets/svg/pattern-crosshatch--white.svg') repeat;
+    }
+}
+
+// Variations
+.pattern,
+[class^="pattern--"] {
+     // Medium Size
+     &.-md {
+        height: 3.25rem;
+        width: 12.5rem;
+    }
+    
+}

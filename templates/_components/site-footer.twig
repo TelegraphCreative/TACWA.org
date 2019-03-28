@@ -1,0 +1,54 @@
+<footer class="site-footer | focus-links" role="contentinfo">
+    <!-- Groups -->
+    <div class="site-footer__groups | container gutter | space-t--sm">
+        <div class="site-footer__groups__container">
+            {# Group #}
+            <div class="site-footer__group">
+                <div aria-label="{{siteName}} Info" class="footer-about">
+                    
+                    
+                    {# Social{% include "_components/list-social" with {
+                    content: siteInfo.socialChannels } %} #} 
+                </div>
+            </div>
+
+            {# Group #}
+            <div class="site-footer__group">
+                <nav aria-label="{{siteName}} Main Footer Menu" class="footer-menu">
+                    {# Menu List{% include "_components/list-menu" with
+                    { content: 'mainMenu' } %} #} 
+                </nav>
+            </div>
+
+            {# Group #}
+            <div class="site-footer__group">
+                <nav aria-label="{{siteName}} Main Footer Menu" class="footer-menu">
+                    {# Menu List {% include "_components/list-menu" with
+                    { content: 'mainMenu' } %} #}
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    {# Meta #}
+    <div class="site-footer__meta">
+        <div class="site-footer__meta__container | container gutter">
+            {# Subscribe Form #}
+            <div class="footer-meta__group">
+                {% include "_components/form-subscribe" %}
+            </div>
+            {# Legal #}
+            <div class="footer-meta__group">
+                <div>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div>&copy; {{siteName}} Legacy Project {{ now | date('Y') }}</div>
+                <div>
+                    All Rights Reserved.
+                </div>
+            </div>
+
+            <div class="footer-meta__group"></div>
+        </div>
+    </div>
+</footer>

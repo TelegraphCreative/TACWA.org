@@ -1,0 +1,53 @@
+// Icon
+.icon {
+    svg {
+        @apply w-full h-full 
+        timing-1 duration-1 property-all;
+    }
+
+    &.-md {
+        @apply w-12 h-12 block;
+    }
+    &.-sm {
+        @apply w-10 h-10 block;
+    }
+    &.-sm-2 {
+        @apply w-8 h-8 block;
+    }
+    &.-sm-3 {
+        @apply w-6 h-6 block;
+    }
+    &.-xs {
+        @apply w-4 h-4 block;
+    }
+
+    // Transforms
+    &.-flip {
+        transform: rotate(180deg);
+    }
+}
+
+// // Logo
+// .logo {
+//     max-width: 8rem;
+// }
+.logo,
+.logo-icon {
+    @apply w-full block;
+}
+
+@screen menu {
+    // Logo
+    .logo {
+        max-width: 11rem;
+    }
+}
+
+// Utility Classes
+.st0{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+.stroke {
+    fill:none;stroke-width:2;stroke-miterlimit:10;
+}
+.-stroke-3 .stroke {stroke-width: 3;}
+.-stroke-4 .stroke {stroke-width: 4;}
+

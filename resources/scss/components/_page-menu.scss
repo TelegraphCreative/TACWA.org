@@ -1,0 +1,48 @@
+.page-menu {
+    @apply bg-oat-lighter sticky z-40 px-8;
+
+    top: var(--menu-sm-offset);
+
+    &__bar {
+        @apply list-reset 
+        text-xs
+        flex flex-no-wrap
+        items-center
+        overflow-x
+        justify-between
+        overflow-gradient;
+    }
+
+    .link {
+        @apply px-2 py-6 font-normal;
+    }
+    .link:hover,
+    .section-active {
+        @apply text-green;
+    }
+
+    
+    @screen md {
+        @apply pin-t border-oat-light border-b; 
+        background: rgba(255,255,255,.98);
+        
+        &__bar {
+            @apply justify-center py-0 text-sm;
+        }
+        .link {
+            @apply px-8 py-8;
+        }
+
+
+        // Variations
+        &.-neg-offset {
+            @apply -mt-8;
+        }
+        &.-align-right {
+            .page-menu__bar {
+                @apply .justify-end px-22;
+            }
+        }
+    }
+
+}

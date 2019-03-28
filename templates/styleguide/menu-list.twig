@@ -1,0 +1,24 @@
+{% import '/_macros/styleguide' as guide %}
+
+{% extends "_layouts/_styleguide" %}
+{% block content %}
+
+    <h2 class="text-3xl mb-3">Menu List</h2>
+
+    <h4>Result</h4>
+    {# {% include "_components/site-header" %} or inline code #}
+
+{% set var = 'value' %}
+
+{% set code %}{% verbatim %}
+<div class="this">
+    {% set var = 'value' %}
+    Site Header
+    {{ var }} {# var won't be escaped #}
+</div>
+{% endverbatim %}{% endset %}
+
+    {{ guide.snippet( code, 'twig' ) }}
+    
+
+{% endblock %}

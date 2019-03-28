@@ -1,0 +1,136 @@
+// Typography
+body {
+  @apply text-green-darkest font-sans;
+}
+
+// Headers
+.header {
+  // 12
+  &-sm {
+    @apply text-xs text-green 
+        uppercase
+        font-medium
+        tracking-narrow;
+
+    &.-light {
+      @apply text-green-light;
+    }
+    &.-dark {
+      @apply text-green-darkest;
+    }
+    &.-grey {
+      @apply text-grey-light;
+    }
+    &.-white {
+      @apply text-white;
+    }
+  }
+
+  // 18
+  &-md {
+    @apply text-xl font-serif;
+  }
+
+  // 30 -> 36
+  &-lg {
+    @apply text-3xl font-serif leading-tight;
+    &-2 {
+      @apply text-2xl font-serif leading-tight;
+    }
+  }
+
+  // 40 -> 68
+  &-xl {
+    @apply text-5xl font-serif;
+
+    // 40
+    &-2 {
+      @apply text-5xl font-serif;
+    }
+  }
+}
+
+// Paragraphs
+.paragraphs {
+  p {
+    @apply text-lg leading-normal font-normal
+      mb-6;
+
+    &:last-of-type {
+      @apply mb-0;
+    }
+
+    // Default Links
+    a {
+      @apply text-green;
+
+      &:hover {
+        @apply text-green-darkest;
+      }
+    }
+  }
+
+  &.-sm {
+    p {
+      @apply text-base leading-loose 
+            mb-4;
+
+      &:last-of-type {
+        @apply mb-0;
+      }
+    }
+  }
+  &.-xs {
+    p {
+      @apply text-sm leading-loose 
+            mb-4;
+
+      &:last-of-type {
+        @apply mb-0;
+      }
+    }
+  }
+}
+
+// Default Links
+a {
+  @apply text-green;
+}
+
+// lg Screen
+@screen lg {
+  // Headers
+  .header {
+    // 36
+    &-lg {
+      @apply text-5xl;
+      &-2 {
+        // @apply text-xl font-serif leading-tight;
+        font-size: 2rem;
+      }
+    }
+
+    // 68
+    &-xl {
+      @apply text-10xl;
+      // 56
+      &-2 {
+        @apply text-6xl;
+      }
+    }
+  }
+}
+
+// Integers
+.font-integer {
+  -moz-font-feature-settings: "lnum" 1;
+  -ms-font-feature-settings: "lnum" 1;
+  -o-font-feature-settings: "lnum" 1;
+  -webkit-font-feature-settings: "lnum" 1;
+  font-feature-settings: "lnum" 1;
+}
+
+// Line Heights (override header classes)
+.leading-neg {
+  line-height: 0.9 !important;
+}

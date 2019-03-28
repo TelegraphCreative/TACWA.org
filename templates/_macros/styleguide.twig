@@ -1,0 +1,23 @@
+{# Standard Button #}
+{% macro snippet(code, lang) %}
+
+    {% if lang == 'twig' %}
+<h4>Code</h4>
+    
+<div class="my-10">
+
+<pre><code class="language-{{lang}}">{{ code | e }}</code></pre>
+</div>
+
+
+    {% else %}
+<div class="my-10">
+<pre><code class="language-{{lang}}">{{ code | raw}}</code></pre>
+</div>
+    {% endif %}
+    
+    
+    
+
+{% endmacro %}
+

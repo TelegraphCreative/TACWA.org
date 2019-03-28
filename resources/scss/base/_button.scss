@@ -1,0 +1,98 @@
+// Prevent Outlines
+* {
+  outline: none;
+}
+
+// Base
+.btn {
+  @apply link
+    inline-block
+    border-2 border-green
+    text-green text-sm text-center
+    font-sans 
+    font-medium
+    px-6 py-5;
+
+  // Hover
+  &:hover {
+    @apply border-green bg-green text-white;
+  }
+
+  // Light
+  &.-light {
+    @apply border-green-light text-green-light;
+
+    &:hover {
+      @apply border-white bg-white text-green-darkest;
+    }
+  }
+
+  // Solid
+  &.-solid {
+    @apply bg-green border-green text-white;
+
+    &:hover {
+      @apply bg-green-darkest border-green-darkest text-white;
+    }
+  }
+
+  // Small
+  &.-small {
+    @apply py-3;
+  }
+
+  // Add
+  &.-add {
+    @apply relative pr-10;
+    &:after {
+      @apply absolute pin-r align-t
+      text-xl font-normal;
+      content: "\002B";
+      margin-right: 0.875rem;
+    }
+  }
+
+  // Dark
+  &.-dark {
+    @apply border-green-darkest text-green-darkest;
+
+    &.-small {
+      @apply border;
+    }
+
+    &:hover {
+      @apply border-green-darkest bg-green-darkest text-white;
+    }
+  }
+
+  // Gallery
+  &--gallery {
+    @apply flex justify-start items-center w-full cursor-pointer;
+
+    .link {
+      @apply pl-10 mt-6;
+    }
+    &:hover {
+      .link {
+        @apply text-green-darkest;
+        svg {
+          transform: translate(0.5rem, 0);
+        }
+      }
+    }
+  }
+}
+
+// -Modifiers
+.btn,
+[class^="btn--"] {
+  &.-wide {
+    @apply px-16;
+  }
+
+  &.-full {
+    @apply block 
+            w-full
+            text-center;
+  }
+}

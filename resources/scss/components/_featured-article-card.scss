@@ -1,0 +1,27 @@
+.featured-article-card {
+  @apply no-underline;
+
+  // Figure
+  &__figure {
+    @apply overflow-hidden;
+  }
+  .background {
+    @apply bg-oat-light property-all duration-2 timing-1;
+  }
+
+  // Hover
+  &:hover {
+    .background {
+      transform: scale(1.01);
+    }
+  }
+
+  // Screen
+  // -md
+  @screen md {
+    // Content
+    &__main {
+      width: 65%;
+    }
+  }
+}

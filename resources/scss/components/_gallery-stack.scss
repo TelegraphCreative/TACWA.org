@@ -1,0 +1,24 @@
+.gallery-stack {
+    @apply relative;
+
+    &__item {
+        @apply relative z-0
+        property-all duration-3 timing-3;
+        
+        width: 10rem;
+
+        &:nth-child(2) {
+            @apply absolute z-10
+            pin-t pin-l ml-5 mt-5
+            delay-1;
+        } 
+    }
+
+    &:hover {
+        .gallery-stack__item {
+            transform: translate(0.25rem, 0.25rem)
+        }
+
+        
+    }
+}

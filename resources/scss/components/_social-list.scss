@@ -1,0 +1,33 @@
+.social-list {
+    @apply .list-reset;
+    
+    li {
+        @apply inline-block mx-1;
+    }
+    a {
+        @apply w-4 h-4
+            inline-block text-green-darkest;
+        
+        &:hover {
+            @apply text-green;
+        }
+    }
+
+    // -flush-l type
+    &.-flush-l {
+        li:first-child {
+            @apply -ml-1;
+        }
+    }
+
+    // -white type
+    &.-white {
+        a {
+            @apply text-white;
+            
+            &:hover {
+                @apply text-green-light;
+            }
+        }
+    }
+}

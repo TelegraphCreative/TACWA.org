@@ -1,0 +1,166 @@
+// Highlight Card
+.highlight-card {
+    @apply relative z-10 
+    flex-1
+    text-center
+    bg-white
+    mb-4
+    py-12 px-10;
+
+
+    &:last-of-type {
+        @apply mb-0;
+    }
+
+    .icon {
+        @apply mx-auto;
+    }
+
+    &__icon {
+        @apply mb-6;
+    }
+
+    &__action {
+        @apply mt-8
+        property-opacity duration-4 timing-1;
+    }
+
+    &__content {
+        @apply relative z-10;
+    }
+
+    &__main {
+        max-width: 17rem;
+        @apply mx-auto;
+        a {
+            @apply inline;
+        }
+    }
+
+    .paragraphs {
+        @apply mt-4;
+    }
+
+    // Align Text Left
+    &.text-left {
+        @apply text-left px-14;
+
+        .highlight-card__main {
+            @apply .max-w-full;
+        }
+
+        .highlight-card__main,
+        .icon {
+            @apply ml-0;
+        }
+    }
+
+}
+
+// sm Screen 
+@screen sm {
+    
+    // General Layout
+    
+    .highlight-card {
+        @apply py-10;
+        
+    }
+
+}
+// Md Screen 
+@screen md {
+
+    // General Layout
+
+    .highlight-card {
+        @apply py-18 bg-transparent mb-0;
+
+        &__action {
+            @apply opacity-0;
+        }
+
+        // Box
+        &:before {
+            @apply absolute pseudo pin-t pin-l z-0
+            w-full h-full 
+            property-colors duration-4 timing-1;
+            
+            transform: scaleX(1.12);
+        }
+
+        
+        // Hover 
+        &:hover {
+            &:before {
+                @apply bg-white;
+            }
+
+            .highlight-card__action {
+                @apply opacity-100;
+            }
+        }
+
+        
+    }
+
+    // Variation
+    // On Dark
+    .bg-green-darkest {
+        
+        .highlight-card {
+            @apply text-white;
+
+            &__icon {
+                @apply text-green-light;
+            }
+            &__action {
+                @apply opacity-0
+                property-all timing-1 duration-2 delay-2;
+            }
+            
+            .header-md,
+            &__header {
+                @apply text-green-light;
+            }
+
+            // Hover 
+            &:hover {
+                @apply text-green-darkest;
+
+                .highlight-card__action {
+                    @apply opacity-100;
+                }
+                .header-md {
+                    @apply text-green-darkest;
+                }
+                .highlight-card__icon {
+                    @apply text-green;
+                }
+            }
+
+             // White Type
+            &.-white {
+                @apply bg-white text-green-darkest;
+
+                .highlight-card__icon,
+                .highlight-card__action {
+                    @apply opacity-100;
+                }
+
+                // Hide Scaling Background
+                &:before { @apply hidden; }
+
+                // &:hover {
+                //     @apply bg-green text-white;
+                //     .icon {
+                //         @apply text-white;
+                //     }
+                // }
+            }
+
+        }
+        
+    }
+
+}

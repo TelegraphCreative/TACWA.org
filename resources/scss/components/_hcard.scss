@@ -1,0 +1,13 @@
+.hcard {
+    a {
+        @apply link font-normal;
+    }
+    
+    &__item {
+        @apply block text-base leading-tight mb-2;
+    }
+
+    .addr {
+        @apply text-sm
+    }
+}

@@ -1,0 +1,27 @@
+.panel-hero {
+    @apply text-center
+    pt-12 pb-14 px-4;
+
+    // Light
+    &.-light {
+        @apply border-t border-oat-light;
+    }
+    // Dark
+    &.bg-green-darkest {
+        @apply text-white;
+
+        .link {
+            @apply border-green-light text-green-light;
+        }
+    }
+
+    // Screen
+    @screen md {
+        @apply pt-18 pb-20 px-8;
+
+        // Large Type
+        &.-lg {
+            @apply pt-28 pb-30;
+        }
+    }
+}

@@ -1,0 +1,93 @@
+{%- minify -%}
+{# {% cache for 1 week%}{% endcache %} #}
+{# Sections, Requests #}
+{# {% set work = craft.entries().section('caseStudies').all() %} #}
+{% set firstSegment = craft.app.request.segment(1) %}
+{% set lastSegment = craft.app.request.segments|last %}
+
+{# Menu #}
+{% set content = {
+        menu: [
+            {
+                name: "Typography",
+                url: "typography"
+            },
+            {
+                name: "Menu List",
+                url: "menu-list"
+            }
+        ]
+    } 
+%}
+
+
+{# Base Layout #}
+<!DOCTYPE html> 
+<html lang="en-US">
+    <head>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8" /> 
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+        <meta name="referrer" content="origin-when-cross-origin" />
+        
+        {% do view.registerCssFile('/assets/css/styleguide.css') %}
+        {% do view.registerCssFile('/assets/css/app.css') %}
+
+        {# Favicons #}
+        {% include '_components/site-favicons' %}
+
+    </head> 
+    <body>
+        <div class="site-container" id="app">
+
+            <main class="site-main">
+
+                {# Header #}
+                <div class="p-10 container gutter border-b-8 border-grey-lighter">
+                    <h1 class="styleguide__content | font-sans font-medium">
+                        <a href="/" class="no-underline | text-grey-darkest | hover:text-black"><span class="text-3xl">{{siteName}}</span> <span class="text-xl block">Styleguide</span></a>
+                    </h1>
+                </div>
+
+                {# Main #}
+                <div class="styleguide | container gutter">
+                    <div class="md:flex flex-wrap">
+                        <aside
+                        class="styleguide-menu styleguide__content | md:w-1/4 pt-10 | md:pb-0 pb-4 | md:pl-10 | md:border-r md:border-b-0 border-b | border-grey-lighter"
+                        >
+                        <h3 class="header-md mb-3 text-grey-darkest">Components</h3>
+                            <ul class="menu-list">
+                                {% for item in content.menu %}
+                                    <li>
+                                        <a href="/styleguide/{{ item.url }}" class="text-grey-darker hover:text-black">{{ item.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </aside>
+
+                        <main class="styleguide-main | md:w-3/4 p-10">
+
+
+                            {# Content #}
+                            {% block content %}{% endblock %}
+
+                        </main>
+                    </div>
+                </div>
+
+                {# Footer #}
+                <div class="py-12 container gutter"></div>
+                
+            </main>
+
+        </div>
+
+    </body>
+
+    {# {% do view.registerJsFile('/assets/js/app.js') %} #}
+    {% do view.registerJsFile('/assets/js/styleguide.js') %}
+	
+</html>
+{%- endminify -%}

@@ -1,0 +1,11 @@
+{% import '_macros/global' as global %}
+{# Defaults to stacked #}
+<ul class="social-list -inline">
+    {% for link in content.all() %}
+    <li>
+        <a href="{{ link.href }}" target="_blank" rel="{{ link.channel }}">
+            {{ global.socialIcon(link.channel) }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
