@@ -1,7 +1,7 @@
-app: tacwa
+app: tacwa-staging
 ssh_url: tacwa-staging@deploy.us1.frbit.com
 ssh_path: null
-git_remote: tacwa/master
+git_remote: tacwa-staging/master
 before:
     code/up:
         - 'echo  "Script example: " $(git rev-parse HEAD)'

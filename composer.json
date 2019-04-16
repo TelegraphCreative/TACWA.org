@@ -1,13 +1,13 @@
 {
   "require": {
     "barrelstrength/sprout-fields": "^3.2",
-    "craftcms/cms": "^3.0.0",
+    "craftcms/cms": "3.1.23",
     "craftcms/redactor": "^2.3",
-    "fortrabbit/craft-copy": "^1.0.0-RC4",
+    "fortrabbit/craft-copy": "^1.0.0-RC5",
     "misterbk/mix": "^1.5",
     "nystudio107/craft-imageoptimize": "1.5.4",
     "nystudio107/craft-minify": "^1.2",
-    "verbb/super-table": "^2.1",
+    "verbb/super-table": "2.1.17",
     "vlucas/phpdotenv": "^2.4.0"
   },
   "autoload": {
