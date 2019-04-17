@@ -1,0 +1,25 @@
+{#   Banners: Standard & Centered   #}
+
+
+{% import '_macros/global' as global %}
+
+<div class="banner {{ classes }}">
+   <div class="container">
+      <div class="banner__container">
+         {#   Content   #}
+         <div class="banner__content">
+            <h2 class="font-normal leading-tight text-20 text-white   md:text-24">{{ heading }}</h2>
+            <p class="text-14 text-teal-lighter   sm:text-16">{{ copy }}</p>
+         </div>
+
+         {#   Action   #}
+         <div class="banner__action">
+            {% if classes == "--centered" %}
+               {{ global.btn('', 'btn --secondary --outline', 'Join Now') }}
+            {% else %}
+               {{ global.btn('', 'btn --primary --outline', 'Browse Past Meetings') }}
+            {% endif %}
+         </div>
+      </div>
+   </div>
+</div>

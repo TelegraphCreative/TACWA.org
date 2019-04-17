@@ -3,13 +3,76 @@
   outline: none;
 }
 
+
 // Base
+.btn {
+   @apply timing-1 duration-1 property-all;
+
+   // Primary
+   &.--primary {
+      @apply border font-medium h-12 no-underline px-6 rounded text-center;
+      line-height: 2.875rem;
+
+      // Dark
+      &.--dark {
+         @apply bg-blue border-blue text-white;
+
+         &:hover {
+            @apply bg-blue-dark
+         }
+      }
+
+      // Light
+      &.--light {
+         @apply bg-white border-grey-lighter text-grey-dark;
+
+         &:hover {
+            @apply bg-grey-lightest border-grey-lightest
+         }
+      }
+
+      // Outline
+      &.--outline {
+         @apply bg-transparent border-white text-white;
+
+         &:hover {
+            @apply bg-white text-blue
+         }
+      }
+
+      // Nav
+      &.--nav {
+         @apply h-10 inline-flex items-center px-4 text-14;
+         line-height: 2.375rem;
+
+         @screen sm {
+            @apply h-12 px-5 text-16;
+            line-height: 2.875rem;
+         }
+      }
+   }
+
+   // Secondary
+   &.--secondary {
+      @apply border font-medium h-10 min-w-40 no-underline px-6 rounded text-center;
+      line-height: 2.375rem;
+
+      &.--outline {
+         @apply border-white text-white;
+
+         &:hover {
+            @apply bg-white text-blue
+         }
+      }
+   }
+}
+/*
 .btn {
   @apply link
     inline-block
     border-2 border-green
     text-green text-sm text-center
-    font-sans 
+    font-sans
     font-medium
     px-6 py-5;
 
@@ -91,8 +154,9 @@
   }
 
   &.-full {
-    @apply block 
+    @apply block
             w-full
             text-center;
   }
 }
+*/

@@ -3,6 +3,27 @@ html {
   scroll-behavior: smooth;
 }
 
+.container {
+   @apply max-w-3xl mx-auto px-4 w-full;
+
+   @screen sm {
+      @apply px-6
+   }
+
+   @screen md {
+      @apply px-10
+   }
+
+   @screen lg {
+      @apply px-16
+   }
+
+   @screen xl {
+      @apply px-20
+   }
+}
+
+/*
 // Container
 .container {
   @apply mx-auto
@@ -136,3 +157,4 @@ html {
 // 62 / 3.875rem  / 15 / default
 //     logo parade
 //     highlight cards
+*/

@@ -46,87 +46,62 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   'transparent': 'transparent',
 
-  'black': '#22292f',
-  'grey-darkest': '#3d4852',
-  'grey-darker': '#606f7b',
-  'grey-dark': '#8795a1',
-  'grey': '#b8c2cc',
-  'grey-light': '#dae1e7',
-  'grey-lighter': '#f1f5f8',
-  'grey-lightest': '#f8fafc',
+  //'black': '#22292f',
+  //'grey-darkest': '#3d4852',
+  //'grey-darker': '#606f7b',
+  'grey-dark': '#33414c',
+  'grey': '#4b5f70',
+  'grey-light': '#94a7b7',
+  'grey-lighter': '#d7dee4',
+  'grey-lightest': '#f0f4f7',
+  'near-white': '#f9fafb',
   'white': '#ffffff',
 
-  'red-darkest': '#3b0d0c',
-  'red-darker': '#621b18',
-  'red-dark': '#cc1f1a',
-  'red': '#e3342f',
-  'red-light': '#ef5753',
-  'red-lighter': '#f9acaa',
-  'red-lightest': '#fcebea',
+  //'grey-900': '#27313A',
+  //'grey-800': '#33414C',
+  //'grey-700': '#4B5F70',
+  //'grey-600': '#5E778D',
+  //'grey-500': '#94A7B7',
+  //'grey-400': '#B3C0CC',
+  //'grey-300': '#D7DEE4',
+  //'grey-200': '#EAEDF1',
+  //'grey-100': '#F6F7F9',
 
-  'orange-darkest': '#462a16',
-  'orange-darker': '#613b1f',
-  'orange-dark': '#de751f',
-  'orange': '#f6993f',
-  'orange-light': '#faad63',
-  'orange-lighter': '#fcd9b6',
-  'orange-lightest': '#fff5eb',
+  //'teal-darkest': '#0d3331',
+  //'teal-darker': '#20504f',
+  //'teal-dark': '#38a89d',
+  'teal': '#2DBAD2',
+  'teal-light': '#85D7E5',
+  'teal-lighter': '#B7DEE5',
+  //'teal-lightest': '#e8fffe',
 
-  'yellow-darkest': '#453411',
-  'yellow-darker': '#684f1d',
-  'yellow-dark': '#f2d024',
-  'yellow': '#ffed4a',
-  'yellow-light': '#fff382',
-  'yellow-lighter': '#fff9c2',
-  'yellow-lightest': '#fcfbeb',
+  //'teal-900': '#1B707E',
+  //'teal-800': '#2391A4',
+  //'teal-700': '#2DBAD2',
+  //'teal-600': '#68CDDF',
+  //'teal-500': '#85D7E5',
+  //'teal-400': '#9ADEE9',
+  //'teal-300': '#B5E7EF',
+  //'teal-200': '#D5F1F6',
+  //'teal-100': '#EAF8FA',
 
-  'green-darkest': '#0f2f21',
-  'green-darker': '#1a4731',
-  'green-dark': '#1f9d55',
-  'green': '#38c172',
-  'green-light': '#51d88a',
-  'green-lighter': '#a2f5bf',
-  'green-lightest': '#e3fcec',
+  //'blue-darkest': '#12283a',
+  //'blue-darker': '#1c3d5a',
+  'blue-dark': '#1A3B78',
+  'blue': '#214B98',
+  //'blue-light': '#6cb2eb',
+  //'blue-lighter': '#bcdefa',
+  //'blue-lightest': '#eff8ff',
 
-  'teal-darkest': '#0d3331',
-  'teal-darker': '#20504f',
-  'teal-dark': '#38a89d',
-  'teal': '#4dc0b5',
-  'teal-light': '#64d5ca',
-  'teal-lighter': '#a0f0ed',
-  'teal-lightest': '#e8fffe',
-
-  'blue-darkest': '#12283a',
-  'blue-darker': '#1c3d5a',
-  'blue-dark': '#2779bd',
-  'blue': '#3490dc',
-  'blue-light': '#6cb2eb',
-  'blue-lighter': '#bcdefa',
-  'blue-lightest': '#eff8ff',
-
-  'indigo-darkest': '#191e38',
-  'indigo-darker': '#2f365f',
-  'indigo-dark': '#5661b3',
-  'indigo': '#6574cd',
-  'indigo-light': '#7886d7',
-  'indigo-lighter': '#b2b7ff',
-  'indigo-lightest': '#e6e8ff',
-
-  'purple-darkest': '#21183c',
-  'purple-darker': '#382b5f',
-  'purple-dark': '#794acf',
-  'purple': '#9561e2',
-  'purple-light': '#a779e9',
-  'purple-lighter': '#d6bbfc',
-  'purple-lightest': '#f3ebff',
-
-  'pink-darkest': '#451225',
-  'pink-darker': '#6f213f',
-  'pink-dark': '#eb5286',
-  'pink': '#f66d9b',
-  'pink-light': '#fa7ea8',
-  'pink-lighter': '#ffbbca',
-  'pink-lightest': '#ffebef',
+  //'blue-900': '#1A3B78',
+  //'blue-800': '#214B98',
+  //'blue-700': '#2759B4',
+  //'blue-600': '#2D68D2',
+  //'blue-500': '#4B7DD8',
+  //'blue-400': '#6892DE',
+  //'blue-300': '#A3BCEB',
+  //'blue-200': '#CDDBF4',
+  //'blue-100': '#F7F9FD',
 }
 
 module.exports = {
@@ -195,6 +170,7 @@ module.exports = {
 
   fonts: {
     'sans': [
+      'Poppins',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',
@@ -208,26 +184,26 @@ module.exports = {
       'Helvetica Neue',
       'sans-serif',
     ],
-    'serif': [
-      'Constantia',
-      'Lucida Bright',
-      'Lucidabright',
-      'Lucida Serif',
-      'Lucida',
-      'DejaVu Serif',
-      'Bitstream Vera Serif',
-      'Liberation Serif',
-      'Georgia',
-      'serif',
-    ],
-    'mono': [
-      'Menlo',
-      'Monaco',
-      'Consolas',
-      'Liberation Mono',
-      'Courier New',
-      'monospace',
-    ],
+    //'serif': [
+    //  'Constantia',
+    //  'Lucida Bright',
+    //  'Lucidabright',
+    //  'Lucida Serif',
+    //  'Lucida',
+    //  'DejaVu Serif',
+    //  'Bitstream Vera Serif',
+    //  'Liberation Serif',
+    //  'Georgia',
+    //  'serif',
+    //],
+    //'mono': [
+    //  'Menlo',
+    //  'Monaco',
+    //  'Consolas',
+    //  'Liberation Mono',
+    //  'Courier New',
+    //  'monospace',
+    //],
   },
 
 
@@ -252,15 +228,25 @@ module.exports = {
   */
 
   textSizes: {
-    'xs': '.75rem',     // 12px
-    'sm': '.875rem',    // 14px
-    'base': '1rem',     // 16px
-    'lg': '1.125rem',   // 18px
-    'xl': '1.25rem',    // 20px
-    '2xl': '1.5rem',    // 24px
-    '3xl': '1.875rem',  // 30px
-    '4xl': '2.25rem',   // 36px
-    '5xl': '3rem',      // 48px
+    '11': '.6875rem',  // 11px
+    '12': '.75rem',    // 12px
+    '14': '.875rem',   // 14px
+    '16': '1rem',      // 16px
+    '18': '1.125rem',  // 18px
+    '20': '1.25rem',   // 20px
+    '22': '1.375rem',  // 22px
+    '24': '1.5rem',    // 24px
+    '30': '1.875rem',  // 30px
+    '32': '2rem',      // 32px
+    //'xs': '.75rem',     // 12px
+    //'sm': '.875rem',    // 14px
+    //'base': '1rem',     // 16px
+    //'lg': '1.125rem',   // 18px
+    //'xl': '1.25rem',    // 20px
+    //'2xl': '1.5rem',    // 24px
+    //'3xl': '1.875rem',  // 30px
+    //'4xl': '2.25rem',   // 36px
+    //'5xl': '3rem',      // 48px
   },
 
 
@@ -280,15 +266,15 @@ module.exports = {
   */
 
   fontWeights: {
-    'hairline': 100,
-    'thin': 200,
-    'light': 300,
+    //'hairline': 100,
+    //'thin': 200,
+    //'light': 300,
     'normal': 400,
     'medium': 500,
     'semibold': 600,
     'bold': 700,
-    'extrabold': 800,
-    'black': 900,
+    //'extrabold': 800,
+    //'black': 900,
   },
 
 
@@ -372,8 +358,8 @@ module.exports = {
   | Background positions       https://tailwindcss.com/docs/background-position
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your background positions. We provide some 
-  | common values that are useful in most projects, but feel free to add 
+  | Here is where you define your background positions. We provide some
+  | common values that are useful in most projects, but feel free to add
   | other positions that are specific to your project here as well.
   |
   | Class name: .bg-{position}
@@ -479,7 +465,8 @@ module.exports = {
   borderRadius: {
     'none': '0',
     'sm': '.125rem',
-    default: '.25rem',
+    //default: '.25rem',
+    default: '.1875rem',
     'lg': '.5rem',
     'full': '9999px',
   },
@@ -518,10 +505,14 @@ module.exports = {
     '8': '2rem',
     '10': '2.5rem',
     '12': '3rem',
+    '15': '3.75rem',
     '16': '4rem',
+    '18': '4.5rem',
     '24': '6rem',
     '32': '8rem',
+    '42': '10.5rem',
     '48': '12rem',
+    '52': '13rem',
     '64': '16rem',
     '1/2': '50%',
     '1/3': '33.33333%',
@@ -558,6 +549,7 @@ module.exports = {
   height: {
     'auto': 'auto',
     'px': '1px',
+    '0': '0rem',
     '1': '0.25rem',
     '2': '0.5rem',
     '3': '0.75rem',
@@ -567,8 +559,11 @@ module.exports = {
     '8': '2rem',
     '10': '2.5rem',
     '12': '3rem',
+    '13': '3.25rem',
     '16': '4rem',
+    '20': '5rem',
     '24': '6rem',
+    '30': '7.5rem',
     '32': '8rem',
     '48': '12rem',
     '64': '16rem',
@@ -594,6 +589,7 @@ module.exports = {
 
   minWidth: {
     '0': '0',
+    '40': '10rem',
     'full': '100%',
   },
 
@@ -640,7 +636,7 @@ module.exports = {
     'xs': '20rem',
     'sm': '30rem',
     'md': '40rem',
-    'lg': '50rem',
+    'lg': '45rem',
     'xl': '60rem',
     '2xl': '70rem',
     '3xl': '80rem',
@@ -699,6 +695,7 @@ module.exports = {
     '8': '2rem',
     '10': '2.5rem',
     '12': '3rem',
+    '14': '3.5rem',
     '16': '4rem',
     '20': '5rem',
     '24': '6rem',
@@ -980,12 +977,25 @@ module.exports = {
   |
   */
 
-  // plugins: [
-  //   require('./plugins/container')({
-  //     // center: true,
-  //     // padding: '1rem',
-  //   }),
-  // ],
+  plugins: [
+
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.rotate-90deg': {
+          transform: 'rotate(90deg)',
+        },
+        '.translateX-100': {
+          transform: 'translateX(100%)',
+        },
+        '.translateX-0': {
+          transform: 'translateX(0%)',
+        },
+      }
+
+      addUtilities(newUtilities)
+    }
+
+  ],
 
 
   /*

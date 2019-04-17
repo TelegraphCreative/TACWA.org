@@ -1,11 +1,18 @@
 // Links
 .link {
-  @apply no-underline
-        font-medium
-        inline-block
-        timing-1 duration-1 property-all;
+   @apply
+      font-medium inline-block no-underline
+      timing-1 duration-1 property-all;
 
+   &.--arrow {
+      @apply inline-flex items-center text-blue;
+
+      &:hover {
+         @apply text-teal-light
+      }
+   }
   // Underline
+  /*
   &.-underline {
     @apply text-green border-b-3 border-green pb-1;
 
@@ -17,13 +24,17 @@
       @apply border-b-2 text-sm pb-1;
     }
   }
+  */
 
   // Small
+  /*
   &.-sm {
-    @apply text-sm pb-0;
+    @apply text-14 pb-0;
   }
+  */
 
   // Green
+  /*
   &.-green {
     @apply text-green;
 
@@ -40,8 +51,10 @@
       @apply text-green border-green;
     }
   }
+  */
 
   // Icon Link
+  /*
   &.-icon {
     @apply flex items-center;
 
@@ -67,6 +80,7 @@
   }
 
   // Screen XS
+  /*
   @screen xs {
     // Group of Links
     &-group {
@@ -81,6 +95,7 @@
       }
     }
   }
+  */
 
   // Screen sm
   @screen sm {
@@ -106,7 +121,7 @@ a {
   color: inherit;
 
   &:hover {
-    @apply text-green;
+    //@apply text-green;
   }
 }
 a,

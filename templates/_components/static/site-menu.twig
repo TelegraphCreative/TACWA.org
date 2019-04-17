@@ -1,0 +1,112 @@
+{#   Site Menu   #}
+
+{% import '_macros/global' as global %}
+
+{% set siteMenu = {
+    menu: [
+        {
+            name: "Home",
+            url: "/",
+            submenu: ""
+        },
+        {
+            name: "About",
+            url: "/",
+            submenu: [
+               {
+                  name: "Item 1",
+                  url: "/",
+               },
+               {
+                  name: "Item 2",
+                  url: "/",
+               }
+            ]
+        },
+        {
+            name: "Legislation",
+            url: "/",
+            submenu: ""
+        },
+        {
+            name: "Join TACWA",
+            url: "/",
+            submenu: ""
+        },
+        {
+            name: "Events",
+            url: "/",
+            submenu: [
+               {
+                  name: "Item 1",
+                  url: "/",
+               },
+               {
+                  name: "Item 2",
+                  url: "/",
+               },
+               {
+                  name: "Item 3",
+                  url: "/",
+               }
+            ]
+        },
+        {
+            name: "Contact",
+            url: "/",
+            submenu: ""
+        }
+    ]
+}
+%}
+
+
+{#   Site Menu Container   #}
+<div class="site-menu__container">
+   {#   Opacity Overlay   #}
+   <div class="site-menu__overlay"></div>
+
+   {#   Site Menu Wrapper   #}
+   <div class="site-menu__wrapper">
+      {#   Site Menu   #}
+      <nav class="site-menu">
+         {#   Close Button   #}
+         <button class="site-menu__close-btn">
+            Close {{ global.utilityIcon('close', 'h-4 w-4 sm:h-5 sm:w-5  |  ml-3 sm:ml-4') }}
+         </button>
+
+         {#   Menu List   #}
+         <ul>
+            {% for item in siteMenu.menu %}
+               {% if item.submenu %}
+                  {#   Menu Item with Dropdown   #}
+                  <li class="site-menu__item --dropdown">
+                     {#   Menu Item Title & Icon   #}
+                     <span>
+                        {{ item.name }}
+                        {{ global.utilityIcon('chevron') }}
+                     </span>
+
+                     {#   Submenu   #}
+                     <ul class="site-menu__submenu">
+                        {% for item in item.submenu %}
+                           {#   Submenu Item   #}
+                           <li class="site-menu__sub-item">
+                              <a href="{{ item.url }}">
+                                 {{ item.name }}
+                              </a>
+                           </li>
+                        {% endfor %}
+                     </ul>
+                  </li>
+               {% else %}
+                  {#   Menu Item   #}
+                  <li class="site-menu__item">
+                     <a class="" href="{{ item.url }}">{{ item.name }}</a>
+                  </li>
+               {% endif %}
+            {% endfor %}
+         </ul>
+      </nav>
+   </div>
+</div>

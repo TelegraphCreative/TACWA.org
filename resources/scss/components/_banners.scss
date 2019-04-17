@@ -1,0 +1,70 @@
+//
+// Banners
+//
+
+.banner {
+   @apply bg-blue py-14 relative;
+
+   &::before {
+      @apply absolute pin;
+      background-image: url(../img/bg--water.jpg);
+      background-position: center;
+      background-size: cover;
+      opacity: .2;
+      content: '';
+   }
+
+   .banner__container {
+      @apply max-w-xl mx-auto relative z-10;
+
+      .banner__content {
+         @apply max-w-md mb-8;
+
+         h2 {
+            @apply mb-4
+         }
+      }
+
+      .banner__action {
+         @apply flex-no-shrink
+      }
+   }
+
+   @screen md {
+      .banner__container {
+         @apply flex items-center justify-between;
+
+         .banner__content {
+            @apply max-w-md mb-0 pr-12;
+
+            h2 {
+               @apply mb-3
+            }
+         }
+      }
+   }
+
+
+   // Centered
+   &.--centered {
+      .banner__container {
+         @apply max-w-lg;
+      }
+
+      @screen md {
+         @apply text-center;
+
+         .banner__container {
+            @apply block;
+
+            .banner__content {
+               @apply max-w-full mb-8;
+
+               h2 {
+                  @apply mb-5
+               }
+            }
+         }
+      }
+   }
+}
