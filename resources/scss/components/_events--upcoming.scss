@@ -1,0 +1,65 @@
+//
+// Events - Upcoming
+//
+
+.upcoming-events {
+   @apply mb-20;
+
+   .upcoming-events__heading {
+      @apply font-medium leading-tight mb-6 text-blue text-18;
+
+      @screen md {
+         @apply text-20
+      }
+   }
+
+   .upcoming-events__event-list {
+      @screen sm {
+         @apply flex flex-wrap -mx-4
+      }
+
+      @screen md {
+         @apply block mx-0
+      }
+
+      .upcoming-events__event {
+         @screen sm {
+            @apply px-4 w-1/2
+         }
+
+         @screen md {
+            @apply px-0 w-full
+         }
+
+         a {
+            @apply border-b border-grey-lighter flex mb-5 no-underline pb-8;
+
+            .upcoming-events__info {
+               @apply pl-5;
+
+               .upcoming-events__info__org {
+                  @apply block font-semibold leading-none mb-2 text-11
+               }
+
+               .upcoming-events__info__heading {
+                  @apply font-medium leading-tight text-16 text-blue;
+
+                  @screen md {
+                     @apply text-20
+                  }
+               }
+
+               .upcoming-events__info__location {
+                  @apply font-medium text-12 text-grey
+               }
+            }
+
+            &:hover {
+               .upcoming-events__info__heading {
+                  @apply text-blue-light
+               }
+            }
+         }
+      }
+   }
+}

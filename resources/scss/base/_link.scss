@@ -7,8 +7,16 @@
    &.--arrow {
       @apply inline-flex items-center text-blue;
 
+      svg {
+         @apply translateX-0per timing-1 duration-1;
+      }
+
       &:hover {
-         @apply text-teal-light
+         @apply text-blue-dark;
+
+         svg {
+            @apply translateX-20per
+         }
       }
    }
   // Underline

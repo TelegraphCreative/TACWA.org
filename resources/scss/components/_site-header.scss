@@ -41,9 +41,11 @@
 
       // Action
       .site-header__action {
+         @apply flex items-center;
+
          @media screen and (max-width: 47.9375rem) {
             .account__login-btn,
-            .account__logged-in-btn {
+            .site-user-menu__btn {
                @apply hidden
             }
          }

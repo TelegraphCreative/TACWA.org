@@ -14,7 +14,7 @@
    // Menu Wrapper
    .site-menu__wrapper {
       @apply flex justify-end fixed pin z-40;
-      @apply translateX-100 timing-1 duration-3 property-all;
+      @apply translateX-100per timing-1 duration-3 property-all;
    }
 
    // When Visible
@@ -29,7 +29,7 @@
 
       // Menu Wrapper
       .site-menu__wrapper {
-         @apply translateX-0 timing-1 duration-3 property-all;
+         @apply translateX-0per timing-1 duration-3 property-all;
       }
    }
 }
@@ -114,7 +114,7 @@
                      height: 1rem;
                      width:.625rem
                   }
-                  
+
                   @media (hover: hover) {
                      &:hover {
                         @apply text-teal-light;

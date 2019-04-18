@@ -1,0 +1,26 @@
+//
+// Events - Event Date
+//
+
+.event-date {
+   > div {
+      @apply border border-blue flex flex-col flex-no-shrink pb-1 text-center w-15;
+
+      @screen lg {
+         @apply pb-2 w-18
+      }
+
+      .event-date__month {
+         @apply bg-blue font-medium text-11 text-white w-full;
+         line-height: 1.375rem
+      }
+
+      .event-date__day {
+         @apply font-normal pt-1 text-24 text-blue;
+
+         @screen lg {
+            @apply pt-0 text-32
+         }
+      }
+   }
+}

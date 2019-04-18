@@ -46,9 +46,6 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   'transparent': 'transparent',
 
-  //'black': '#22292f',
-  //'grey-darkest': '#3d4852',
-  //'grey-darker': '#606f7b',
   'grey-dark': '#33414c',
   'grey': '#4b5f70',
   'grey-light': '#94a7b7',
@@ -57,51 +54,12 @@ let colors = {
   'near-white': '#f9fafb',
   'white': '#ffffff',
 
-  //'grey-900': '#27313A',
-  //'grey-800': '#33414C',
-  //'grey-700': '#4B5F70',
-  //'grey-600': '#5E778D',
-  //'grey-500': '#94A7B7',
-  //'grey-400': '#B3C0CC',
-  //'grey-300': '#D7DEE4',
-  //'grey-200': '#EAEDF1',
-  //'grey-100': '#F6F7F9',
-
-  //'teal-darkest': '#0d3331',
-  //'teal-darker': '#20504f',
-  //'teal-dark': '#38a89d',
   'teal': '#2DBAD2',
   'teal-light': '#85D7E5',
-  'teal-lighter': '#B7DEE5',
-  //'teal-lightest': '#e8fffe',
 
-  //'teal-900': '#1B707E',
-  //'teal-800': '#2391A4',
-  //'teal-700': '#2DBAD2',
-  //'teal-600': '#68CDDF',
-  //'teal-500': '#85D7E5',
-  //'teal-400': '#9ADEE9',
-  //'teal-300': '#B5E7EF',
-  //'teal-200': '#D5F1F6',
-  //'teal-100': '#EAF8FA',
-
-  //'blue-darkest': '#12283a',
-  //'blue-darker': '#1c3d5a',
   'blue-dark': '#1A3B78',
   'blue': '#214B98',
-  //'blue-light': '#6cb2eb',
-  //'blue-lighter': '#bcdefa',
-  //'blue-lightest': '#eff8ff',
-
-  //'blue-900': '#1A3B78',
-  //'blue-800': '#214B98',
-  //'blue-700': '#2759B4',
-  //'blue-600': '#2D68D2',
-  //'blue-500': '#4B7DD8',
-  //'blue-400': '#6892DE',
-  //'blue-300': '#A3BCEB',
-  //'blue-200': '#CDDBF4',
-  //'blue-100': '#F7F9FD',
+  'blue-light': '#B7DEE5',
 }
 
 module.exports = {
@@ -634,7 +592,7 @@ module.exports = {
 
   maxWidth: {
     'xs': '20rem',
-    'sm': '30rem',
+    'sm': '35rem',
     'md': '40rem',
     'lg': '45rem',
     'xl': '60rem',
@@ -984,11 +942,20 @@ module.exports = {
         '.rotate-90deg': {
           transform: 'rotate(90deg)',
         },
-        '.translateX-100': {
+        '.translateX-100per': {
           transform: 'translateX(100%)',
         },
-        '.translateX-0': {
+        '.translateX-20per': {
+          transform: 'translateX(20%)',
+        },
+        '.translateX-0per': {
           transform: 'translateX(0%)',
+        },
+        '.translateY-0': {
+          transform: 'translateY(0)',
+        },
+        '.translateY-5': {
+          transform: 'translateY(1.25rem)',
         },
       }
 

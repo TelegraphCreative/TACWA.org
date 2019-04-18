@@ -20,8 +20,22 @@
       .banner__content {
          @apply max-w-md mb-8;
 
-         h2 {
-            @apply mb-4
+         .banner__content__heading {
+            @apply
+               font-normal leading-tight text-20 text-white
+               mb-4;
+
+            @screen md {
+               @apply text-24
+            }
+         }
+
+         .banner__content__copy {
+            @apply text-14 text-blue-light;
+
+            @screen sm {
+               @apply text-16
+            }
          }
       }
 

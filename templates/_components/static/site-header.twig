@@ -17,9 +17,7 @@
          <!--{{ global.btn('', 'account__login-btn  |  btn --primary --light', 'Login') }}-->
 
          {#   User Logged In   #}
-         <button class="account__logged-in-btn  |  font-medium text-grey-dark hover:text-grey  |  inline-flex items-center  |  px-5">
-            Your Account {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg  |  text-grey') }}
-         </button>
+         {% include '_components/static/site-user-menu' %}
 
 
          {#   Nav   #}
