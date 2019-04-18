@@ -75,8 +75,10 @@
             Close {{ global.utilityIcon('close', 'h-4 w-4 sm:h-5 sm:w-5  |  ml-3 sm:ml-4') }}
          </button>
 
+         <div class="">
+
          {#   Menu List   #}
-         <ul>
+         <ul class="site-menu__list">
             {% for item in siteMenu.menu %}
                {% if item.submenu %}
                   {#   Menu Item with Dropdown   #}
@@ -107,6 +109,20 @@
                {% endif %}
             {% endfor %}
          </ul>
+
+         {#   Site User Menu for Small Screens   #}
+         <div class="site-user-menu--sm">
+            <div class="site-user-menu__item --dropdown">
+               {#   Menu Item Title & Icon   #}
+               <span>
+                  Your Account
+                  {{ global.utilityIcon('chevron') }}
+               </span>
+
+               {% include '_components/static/site-user-menu__list' %}
+            </div>
+         </div>
+      </div>
       </nav>
    </div>
 </div>

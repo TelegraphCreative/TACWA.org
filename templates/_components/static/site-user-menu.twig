@@ -2,43 +2,12 @@
 
 {% import '_macros/global' as global %}
 
-{% set
-   siteUserMenu = {
-      menu: [
-         {
-            name: "Organization Settings",
-            url: "/"
-         },
-         {
-            name: "Manage Members",
-            url: "/"
-         },
-         {
-            name: "Your Profile",
-            url: "/"
-         },
-         {
-            name: "Your Events",
-            url: "/"
-         },
-         {
-            name: "Log Out",
-            url: "/"
-         }
-      ]
-   }
-%}
-
 <div class="site-user-menu">
    <button class="site-user-menu__btn">
       Your Account {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg  |  text-grey') }}
    </button>
 
    <div class="site-user-menu__list_wrapper">
-      <div class="site-user-menu__list">
-         {% for item in siteUserMenu.menu %}
-            <a href="{{ item.url }}" class="site-user-menu__list__item">{{ item.name }}</a>
-         {% endfor %}
-      </div>
+      {% include '_components/static/site-user-menu__list' %}
    </div>
 </div>

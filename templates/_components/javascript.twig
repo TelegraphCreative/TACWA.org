@@ -16,11 +16,19 @@
 
    // ---------------------------------------------------------------------------
    // Site Menu Submenu Toggle
-   var submenuBtn      = document.querySelectorAll(".site-menu__item.--dropdown");
+   var submenu = document.querySelectorAll('.site-menu__item.--dropdown');
 
-   submenuBtn.forEach(function(show) {
+   submenu.forEach(function(show) {
       show.onclick = function(){
-         this.classList.toggle("--is-open");
+         this.classList.toggle('--is-open');
       };
    });
+
+   // ---------------------------------------------------------------------------
+   // Site User Menu Toggle on Small Screens
+   var userMenu = document.querySelector('.site-user-menu__item.--dropdown');
+
+   userMenu.onclick = function(){
+      this.classList.toggle('--is-open')
+   }
 </script>

@@ -37,7 +37,7 @@
 .site-menu__wrapper {
    // Site Menu
    .site-menu {
-      @apply bg-blue-dark flex items-center h-full px-8 relative w-full;
+      @apply bg-blue-dark flex flex-col justify-start h-full p-8 pt-20 relative w-full;
 
       @screen sm {
          max-width: 30rem
@@ -69,8 +69,12 @@
       }
 
       // Menu
-      ul {
-         @apply list-reset w-full;
+      .site-menu__list {
+         @apply border-b border-white list-reset mb-5 pb-5 w-full;
+
+         @screen md {
+            @apply border-none mb-0 pb-0
+         }
 
          // Menu Item
          .site-menu__item {
@@ -81,7 +85,15 @@
             }
 
             a {
-               @apply font-normal leading-tight no-underline relative text-22 text-white;
+               @apply font-normal leading-tight no-underline relative text-18 text-white;
+
+               @screen sm {
+                  @apply text-20
+               }
+
+               @screen md {
+                  @apply text-22
+               }
 
                &:before {
                   content: '';
@@ -108,11 +120,29 @@
             &.--dropdown {
                // Title & Icon
                span {
-                  @apply cursor-pointer font-normal flex items-center justify-between leading-tight no-underline relative text-22 text-white;
+                  @apply cursor-pointer font-normal flex items-center justify-between leading-tight no-underline relative text-18 text-white;
+
+                  @screen sm {
+                     @apply text-20
+                  }
+
+                  @screen md {
+                     @apply text-22
+                  }
 
                   svg {
-                     height: 1rem;
-                     width:.625rem
+                     height: .75rem;
+                     width: .5rem;
+
+                     @screen sm {
+                        height: 14px;
+                        width: 9px
+                     }
+
+                     @screen md {
+                        height: 1rem;
+                        width:.625rem
+                     }
                   }
 
                   @media (hover: hover) {
@@ -124,14 +154,18 @@
 
                // Submenu
                .site-menu__submenu {
-                  @apply h-0 invisible pl-4 opacity-0;
+                  @apply h-0 invisible list-reset pl-4 opacity-0;
 
                   // Submenu Item
                   .site-menu__sub-item {
                      @apply pt-3;
 
                      a {
-                        @apply text-18;
+                        @apply text-16;
+
+                        @screen md {
+                           @apply text-18
+                        }
 
                         &:before {
                            height: 6px;
