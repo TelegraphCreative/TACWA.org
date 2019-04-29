@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "7f8fa72f12c66ffe9f866865ac277dcd",
+=======
+    "content-hash": "1b9e05e8e771a238428fa9adf1d353af",
+>>>>>>> origin/master
     "packages": [
         {
             "name": "99designs/phumbor",
@@ -39,6 +43,49 @@
                 "thumbor"
             ],
             "time": "2017-01-23T02:27:47+00:00"
+        },
+        {
+            "name": "albertofem/rsync-lib",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/albertofem/rsync-lib/zipball/6f7e31a15d5a2fe712136c367a35d2599bb5dbe5",
+                "reference": "6f7e31a15d5a2fe712136c367a35d2599bb5dbe5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.0,<6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "AFM": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alberto Fernandez",
+                    "email": "albertofem@gmail.com"
+                }
+            ],
+            "description": "A simple PHP rsync wrapper library",
+            "homepage": "http://albertofem.com",
+            "keywords": [
+                "rsync library"
+            ],
+            "time": "2018-01-13T20:13:12+00:00"
         },
         {
             "name": "barrelstrength/sprout-base",
@@ -640,12 +687,74 @@
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
+            "name": "cpliakas/git-wrapper",
+            "version": "v2.1.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cpliakas/git-wrapper/zipball/05a047acc578c2d0ca6fdb985598467860285dc7",
+                "reference": "05a047acc578c2d0ca6fdb985598467860285dc7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/event-dispatcher": "^4.1",
+                "symfony/process": "^4.1"
+            },
+            "require-dev": {
+                "nette/utils": "^2.5",
+                "phpstan/phpstan": "^0.10.5",
+                "phpunit/phpunit": "^7.4",
+                "psr/log": "1.0",
+                "symfony/filesystem": "^4.1",
+                "symplify/changelog-linker": "^5.2",
+                "symplify/easy-coding-standard": "^5.2"
+            },
+            "suggest": {
+                "monolog/monolog": "Enables logging of executed git commands"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GitWrapper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomáš Votruba",
+                    "email": "tomas.vot@gmail.com"
+                },
+                {
+                    "name": "Chris Pliakas",
+                    "email": "opensource@chrispliakas.com"
+                }
+            ],
+            "description": "A PHP wrapper around the Git command line utility.",
+            "keywords": [
+                "cli",
+                "git",
+                "git wrapper"
+            ],
+            "time": "2018-11-09T00:15:45+00:00"
+        },
+        {
             "name": "craftcms/cms",
+<<<<<<< HEAD
             "version": "3.1.24",
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/craftcms/cms/zipball/aa862bd7f2ee3a81c692f0b6c4d0aa9f20e85373",
                 "reference": "aa862bd7f2ee3a81c692f0b6c4d0aa9f20e85373",
+=======
+            "version": "3.1.23",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/40add5d4d5784caf54f49b3fdf3a4cb46fcd9abe",
+                "reference": "40add5d4d5784caf54f49b3fdf3a4cb46fcd9abe",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
@@ -674,7 +783,11 @@
                 "seld/cli-prompt": "^1.0.3",
                 "symfony/yaml": "^3.2|^4.0",
                 "true/punycode": "^2.1.0",
+<<<<<<< HEAD
                 "twig/twig": "~2.8.1",
+=======
+                "twig/twig": "~2.7.2",
+>>>>>>> origin/master
                 "yii2tech/ar-softdelete": "^1.0.2",
                 "yiisoft/yii2": "~2.0.17.0",
                 "yiisoft/yii2-debug": "^2.0.10",
@@ -692,12 +805,6 @@
                 "bower-asset/punycode": "1.3.*",
                 "bower-asset/yii2-pjax": "~2.0.1"
             },
-            "require-dev": {
-                "codeception/codeception": "^2.4",
-                "codeception/mockery-module": "~0.2.2",
-                "codeception/specify": "~0.4.6",
-                "codeception/verify": "~0.3.3"
-            },
             "suggest": {
                 "ext-iconv": "Adds support for more character encodings than PHP’s built-in mb_convert_encoding() function, which Craft will take advantage of when converting strings to UTF-8.",
                 "ext-imagick": "Adds support for more image processing formats and options.",
@@ -709,7 +816,6 @@
                     "craft\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -720,6 +826,7 @@
                 "craftcms",
                 "yii2"
             ],
+<<<<<<< HEAD
             "time": "2019-04-23T17:11:18+00:00"
         },
         {
@@ -773,6 +880,17 @@
                 "rss": "https://github.com/craftcms/mailgun/commits/master.atom"
             },
             "time": "2019-02-22T13:14:31+00:00"
+=======
+            "support": {
+                "email": "support@craftcms.com",
+                "issues": "https://github.com/craftcms/cms/issues?state=open",
+                "forum": "https://craftcms.stackexchange.com/",
+                "source": "https://github.com/craftcms/cms",
+                "docs": "https://docs.craftcms.com/v3/",
+                "rss": "https://github.com/craftcms/cms/releases.atom"
+            },
+            "time": "2019-04-16T16:41:36+00:00"
+>>>>>>> origin/master
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -1452,6 +1570,7 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "fruitstudios/linkit",
             "version": "1.1.11",
             "dist": {
@@ -1506,6 +1625,111 @@
                 "docs": "https://github.com/fruitstudios/craft-linkit"
             },
             "time": "2019-04-03T09:54:55+00:00"
+=======
+            "name": "fortrabbit/craft-auto-migrate",
+            "version": "1.1.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fortrabbit/craft-auto-migrate/zipball/432ea2eacd1c3e435061990a8a6e72d8bb756eaf",
+                "reference": "432ea2eacd1c3e435061990a8a6e72d8bb756eaf",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "craftcms/cms": "^3.0.0",
+                "vlucas/phpdotenv": "^2.5"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "fortrabbit\\CraftAutoMigrate\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "fortrabbit\\CraftAutoMigrate\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Stark",
+                    "homepage": "https://www.fortrabbit.com/"
+                }
+            ],
+            "description": "Runs migrations automatically",
+            "keywords": [
+                "composer",
+                "craftcms",
+                "development"
+            ],
+            "time": "2019-01-23T12:40:40+00:00"
+        },
+        {
+            "name": "fortrabbit/craft-copy",
+            "version": "1.0.0-RC5",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fortrabbit/craft-copy/zipball/2c5fd5900e5b91f8d7da986639f93587531a3eca",
+                "reference": "2c5fd5900e5b91f8d7da986639f93587531a3eca",
+                "shasum": ""
+            },
+            "require": {
+                "albertofem/rsync-lib": "^1.0.0",
+                "cpliakas/git-wrapper": "^2.0",
+                "craftcms/cms": "^3.0.0",
+                "fortrabbit/craft-auto-migrate": "^1.1.0",
+                "ostark/yii2-artisan-bridge": "^1.2.0",
+                "php": "^7.1.3",
+                "symfony/process": "^4.1",
+                "symfony/yaml": "^4.1",
+                "vlucas/phpdotenv": "^2.5.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.12.2",
+                "phpstan/phpstan": "^0.10.5"
+            },
+            "bin": [
+                "bin/craft-copy-import-db.php",
+                "bin/craft-copy-env.php"
+            ],
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Copy",
+                "handle": "copy",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/fortrabbit/craft-copy/master/CHANGELOG.md"
+            },
+            "autoload": {
+                "psr-4": {
+                    "fortrabbit\\Copy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Stark",
+                    "homepage": "https://www.fortrabbit.com/"
+                }
+            ],
+            "description": "Tooling for Craft on fortrabbit",
+            "keywords": [
+                "Craft",
+                "cms",
+                "craft-plugin",
+                "craftcms",
+                "queue"
+            ],
+            "time": "2019-03-29T13:30:59+00:00"
+>>>>>>> origin/master
         },
         {
             "name": "giggsey/libphonenumber-for-php",
@@ -2029,6 +2253,61 @@
                 "shasum": ""
             },
             "require": {
+<<<<<<< HEAD
+=======
+                "ext-mbstring": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.9",
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "8.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Csv\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://github.com/nyamsprod/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Csv data manipulation made easy in PHP",
+            "homepage": "http://csv.thephpleague.com",
+            "keywords": [
+                "csv",
+                "export",
+                "filter",
+                "import",
+                "read",
+                "write"
+            ],
+            "time": "2018-02-06T08:27:03+00:00"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "1.0.51",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/755ba7bf3fb9031e6581d091db84d78275874396",
+                "reference": "755ba7bf3fb9031e6581d091db84d78275874396",
+                "shasum": ""
+            },
+            "require": {
+>>>>>>> origin/master
                 "ext-fileinfo": "*",
                 "php": ">=5.5.9"
             },
@@ -2092,6 +2371,68 @@
                 "storage"
             ],
             "time": "2019-03-30T13:22:34+00:00"
+<<<<<<< HEAD
+=======
+        },
+        {
+            "name": "league/html-to-markdown",
+            "version": "4.8.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/html-to-markdown/zipball/250d1bf45f80d15594fb6b316df777d6d4c97ad1",
+                "reference": "250d1bf45f80d15594fb6b316df777d6d4c97ad1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-xml": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "mikehaertl/php-shellcommand": "~1.1.0",
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "bin": [
+                "bin/html-to-markdown"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\HTMLToMarkdown\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nick Cernis",
+                    "email": "nick@cern.is",
+                    "homepage": "http://modernnerd.net",
+                    "role": "Original Author"
+                },
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "An HTML-to-markdown conversion helper for PHP",
+            "homepage": "https://github.com/thephpleague/html-to-markdown",
+            "keywords": [
+                "html",
+                "markdown"
+            ],
+            "time": "2018-12-24T17:21:44+00:00"
+>>>>>>> origin/master
         },
         {
             "name": "league/oauth2-client",
@@ -2887,6 +3228,7 @@
             "time": "2018-07-21T15:09:55+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "nystudio107/craft-seomatic",
             "version": "3.1.49",
             "dist": {
@@ -2956,6 +3298,47 @@
                 "issues": "https://github.com/nystudio107/craft-seomatic/issues"
             },
             "time": "2019-04-23T03:23:57+00:00"
+=======
+            "name": "ostark/yii2-artisan-bridge",
+            "version": "1.2.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ostark/yii2-artisan-bridge/zipball/c018ea7dc46c6ac94dba57f81e9bae000f87a015",
+                "reference": "c018ea7dc46c6ac94dba57f81e9bae000f87a015",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "^3.0 || ^4.0",
+                "symfony/process": "^3.0 || ^4.0",
+                "yiisoft/yii2": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ostark\\Yii2ArtisanBridge\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Stark",
+                    "homepage": "https://www.fortrabbit.com"
+                }
+            ],
+            "description": "Brings the ease of Artisan commands and the power of Symfony console to Yii2.",
+            "keywords": [
+                "artisan",
+                "console",
+                "craftcms",
+                "laravel",
+                "symfony",
+                "yii2"
+            ],
+            "time": "2018-10-01T10:36:31+00:00"
+>>>>>>> origin/master
         },
         {
             "name": "paragonie/random_compat",
@@ -4451,17 +4834,44 @@
             "time": "2019-04-06T13:51:08+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/http-foundation",
             "version": "v4.2.7",
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6ebbe61f48069033225c9d3fa7eb5ed116d766d6",
                 "reference": "6ebbe61f48069033225c9d3fa7eb5ed116d766d6",
+=======
+            "name": "symfony/console",
+            "version": "v4.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/console/zipball/24206aff3efe6962593297e57ef697ebb220e384",
+                "reference": "24206aff3efe6962593297e57ef697ebb220e384",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
+<<<<<<< HEAD
                 "symfony/polyfill-mbstring": "~1.1"
+=======
+                "symfony/contracts": "^1.0",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/dependency-injection": "<3.4",
+                "symfony/process": "<3.3"
+            },
+            "provide": {
+                "psr/log-implementation": "1.0"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/lock": "",
+                "symfony/process": ""
+>>>>>>> origin/master
             },
             "type": "library",
             "extra": {
@@ -4492,6 +4902,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2019-04-17T14:56:00+00:00"
         },
         {
@@ -4528,6 +4939,99 @@
                 "symfony/console": "",
                 "symfony/dependency-injection": "",
                 "symfony/var-dumper": ""
+=======
+            "time": "2019-04-01T07:32:59+00:00"
+        },
+        {
+            "name": "symfony/contracts",
+            "version": "v1.0.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/1aa7ab2429c3d594dd70689604b5cf7421254cdf",
+                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "psr/cache": "^1.0",
+                "psr/container": "^1.0"
+            },
+            "suggest": {
+                "psr/cache": "When using the Cache contracts",
+                "psr/container": "When using the Service contracts",
+                "symfony/cache-contracts-implementation": "",
+                "symfony/service-contracts-implementation": "",
+                "symfony/translation-contracts-implementation": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Contracts\\": ""
+                },
+                "exclude-from-classmap": [
+                    "**/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A set of abstractions extracted out of the Symfony components",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "abstractions",
+                "contracts",
+                "decoupling",
+                "interfaces",
+                "interoperability",
+                "standards"
+            ],
+            "time": "2018-12-05T08:06:11+00:00"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "v4.2.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/3354d2e6af986dd71f68b4e5cf4a933ab58697fb",
+                "reference": "3354d2e6af986dd71f68b4e5cf4a933ab58697fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/contracts": "^1.0"
+            },
+            "conflict": {
+                "symfony/dependency-injection": "<3.4"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~3.4|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/expression-language": "~3.4|~4.0",
+                "symfony/stopwatch": "~3.4|~4.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+>>>>>>> origin/master
             },
             "type": "library",
             "extra": {
@@ -4537,7 +5041,11 @@
             },
             "autoload": {
                 "psr-4": {
+<<<<<<< HEAD
                     "Symfony\\Component\\HttpKernel\\": ""
+=======
+                    "Symfony\\Component\\EventDispatcher\\": ""
+>>>>>>> origin/master
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -4556,6 +5064,7 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
+<<<<<<< HEAD
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
             "time": "2019-04-17T16:17:13+00:00"
@@ -4567,6 +5076,19 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/inflector/zipball/275e54941a4f17a471c68d2a00e2513fc1fd4a78",
                 "reference": "275e54941a4f17a471c68d2a00e2513fc1fd4a78",
+=======
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-02-23T15:17:42+00:00"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v4.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/e16b9e471703b2c60b95f14d31c1239f68f11601",
+                "reference": "e16b9e471703b2c60b95f14d31c1239f68f11601",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
@@ -4602,6 +5124,7 @@
             ],
             "description": "Symfony Inflector Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "keywords": [
                 "inflection",
                 "pluralize",
@@ -4619,6 +5142,17 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/options-resolver/zipball/fd4a5f27b7cd085b489247b9890ebca9f3e10044",
                 "reference": "fd4a5f27b7cd085b489247b9890ebca9f3e10044",
+=======
+            "time": "2019-02-07T11:40:08+00:00"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v4.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/267b7002c1b70ea80db0833c3afe05f0fbde580a",
+                "reference": "267b7002c1b70ea80db0833c3afe05f0fbde580a",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
@@ -4653,12 +5187,16 @@
             ],
             "description": "Symfony OptionsResolver Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "keywords": [
                 "config",
                 "configuration",
                 "options"
             ],
             "time": "2019-04-10T16:20:36+00:00"
+=======
+            "time": "2019-02-23T15:42:05+00:00"
+>>>>>>> origin/master
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -4930,11 +5468,19 @@
         },
         {
             "name": "symfony/process",
+<<<<<<< HEAD
             "version": "v4.2.7",
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/process/zipball/8cf39fb4ccff793340c258ee7760fd40bfe745fe",
                 "reference": "8cf39fb4ccff793340c258ee7760fd40bfe745fe",
+=======
+            "version": "v4.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/1e6cbb41dadcaf29e0db034d6ad0d039a9df06e6",
+                "reference": "1e6cbb41dadcaf29e0db034d6ad0d039a9df06e6",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
@@ -4954,7 +5500,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -4970,6 +5515,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2019-04-10T16:20:36+00:00"
         },
         {
@@ -5091,6 +5637,13 @@
         {
             "name": "symfony/yaml",
             "version": "v4.2.7",
+=======
+            "time": "2019-03-10T20:07:02+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v4.2.5",
+>>>>>>> origin/master
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/6712daf03ee25b53abb14e7e8e0ede1a770efdb1",
@@ -5100,12 +5653,18 @@
             "require": {
                 "php": "^7.1.3",
                 "symfony/polyfill-ctype": "~1.8"
+<<<<<<< HEAD
             },
             "conflict": {
                 "symfony/console": "<3.4"
             },
             "require-dev": {
                 "symfony/console": "~3.4|~4.0"
+=======
+            },
+            "conflict": {
+                "symfony/console": "<3.4"
+>>>>>>> origin/master
             },
             "suggest": {
                 "symfony/console": "For validating YAML files using the lint command"
@@ -5124,7 +5683,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5141,6 +5699,7 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2019-03-30T15:58:42+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "tcb13/substringy",
@@ -5252,6 +5811,8 @@
                 "issues": "https://github.com/topshelfcraft/wordsmith/issues"
             },
             "time": "2018-11-06T16:54:56+00:00"
+=======
+>>>>>>> origin/master
         },
         {
             "name": "true/punycode",
@@ -5406,11 +5967,19 @@
         },
         {
             "name": "verbb/super-table",
+<<<<<<< HEAD
             "version": "2.1.18",
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/verbb/super-table/zipball/95b05389cc200d674c54401e4a3d8b5fc70c0712",
                 "reference": "95b05389cc200d674c54401e4a3d8b5fc70c0712",
+=======
+            "version": "2.1.17",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/03dadd201326af0bd93d8b37f9e099e87a057fdb",
+                "reference": "03dadd201326af0bd93d8b37f9e099e87a057fdb",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
@@ -5430,7 +5999,6 @@
                     "verbb\\supertable\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5442,13 +6010,24 @@
             ],
             "description": "Super-charge your Craft workflow with Super Table. Use it to group fields together or build complex Matrix-in-Matrix solutions.",
             "keywords": [
-                "Craft",
                 "cms",
+                "craft",
                 "craft-plugin",
                 "craftcms",
                 "super table"
             ],
+<<<<<<< HEAD
             "time": "2019-04-24T05:38:57+00:00"
+=======
+            "support": {
+                "email": "support@verbb.io",
+                "issues": "https://github.com/verbb/super-table/issues?state=open",
+                "source": "https://github.com/verbb/super-table",
+                "docs": "https://github.com/verbb/super-table",
+                "rss": "https://github.com/verbb/super-table/commits/v2.atom"
+            },
+            "time": "2019-04-09T08:37:27+00:00"
+>>>>>>> origin/master
         },
         {
             "name": "vlucas/phpdotenv",
@@ -5727,22 +6306,25 @@
         },
         {
             "name": "yiisoft/yii2-debug",
+<<<<<<< HEAD
             "version": "2.1.2",
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/ad90eeea4312daa5d02d9ca043743fca03571874",
                 "reference": "ad90eeea4312daa5d02d9ca043743fca03571874",
+=======
+            "version": "2.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/632929c0682c6470ec838cf15d14c22418e6d07f",
+                "reference": "632929c0682c6470ec838cf15d14c22418e6d07f",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "php": ">=5.4",
                 "yiisoft/yii2": "~2.0.13"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "<7",
-                "yiisoft/yii2-coding-standards": "~2.0",
-                "yiisoft/yii2-swiftmailer": "*"
             },
             "type": "yii2-extension",
             "extra": {
@@ -5755,7 +6337,6 @@
                     "yii\\debug\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -5775,7 +6356,11 @@
                 "debugger",
                 "yii2"
             ],
+<<<<<<< HEAD
             "time": "2019-04-23T13:17:21+00:00"
+=======
+            "time": "2019-03-30T20:33:53+00:00"
+>>>>>>> origin/master
         },
         {
             "name": "yiisoft/yii2-queue",
@@ -6044,7 +6629,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "fortrabbit/craft-copy": 5
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

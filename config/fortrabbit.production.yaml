@@ -1,0 +1,10 @@
+app: tacwa
+ssh_url: tacwa-staging@deploy.us1.frbit.com
+ssh_path: null
+git_remote: tacwa/master
+before:
+    code/up:
+        - 'echo  "Script example: " $(git rev-parse HEAD)'
+after:
+    code/down:
+        - 'php craft migrate/all'
