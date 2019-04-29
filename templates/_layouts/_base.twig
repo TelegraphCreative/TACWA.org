@@ -14,21 +14,23 @@ craft.app.request.segments|last %} {# Base Layout #}
         />
         <meta name="referrer" content="origin-when-cross-origin" />
 
+         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
         {% do view.registerCssFile('/assets/css/app.css') %} {# Favicons #} {%
         include '_components/site-favicons' %}
     </head>
-    <body class="">
+    <body class="antialiased font-normal font-sans leading-normal">
         <div class="site-container" id="app">
-            {% include '_components/site-header' %}
+            {% include '_components/static/site-header' %}
 
             <main class="site-main | transition-fade" id="swup">
                 {% block content %}{% endblock %}
             </main>
-            
-            {% include '_components/site-footer' %}
+
+            {% include '_components/static/site-footer' %}
         </div>
     </body>
 
+    {% include '_components/javascript' %}
     {% do view.registerJsFile( mix('/assets/js/app.js') ) %}
 </html>
 {%- endminify -%}

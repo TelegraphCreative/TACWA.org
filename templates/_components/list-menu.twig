@@ -1,22 +1,47 @@
 {#
 <h5 class="site-footer__header | header-">First Things</h5>
 #}
-<ul class="menu-list">  
-    {% set mainMenu = craft.navigation.nodes(content)%}
-    {% set mainMenu = mainMenu.all() %}
-    
-    {% for node in mainMenu %}
-    
-        <li class="menu-list__item | {% if node.classes|length %}{{ node.classes }}{% endif %}">
-                <a
-                    href="{{ node.url }}"
-                    {% if node.target %}target="_blank" rel="noopener"{% endif %}
-                    role="menuitem"
-                    aria-haspopup="false"
-                    
-                    class="menu-bar__link"
-                    tabindex="0">{{ node.title }}</a>
-            </li> 
-        
-    {% endfor %}
+<ul class="menu-list">
+   {# comment
+   {% set mainMenu = craft.navigation.nodes(content)%}
+   {% set mainMenu = mainMenu.all() %}
+
+   {% for node in mainMenu %}
+
+      <li class="menu-list__item | {% if node.classes|length %}{{ node.classes }}{% endif %}">
+         <a
+            href="{{ node.url }}"
+            {% if node.target %}target="_blank" rel="noopener"{% endif %}
+            role="menuitem"
+            aria-haspopup="false"
+
+            class="menu-bar__link"
+            tabindex="0">{{ node.title }}</a>
+      </li>
+   {% endfor %}
+   /comment #}
+
+   <li class="menu-list__item |">
+      <a href="" class="menu-bar__link">Home</a>
+   </li>
+
+   <li class="menu-list__item |">
+      <a href="" class="menu-bar__link">About</a>
+   </li>
+
+   <li class="menu-list__item |">
+      <a href="" class="menu-bar__link">Legislative Issues</a>
+   </li>
+
+   <li class="menu-list__item |">
+      <a href="" class="menu-bar__link">Join</a>
+   </li>
+
+   <li class="menu-list__item |">
+      <a href="" class="menu-bar__link">Events</a>
+   </li>
+
+   <li class="menu-list__item |">
+      <a href="" class="menu-bar__link">Contact</a>
+   </li>
 </ul>

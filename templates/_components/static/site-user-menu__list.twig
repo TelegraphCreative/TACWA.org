@@ -1,0 +1,36 @@
+{#   Site User Menu - List   #}
+
+{% set
+   siteUserMenu = {
+      menu: [
+         {
+            name: "Organization Settings",
+            url: "/"
+         },
+         {
+            name: "Manage Members",
+            url: "/"
+         },
+         {
+            name: "Your Profile",
+            url: "/"
+         },
+         {
+            name: "Your Events",
+            url: "/"
+         },
+         {
+            name: "Log Out",
+            url: "/"
+         }
+      ]
+   }
+%}
+
+<ul class="site-user-menu__list">
+   {% for item in siteUserMenu.menu %}
+      <li class="site-user-menu__list__item">
+         <a href="{{ item.url }}">{{ item.name }}</a>
+      </li>
+   {% endfor %}
+</ul>

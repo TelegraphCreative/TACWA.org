@@ -1,0 +1,34 @@
+{#   Javascript   #}
+<script>
+   // ---------------------------------------------------------------------------
+   // Site Menu Toggle
+   var nav_open_btn   = document.querySelector('.site-menu__open-btn');
+   var nav_close_btn = document.querySelector('.site-menu__close-btn');
+   var nav       = document.querySelector('.site-menu__container');
+
+   nav_open_btn.onclick = function(){
+      nav.classList.add('--is-visible');
+   };
+
+   nav_close_btn.onclick = function() {
+      nav.classList.remove('--is-visible');
+   };
+
+   // ---------------------------------------------------------------------------
+   // Site Menu Submenu Toggle
+   var submenu = document.querySelectorAll('.site-menu__item.--dropdown');
+
+   submenu.forEach(function(show) {
+      show.onclick = function(){
+         this.classList.toggle('--is-open');
+      };
+   });
+
+   // ---------------------------------------------------------------------------
+   // Site User Menu Toggle on Small Screens
+   var userMenu = document.querySelector('.site-user-menu__item.--dropdown');
+
+   userMenu.onclick = function(){
+      this.classList.toggle('--is-open')
+   }
+</script>

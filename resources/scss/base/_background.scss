@@ -1,0 +1,14 @@
+//
+// Background
+//
+
+.bg-gradient {
+   background-image: url(../img/background_gradient_pattern.svg);
+   background-position: center 5rem;
+   background-repeat: no-repeat;
+   background-size: 100% auto;
+
+   @screen sm {
+      background-position: center 5rem;
+   }
+}

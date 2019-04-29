@@ -1,0 +1,13 @@
+{#   Site User Menu   #}
+
+{% import '_macros/global' as global %}
+
+<div class="site-user-menu">
+   <button class="site-user-menu__btn">
+      Your Account {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg  |  text-grey') }}
+   </button>
+
+   <div class="site-user-menu__list_wrapper">
+      {% include '_components/static/site-user-menu__list' %}
+   </div>
+</div>

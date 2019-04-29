@@ -1,0 +1,201 @@
+//
+// Site Menu
+//
+
+.site-menu__container {
+   @apply absolute invisible pin z-50;
+
+   // Opacity Overlay
+   .site-menu__overlay {
+      @apply absolute bg-white pin opacity-0;
+      @apply timing-1 duration-3 property-all;
+   }
+
+   // Menu Wrapper
+   .site-menu__wrapper {
+      @apply flex justify-end fixed pin z-40;
+      @apply translateX-100per timing-1 duration-3 property-all;
+   }
+
+   // When Visible
+   &.--is-visible {
+      @apply visible;
+
+      // Opacity Overlay
+      .site-menu__overlay {
+         @apply opacity-50;
+         @apply timing-1 duration-3 property-all;
+      }
+
+      // Menu Wrapper
+      .site-menu__wrapper {
+         @apply translateX-0per timing-1 duration-3 property-all;
+      }
+   }
+}
+
+.site-menu__wrapper {
+   // Site Menu
+   .site-menu {
+      @apply bg-blue-dark flex flex-col justify-start h-full p-8 pt-20 relative w-full;
+
+      @screen sm {
+         max-width: 30rem
+      }
+
+      @screen md {
+         @apply block pr-16 pt-32;
+         max-width: 34rem
+      }
+
+      // Close Button
+      .site-menu__close-btn {
+         @apply absolute flex font-medium items-center text-14 text-white;
+
+         right: 32px;
+         top: 30px;
+
+         @media (hover: hover) {
+            &:hover {
+               @apply text-teal-light
+            }
+         }
+
+         @screen md {
+            @apply text-16;
+            right: 64px;
+            top: 72px
+         }
+      }
+
+      // Menu
+      .site-menu__list {
+         @apply border-b border-white list-reset mb-5 pb-5 w-full;
+
+         @screen md {
+            @apply border-none mb-0 pb-0
+         }
+
+         // Menu Item
+         .site-menu__item {
+            @apply py-4;
+
+            @screen sm {
+               @apply py-5
+            }
+
+            a {
+               @apply font-normal leading-tight no-underline relative text-18 text-white;
+
+               @screen sm {
+                  @apply text-20
+               }
+
+               @screen md {
+                  @apply text-22
+               }
+
+               &:before {
+                  content: '';
+                  bottom: 8px;
+                  left: 0;
+                  @apply absolute bg-teal-light h-2 rounded-full w-2;
+                  opacity: 0;
+
+                  @apply timing-1 duration-1 property-all;
+               }
+
+               @media (hover: hover) {
+                  &:hover {
+                     @apply pl-5 text-teal-light;
+
+                     &:before {
+                        opacity: 100
+                     }
+                  }
+               }
+            }
+
+            // Menu Item with Submenu
+            &.--dropdown {
+               // Title & Icon
+               span {
+                  @apply cursor-pointer font-normal flex items-center justify-between leading-tight no-underline relative text-18 text-white;
+
+                  @screen sm {
+                     @apply text-20
+                  }
+
+                  @screen md {
+                     @apply text-22
+                  }
+
+                  svg {
+                     height: .75rem;
+                     width: .5rem;
+
+                     @screen sm {
+                        height: 14px;
+                        width: 9px
+                     }
+
+                     @screen md {
+                        height: 1rem;
+                        width:.625rem
+                     }
+                  }
+
+                  @media (hover: hover) {
+                     &:hover {
+                        @apply text-teal-light;
+                     }
+                  }
+               }
+
+               // Submenu
+               .site-menu__submenu {
+                  @apply h-0 invisible list-reset pl-4 opacity-0;
+
+                  // Submenu Item
+                  .site-menu__sub-item {
+                     @apply pt-3;
+
+                     a {
+                        @apply text-16;
+
+                        @screen md {
+                           @apply text-18
+                        }
+
+                        &:before {
+                           height: 6px;
+                           width: 6px;
+                        }
+
+                        &:hover {
+                           @apply pl-4;
+                        }
+                     }
+                  }
+               }
+
+               // Dropdown Open
+               &.--is-open {
+                  @apply text-teal-light;
+
+                  // Rotate Icon
+                  svg {
+                     @apply rotate-90deg timing-1 duration-2 property-all
+                  }
+
+                  // Show Submenu
+                  .site-menu__submenu {
+                     @apply h-auto opacity-100 visible;
+         				@apply timing-1 duration-1 property-all;
+                  }
+               }
+            }
+         }
+      }
+   }
+}

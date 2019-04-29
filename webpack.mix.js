@@ -10,7 +10,7 @@ mix
 	.sass('resources/scss/app.scss', 'assets/css')
 	.sass('resources/scss/styleguide.scss', 'assets/css')
 	// .copyDirectory('resources/fonts', 'web/assets/fonts')
-	// .copyDirectory('resources/img', 'web/assets/img')
+	.copyDirectory('resources/img', 'web/assets/img')
 	.sourceMaps()
 	.browserSync({
 		proxy: 'tacwa.test',

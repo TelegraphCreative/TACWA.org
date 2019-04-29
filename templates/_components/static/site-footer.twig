@@ -1,0 +1,17 @@
+<footer class="site-footer | focus-links" role="contentinfo">
+    <!-- Groups -->
+    <div class="site-footer__groups | container gutter | space-t--sm">
+            {# Group #}
+            <div class="site-footer__group">
+                <nav aria-label="{{siteName}} Main Footer Menu" class="footer-menu">
+                    {% include "_components/list-menu" %}
+                </nav>
+            </div>
+    </div>
+
+   {# Meta #}
+   <div class="site-footer__meta  |  container">
+      {# Legal #}
+      <p>&copy; {{ now | date('Y') }} Copyright {{siteName}}</p>
+   </div>
+</footer>

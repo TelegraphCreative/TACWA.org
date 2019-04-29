@@ -1,0 +1,29 @@
+//
+// Content Block - Icon
+//
+
+.content-block--icon {
+   &__container {
+      @apply mb-20;
+   }
+
+   @apply max-w-sm;
+
+   svg {
+      @apply mb-3
+   }
+
+   &__heading {
+      @apply
+         font-medium leading-tight text-blue text-18
+         mb-3;
+
+      @screen md {
+         @apply text-20
+      }
+   }
+
+   &__copy {
+      @apply text-grey
+   }
+}

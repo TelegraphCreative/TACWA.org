@@ -1,8 +1,136 @@
 {% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+{% set homeContent = {
+    content: [
+        {
+            icon: "meeting",
+            heading: "Come to a meeting!",
+            copy: "Members gather bimonthly to stay informed and network with peers. Join us!"
+        },
+        {
+            icon: "vision",
+            heading: "Catch our Vision",
+            copy: "We create opportunities for public wastewater utility agencies to improve their effectiveness and achieve shared goals at the state & national level."
+        },
+        {
+            icon: "mission",
+            heading: "Discover our Mission",
+            copy: "We exist to ensure the protection and enhancement of water quality in Texas using scientifically based & technically sound management."
+        },
+    ],
+    calendar: [
+      {
+         month: 'March',
+         day: '12',
+         org: 'TACWA',
+         heading: 'Bi-monthly Meeting Dallas Chapter',
+         location: 'Trinity Audobon Visitor Center'
+      },
+      {
+         month: 'April',
+         day: '18',
+         org: 'TACWA',
+         heading: 'Bi-monthly Meeting Dallas Chapter',
+         location: 'Trinity Audobon Visitor Center'
+      },
+      {
+         month: 'May',
+         day: '11',
+         org: 'WEAT',
+         heading: 'Bi-monthly Meeting Dallas Chapter',
+         location: 'Austin Convention Center'
+      }
+    ]
+}
+%}
 
 {% block content %}
 
-    {# Include #}
-    {# {% include '_components/component' with { 'content': entry.content, 'classes': ' ' } %} #}
+   <section class="mt-12 sm:mt-24   bg-gradient">
+      <div class="container">
+         <h2 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-20 md:mb-32">Texas Association of Clean Water Agencies represents interests of major wastewater utilities throughout the State of Texas.</h2>
+
+         <div class="md:flex md:flex-wrap md:justify-between">
+
+            {#   Icon Content Blocks   #}
+            <div class="content-block--icon__container  |  md:w-1/2">
+               {#   Block   #}
+               {% for item in homeContent.content %}
+                  <div class="content-block--icon       mb-12 md:mb-16">
+                     {#   Icon   #}
+                     {{ global.utilityIcon(item.icon) }}
+                     {#   Heading   #}
+                     <h3 class="content-block--icon__heading">{{ item.heading }}</h3>
+                     {#   Copy   #}
+                     <p class="content-block--icon__copy">{{ item.copy }}</p>
+                  </div>
+               {% endfor %}
+            </div>
+
+            {#   Upcoming Events   #}
+            <div class="upcoming-events  |  md:w-2/5 lg:w-1/3">
+               {#   Heading   #}
+               <h3 class="upcoming-events__heading">Upcoming Events</h3>
+
+               {#   Events List   #}
+               <div class="upcoming-events__event-list">
+                  {% for item in homeContent.calendar %}
+                     {#   Event   #}
+                     <div class="upcoming-events__event">
+                        <a href="#">
+                           {#   Date   #}
+                           {% include '_components/static/snippets/events--event-date'
+                              with {
+                                 'month': item.month,
+                                 'day': item.day
+                              }
+                           %}
+
+                           <div class="upcoming-events__info">
+                              {#   Org   #}
+                              <span class="upcoming-events__info__org
+                              {% if item.org == "TACWA" %}text-blue{% else %}text-teal{% endif %}">
+                                 {{ item.org }}
+                              </span>
+
+                              {#   Heading   #}
+                              <h4 class="upcoming-events__info__heading">{{ item.heading }}</h4>
+
+                              {#   Location   #}
+                              <p class="upcoming-events__info__location">{{ item.location }}</p>
+                           </div>
+                        </a>
+                     </div>
+                  {% endfor %}
+               </div>
+
+               {#   Events Index Link   #}
+               {{ global.link('/static/events-index', 'All Events', 'link --arrow') }}
+            </div>
+
+         </div>
+      </div>
+   </section>
+
+   {#   Banner   #}
+   {% include '_components/static/banner'
+      with {
+         'classes': '',
+         'heading': 'Already a Member?',
+         'copy': 'Looking for a presentation you found informative or notes from a meeting you missed? Look no further.'
+      }
+   %}
+
+   <!--
+   {#   Banner Centered   #}
+   {% include '_components/static/banner'
+      with {
+         'classes': '--centered',
+         'heading': 'Become a Member',
+         'copy': 'At $50 per year, a WEAT membership provides ample benefit to you, your employer, and the environment as you gain access to networking and professional development events, service activities, and interaction with innovative technologies.'
+      }
+   %}
+-->
 
 {% endblock %}

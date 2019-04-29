@@ -1,22 +1,31 @@
 // Menu List
 .menu-list {
-    @apply list-reset mb-4;
+    @apply flex flex-wrap list-reset mb-2;
 
-    
+
     &__item {
-        @apply text-sm
-        mb-3;
+        @apply mb-2 pr-4 text-14;
     }
 
     a {
         @apply link
         block
         font-normal
-        text-green-darkest;
+        text-grey-light;
 
         &:hover {
-            @apply text-green;
+            @apply text-grey;
         }
     }
-    
+
+}
+
+@screen sm {
+   .menu-list {
+      @apply justify-center;
+
+      &__item {
+          @apply px-4
+      }
+   }
 }

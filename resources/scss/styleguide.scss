@@ -7,19 +7,19 @@
   // }
 
   &__header {
-    @apply text-3xl;
+    @apply text-30;
   }
 
   // Content
   &__content {
     h1 {
-      @apply text-3xl;
+      @apply text-30;
     }
     h2 {
-      @apply text-2xl;
+      @apply text-24;
     }
     h3 {
-      @apply text-xl;
+      @apply text-20;
     }
 
     h1,
