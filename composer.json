@@ -2,10 +2,15 @@
   "require": {
     "barrelstrength/sprout-fields": "^3.2",
     "craftcms/cms": "^3.0.0",
+    "craftcms/mailgun": "1.4.2",
     "craftcms/redactor": "^2.3",
+    "fruitstudios/linkit": "1.1.11",
     "misterbk/mix": "^1.5",
     "nystudio107/craft-imageoptimize": "1.5.4",
     "nystudio107/craft-minify": "^1.2",
+    "nystudio107/craft-seomatic": "3.1.49",
+    "solspace/craft3-calendar": "2.0.19",
+    "topshelfcraft/wordsmith": "3.0.4",
     "verbb/super-table": "^2.1",
     "vlucas/phpdotenv": "^2.4.0"
   },
