@@ -1,0 +1,75 @@
+{#   Contact - Member   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{#   User Logged In   #}
+{% set loggedIn = 'true' %}
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Event Registration'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      <h2>Contact Information</h2>
+
+      <div class="form-flow__wrapper --reverse">
+         {#   Detail   #}
+         {% include '_components/static/form-flow--detail'
+            with {
+               'description': '8th Annual Water Reuse in Textas Conference - Early Member Registration',
+               'total': '$20'
+            }
+         %}
+
+         {#   Form   #}
+         <form action="../forms/event-registration--payment--member" class="form-group">
+            {#   First Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'First name', identification: 'first-name' }
+            )}}
+
+            {#   Last Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'Last name', identification: 'last-name' }
+            )}}
+
+            {#   Email   #}
+            {{ form.fieldGroup(
+               'email',
+               'full-width',
+               { classes: '--disabled', label: 'Email address', identification: 'email', value: 'billmurray@dentonwaterutil.org' }
+            )}}
+
+            {#   Company Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { classes: '--disabled', label: 'Company name', identification: 'company-name', value: 'Denton Water Utility' }
+            )}}
+
+            {#   Phone   #}
+            {{ form.fieldGroup(
+               'phone',
+               'full-width',
+               { label: 'Phone (optional)', identification: 'phone' }
+            )}}
+
+            {#   Submit   #}
+            {{ form.submit( '--large  |  mt-4', 'Continue to payment') }}
+         </form>
+      </div>
+   </div>
+
+{% endblock %}

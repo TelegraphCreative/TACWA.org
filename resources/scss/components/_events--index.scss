@@ -1,0 +1,70 @@
+//
+// Events - Index
+//
+
+.events-index {
+
+   // Search
+   .events-index__search {
+      @apply mb-8;
+
+      @screen sm {
+         @apply
+         flex flex-row flex-wrap items-center justify-between
+         mb-11
+      }
+
+      .search-form {
+         @apply mr-8
+      }
+   }
+
+   // Index
+   .events-index__index {
+      .events-index__index__wrapper {
+
+         // Event
+         .events-index__event {
+            @apply
+               border-b border-grey-lighter
+               mb-8 pb-8;
+
+            @screen sm {
+               @apply
+                  flex justify-between
+            }
+
+            // Event Container
+            .events-index__event__container {
+               @apply
+                  flex
+                  max-w-sm
+                  mb-3;
+
+               @screen sm {
+                  @apply mb-0
+               }
+
+               // Event Info
+               .events-index__event__info {
+                  @apply
+                     text-grey text-14
+                     pl-5;
+
+                  @screen sm {
+                     @apply pl-6
+                  }
+
+                  h4 {
+                     @apply font-medium leading-tight text-20 text-blue;
+
+                     @screen md {
+                        @apply text-24
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

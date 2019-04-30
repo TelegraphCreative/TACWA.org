@@ -1,0 +1,57 @@
+{#   Events - Index   #}
+
+{% import '_macros/global' as global %}
+
+
+<div class="events-index  |  container">
+   {#   Search & Browse   #}
+   <header class="events-index__search">
+      {% include '_components/static/search' with { 'identification': 'event-index-search', 'placeholder': 'Search events...' } %}
+
+      {{ global.link('/static/events-index', 'Browse Past Events', 'link --arrow  |  flex-no-shrink my-4') }}
+   </header>
+
+   {#   Index   #}
+   <div class="events-index__index">
+      <div class="events-index__index__wrapper">
+         {% for i in 1..5 %}
+            {#   Event   #}
+            <div class="events-index__event">
+               <div class="events-index__event__container">
+                  {#   Date   #}
+                  {% include '_components/static/snippets/events--event-date'
+                     with {
+                        'month': 'April',
+                        'day': '22'
+                     }
+                  %}
+
+                  {#   Info   #}
+                  <div class="events-index__event__info">
+                        {#   Org   #}
+                        <span class="heading --tiny  |  text-blue
+                           {# {% if item.org == "TACWA" %}text-blue{% else %}text-teal{% endif %} #}">
+                           TACWA
+                        </span>
+
+                        {#   Heading   #}
+                        <h4>Bi-monthly Meeting Dallas Chapter</h4>
+
+                        {#   Time   #}
+                        <time>6:00pm–8:00pm</time>
+
+                        {#   Location   #}
+                        <p>Trinity Audobon Visitor Center</p>
+                  </div>
+               </div>
+
+               {#   Register   #}
+               {{ global.btn('', 'btn --primary --dark  |  mt-4', 'Register') }}
+            </div>
+         {% endfor %}
+      </div>
+
+      {#   Pagination   #}
+      {% include '_components/static/pagination' %}
+   </div>
+</div>

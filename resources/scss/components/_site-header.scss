@@ -4,7 +4,7 @@
 
 .site-header {
    .site-header__container {
-      @apply flex h-20 items-center justify-between;
+      @apply flex h-20 items-center justify-between relative;
 
       @screen sm {
          @apply h-24
@@ -16,12 +16,32 @@
 
       // Logo
       .site-header__logo {
-         @apply h-10 w-32;
+         /*
+         @apply no-underline text-center w-full;
+         @media screen and (max-width: 35.9375rem) {
+            &:after {
+               @apply font-bold text-24 text-blue;
+               content: "TACWA";
+            }
+         }
+*/
+
+         // If centered
+         /*@apply absolute pin-l pin-r mx-auto z-10;*/
+         height: 20px;
+         width: 96px;
+
+         background-image: url('../img/tacwa-logo__small.png');
+         background-repeat: no-repeat;
+         background-size: 100%;
+
 
          img {
-            @apply h-10 w-32
-         }
+         height: 20px;
+         width: 96px;
+      }
 
+         /*
          @screen sm {
             @apply h-13 w-42;
 
@@ -29,7 +49,18 @@
                @apply h-13 w-42
             }
          }
+         */
 
+         @screen sm {
+            @apply h-13 ml-0 static w-42;
+            background-image: url('../img/tacwa-logo.png');
+            background-repeat: no-repeat;
+            background-size: 100%;
+
+            img {
+               @apply h-13 w-42
+            }
+         }
          @screen md {
             @apply h-16 w-52;
 
@@ -41,20 +72,26 @@
 
       // Action
       .site-header__action {
+         // If left/right
+         /*
+         @media screen and (max-width: 35.9375rem) {
+            @apply absolute justify-between pin px-4
+         }
+         */
+
          @apply flex items-center;
 
-         @media screen and (max-width: 47.9375rem) {
-            .account__login-btn,
-            .site-user-menu__btn {
-               @apply hidden
+         @screen sm {
+            .btn.--site-menu {
+               @apply ml-3
             }
          }
 
          @screen md {
             @apply pb-4;
 
-            .site-menu__open-btn {
-               @apply ml-2
+            .btn.--site-menu {
+               @apply ml-4
             }
          }
       }

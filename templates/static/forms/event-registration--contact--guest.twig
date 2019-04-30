@@ -1,0 +1,66 @@
+{#   Contact - Member   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Event Registration'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      <h2>Contact Information</h2>
+
+      <div class="form-flow__wrapper --reverse">
+         {#   Detail   #}
+         {% include '_components/static/form-flow--detail'
+            with {
+               'description': '8th Annual Water Reuse in Textas Conference - Early Registration',
+               'total': '$45'
+            }
+         %}
+
+         {#   Form   #}
+         <form action="../forms/event-registration--payment--guest" class="form-group">
+            {#   First Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'First name', identification: 'first-name' }
+            )}}
+
+            {#   Last Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'Last name', identification: 'last-name' }
+            )}}
+
+            {#   Company Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'Company name', identification: 'company-name' }
+            )}}
+
+            {#   Phone   #}
+            {{ form.fieldGroup(
+               'phone',
+               'full-width',
+               { label: 'Phone (optional)', identification: 'phone' }
+            )}}
+
+            {#   Submit   #}
+            {{ form.submit( '--large  |  mt-4', 'Continue to payment') }}
+         </form>
+      </div>
+   </div>
+
+{% endblock %}

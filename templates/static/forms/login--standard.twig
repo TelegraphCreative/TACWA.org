@@ -1,0 +1,42 @@
+{#   Login - Standard   #}
+
+{#   Join TACWA - Organization Information   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+
+{% block content %}
+
+   <div class="form-flow--login  |  container  |  mt-12 sm:mt-24">
+      <div class="form-flow__wrapper">
+
+         {#   Form   #}
+         <form action="" class="form-group">
+            <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Sign In</h1>
+
+            {#   Email   #}
+            {{ form.fieldGroup(
+               'email',
+               'full-width',
+               { label: '', identification: 'email', placeholder: 'Email' }
+            )}}
+
+            {#   Password   #}
+            {{ form.fieldGroup(
+               'password',
+               'full-width',
+               { label: '', identification: 'password', placeholder: 'Password' }
+            )}}
+
+            {#   Reset Password   #}
+            {{ form.helpLink('/', 'Reset Password') }}
+
+            {#   Submit   #}
+            {{ form.submit( '--small  |  mt-7', 'Login') }}
+         </form>
+      </div>
+   </div>
+
+{% endblock %}

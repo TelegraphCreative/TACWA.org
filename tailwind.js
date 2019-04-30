@@ -54,12 +54,14 @@ let colors = {
   'near-white': '#f9fafb',
   'white': '#ffffff',
 
-  'teal': '#2DBAD2',
-  'teal-light': '#85D7E5',
+  'teal': '#2dbad2',
+  'teal-light': '#85d7e5',
 
-  'blue-dark': '#1A3B78',
-  'blue': '#214B98',
-  'blue-light': '#B7DEE5',
+  'blue-dark': '#1a3b78',
+  'blue': '#214b98',
+  'blue-light': '#b7dee5',
+  'blue-lighter': '#f7f9fd',
+  'blue-lightest': '#f6fbfd',
 }
 
 module.exports = {
@@ -196,6 +198,7 @@ module.exports = {
     '24': '1.5rem',    // 24px
     '30': '1.875rem',  // 30px
     '32': '2rem',      // 32px
+    '40': '2.5rem',    // 40px
     //'xs': '.75rem',     // 12px
     //'sm': '.875rem',    // 14px
     //'base': '1rem',     // 16px
@@ -425,7 +428,7 @@ module.exports = {
     'sm': '.125rem',
     //default: '.25rem',
     default: '.1875rem',
-    'lg': '.5rem',
+    'lg': '.375rem',
     'full': '9999px',
   },
 
@@ -521,6 +524,7 @@ module.exports = {
     '16': '4rem',
     '20': '5rem',
     '24': '6rem',
+    '26': '6.5rem',
     '30': '7.5rem',
     '32': '8rem',
     '48': '12rem',
@@ -548,6 +552,7 @@ module.exports = {
   minWidth: {
     '0': '0',
     '40': '10rem',
+    'xxs': '18rem',
     'full': '100%',
   },
 
@@ -591,7 +596,8 @@ module.exports = {
   */
 
   maxWidth: {
-    'xs': '20rem',
+    'xxs': '18rem',
+    'xs': '24rem',
     'sm': '35rem',
     'md': '40rem',
     'lg': '45rem',
@@ -620,6 +626,8 @@ module.exports = {
   */
 
   maxHeight: {
+    '16': '4rem',
+    '20': '5rem',
     'full': '100%',
     'screen': '100vh',
   },
@@ -655,6 +663,7 @@ module.exports = {
     '12': '3rem',
     '14': '3.5rem',
     '16': '4rem',
+    '18': '4.5rem',
     '20': '5rem',
     '24': '6rem',
     '32': '8rem',
@@ -687,9 +696,12 @@ module.exports = {
     '4': '1rem',
     '5': '1.25rem',
     '6': '1.5rem',
+    '7': '1.75rem',
     '8': '2rem',
     '10': '2.5rem',
+    '11': '2.75rem',
     '12': '3rem',
+    '14': '3.5rem',
     '16': '4rem',
     '20': '5rem',
     '24': '6rem',
@@ -724,7 +736,9 @@ module.exports = {
     '6': '1.5rem',
     '8': '2rem',
     '10': '2.5rem',
+    '11': '2.75rem',
     '12': '3rem',
+    '13': '3.25rem',
     '16': '4rem',
     '20': '5rem',
     '24': '6rem',
@@ -939,6 +953,9 @@ module.exports = {
 
     function({ addUtilities }) {
       const newUtilities = {
+        '.rotate-180deg': {
+          transform: 'rotate(180deg)',
+        },
         '.rotate-90deg': {
           transform: 'rotate(90deg)',
         },

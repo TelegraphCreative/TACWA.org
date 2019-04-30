@@ -6,11 +6,12 @@ mix
 	.setPublicPath('./web')
 
 	// The App Build
-	.js('resources/js/styleguide.js', 'assets/js')
+	//.js('resources/js/app.js', 'assets/js')
 	.sass('resources/scss/app.scss', 'assets/css')
 	.sass('resources/scss/styleguide.scss', 'assets/css')
-	// .copyDirectory('resources/fonts', 'web/assets/fonts')
+	.copyDirectory('resources/placeholder', 'web/assets/placeholder')
 	.copyDirectory('resources/img', 'web/assets/img')
+	.copyDirectory('resources/js/static', 'web/assets/js/static')
 	.sourceMaps()
 	.browserSync({
 		proxy: 'tacwa.test',

@@ -4,7 +4,7 @@
 
 .event-date {
    > div {
-      @apply border border-blue flex flex-col flex-no-shrink pb-1 text-center w-15;
+      @apply bg-white border border-blue flex flex-col flex-no-shrink pb-1 text-center w-15;
 
       @screen lg {
          @apply pb-2 w-18
