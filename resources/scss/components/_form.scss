@@ -1,0 +1,229 @@
+//
+// Form
+//
+
+.form-group {
+   @apply
+      flex flex-wrap self-start
+      -mx-2
+}
+
+.field-group {
+   @apply
+      w-full
+      px-2;
+
+   &.--half-width {
+      @screen sm {
+         @apply w-1/2
+      }
+   }
+
+   // Label
+   .field-group__label {
+      @apply
+         block
+         font-medium leading-tight text-12 text-blue-dark
+         w-full
+         mb-px pb-1
+   }
+
+   // Input
+   .field-group__input {
+      &.--field {
+         @apply
+            appearance-none
+            block
+            bg-white border-2 border-grey-lighter rounded
+            font-normal text-16 text-grey-dark
+            h-12 w-full
+            mb-4 px-4
+            timing-2 property-all duration-2;
+
+         &:focus {
+            @apply
+               bg-blue-lighter border-blue
+               text-grey-dark;
+         }
+
+         // Disabled
+         &.--disabled {
+            @apply pointer-events-none;
+
+            background-color: #f6f7f9;
+            border-color: #f6f7f9
+         }
+
+         // Number Spinner
+         &[type=number] {
+            -moz-appearance: textfield;
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+               @apply m-0 appearance-none
+            }
+         }
+      }
+   }
+
+   &.--checkbox {
+      @apply flex flex-row-reverse items-center justify-end;
+
+      .field-group__label {
+         @apply
+            block
+            font-normal leading-tight text-14 text-grey-dark
+            w-auto
+            mb-0 ml-2 pt-px pb-0
+      }
+   }
+}
+
+input[type=checkbox] {
+   @apply
+      appearance-none
+      cursor-pointer
+      timing-2 property-all duration-1;
+
+   @apply
+      border-2 border-grey-lighter rounded
+      h-4 w-4;
+
+   &:hover {
+      border: 2px solid #2d68d2
+   }
+
+   &:checked {
+      @apply relative;
+
+      background-color: #2d68d2;
+      border: 2px solid #2d68d2;
+
+      &::after {
+         @apply
+            absolute pin-t pin-l
+            bg-center bg-cover bg-no-repeat
+            h-2 w-2;
+            margin: .125rem 0 0 .125rem;
+
+         content: '';
+         background-image: url('../img/icons/checkmark--white.svg');
+      }
+   }
+
+   &:disabled {
+      @apply
+         relative
+         timing-2 property-all duration-1;
+
+      background-color: #d7dee4;
+      border: 2px solid #d7dee4;
+
+      &::after {
+         @apply
+            absolute pin-t pin-l
+            bg-center bg-cover bg-no-repeat
+            h-2 w-2;
+            margin: .125rem 0 0 .125rem;
+
+         content: '';
+         background-image: url('../img/icons/checkmark--grey.svg');
+      }
+   }
+}
+
+
+// Layout
+.form-flow {
+   @apply pb-18;
+
+   .form-flow__wrapper {
+      @screen md {
+         @apply flex justify-between
+      }
+
+      &.--reverse {
+         @screen md {
+            @apply flex-row-reverse
+         }
+      }
+   }
+
+   h2 {
+      @apply
+         font-normal leading-tight text-20 text-blue
+         mb-8;
+
+      @screen md {
+         @apply text-24
+      }
+   }
+
+   .form-group {
+      @screen sm {
+         @apply
+            max-w-sm
+            pr-14
+      }
+   }
+
+   .form-flow__detail {
+      @apply
+         border-b border-grey-lightest
+         mt-12 mb-8 pb-8;
+
+      @screen md {
+         @apply
+            border-0
+            max-w-xxs
+            mt-1 mb-0 pb-0
+      }
+
+      @screen lg {
+         @apply -mt-13
+      }
+
+      h3 {
+         @apply mb-2
+      }
+
+      .form-flow__detail__description {
+         @apply mb-3;
+
+         @screen md {
+            @apply
+               text-14
+               mb-5;
+         }
+
+         @screen lg {
+            @apply text-16
+         }
+      }
+
+      .form-flow__detail__total {
+         @apply font-semibold
+      }
+   }
+}
+
+
+
+
+.form-flow--login {
+   @apply mt-8 pb-18;
+
+   .form-flow__wrapper {
+      @screen md {
+         @apply flex justify-between
+      }
+   }
+
+   .form-group {
+      @screen sm {
+            @apply
+               max-w-sm
+               pr-14
+      }
+   }
+}

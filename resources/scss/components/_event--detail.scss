@@ -1,0 +1,153 @@
+//
+// Event - Detail
+//
+
+.event__detail {
+   @apply
+      border-b border-grey-lighter
+      mb-16 pb-10 mb-16;
+
+   @screen lg {
+      @apply
+         absolute pin-r pin-t
+         border-none
+         max-w-xxs
+         mt-12 mr-16
+   }
+
+   @screen xl {
+      @apply mr-20
+   }
+
+   // Action
+   .event__detail__action {
+      @apply
+         flex flex-col flex-no-shrink justify-between
+         h-26
+         mb-8;
+
+      @screen sm {
+         @apply
+            flex-row items-center
+            h-auto
+            -mx-2
+      }
+
+      @screen md {
+         @apply
+            w-full max-w-sm
+            mb-12
+      }
+
+      @screen lg {
+         @apply
+            flex-col items-baseline
+            h-26
+      }
+
+      &.--disabled {
+         @apply h-auto;
+
+         @screen sm {
+            @apply
+               flex-col
+               h-auto max-w-xxs
+               mx-0
+         }
+
+         @screen lg {
+            @apply -mx-2
+         }
+
+         > a {
+            @apply
+               pointer-events-none
+               text-grey;
+
+            background-color: #f6f7f9;
+            border-color: #f6f7f9;
+         }
+
+         p {
+            @apply
+               text-14 text-grey
+               w-full
+               mt-2;
+
+            @screen sm {
+               @apply mx-2
+            }
+
+            @screen lg {
+               @apply mt-2 mx-0 px-2
+            }
+         }
+      }
+   }
+
+   // Container
+   .event__detail__container {
+      @apply
+         flex flex-wrap;
+
+      @screen sm {
+         @apply -mx-10
+      }
+
+      @screen md {
+         @apply -mx-4
+      }
+
+      @screen lg {
+         @apply mx-0
+      }
+   }
+
+   // Item
+   .event__detail__item {
+      @apply
+         text-grey
+         w-full
+         mb-6;
+
+      @screen sm {
+         @apply
+            w-1/2
+            px-10
+      }
+
+      @screen md {
+         @apply
+            w-1/3
+            px-4
+      }
+
+      @screen lg {
+         @apply
+            w-full
+            px-0
+      }
+
+      h3 {
+         @apply font-semibold text-12 uppercase
+      }
+
+      a {
+         @apply
+            font-normal text-teal
+            mt-2;
+
+         &:hover {
+            @apply text-teal-light
+         }
+
+         @screen md {
+            @apply text-12
+         }
+
+         @screen lg {
+            @apply text-14
+         }
+      }
+   }
+}

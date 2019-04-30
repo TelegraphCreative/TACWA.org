@@ -1,0 +1,85 @@
+{#   Join TACWA - Organization Information   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Event Registration'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      {{ global.link('../forms/event-registration--contact--guest', 'Back', 'link --arrow --back  |  mb-2 md:mb-4') }}
+      <h2>Payment Method</h2>
+
+      <div class="form-flow__wrapper --reverse">
+
+         {#   Detail   #}
+         {% include '_components/static/form-flow--detail'
+            with {
+               'description': '8th Annual Water Reuse in Textas Conference - Early Registration',
+               'total': '$45'
+            }
+         %}
+
+         {#   Form   #}
+         <form action="" class="form-group">
+            {#   Name On Card   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'Name on card', identification: 'cc-name' }
+            )}}
+
+            {#   Credit Card Number   #}
+            {{ form.fieldGroup(
+               'number',
+               'full-width',
+               {
+                  label: 'Credit card number',
+                  identification: 'cc-number',
+                  placeholder: '1234 1234 1234 1234'
+               }
+            )}}
+
+            {#   Expiration Date   #}
+            {{ form.fieldGroup(
+               'date',
+               'half-width',
+               { label: 'Expiration date', identification: 'cc-date' }
+            )}}
+
+            {#   CVC   #}
+            {{ form.fieldGroup(
+               'number',
+               'half-width',
+               {
+                  label: 'CVC',
+                  identification: 'cc-cvc',
+                  placeholder: '123'
+               }
+            )}}
+
+            {#   Zipcode   #}
+            {{ form.fieldGroup(
+               'number',
+               'half-width',
+               { label: 'Zipcode', identification: 'cc-zip' }
+            )}}
+
+            {#   Submit   #}
+            {{ form.submit( '--large  |  mt-11', 'Complete purchase') }}
+         </form>
+
+
+      </div>
+   </div>
+
+{% endblock %}

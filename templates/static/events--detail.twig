@@ -1,0 +1,123 @@
+{#   Events - Detail   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+{% set
+   meeting = {
+      heading: 'Bimonthly Meeting',
+      theme: 'With ever increasing energy costs, aeration control systems to achieve energy savings has become the focus at water resource recovery facilities (WRRFs). Advanced aeration control systems not only provide significant operational cost savings but also improved process performance at WRRFs.',
+      agenda: [
+         {
+            item: 'Information Architecture — February 1, 2019'
+         },
+         {
+            item: 'Content Strategy — February 8, 2019'
+         },
+         {
+            item: 'Visual Design — March 1, 2019'
+         },
+         {
+            item: 'Frontend Implementation — April 5, 2019'
+         },
+         {
+            item: 'Backend Development — April 26, 2019'
+         }
+         ,
+         {
+            item: 'Testing, Training, Launch — May 15, 2019'
+         }
+      ],
+      sponsors: [
+         {
+            src: '../assets/placeholder/sponsor-arcadis.png',
+            alt: ''
+         },
+         {
+            src: '../assets/placeholder/sponsor-carollo.png',
+            alt: ''
+         },
+         {
+            src: '../assets/placeholder/sponsor-garver.png',
+            alt: ''
+         }
+      ]
+   }
+%}
+
+
+{% block content %}
+
+   <section class="event">
+      <div class="container  |  lg:relative">
+         {{ global.link('/static/events--index', 'Upcoming Events', 'link --arrow --back  |  mb-2 md:mb-4') }}
+         <h1>{{ meeting.heading }}</h1>
+
+         {#   Event Details   #}
+         {% include '_components/static/event--detail' %}
+
+         {#   Event Content   #}
+         <div class="event__info">
+            {#   Theme   #}
+            <div class="event__info__item">
+               <h2>Meeting Theme</h2>
+               <p>{{ meeting.theme }}</p>
+            </div>
+
+            {#   Agenda   #}
+            <div class="event__info__item">
+               <h2>Meeting Agenda</h2>
+               <ul class="event__info__list">
+                  {% for item in meeting.agenda %}
+                     <li>{{ item.item }}</li>
+                  {% endfor %}
+               </ul>
+            </div>
+
+            {#   Sponsors   #}
+            <div class="event__info__item">
+               <h2>Sponsors</h2>
+               <div class="event__info__logo-grid">
+                  {% for item in meeting.sponsors %}
+                     <div>
+                        <img alt="{{ item.alt }}" src="{{ item.src }}">
+                     </div>
+                  {% endfor %}
+               </div>
+            </div>
+
+            {#   Media   #}
+            <div class="event__info__item">
+               {% include '_components/static/list--media'
+                  with {
+                     media: [
+                        {
+                           title: 'pdf_file--version-3.pdf',
+                           type: 'file',
+                           src: '../assets/placeholder/pdf_file--version-3.pdf'
+                        },
+                        {
+                           title: 'sample_video_with_nice_long_filename.mp4',
+                           type: 'file',
+                           src: '../assets/placeholder/sample_video_with_nice_long_filename.mp4'
+                        },
+                        {
+                           title: 'Meeting Notes 03-12-2019',
+                           type: 'link',
+                           src: 'http://example.com/'
+                        },
+                        {
+                           title: 'Letter to Senators',
+                           type: 'link',
+                           src: 'http://example.com/'
+                        }
+                     ]
+                  }
+               %}
+            </div>
+         </div>
+
+      </div>
+   </section>
+
+{% endblock %}

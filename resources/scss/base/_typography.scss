@@ -1,0 +1,15 @@
+//
+// Typography
+//
+
+body {
+   @apply antialiased font-normal font-sans leading-normal text-grey
+}
+
+.heading {
+   &.--tiny {
+      @apply
+         block
+         font-semibold leading-none text-12 uppercase
+   }
+}

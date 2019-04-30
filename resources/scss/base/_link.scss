@@ -8,7 +8,7 @@
       @apply inline-flex items-center text-blue;
 
       svg {
-         @apply translateX-0per timing-1 duration-1;
+         @apply ml-2 translateX-0per timing-1 duration-1;
       }
 
       &:hover {
@@ -17,6 +17,55 @@
          svg {
             @apply translateX-20per
          }
+      }
+
+      &.--back {
+         @apply flex-row-reverse font-semibold text-12 text-teal uppercase;
+
+         svg {
+            @apply mr-2 mb-px ml-0;
+            transform: rotate(180deg) translateX(0%)
+         }
+
+         &:hover {
+            @apply text-teal;
+
+            svg { transform: rotate(180deg) translateX(20%) }
+         }
+      }
+   }
+
+   &.--media {
+      @apply
+         inline-flex items-center relative
+         bg-blue-lightest rounded-full
+         font-semibold no-underline text-14 text-teal
+         whitespace-no-wrap
+         h-10 max-w-full
+         px-4;
+
+      span {
+         @apply overflow-hidden
+      }
+
+      &:after {
+         @apply
+            absolute pin-r
+            h-full
+            bg-blue-lightest rounded-r-full;
+
+         content: '';
+         background: linear-gradient(90deg, rgba(246, 251, 253, .75) 0%, rgba(246, 251, 253, 1) 33%);
+         margin-right: -.125rem;
+         width: 1.125rem;
+      }
+
+      &:hover {
+         @apply text-blue-light
+      }
+
+      &.--large {
+
       }
    }
   // Underline
