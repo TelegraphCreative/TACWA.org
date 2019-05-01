@@ -1,0 +1,76 @@
+{% extends "_layouts/_base" %}
+{% set menu = { 
+    layouts: [
+        {
+        name: "Events"
+        },{ 
+            name: "Past event detail",
+            url: "/static/events--detail--past-event"
+        },{ 
+            name: "Event detail",
+            url: "/static/events--detail"
+        },{ 
+            name: "Event index",
+            url: "/static/events--index"
+        },{
+        name: "Forms"
+        },{ 
+            name: "Join 1",
+            url: "/static/forms/join--1"
+        },{ 
+            name: "Join 2",
+            url: "/static/forms/join--2"
+        },{ 
+            name: "Join 3",
+            url: "/static/forms/join--3"
+        },{ 
+            name: "Event Registration - Contact Guest",
+            url: "/static/forms/event-registration--contact--guest"
+        },{ 
+            name: "Event Registration - Contact Member",
+            url: "/static/forms/event-registration--contact--member"
+        },{ 
+            name: "Event Registration - Login Checkout",
+            url: "/static/forms/event-registration--login--checkout"
+        },{ 
+            name: "Event Registration - Payment Guest",
+            url: "/static/forms/event-registration--payment--guest"
+        },{ 
+            name: "Event Registration - Payment Member",
+            url: "/static/forms/event-registration--payment--member"
+        },{ 
+            name: "Login Standard",
+            url: "/static/forms/login--standard"
+        }
+    ]} 
+%} 
+{% block content %}
+
+<div id="template-list" class="md:w-3/5 mx-auto | space-b--lg">
+    <header class="space-b--sm">
+        <h2 class="header-xl ">Static Templates</h2>
+    </header>
+    
+    {# List #}
+    <ul class="list-articles">
+        {% for item in menu.layouts %} 
+
+            {# Item #}
+            <li class="list-article -hover-effect">
+                <div class="list-article__content">
+                    {# Header #}
+                    {% if item.url is defined %}
+                        <a class="header-xs font-light" href="{{ item.url }}">{{ item.name }}</a>
+                    {% else %}
+                        <h3 class="header-xs text-bronze">
+                            {{ item.name }}
+                        </h3>
+                    {% endif %}
+                </div>
+            </li>
+
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
