@@ -7,7 +7,7 @@
 
    // Opacity Overlay
    .site-menu__overlay {
-      @apply absolute bg-white pin opacity-0;
+      @apply fixed bg-white pin opacity-0;
       @apply timing-1 duration-3 property-all;
    }
 
@@ -37,7 +37,7 @@
 .site-menu__wrapper {
    // Site Menu
    .site-menu {
-      @apply bg-blue-dark flex flex-col justify-start h-full p-8 pt-20 relative w-full;
+      @apply bg-blue-dark flex h-full items-center p-8 relative w-full;
 
       @screen sm {
          max-width: 30rem
@@ -49,20 +49,13 @@
       }
 
       // Close Button
-      .site-menu__close-btn {
-         @apply absolute flex font-medium items-center text-14 text-white;
+      button {
+         @apply absolute;
 
          right: 32px;
          top: 30px;
 
-         @media (hover: hover) {
-            &:hover {
-               @apply text-teal-light
-            }
-         }
-
          @screen md {
-            @apply text-16;
             right: 64px;
             top: 72px
          }
@@ -70,11 +63,7 @@
 
       // Menu
       .site-menu__list {
-         @apply border-b border-white list-reset mb-5 pb-5 w-full;
-
-         @screen md {
-            @apply border-none mb-0 pb-0
-         }
+         @apply list-reset w-full;
 
          // Menu Item
          .site-menu__item {

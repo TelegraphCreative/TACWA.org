@@ -1,0 +1,152 @@
+{#   Field Group   #}
+{% macro fieldGroup(type, width, attr) %}
+
+   {% switch type %}
+
+      {% case "text" %}
+
+         <div class="field-group --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <input
+               type="text"
+               name="{{ attr.identification }}"
+               id="{{ attr.identification }}"
+               {% if attr.value is defined %}value="{{ attr.value }}"{% endif %}
+               {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+         </div>
+
+      {% case "email" %}
+
+         <div class="field-group --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <input
+               type="email"
+               name="{{ attr.identification }}"
+               id="{{ attr.identification }}"
+            {% if attr.value is defined %}value="{{ attr.value }}"{% endif %}
+               {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+         </div>
+
+      {% case "number" %}
+
+         <div class="field-group --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <input
+               type="number"
+               name="{{ attr.identification }}"
+               id="{{ attr.identification }}"
+               {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+         </div>
+
+      {% case "phone" %}
+
+         <div class="field-group --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <input
+            type="tel"
+            name="{{ attr.identification }}"
+            id="{{ attr.identification }}"
+            {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
+            class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+         </div>
+
+      {% case "date" %}
+
+         <div class="field-group --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <input
+               type="date"
+               name="{{ attr.identification }}"
+               id="{{ attr.identification }}"
+               {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+         </div>
+
+      {% case "password" %}
+
+         <div class="field-group --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <input
+               type="password"
+               name="{{ attr.identification }}"
+               id="{{ attr.identification }}"
+               {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+         </div>
+
+      {% case "select" %}
+
+         <div class="field-group  |  relative --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <select
+               name="{{ attr.identification }}"
+               id="{{ attr.identification }}"
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+               {% if attr.placeholder is defined %}
+                  <option value="" hidden disabled selected>{{ attr.placeholder }}</option>
+               {% endif %}
+               {% for item in attr.options %}
+                  <option value="{{ item.value }}">{{ item.display }}</option>
+               {% endfor %}
+            </select>
+
+            <svg class="block absolute pin-r -mt-11 mr-7  |  w-2 h-3 rotate-90deg  |  fill-current text-grey-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
+               <path d="M1.9 0L0 1.88 6.18 8 0 14.12 1.9 16 10 8 1.9 0z"/>
+            </svg>
+         </div>
+
+      {% case "checkbox" %}
+
+         <div class="field-group --checkbox --{{ width }}">
+            {% if attr.label != '' %}
+               <label for="{{ attr.identification }}" class="field-group__label">{{ attr.label }}</label>
+            {% endif %}
+            <input
+               type="checkbox"
+               name="{{ attr.identification }}"
+               id="{{ attr.identification }}"
+               class="field-group__input --checkbox">
+         </div>
+
+   {% endswitch %}
+{% endmacro %}
+
+{% macro checkbox(classes, copy) %}
+   <div class="flex  |  w-full  |  px-2">
+      <label for=""></label>
+      <input type="checkbox" name="">
+   </div>
+{% endmacro %}
+
+{% macro helpLink(source, copy) %}
+   <div class="w-full  |  -mt-3 px-2">
+      <a href="{{ source }}" class="text-12 text-blue hover:text-blue-dark">{{ copy }}</a>
+   </div>
+{% endmacro %}
+
+{% macro submit(classes, value) %}
+   <div class="w-full  |  px-2">
+      <input type="submit" value="{{ value }}" class="btn --primary --dark {{ classes }}">
+   </div>
+{% endmacro %}
+
+
+
+

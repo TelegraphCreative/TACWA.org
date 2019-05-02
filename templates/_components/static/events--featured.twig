@@ -1,0 +1,136 @@
+{#   Events - Featured   #}
+
+{% import '_macros/global' as global %}
+
+
+{% set
+   featuredEvent = {
+      infoPrimary: [
+         {
+            month: 'March',
+            day: '12',
+            org: 'TACWA',
+            heading: 'Bimonthly Meeting',
+         }
+      ],
+      infoSecondary: [
+         {
+            heading: 'Time',
+            copy: '6:30pm'
+         },
+         {
+            heading: 'Host',
+            copy: 'City of Houston/Gulf Coast Authority'
+         },
+         {
+            heading: 'Sponsors',
+            copy: 'Arcadis, Black & Veatch, Carollo, Freese & Nichols, Garver, RPS'
+         },
+         {
+            heading: 'Location',
+            copy: '910 Bay Area Blvd<br> Houston, TX 77058'
+         }
+      ],
+      media: [
+         {
+            title: 'pdf_file--version-3.pdf',
+            src: '../assets/placeholder/pdf_file--version-3.pdf'
+         },
+         {
+            title: 'sample_video_with_nice_long_filename.mp4',
+            src: '../assets/placeholder/sample_video_with_nice_long_filename.mp4'
+         }
+      ]
+   }
+%}
+
+
+<article class="featured-event">
+   {#   Container   #}
+   <div class="featured-event__container">
+      {#   Info   #}
+      <div class="featured-event__info">
+         {% for item in featuredEvent.infoPrimary %}
+            {% include '_components/static/snippets/events--event-date'
+               with {
+                  'month': item.month,
+                  'day': item.day
+               }
+            %}
+         {% endfor %}
+
+            <div class="featured-event__info--inner">
+               {% for item in featuredEvent.infoPrimary %}
+                  {#   Org   #}
+                  <span class="heading --tiny  |  {% if item.org == "TACWA" %}text-blue{% else %}text-teal{% endif %}">
+                     {{ item.org }}
+                  </span>
+
+                  {#   Heading   #}
+                  <h4>{{ item.heading }}</h4>
+               {% endfor %}
+
+               {#   Details   #}
+               <div class="featured-event__info__detail">
+                  {% for item in featuredEvent.infoSecondary %}
+                     <div class="featured-event__info__detail--item">
+                        <h3 class="heading --tiny">{{ item.heading }}</h3>
+                        <p>{{ item.copy|raw }}</p>
+                     </div>
+                  {% endfor %}
+               </div>
+            </div>
+      </div>
+
+      {#   Media   #}
+      <div class="featured-event__media">
+         <h3>Attachments & Links</h3>
+         <ul class="featured-event__media__list">
+            {% for item in featuredEvent.media %}
+               <li>
+                  <a href="{{ item.src }}" target="_blank" class="link --media  |  js--truncate-filename">
+                     <span>
+                        {{ item.title }}
+                     </span>
+                  </a>
+               </li>
+            {% endfor %}
+         </ul>
+      </div>
+   </div>
+
+   {#   Action   #}
+   <div class="featured-event__action">
+      {#   Calendar   #}
+      <button class="btn --calendar">
+         {{ global.utilityIcon('calendar', 'h-5 w-5') }}
+         {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg') }}
+      </button>
+
+      {#   Register   #}
+      {{ global.btn('../static/events--detail', 'btn --primary --dark', 'Register') }}
+   </div>
+</article>
+
+
+{% js %}
+// Truncate
+function truncate(n, len) {
+   var ext = n.substring(n.lastIndexOf(".") + 1, n.length).toLowerCase();
+   var filename = n.replace('.'+ext,'');
+   if(filename.length <= len) {
+      return n;
+   }
+   filename = filename.substr(0, len) + (n.length > len ? '...' : '');
+   return filename + '.' + ext;
+};
+
+
+var array = document.querySelectorAll('.js--truncate-filename');
+
+window.onload = function() {
+   for (var i = 0; i < array.length; i++){
+      array[i].innerText = truncate(array[i].innerText, 20);
+   }
+};
+{% endjs %}

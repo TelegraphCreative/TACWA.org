@@ -1,0 +1,29 @@
+{#   Login - Standard   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'Events',
+         'heading': 'Upcoming Events'
+      }
+   %}
+
+   <section class="mb-20">
+      <div class="container">
+         {#   Featured Event   #}
+         {% include '_components/static/events--featured' %}
+      </div>
+   </section>
+
+   <section class="bg-gradient">
+      {#   Event Index   #}
+      {% include '_components/static/events--index' %}
+   </section>
+
+{% endblock %}

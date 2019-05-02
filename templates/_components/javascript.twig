@@ -2,8 +2,8 @@
 <script>
    // ---------------------------------------------------------------------------
    // Site Menu Toggle
-   var nav_open_btn   = document.querySelector('.site-menu__open-btn');
-   var nav_close_btn = document.querySelector('.site-menu__close-btn');
+   var nav_open_btn   = document.querySelector('.js--site-menu__open-btn');
+   var nav_close_btn = document.querySelector('.js--site-menu__close-btn');
    var nav       = document.querySelector('.site-menu__container');
 
    nav_open_btn.onclick = function(){
@@ -14,21 +14,38 @@
       nav.classList.remove('--is-visible');
    };
 
+      // Site Menu Submenu Toggle
+      var submenu = document.querySelectorAll('.site-menu__item.--dropdown');
+
+      submenu.forEach(function(show) {
+         show.onclick = function(){
+            this.classList.toggle('--is-open');
+         };
+      });
+
+
    // ---------------------------------------------------------------------------
-   // Site Menu Submenu Toggle
-   var submenu = document.querySelectorAll('.site-menu__item.--dropdown');
+   // Site User Menu Toggle
+   var user_menu_btn   = document.querySelector('.js--site-user-menu__btn');
+   var user_menu       = document.querySelector('.js--site-user-menu');
 
-   submenu.forEach(function(show) {
-      show.onclick = function(){
-         this.classList.toggle('--is-open');
-      };
-   });
+   user_menu_btn.onclick = function(e){
+      user_menu_btn.classList.toggle('--is-active');
+      user_menu.classList.toggle('--is-open');
+      e.stopPropagation();
 
-   // ---------------------------------------------------------------------------
-   // Site User Menu Toggle on Small Screens
-   var userMenu = document.querySelector('.site-user-menu__item.--dropdown');
+      // Hide User Menu
+      function showHideMenu() {
+         if (user_menu_btn.contains(event.target)) {
+            console.log('clicked inside');
+         } else {
+            console.log('clicked outside');
+            user_menu_btn.classList.remove('--is-active');
+            user_menu.classList.remove('--is-open');
+         }
+      }
 
-   userMenu.onclick = function(){
-      this.classList.toggle('--is-open')
-   }
+      document.body.addEventListener('touchend', showHideMenu);
+      document.body.addEventListener('click', showHideMenu);
+   };
 </script>

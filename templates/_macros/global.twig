@@ -35,7 +35,7 @@
 {% macro link(source, text, classes) %}
    <a href="{{ source }}" class="{{ classes }}">
       {{ text }}
-      <svg class="fill-current  |  h-3 w-2  |  ml-2 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
+      <svg class="fill-current  |  h-3 w-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
          <path d="M1.9 0L0 1.88 6.18 8 0 14.12 1.9 16 10 8 1.9 0z"/>
       </svg>
    </a>
@@ -56,9 +56,34 @@
             <path d="M20 2.02L17.98 0 10 7.98 2.02 0 0 2.02 7.98 10 0 17.98 2.02 20 10 12.02 17.98 20 20 17.98 12.02 10 20 2.02z"/>
          </svg>
 
+      {% case "user" %}
+         <svg class="stroke-current {{ classes }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M18 19v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m8-18a4 4 0 1 1-4 4 4 4 0 0 1 4-4z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+         </svg>
+
+      {% case "calendar" %}
+         <svg class="stroke-current {{ classes }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 13.5v6m-3-3h6M2.25 3.75h19.5a1.5 1.5 0 0 1 1.5 1.5v16.5a1.5 1.5 0 0 1-1.5 1.5H2.25a1.5 1.5 0 0 1-1.5-1.5V5.25a1.5 1.5 0 0 1 1.5-1.5zm-1.5 6h22.5M6.75 6V.75M17.25 6V.75" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+         </svg>
+
+      {% case "search" %}
+         <svg class="stroke-current {{ classes }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M6.27 1.47a9.06 9.06 0 1 1-4.8 11.89 9.05 9.05 0 0 1 4.8-11.89zm10 14.75l7 7" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+         </svg>
+
       {% case "hamburger" %}
          <svg class="fill-current {{ classes }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16">
             <path d="M0 16h24v-2.67H0zm0-6.67h24V6.67H0zM0 0v2.67h24V0z" />
+         </svg>
+
+      {% case "link" %}
+         <svg class="stroke-current {{ classes }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20">
+            <path d="M9.36 16.5l-.93.93a4.5 4.5 0 0 1-6.36-6.36l4.77-4.78a4.5 4.5 0 0 1 6.83 5.83m1.15-8.55l.75-.75a4.5 4.5 0 0 1 6.36 6.36L17.16 14a4.5 4.5 0 0 1-6.82-5.82" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+         </svg>
+
+      {% case "attachment" %}
+         <svg class="stroke-current {{ classes }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M23.25 10l-11 11a6.75 6.75 0 0 1-9.54-9.54l9-9a4.5 4.5 0 1 1 6.37 6.37l-9 9a2.25 2.25 0 0 1-3.18-3.18l9-9" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
          </svg>
 
       {% case "meeting" %}
@@ -82,24 +107,6 @@
 
 {% endmacro %}
 
-{# Spot Icons #}
-{% macro spotIcon(icon, class) %}
-    {% switch icon %}
-
-        {% case "responsive" %}
-            <svg viewBox="0 0 93.2 100" version="1.1">
-                <polygon class="stroke-red | path-1" points="16.7,19 16.5,72.2 62.9,99 63,45.8 "/>
-                <polygon class="stroke-red | path-1" points="74.5,19 74.7,72.2 51.5,85.6 51.3,32.4 "/>
-                <polygon class="stroke-fill-red | path-1" points="62.4,19 46.8,10 46.8,28 46.8,28 "/>
-                <polygon class="stroke-fill-red | path-1" points="39.8,1 24.2,10 39.8,19 39.8,19 "/>
-            </svg>
-
-        {% default %}
-
-
-    {% endswitch %}
-
-{% endmacro %}
 
 {# Brand Icons #}
 {% macro brandIcon(icon, class) %}

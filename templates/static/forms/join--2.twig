@@ -1,0 +1,89 @@
+{#   Join TACWA - Organization Information   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Join TACWA'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      {{ global.link('../forms/join--3', 'Back', 'link --arrow --back  |  mb-2 md:mb-4') }}
+      <h2>Your Account Information</h2>
+
+      <div class="form-flow__wrapper --reverse">
+
+         {#   Detail   #}
+         {% include '_components/static/form-flow--detail'
+            with {
+               'description': 'TACWA Annual Membership for Organizations with 5-20 employees',
+               'total': '$45'
+            }
+         %}
+
+         {#   Form   #}
+         <form action="../forms/join--3" class="form-group">
+            {#   First Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'First name', identification: 'first-name' }
+            )}}
+
+            {#   Last Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'Last name', identification: 'last-name' }
+            )}}
+
+            {#   Email   #}
+            {{ form.fieldGroup(
+               'email',
+               'full-width',
+               { label: 'Email address', identification: 'email' }
+            )}}
+
+            {#   Password   #}
+            {{ form.fieldGroup(
+               'password',
+               'full-width',
+               { label: 'Password', identification: 'password' }
+            )}}
+
+            {#   Confirm Password   #}
+            {{ form.fieldGroup(
+               'password',
+               'full-width',
+               { label: 'Confirm password', identification: 'confirm-password' }
+            )}}
+
+            {#   Phone   #}
+            {{ form.fieldGroup(
+               'phone',
+               'full-width',
+               { label: 'Phone (optional)', identification: 'phone' }
+            )}}
+
+            {#   Checkbox   #}
+            {{ form.fieldGroup(
+               'checkbox',
+               'full-width',
+               { label: 'Add secondary contact', identification: 'secondary-contact' }
+            )}}
+
+            {#   Submit   #}
+            {{ form.submit( '--large  |  mt-11', 'Continue to payment') }}
+         </form>
+      </div>
+   </div>
+
+{% endblock %}

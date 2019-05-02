@@ -1,0 +1,19 @@
+{#   List - Media   #}
+{% import '_macros/global' as global %}
+
+
+<h2>Attachments & Links</h2>
+<ul class="list--media">
+   {% for item in media %}
+      <li class="list--media__item">
+         <a href="{{ item.src }}" target="_blank">
+            {% if item.type == 'file' %}
+               {{ global.utilityIcon('attachment', 'h-5 w-6  |  mr-4') }}
+            {% else %}
+               {{ global.utilityIcon('link', 'h-5 w-6  |  mr-4') }}
+            {% endif %}
+            {{ item.title }}
+         </a>
+      </li>
+   {% endfor %}
+</ul>

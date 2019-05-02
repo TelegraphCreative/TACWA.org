@@ -1,0 +1,27 @@
+//
+// List - Media
+//
+
+.list--media {
+   @apply list-reset;
+
+   .list--media__item {
+      @apply mb-4;
+
+      &:last-child {
+         @apply mb-0
+      }
+
+      a {
+         @apply
+            flex items-center
+            border border-grey-lighter rounded-lg
+            no-underline text-14 text-teal
+            py-5 px-4;
+
+         &:hover {
+            @apply text-teal-light
+         }
+      }
+   }
+}

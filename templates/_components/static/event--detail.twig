@@ -1,0 +1,63 @@
+{#   Events - Detail -- Register   #}
+
+{% import '_macros/global' as global %}
+
+{% set
+   eventDetail = {
+      info: [
+         {
+            heading: 'Date & Time',
+            copy: 'Tuesday, March 12, 2019<br>6:00pm-8:00pm'
+         },
+         {
+            heading: 'Producer',
+            copy: 'TACWA'
+         },
+         {
+            heading: 'Host',
+            copy: 'City of Houston/Gulf Coast Authority'
+         },
+         {
+            heading: 'Location',
+            copy: '910 Bay Area Blvd<br> Houston, TX 77058',
+            link_text: 'Get Directions',
+            link_url: 'https://www.google.com/maps/place/910+Bay+Area+Blvd,+Houston,+TX+77058/data=!4m2!3m1!1s0x86409c5fafe11361:0xe5da34a022d94e7c?sa=X&ved=2ahUKEwjajNiEzvbhAhUHLKwKHUPQB2EQ8gEwAHoECAoQAQ'
+         },
+         {
+            heading: 'Sponsors',
+            copy: 'Arcadis, Black & Veatch, Carollo, Freese & Nichols, Garver, RPS'
+         }
+      ]
+   }
+%}
+
+
+<div class="event__detail">
+   {#   Action   #}
+   <div class="event__detail__action {% if pastEvent is defined %}--disabled{% endif %}">
+      {% if pastEvent is defined %}
+         {{ global.btn('/static/forms/event-registration--contact--guest', 'btn --primary --dark --wide  |  sm:mx-2', 'Register') }}
+
+         <p>This is a past event</p>
+      {% else %}
+         {#   Register   #}
+         {{ global.btn('', 'btn --primary --dark --wide  |  sm:mx-2', 'Register') }}
+         {#   Add to Calendar   #}
+         {{ global.btn('', 'btn --primary --light --wide  |  sm:mx-2', 'Add to Calendar') }}
+      {% endif %}
+   </div>
+
+   {#   Container   #}
+   <div class="event__detail__container">
+      {% for item in eventDetail.info %}
+         <div class="event__detail__item">
+            <h3>{{ item.heading }}</h3>
+            <p>{{ item.copy|raw }}</p>
+
+            {% if item.link_text is defined %}
+               <a href="{{ item.link_url }}">{{ item.link_text }}</a>
+            {% endif %}
+         </div>
+      {% endfor %}
+   </div>
+</div>

@@ -1,0 +1,20 @@
+{#   Pagination   #}
+
+{% import '_macros/global' as global %}
+
+
+<div class="pagination">
+   <a href="#" class="pagination__button --disabled">
+      {{ global.utilityIcon('chevron', 'h-3 w-2  |  rotate-180deg  |  fill-current') }}
+   </a>
+
+   <a href="#" class="pagination__button --active">1</a>
+
+   {% for i in 2..5 %}
+      <a href="#" class="pagination__button">{{ i }}</a>
+   {% endfor %}
+
+   <a href="#" class="pagination__button">
+      {{ global.utilityIcon('chevron', 'h-3 w-2  |  fill-current') }}
+   </a>
+</div>

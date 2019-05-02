@@ -6,14 +6,6 @@
    @apply inline-flex items-center mr-5 relative;
    height: 48px;
 
-   // Menu Button
-   &__btn {
-      @apply
-         font-medium text-grey-dark
-         inline-flex items-center
-         pl-5
-   }
-
    // Menu Wrapper
    .site-user-menu__list_wrapper {
       @apply
@@ -22,9 +14,14 @@
          pt-4
          translateY-5;
 
-      left: -4.125rem;
+      left: -5.625rem;
       top: 2.25rem;
+
       transition: opacity .5s cubic-bezier(.19,1,.22,1), transform .5s cubic-bezier(.19,1,.22,1);
+
+      @screen sm {
+         left: -4.125rem
+      }
 
       // Menu List
       .site-user-menu__list {
@@ -64,114 +61,25 @@
    }
 
    // Hover
-   &:hover {
-      // Menu Button
-      .site-user-menu__btn {
-         @apply text-grey
-      }
+   @media (hover: hover) {
+      &:hover {
+         // Menu Wrapper
+         .site-user-menu__list_wrapper {
+            @apply
+               opacity-100 visible
+               translateY-0;
 
-      // Menu Wrapper
-      .site-user-menu__list_wrapper {
-         @apply
-            opacity-100 visible
-            translateY-0;
-
-         transition: opacity .75s cubic-bezier(.19,1,.22,1),transform .75s cubic-bezier(.19,1,.22,1);
+            transition: opacity .75s cubic-bezier(.19,1,.22,1),transform .75s cubic-bezier(.19,1,.22,1);
+         }
       }
    }
-}
 
+   // Menu Wrapper
+   .site-user-menu__list_wrapper.--is-open {
+      @apply
+         opacity-100 visible
+         translateY-0;
 
-// Site User Menu for Small Screens
-.site-user-menu--sm {
-   @screen md {
-      @apply hidden
-   }
-
-   .site-user-menu__item {
-      @apply py-4;
-
-      @screen sm {
-         @apply py-5
-      }
-
-      // Menu Item with Submenu
-      &.--dropdown {
-         // Title & Icon
-         span {
-            @apply cursor-pointer font-normal flex items-center justify-between leading-tight no-underline relative text-18 text-white;
-
-            @screen sm {
-               @apply text-20
-            }
-
-            svg {
-               height: .75rem;
-               width: .5rem;
-
-               @screen sm {
-                  height: 14px;
-                  width: 9px
-               }
-            }
-
-            @media (hover: hover) {
-               &:hover {
-                  @apply text-teal-light;
-               }
-            }
-         }
-
-         // Submenu
-         .site-user-menu__list {
-            @apply h-0 invisible list-reset pl-4 opacity-0;
-
-            // Submenu Item
-            .site-user-menu__list__item {
-               @apply pt-3;
-
-               a {
-                  @apply font-normal no-underline relative text-16 text-white;
-
-                  &:before {
-                     content: '';
-                     bottom: 8px;
-                     left: 0;
-                     @apply absolute bg-teal-light rounded-full;
-                     opacity: 0;
-                     height: 6px;
-                     width: 6px;
-                     @apply timing-1 duration-1 property-all;
-                  }
-
-                  @media (hover: hover) {
-                     &:hover {
-                        @apply pl-4 text-teal-light;
-
-                        &:before {
-                           opacity: 100
-                        }
-                     }
-                  }
-               }
-            }
-         }
-
-         // Dropdown Open
-         &.--is-open {
-            @apply text-teal-light;
-
-            // Rotate Icon
-            svg {
-               @apply rotate-90deg timing-1 duration-2 property-all
-            }
-
-            // Show Submenu
-            .site-user-menu__list {
-               @apply h-auto opacity-100 visible;
-               @apply timing-1 duration-1 property-all;
-            }
-         }
-      }
+      transition: opacity .75s cubic-bezier(.19,1,.22,1),transform .75s cubic-bezier(.19,1,.22,1);
    }
 }

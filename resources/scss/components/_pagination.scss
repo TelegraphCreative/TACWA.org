@@ -1,0 +1,24 @@
+//
+// Pagination
+//
+
+.pagination {
+   @apply
+      flex justify-center
+      pb-12 pt-4;
+
+   .pagination__button {
+      @apply
+         mx-1
+         no-underline text-blue;
+
+      &:hover {
+         @apply text-grey-light
+      }
+
+      &.--active,
+      &.--disabled {
+         @apply cursor-auto text-grey-light;
+      }
+   }
+}

@@ -1,0 +1,62 @@
+//
+// Form - Search
+//
+
+.search-form {
+   @apply
+      relative
+      flex-no-shrink
+      w-full max-w-xs;
+
+   .search-form__input {
+      @apply
+         block
+         appearance-none bg-transparent border border-grey-lighter rounded-full
+         align-middle leading-none text-grey-light
+         h-12 w-full
+         pl-14 pr-6
+         timing-2 property-all duration-2;
+
+      &::placeholder {
+         @apply align-middle text-grey-light opacity-100;
+
+         padding-top: .375rem;
+      }
+
+      &:hover {
+         @apply
+            text-grey
+            timing-2 property-all duration-2;
+
+
+         &::placeholder {
+            @apply
+               text-grey
+               timing-2 property-all duration-2
+         }
+      }
+
+      &:focus {
+         @apply
+            bg-blue-lighter border border-blue
+            text-grey-dark;
+      }
+
+      + .search-form__label {
+         @apply
+            absolute pin-l
+            pointer-events-none
+            text-grey-light
+            pl-6;
+
+            top: .9375rem
+      }
+
+      &:hover + .search-form__label,
+      &:focus + .search-form__label {
+         @apply
+            text-grey
+            timing-2 property-all duration-2
+      }
+   }
+}
