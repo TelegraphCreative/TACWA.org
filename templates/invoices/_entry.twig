@@ -1,0 +1,13 @@
+{% extends "_layouts/_base" %} 
+{% import '_macros/global' as global %}
+
+{% block content %}
+
+    <h1>{{ entry.title }}</h1>
+
+    <p>Event: {{ entry.event }}</p>
+    <p>Member Email: {{ entry.email }}</p>
+    <p>Total: {{ entry.totalAmount }}</p>
+
+
+{% endblock %}
