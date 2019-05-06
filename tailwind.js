@@ -62,6 +62,12 @@ let colors = {
   'blue-light': '#b7dee5',
   'blue-lighter': '#f7f9fd',
   'blue-lightest': '#f6fbfd',
+
+  'green-dark': '#35B170',
+  'green': '#56d191',
+
+  'red-dark': '#cb3a37',
+  'red': '#e84f4c',
 }
 
 module.exports = {

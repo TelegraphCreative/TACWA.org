@@ -1,0 +1,49 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{#   User Logged In   #}
+{% set loggedIn = 'true' %}
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Manage Members',
+         'link_url': '../forms/logged-in--manage-members--invite',
+         'link_text': 'Invite Members'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      <h2>Active Members</h2>
+
+      <div class="flex flex-wrap" style="max-width: 50rem">
+         {% for i in 1..6 %}
+            <div class="sm:flex sm:items-center sm:justify-between  |  w-full  |  mb-6 pr-4 pb-6  |  border-b border-grey-lighter">
+               <div class="mb-3 sm:mb-0">
+                  <h3 class="font-normal leading-tight text-16  |  mb-1">Bill Gause</h3>
+                  <p class="leading-tight">astone@dentonwaterutil.org</p>
+               </div>
+
+               {{ global.btnButton( 'btn --deactivate  |  sm:ml-4  |  js--deactivate', 'Deactivate Account') }}
+            </div>
+         {% endfor %}
+      </div>
+   </div>
+
+
+   {#   Deactivate Module   #}
+   <div class="deactivate-modal  |  fixed pin bg-red">
+
+   </div>
+
+{% endblock %}
+
+
+{% js %}
+{% endjs %}

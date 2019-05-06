@@ -1,24 +1,51 @@
 {#   Page - Header   #}
 
-{% if type == 'border' %}
-   <header class="border-b border-grey-lighter  |  mt-12 mb-14 pb-6">
-{% else %}
-   <header class="mt-12 sm:mt-24">
-{% endif %}
+{% import '_macros/global' as global %}
+
+
+<header class="page-header {% if type == 'border' %}--border{% elseif type == 'events' %}--events{% endif %}">
 
    <div class="container">
+      {#   Standard Header   #}
       {% if type == 'standard' %}
 
-         <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-20 md:mb-32">{{ heading }}</h1>
+         <h1>{{ heading }}</h1>
 
-      {% elseif type == 'Events' %}
+      {#   Events Header   #}
+      {% elseif type == 'events' %}
 
-         <h2 class="font-semibold text-12 text-teal uppercase">{{ type }}</h2>
-         <h1 class="font-normal text-24 md:text-40 text-blue  |  max-w-md md:max-w-lg  |  mb-5">{{ heading }}</h1>
+         <h2>{{ type }}</h2>
+         <h1>{{ heading }}</h1>
 
+      {#   Border Header   #}
       {% elseif type == 'border' %}
 
-         <h1 class="font-normal leading-tight text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg">{{ heading }}</h1>
+         {#   Border With Tabs   #}
+         {% if tabs is defined %}
+            <h1>{{ heading }}</h1>
+            {% if tabs == 'true' %}
+               <div class="page-header__tabs">
+
+                  <a href="../forms/logged-in--org-info" class="{% if activeTab == '1' %}--is-active{% endif %}" style="">Information</a>
+                  <a href="../forms/logged-in--org-membership" class="{% if activeTab == '2' %}--is-active{% endif %}" style="">Membership</a>
+               </div>
+            {% endif %}
+
+         {#   Border With Link   #}
+         {% elseif link_url is defined %}
+
+            <div class="page-header__link">
+               <h1>{{ heading }}</h1>
+
+               {{ global.btn( link_url, 'btn --primary --light', link_text ) }}
+            </div>
+
+         {#   Simple Border   #}
+         {% else %}
+
+            <h1>{{ heading }}</h1>
+
+         {% endif %}
 
       {% endif %}
    </div>

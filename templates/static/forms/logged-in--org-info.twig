@@ -1,0 +1,167 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{#   User Logged In   #}
+{% set loggedIn = 'true' %}
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Organization Settings',
+         'tabs': 'true',
+         'activeTab': '1'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      <h2>Organization Information</h2>
+
+      <div class="form-flow__wrapper --reverse">
+         {#   Detail   #}
+         {% include '_components/static/form-flow--detail'
+            with {
+               'heading': 'Add Your Team!',
+               'description': 'Invite your colleauges to sign into TACWA.org to register for events, manage their account, and more.',
+               'button_url': '../forms/logged-in--manage-members--invite',
+               'button_text': 'Invite Members'
+            }
+         %}
+
+         {#   Form   #}
+         <form action="../forms/logged-in--org-info" class="form-group">
+            {#   Name   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'Name', identification: 'org-name', value: 'Denton Water Utility' }
+            )}}
+
+            {#   Organization Type   #}
+            {{ form.fieldGroup(
+               'select',
+               'full-width',
+               {
+                  label: 'Organization Type',
+                  identification: 'org-type',
+                  options: [
+                     { value: 'type-1', display: 'Org Type 1' },
+                     { value: 'type-2', display: 'Public Wastewater Utility', selected: 'yes' },
+                     { value: 'type-3', display: 'Org Type 3' },
+                     { value: 'type-4', display: 'Org Type 4' }
+                  ]
+               }
+            )}}
+
+            {#   Organization Type   #}
+            {{ form.fieldGroup(
+               'select',
+               'full-width',
+               {
+                  label: 'Size',
+                  identification: 'org-size',
+                  options: [
+                     { value: 'type-1', display: '1-5 employees' },
+                     { value: 'type-2', display: '5-10 employees', selected: 'yes' },
+                     { value: 'type-3', display: '10-25 employees' },
+                     { value: 'type-4', display: '25-50 employees' }
+                  ]
+               }
+            )}}
+
+            {#   Street Address   #}
+            {{ form.fieldGroup(
+               'text',
+               'full-width',
+               { label: 'Street address', identification: 'org-address', value: '1900 S Eagle St' }
+            )}}
+
+            {#   City   #}
+            {{ form.fieldGroup(
+               'text',
+               'half-width',
+               { label: 'City', identification: 'org-city', value: 'Denton' }
+            )}}
+
+            {#   State   #}
+            {{ form.fieldGroup(
+               'select',
+               'half-width',
+               {
+                  label: 'State',
+                  identification: 'org-state',
+                  options: [
+                     { value: 'AL', display: 'Alabama' },
+                     { value: 'AK', display: 'Alaska' },
+                     { value: 'AZ', display: 'Arizona' },
+                     { value: 'AR', display: 'Arkansas' },
+                     { value: 'CA', display: 'California' },
+                     { value: 'CO', display: 'Colorado' },
+                     { value: 'CT', display: 'Connecticut' },
+                     { value: 'DE', display: 'Delaware' },
+                     { value: 'DC', display: 'District of Columbia' },
+                     { value: 'FL', display: 'Florida' },
+                     { value: 'GA', display: 'Georgia' },
+                     { value: 'HI', display: 'Hawaii' },
+                     { value: 'ID', display: 'Idaho' },
+                     { value: 'IL', display: 'Illinois' },
+                     { value: 'IN', display: 'Indiana' },
+                     { value: 'IA', display: 'Iowa' },
+                     { value: 'KS', display: 'Kansas' },
+                     { value: 'KY', display: 'Kentucky' },
+                     { value: 'LA', display: 'Louisiana' },
+                     { value: 'ME', display: 'Maine' },
+                     { value: 'MD', display: 'Maryland' },
+                     { value: 'MA', display: 'Massachusetts' },
+                     { value: 'MI', display: 'Michigan' },
+                     { value: 'MN', display: 'Minnesota' },
+                     { value: 'MS', display: 'Mississippi' },
+                     { value: 'MO', display: 'Missouri' },
+                     { value: 'MT', display: 'Montana' },
+                     { value: 'NE', display: 'Nebraska' },
+                     { value: 'NV', display: 'Nevada' },
+                     { value: 'NH', display: 'New Hampshire' },
+                     { value: 'NJ', display: 'New Jersey' },
+                     { value: 'NM', display: 'New Mexico' },
+                     { value: 'NY', display: 'New York' },
+                     { value: 'NC', display: 'North Carolina' },
+                     { value: 'ND', display: 'North Dakota' },
+                     { value: 'OH', display: 'Ohio' },
+                     { value: 'OK', display: 'Oklahoma' },
+                     { value: 'OR', display: 'Oregon' },
+                     { value: 'PA', display: 'Pennsylvania' },
+                     { value: 'RI', display: 'Rhode Island' },
+                     { value: 'SC', display: 'South Carolina' },
+                     { value: 'SD', display: 'South Dakota' },
+                     { value: 'TN', display: 'Tennessee' },
+                     { value: 'TX', display: 'Texas', selected: 'yes' },
+                     { value: 'UT', display: 'Utah' },
+                     { value: 'VT', display: 'Vermont' },
+                     { value: 'VA', display: 'Virginia' },
+                     { value: 'WA', display: 'Washington' },
+                     { value: 'WV', display: 'West Virginia' },
+                     { value: 'WI', display: 'Wisconsin' },
+                     { value: 'WY', display: 'Wyoming' }
+                  ]
+               }
+            )}}
+
+            {#   Zipcode   #}
+            {{ form.fieldGroup(
+               'number',
+               'half-width',
+               { label: 'Zipcode', identification: 'zip', value: '76528' }
+            )}}
+
+            {#   Submit   #}
+            {{ form.submit( '--large  |  mt-4', 'Save Changes') }}
+         </form>
+      </div>
+   </div>
+
+{% endblock %}

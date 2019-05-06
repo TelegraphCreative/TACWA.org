@@ -43,6 +43,7 @@
                type="number"
                name="{{ attr.identification }}"
                id="{{ attr.identification }}"
+               {% if attr.value is defined %}value="{{ attr.value }}"{% endif %}
                {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
                class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
          </div>
@@ -103,7 +104,7 @@
                   <option value="" hidden disabled selected>{{ attr.placeholder }}</option>
                {% endif %}
                {% for item in attr.options %}
-                  <option value="{{ item.value }}">{{ item.display }}</option>
+                  <option value="{{ item.value }}" {% if item.selected is defined %}selected{% endif %}>{{ item.display }}</option>
                {% endfor %}
             </select>
 
@@ -128,6 +129,8 @@
    {% endswitch %}
 {% endmacro %}
 
+
+{#   Checkbox   #}
 {% macro checkbox(classes, copy) %}
    <div class="flex  |  w-full  |  px-2">
       <label for=""></label>
@@ -141,9 +144,17 @@
    </div>
 {% endmacro %}
 
+
+{#   Submit Inputs   #}
 {% macro submit(classes, value) %}
-   <div class="w-full  |  px-2">
+   <div class="px-2">
       <input type="submit" value="{{ value }}" class="btn --primary --dark {{ classes }}">
+   </div>
+{% endmacro %}
+
+{% macro submitLight(classes, value) %}
+   <div class="px-2">
+      <input type="submit" value="{{ value }}" class="btn --primary --light {{ classes }}">
    </div>
 {% endmacro %}
 

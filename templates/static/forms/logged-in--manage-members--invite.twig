@@ -1,0 +1,102 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{#   User Logged In   #}
+{% set loggedIn = 'true' %}
+
+{% set
+   emailName = {
+      groups: [
+         {
+            name: 'name--1', email: 'email--1'
+         },
+         {
+            name: 'name--2', email: 'email--2'
+         },
+         {
+            name: 'name--3', email: 'email--3'
+         },
+         {
+            name: 'name--4', email: 'email--4'
+         },
+         {
+            name: 'name--5', email: 'email--5'
+         }
+      ],
+   }
+%}
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Manage Members',
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      {{ global.link('../forms/logged-in--manage-members', 'Back', 'link --arrow --back  |  mb-2 md:mb-4') }}
+      <h2>Invite Members</h2>
+
+      <div class="form-flow__wrapper">
+
+         {#   Form   #}
+         <form action="../forms/event-registration--payment--member" class="form-group --wide">
+            {% for item in emailName.groups %}
+               <div class="flex flex-wrap  |  w-full">
+                  {#   Name   #}
+                  {{ form.fieldGroup(
+                     'text',
+                     'half-width',
+                     { label: 'Name', identification: item.name }
+                  )}}
+
+                  {#   Email Address   #}
+                  {{ form.fieldGroup(
+                     'text',
+                     'half-width',
+                     { label: 'Email address', identification: item.email }
+                  )}}
+               </div>
+            {% endfor %}
+
+            {#   Add Button   #}
+            <div class="w-full  |  -mt-2 mb-2 px-2">
+               {{ global.btnButton( 'btn --add  |  mt-4  |  js--button', 'Add another member') }}
+            </div>
+
+            {#   Submit and Cancel   #}
+            <div class="flex flex-wrap  |  mt-4">
+               {#   Submit   #}
+               {{ form.submit( 'mt-4', 'Send Invitation') }}
+
+               {#   Cancel   #}
+               {{ global.btnButton( 'btn --simple  |  mt-4 ml-4', 'Cancel') }}
+            </div>
+         </form>
+      </div>
+   </div>
+
+{% endblock %}
+
+
+{% js %}
+var btn   = document.querySelector('.js--button');
+
+btn.onclick = function(){
+   /*
+   var block_to_insert;
+   var container_block;
+
+   block_to_insert = document.createElement( 'div' );
+   block_to_insert.innerHTML = '<div class="flex flex-wrap  |  w-full"><div class="field-group --half-width"><label for="name--2" class="field-group__label">Name</label><input type="text" name="name--2" id="name--2" class="field-group__input --field "></div><div class="field-group --half-width"><label for="email--2" class="field-group__label">Email address</label><input type="text" name="email--2" id="email--2" class="field-group__input --field "></div></div>';
+
+   container_block = document.getElementById( 'democontainer' );
+   container_block.appendChild( block_to_insert );
+   */
+};
+{% endjs %}

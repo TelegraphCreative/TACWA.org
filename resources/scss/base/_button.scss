@@ -51,7 +51,7 @@
       &.--small {
          @apply min-w-40
       }
-      
+
       &.--large {
          @apply min-w-xxs
       }
@@ -191,6 +191,50 @@
    // Calendar
    &.--calendar {
       @apply bg-white border border-grey-lighter flex h-12 items-center px-4 rounded text-grey;
+
+      &:hover {
+         @apply text-grey-light
+      }
+   }
+
+   // Add
+   &.--add {
+      @apply
+         font-medium leading-none text-12 text-green
+         h-6
+         pl-8
+         relative;
+
+      &::before {
+         @apply
+            absolute pin-t pin-l
+            h-6 w-6;
+
+         content: '';
+         background-image: url(../img/icons/add--green.svg);
+      }
+
+      &:hover {
+         @apply text-green-dark;
+
+         &::before {
+            background-image: url(../img/icons/add--green-dark.svg)
+         }
+      }
+   }
+
+   // Deactivate
+   &.--deactivate {
+      @apply text-12 text-red;
+
+      &:hover {
+         @apply text-red-dark
+      }
+   }
+
+   // Simple
+   &.--simple {
+      @apply font-medium text-grey;
 
       &:hover {
          @apply text-grey-light

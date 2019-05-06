@@ -1,0 +1,124 @@
+//
+// Page Header
+//
+
+.page-header {
+   @apply mt-12;
+
+   @screen sm {
+      @apply mt-24
+   }
+
+   h1 {
+      @apply
+         font-normal text-24 text-blue
+         max-w-md
+         mb-20;
+
+      @screen md {
+         @apply
+            text-32
+            max-w-lg
+            mb-32
+      }
+   }
+
+   &.--events {
+      h1 {
+         @apply mb-5;
+
+         @screen md {
+            @apply text-40
+         }
+      }
+
+      h2 {
+         @apply font-semibold text-12 text-teal uppercase
+      }
+   }
+
+   &.--border {
+      @apply
+         border-b border-grey-lighter
+         mb-14 pb-6;
+
+      @screen sm {
+         @apply mt-12
+      }
+
+      h1 {
+         @apply
+            leading-tight
+            mb-0
+      }
+
+      .page-header__tabs {
+         @apply
+            flex items-center
+            mt-7;
+
+         margin-bottom: -1.625rem;
+
+         a {
+            @apply
+               font-medium leading-none no-underline text-12 text-grey-light tracking-wide uppercase
+               pb-4;
+
+            &:hover {
+               @apply text-teal
+            }
+
+            &:first-child {
+               @apply mr-6;
+
+               @screen sm {
+                  @apply mr-8
+               }
+            }
+
+            // Active
+            &.--is-active {
+               @apply
+                  relative
+                  font-semibold text-teal
+                  pointer-events-none;
+
+               &:after {
+                  @apply
+                     absolute pin-b pin-l
+                     w-full
+                     mb-px
+                     bg-teal;
+
+                  content: '';
+                  height: 3px;
+               }
+            }
+         }
+      }
+
+      .page-header__link {
+         h1 {
+            @apply mb-4
+         }
+
+         @screen sm {
+            @apply flex items-center justify-between;
+            margin: -9px 0;
+
+            h1 {
+               //@apply -mb-2
+               @apply mb-0
+            }
+
+            a {
+               @apply ml-4
+            }
+         }
+
+         @screen md {
+            margin: -4px 0
+         }
+      }
+   }
+}
