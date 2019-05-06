@@ -266,3 +266,15 @@ input[type=checkbox] {
       }
    }
 }
+
+
+.invite-group {
+   @apply
+      flex flex-wrap
+      w-full
+      mb-4;
+
+   @screen sm {
+      @apply mb-0
+   }
+}

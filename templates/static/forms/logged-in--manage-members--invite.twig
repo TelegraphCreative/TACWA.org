@@ -8,8 +8,8 @@
 {% set loggedIn = 'true' %}
 
 {% set
-   emailName = {
-      groups: [
+   inviteGroups = {
+      fields: [
          {
             name: 'name--1', email: 'email--1'
          },
@@ -46,27 +46,29 @@
 
          {#   Form   #}
          <form action="../forms/event-registration--payment--member" class="form-group --wide">
-            {% for item in emailName.groups %}
-               <div class="flex flex-wrap  |  w-full">
-                  {#   Name   #}
-                  {{ form.fieldGroup(
-                     'text',
-                     'half-width',
-                     { label: 'Name', identification: item.name }
-                  )}}
+            <div class="js--invite-container">
+               {% for item in inviteGroups.fields %}
+                  <div class="invite-group">
+                     {#   Name   #}
+                     {{ form.fieldGroup(
+                        'text',
+                        'half-width',
+                        { label: 'Name', identification: item.name }
+                     )}}
 
-                  {#   Email Address   #}
-                  {{ form.fieldGroup(
-                     'text',
-                     'half-width',
-                     { label: 'Email address', identification: item.email }
-                  )}}
-               </div>
-            {% endfor %}
+                     {#   Email Address   #}
+                     {{ form.fieldGroup(
+                        'text',
+                        'half-width',
+                        { label: 'Email address', identification: item.email }
+                     )}}
+                  </div>
+               {% endfor %}
+            </div>
 
             {#   Add Button   #}
             <div class="w-full  |  -mt-2 mb-2 px-2">
-               {{ global.btnButton( 'btn --add  |  mt-4  |  js--button', 'Add another member') }}
+               {{ global.btnButton( 'btn --add  |  mt-4  |  js--add-button', 'Add another member') }}
             </div>
 
             {#   Submit and Cancel   #}
@@ -80,23 +82,6 @@
          </form>
       </div>
    </div>
-
 {% endblock %}
 
-
-{% js %}
-var btn   = document.querySelector('.js--button');
-
-btn.onclick = function(){
-   /*
-   var block_to_insert;
-   var container_block;
-
-   block_to_insert = document.createElement( 'div' );
-   block_to_insert.innerHTML = '<div class="flex flex-wrap  |  w-full"><div class="field-group --half-width"><label for="name--2" class="field-group__label">Name</label><input type="text" name="name--2" id="name--2" class="field-group__input --field "></div><div class="field-group --half-width"><label for="email--2" class="field-group__label">Email address</label><input type="text" name="email--2" id="email--2" class="field-group__input --field "></div></div>';
-
-   container_block = document.getElementById( 'democontainer' );
-   container_block.appendChild( block_to_insert );
-   */
-};
-{% endjs %}
+{% includeJsFile "/assets/js/static/add-invite-group.js" %}
