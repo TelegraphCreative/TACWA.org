@@ -45,8 +45,8 @@
       <div class="form-flow__wrapper">
 
          {#   Form   #}
-         <form action="../forms/event-registration--payment--member" class="form-group --wide">
-            <div class="js--invite-container">
+         <form action="../forms/event-registration--payment--member" class="form-group --wide" id="invite-members">
+            <div class="invite-container  |  js--invite-container">
                {% for item in inviteGroups.fields %}
                   <div class="invite-group">
                      {#   Name   #}
@@ -77,7 +77,10 @@
                {{ form.submit( 'mt-4', 'Send Invitation') }}
 
                {#   Cancel   #}
-               {{ global.btnButton( 'btn --simple  |  mt-4 ml-4', 'Cancel') }}
+               <button
+                  class="btn --simple  |  mt-4 ml-4" type="button"
+                  onClick="function clearForm(){ document.getElementById('invite-members').reset(); } clearForm();"
+               >Cancel</button>
             </div>
          </form>
       </div>

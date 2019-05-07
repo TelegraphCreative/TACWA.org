@@ -55,6 +55,15 @@
       &.--large {
          @apply min-w-xxs
       }
+
+      // Caution
+      &.--caution {
+         @apply bg-red border-red text-white;
+
+         &:hover {
+            @apply bg-red-dark border-red-dark
+         }
+      }
    }
 
    // Secondary

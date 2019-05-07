@@ -267,7 +267,12 @@ input[type=checkbox] {
    }
 }
 
+.invite-container {
+   @apply
+      w-full;
 
+   max-width: 50rem
+}
 .invite-group {
    @apply
       flex flex-wrap
