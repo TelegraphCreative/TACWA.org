@@ -1,13 +1,95 @@
 {% extends "_layouts/_base" %} 
 {% import '_macros/global' as global %}
 
+{% set cart = craft.commerce.carts.cart %}
+{% set number = 1 %}
+
+{% set payment = craft.app.request.param('payment') %}
+
 {% block content %}
+
+{% if not payment %}
+    
+    <p>Adding to cart...{% include 'buy/_components/spinner' %}</p>
+
+    {% set donation = craft.commerce.donation %}
+    {% if donation and donation.isAvailable %}
+    <form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
+        <input type="hidden" name="action" value="commerce/cart/update-cart">
+        {{ redirectInput('?payment=true') }}
+        {{ csrfInput() }}
+        <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
+        <input type="text" name="options[donationAmount]" value="{{ entry.totalAmount }}" hidden>
+        <input type="submit" hidden/>
+    </form>
+    <script>
+        window.onload = function(){
+            document.forms['auto-add-to-cart'].submit();
+        }
+    </script>
+    {% endif %}
+
+{% else %}
 
     <h1>{{ entry.title }}</h1>
 
-    <p>Event: {{ entry.event }}</p>
+    {# More here: http://docs.solspace.com/craft/calendar/v2/template-objects/event.html#usage-in-templates #}
+    <p>Event Title: {{ entry.event.one().title }}</p>
+    <p>Event Time: {{ entry.event.one().startDate }}</p>
     <p>Member Email: {{ entry.email }}</p>
     <p>Total: {{ entry.totalAmount }}</p>
 
+    {# FORM #}
+    <form method="POST" class="add-to-cart-form">
+        <input type="hidden" name="action" value="commerce/payments/pay">
+        <input type="hidden" name="gatewayId" value="2">
+        {{ redirectInput('buy/confirm?number={number}') }}
+        {{ csrfInput() }}
+        <div class="p-10 pt-8">
+            <div class="flex flex-wrap">
+                <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
+                    <label for="payment" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('firstName') %}text-red{% endif %}">First Name</label>
+                    <input id="payment" type="text" name="firstName" value="{{ paymentForm.firstName ?? '' }}"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+                <div class="w-3/4 md:w-1/2-almost mb-4 ml-0 md:ml-4">
+                    <label for="lastName" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('lastName') %}text-red{% endif %}">Last Name</label>
+                    <input id="lastName" type="text" name="lastName" value="{{ paymentForm.lastName ?? '' }}"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+
+                <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
+                    <label for="number" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('number') %}text-red{% endif %}">Credit Card</label>
+                    <input id="number" type="text" name="number"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+                <div class="w-3/4 md:w-1/2-almost mb-4 ml-0 md:ml-4">
+                    <label for="cvv" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('cvv') %}text-red{% endif %}">CVV</label>
+                    <input id="cvv" type="text" name="cvv"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+
+                <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
+                    <label for="exp_month" class="block text-sm mb-2 {% if paymentForm is defined and (paymentForm.getFirstError('year') or paymentForm.getFirstError('month')) %}text-red{% endif %}">Expiry</label>
+                    <input id="exp_month" type="text" name="expiry" placeholder="02/2021"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+            </div>
+        </div>
+        <div class="pl-10 pr-10 pt-5 pb-0">
+            <button type="submit"
+                    class="bg-blue-commerce text-white w-full rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
+                Buy ${{ cart.totalPrice }}
+            </button>
+
+            <div class="flex items-center justify-center mb-8 mt-10">
+                <div>
+                    <span class="font-bold">Need any help?</span>
+                    <span class="text-grey-darker">Don't hesitate to <a href="#" class="text-grey-darker underline">contact support</a>!</span>
+                </div>
+            </div>
+        </div>
+    </form> #}
+{% endif %}
 
 {% endblock %}

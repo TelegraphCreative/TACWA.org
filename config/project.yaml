@@ -1,0 +1,598 @@
+commerce:
+  orderStatuses:
+    26b9b2ad-9f9d-42fb-b542-83612b6b9238:
+      name: New
+      handle: new
+      color: green
+      sortOrder: 99
+      default: true
+    f12c836c-6a1d-4edf-a12b-a0239355b442:
+      name: Shipped
+      handle: shipped
+      color: blue
+      sortOrder: 99
+      default: false
+  productTypes:
+    2dc8282e-b766-402d-8e9a-e8fd5887e3e9:
+      name: Clothing
+      handle: clothing
+      hasDimensions: true
+      hasVariants: false
+      hasVariantTitleField: false
+      titleFormat: '{product.title}'
+      skuFormat: ''
+      descriptionFormat: ''
+      siteSettings:
+        0d0840a6-2776-46d9-b404-951195224e26:
+          hasUrls: true
+          uriFormat: 'shop/products/{slug}'
+          template: shop/products/_product
+    5f110223-b3fc-4c8c-8a1a-48d2c84c0f33:
+      name: Sponsorships
+      handle: sponsorships
+      hasDimensions: false
+      hasVariants: false
+      hasVariantTitleField: false
+      titleFormat: '{product.title}'
+      skuFormat: ''
+      descriptionFormat: ''
+      siteSettings:
+        0d0840a6-2776-46d9-b404-951195224e26:
+          hasUrls: true
+          uriFormat: 'sponsorships/{slug}'
+          template: sponsorships/_product
+  gateways:
+    841ebf1a-843d-4bc1-8af3-83b523a20d4c:
+      name: Stripe
+      handle: stripe
+      type: craft\commerce\stripe\gateways\Gateway
+      settings:
+        publishableKey: $STRIPE_PUBLISHABLE_API_KEY
+        apiKey: $STRIPE_SECRET_API_KEY
+        sendReceiptEmail: ''
+        enforce3dSecure: ''
+        signingSecret: ''
+      sortOrder: 99
+      paymentType: purchase
+      isFrontendEnabled: true
+  subscriptions:
+    fieldLayouts:
+      cb8f16da-6ab1-4872-af07-969fb99604c9:
+        tabs:
+          -
+            name: Membership
+            sortOrder: 1
+            fields:
+              52a959a5-3b8f-42cf-830a-45072efd9869:
+                required: false
+                sortOrder: 1
+dateModified: 1557428853
+email:
+  fromEmail: john@wearetelegraph.com
+  fromName: TACWA
+  template: ''
+  transportType: craft\mailgun\MailgunAdapter
+  transportSettings:
+    domain: $MAILGUN_DOMAIN
+    apiKey: $MAILGUN_API_KEY
+    endpoint: ''
+fieldGroups:
+  6a2cca4c-8a55-468b-879d-bcd9e01e69fa:
+    name: Common
+  14a0f5ca-74a8-4e12-9ec5-d0478850696f:
+    name: Membership
+  717b2017-edbe-4c42-8377-d90ae3b3bbfe:
+    name: Invoices
+fields:
+  52a959a5-3b8f-42cf-830a-45072efd9869:
+    name: 'Organization Type'
+    handle: organizationType
+    instructions: ''
+    searchable: false
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Dropdown
+    settings:
+      options:
+        -
+          label: 'Collection and Treatment Systems'
+          value: collectionAndTreatmentSystems
+          default: '1'
+        -
+          label: 'Collection Systems only'
+          value: collectionSystemsOnly
+          default: ''
+        -
+          label: Affiliates
+          value: affiliates
+          default: ''
+    contentColumnType: string
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  e1d949da-d328-43f9-8d1f-533b94855986:
+    name: Email
+    handle: email
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: barrelstrength\sproutfields\fields\Email
+    settings:
+      customPattern: ''
+      customPatternToggle: ''
+      customPatternErrorMessage: ''
+      uniqueEmail: ''
+      placeholder: ''
+    contentColumnType: string
+    fieldGroup: 6a2cca4c-8a55-468b-879d-bcd9e01e69fa
+  82e35325-adc5-4efb-8b20-89b486ccd747:
+    name: Event
+    handle: event
+    instructions: ''
+    searchable: false
+    translationMethod: site
+    translationKeyFormat: null
+    type: Solspace\Calendar\FieldTypes\EventFieldType
+    settings:
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: null
+      limit: '1'
+      selectionLabel: ''
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: 717b2017-edbe-4c42-8377-d90ae3b3bbfe
+  e5456dca-cb28-4635-9b5d-9a4c63812296:
+    name: 'Total Amount'
+    handle: totalAmount
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Number
+    settings:
+      defaultValue: null
+      min: '0'
+      max: null
+      decimals: '2'
+      size: null
+      prefix: $
+      suffix: ''
+    contentColumnType: 'decimal(12,2)'
+    fieldGroup: 717b2017-edbe-4c42-8377-d90ae3b3bbfe
+plugins:
+  minify:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  mix:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  super-table:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.10
+  sprout-fields:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.2.8
+  image-optimize:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  copy:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  calendar:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.5
+    settings:
+      overlapThreshold: 5
+      timeInterval: 30
+      eventDuration: 60
+      allDay: false
+      demoBannerDisabled: '1'
+      showMiniCal: '1'
+      showDisabledEvents: '1'
+      quickCreateEnabled: '1'
+      defaultView: month
+      guestAccess: null
+      descriptionFieldHandle: null
+      locationFieldHandle: null
+      authoredEventEditOnly: '1'
+  mailgun:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  linkit:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.8
+  seomatic:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.7
+  wordsmith:
+    edition: standard
+    enabled: true
+    schemaVersion: 0.0.0.0
+  commerce:
+    edition: lite
+    enabled: true
+    schemaVersion: 2.1.06
+  commerce-stripe:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  sprout-email:
+    settings:
+      pluginNameOverride: ''
+      appendTitleValue: false
+      localeIdOverride: ''
+      displayFieldHandles: false
+      enableCustomSections: false
+      enableMetaDetailsFields: false
+      enableMetadataRendering: true
+      metadataVariable: metadata
+      enableNotificationEmails: true
+      enableCampaignEmails: false
+      enableSentEmails: false
+      emailTemplateId: barrelstrength\sproutbaseemail\emailtemplates\BasicTemplates
+      enablePerEmailEmailTemplateIdOverride: 0
+      sentEmailsLimit: null
+    enabled: true
+routes:
+  aaf119ab-8284-4150-bba5-55f622ac1f62:
+    template: /calendar-demo/mini_cal
+    uriParts:
+      - calendar-demo/mini_cal/
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+    uriPattern: 'calendar-demo/mini_cal/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>'
+    sortOrder: 1
+    siteUid: null
+  5bb9c88c-ab27-4742-9103-63a973ac9438:
+    template: /calendar-demo/month
+    uriParts:
+      - calendar-demo/month/
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+    uriPattern: 'calendar-demo/month/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>'
+    sortOrder: 2
+    siteUid: null
+  7c39758a-0fae-4cc5-9a08-eb2bf6d6e244:
+    template: /calendar-demo/month
+    uriParts:
+      - calendar-demo/month/calendar/
+      -
+        - slug
+        - '[^\/]+'
+    uriPattern: 'calendar-demo/month/calendar/<slug:[^\/]+>'
+    sortOrder: 3
+    siteUid: null
+  c1c9df8a-8baf-4ef0-b5ee-a688105b1cf5:
+    template: /calendar-demo/month
+    uriParts:
+      - calendar-demo/month/calendar/
+      -
+        - slug
+        - '[^\/]+'
+      - /
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+    uriPattern: 'calendar-demo/month/calendar/<slug:[^\/]+>/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>'
+    sortOrder: 4
+    siteUid: null
+  b2dc7cf9-b361-4a01-86ea-a7c5b0db4486:
+    template: /calendar-demo/week
+    uriParts:
+      - calendar-demo/week/
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+      - /
+      -
+        - day
+        - '(?:0?[1-9]|[12][0-9]|3[01])'
+    uriPattern: 'calendar-demo/week/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>/<day:(?:0?[1-9]|[12][0-9]|3[01])>'
+    sortOrder: 5
+    siteUid: null
+  03e94a2b-5c39-48aa-8d74-173f13b85e54:
+    template: /calendar-demo/week
+    uriParts:
+      - calendar-demo/week/calendar/
+      -
+        - slug
+        - '[^\/]+'
+    uriPattern: 'calendar-demo/week/calendar/<slug:[^\/]+>'
+    sortOrder: 6
+    siteUid: null
+  5fac814e-5d0b-47bf-a6f3-19bc9819c6b0:
+    template: /calendar-demo/week
+    uriParts:
+      - calendar-demo/week/calendar/
+      -
+        - slug
+        - '[^\/]+'
+      - /
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+      - /
+      -
+        - day
+        - '(?:0?[1-9]|[12][0-9]|3[01])'
+    uriPattern: 'calendar-demo/week/calendar/<slug:[^\/]+>/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>/<day:(?:0?[1-9]|[12][0-9]|3[01])>'
+    sortOrder: 7
+    siteUid: null
+  76f00f86-0743-4cd5-8069-a57bf066fa3b:
+    template: /calendar-demo/day
+    uriParts:
+      - calendar-demo/day/
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+      - /
+      -
+        - day
+        - '(?:0?[1-9]|[12][0-9]|3[01])'
+    uriPattern: 'calendar-demo/day/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>/<day:(?:0?[1-9]|[12][0-9]|3[01])>'
+    sortOrder: 8
+    siteUid: null
+  7f000dcd-3a0e-4e67-9f59-e5db85ba8ad6:
+    template: /calendar-demo/day
+    uriParts:
+      - calendar-demo/day/calendar/
+      -
+        - slug
+        - '[^\/]+'
+    uriPattern: 'calendar-demo/day/calendar/<slug:[^\/]+>'
+    sortOrder: 9
+    siteUid: null
+  32a96395-2cc4-4892-850c-11ea51463e0a:
+    template: /calendar-demo/day
+    uriParts:
+      - calendar-demo/day/calendar/
+      -
+        - slug
+        - '[^\/]+'
+      - /
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+      - /
+      -
+        - day
+        - '(?:0?[1-9]|[12][0-9]|3[01])'
+    uriPattern: 'calendar-demo/day/calendar/<slug:[^\/]+>/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>/<day:(?:0?[1-9]|[12][0-9]|3[01])>'
+    sortOrder: 10
+    siteUid: null
+  14ab015e-d591-4adf-afcb-3649dc4668d5:
+    template: /calendar-demo/calendars
+    uriParts:
+      - calendar-demo/calendars/
+      -
+        - slug
+        - '[^\/]+'
+    uriPattern: 'calendar-demo/calendars/<slug:[^\/]+>'
+    sortOrder: 11
+    siteUid: null
+  2d4a81ae-b9a4-4ba2-8fbf-93c6f24422b0:
+    template: /calendar-demo/event
+    uriParts:
+      - calendar-demo/event/
+      -
+        - number
+        - \d+
+    uriPattern: 'calendar-demo/event/<number:\d+>'
+    sortOrder: 12
+    siteUid: null
+  6ac5730c-c6c0-4048-846b-3a18dfe11538:
+    template: /calendar-demo/event
+    uriParts:
+      - calendar-demo/event/
+      -
+        - number
+        - \d+
+      - /
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+      - /
+      -
+        - day
+        - '(?:0?[1-9]|[12][0-9]|3[01])'
+    uriPattern: 'calendar-demo/event/<number:\d+>/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>/<day:(?:0?[1-9]|[12][0-9]|3[01])>'
+    sortOrder: 13
+    siteUid: null
+  dba60e78-9bf3-4885-8be9-6802819fc54d:
+    template: /calendar-demo/events
+    uriParts:
+      - calendar-demo/events/
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+      - /
+      -
+        - day
+        - '(?:0?[1-9]|[12][0-9]|3[01])'
+    uriPattern: 'calendar-demo/events/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>/<day:(?:0?[1-9]|[12][0-9]|3[01])>'
+    sortOrder: 14
+    siteUid: null
+  849c64a1-2b4a-4981-840d-ce794c16124f:
+    template: /calendar-demo/export
+    uriParts:
+      - calendar-demo/export/event/
+      -
+        - number
+        - \d+
+    uriPattern: 'calendar-demo/export/event/<number:\d+>'
+    sortOrder: 15
+    siteUid: null
+  652c6ae1-4885-4992-aa69-91b8c9cf9db3:
+    template: /calendar-demo/edit
+    uriParts:
+      - calendar-demo/edit/event/
+      -
+        - number
+        - \d+
+    uriPattern: 'calendar-demo/edit/event/<number:\d+>'
+    sortOrder: 16
+    siteUid: null
+  40168010-dfed-4e5f-a620-b28ba69e73e5:
+    template: /calendar-demo/edit
+    uriParts:
+      - calendar-demo/edit/event/new
+    uriPattern: calendar-demo/edit/event/new
+    sortOrder: 17
+    siteUid: null
+  034a66fd-692f-4b77-9391-4b44431610ac:
+    template: /calendar-demo/export
+    uriParts:
+      - calendar-demo/export/calendar/
+      -
+        - number
+        - \d+
+    uriPattern: 'calendar-demo/export/calendar/<number:\d+>'
+    sortOrder: 18
+    siteUid: null
+  3a73b9f3-7957-479a-9e86-695ecac86705:
+    template: /calendar-demo/fullcalendar
+    uriParts:
+      - calendar-demo/fullcalendar/
+      -
+        - slug
+        - '[^\/]+'
+      - /
+      -
+        - year
+        - '\d{4}'
+      - /
+      -
+        - month
+        - '(?:0?[1-9]|1[012])'
+      - /
+      -
+        - day
+        - '(?:0?[1-9]|[12][0-9]|3[01])'
+    uriPattern: 'calendar-demo/fullcalendar/<slug:[^\/]+>/<year:\d{4}>/<month:(?:0?[1-9]|1[012])>/<day:(?:0?[1-9]|[12][0-9]|3[01])>'
+    sortOrder: 19
+    siteUid: null
+  a5aea920-c41d-4fa7-9ccb-03dc09157b0c:
+    template: /calendar-demo/resources/event_data
+    uriParts:
+      - calendar-demo/resources/event_data/
+      -
+        - number
+        - \d+
+    uriPattern: 'calendar-demo/resources/event_data/<number:\d+>'
+    sortOrder: 20
+    siteUid: null
+sections:
+  e96d2072-4acf-4767-a404-7179172353d7:
+    name: Invoices
+    handle: invoices
+    type: channel
+    enableVersioning: true
+    propagateEntries: true
+    siteSettings:
+      0d0840a6-2776-46d9-b404-951195224e26:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'invoices/{slug}'
+        template: invoices/_entry
+    entryTypes:
+      62822d26-57ea-488b-a821-b8c312ae77ba:
+        name: Invoices
+        handle: invoices
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          9019b648-96bb-43b8-892a-1f13c209456d:
+            tabs:
+              -
+                name: Invoices
+                sortOrder: 1
+                fields:
+                  82e35325-adc5-4efb-8b20-89b486ccd747:
+                    required: true
+                    sortOrder: 1
+                  e1d949da-d328-43f9-8d1f-533b94855986:
+                    required: false
+                    sortOrder: 3
+                  e5456dca-cb28-4635-9b5d-9a4c63812296:
+                    required: true
+                    sortOrder: 4
+siteGroups:
+  31074194-aa36-4955-b5f6-9258521b749e:
+    name: TACWA
+sites:
+  0d0840a6-2776-46d9-b404-951195224e26:
+    baseUrl: $DEFAULT_SITE_URL
+    handle: default
+    hasUrls: true
+    language: en-US
+    name: TACWA
+    primary: true
+    siteGroup: 31074194-aa36-4955-b5f6-9258521b749e
+    sortOrder: 1
+system:
+  edition: pro
+  name: TACWA
+  live: true
+  schemaVersion: 3.1.27
+  timeZone: America/Los_Angeles
+users:
+  requireEmailVerification: true
+  allowPublicRegistration: true
+  defaultGroup: ''
+  photoVolumeUid: null
+  photoSubpath: null
