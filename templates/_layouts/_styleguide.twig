@@ -9,12 +9,72 @@
 {% set content = {
         menu: [
             {
-                name: "Typography",
-                url: "typography"
+                name: "Home",
+                url: "/"
             },
             {
-                name: "Menu List",
-                url: "menu-list"
+                name: "Events Index",
+                url: "/static/events--index"
+            },
+            {
+                name: "Event Detail",
+                url: "/static/events--detail"
+            },
+            {
+                name: "Event Detail (past)",
+                url: "/static/forms/events--detail--past-event"
+            },
+            {
+                name: "Event Reg. - Contact Guest",
+                url: "/static/forms/event-registration--contact--guest"
+            },
+            {
+                name: "Event Reg. - Contact Member",
+                url: "/static/forms/event-registration--contact--member"
+            },
+            {
+                name: "Event Reg. - Login Checkout",
+                url: "/static/forms/event-registration--login--checkout"
+            },
+            {
+                name: "Event Reg. Payment Guest",
+                url: "/static/forms/event-registration--payment--guest"
+            },
+            {
+                name: "Event Reg. Payment Member",
+                url: "/static/forms/event-registration--payment--member"
+            },
+            {
+                name: "Join 1",
+                url: "/static/forms/join--1"
+            },
+            {
+                name: "Join 2",
+                url: "/static/forms/join--2"
+            },
+            {
+                name: "Join 3",
+                url: "/static/forms/join--3"
+            },
+            {
+                name: "Logged In - Manage Members - Invite",
+                url: "/static/forms/logged-in--manage-members--invite"
+            },
+            {
+                name: "Logged In - Manage Members",
+                url: "/static/forms/logged-in--manage-members"
+            },
+            {
+                name: "Logged In - Org Info",
+                url: "/static/forms/logged-in--org-info"
+            },
+            {
+                name: "Logged In - Org Membership",
+                url: "/static/forms/logged-in--org-membership"
+            },
+            {
+                name: "Login - Standard",
+                url: "/static/forms/login--standard"
             }
         ]
     } 
@@ -57,11 +117,11 @@
                         <aside
                         class="styleguide-menu styleguide__content | md:w-1/4 pt-10 | md:pb-0 pb-4 | md:pl-10 | md:border-r md:border-b-0 border-b | border-grey-lighter"
                         >
-                        <h3 class="header-md mb-3 text-grey-darkest">Components</h3>
+                        <h3 class="header-md mb-3 text-grey-darkest">Layouts</h3>
                             <ul class="menu-list">
                                 {% for item in content.menu %}
-                                    <li>
-                                        <a href="/styleguide/{{ item.url }}" class="text-grey-darker hover:text-black">{{ item.name }}</a>
+                                    <li class="block w-full">
+                                        <a href="{{ item.url }}" class="text-grey-darker hover:text-black">{{ item.name }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
