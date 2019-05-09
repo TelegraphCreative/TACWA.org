@@ -23,7 +23,8 @@
       }
    }
 
-   &.--events {
+   &.--left,
+   &.--center {
       h1 {
          @apply mb-5;
 
@@ -34,6 +35,23 @@
 
       h2 {
          @apply font-semibold text-12 text-teal uppercase
+      }
+   }
+
+   &.--left {
+      p {
+         @apply
+            text-grey-light
+            max-w-lg
+            -mt-2
+      }
+   }
+
+   &.--center {
+      @apply text-center;
+
+      h1 {
+         @apply mx-auto
       }
    }
 

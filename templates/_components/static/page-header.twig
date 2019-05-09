@@ -3,7 +3,7 @@
 {% import '_macros/global' as global %}
 
 
-<header class="page-header {% if type == 'border' %}--border{% elseif type == 'events' %}--events{% endif %}">
+<header class="page-header {% if type == 'border' %}--border{% elseif type == 'left' %}--left{% elseif type == 'center' %}--center{% endif %}">
 
    <div class="container">
       {#   Standard Header   #}
@@ -11,11 +11,6 @@
 
          <h1>{{ heading }}</h1>
 
-      {#   Events Header   #}
-      {% elseif type == 'events' %}
-
-         <h2>{{ type }}</h2>
-         <h1>{{ heading }}</h1>
 
       {#   Border Header   #}
       {% elseif type == 'border' %}
@@ -46,6 +41,38 @@
             <h1>{{ heading }}</h1>
 
          {% endif %}
+
+
+      {#   Left Aligned Header   #}
+      {% elseif type == 'left' %}
+
+         {#   With Category   #}
+         {% if category is defined %}
+            <h2>{{ category }}</h2>
+         {% endif %}
+
+         {#   With Link   #}
+         {% if button_url is defined %}
+            {{ global.link(button_url, button_text, 'link --arrow --back  |  mb-2 md:mb-4') }}
+         {% endif %}
+
+         <h1>{{ heading }}</h1>
+
+         {#   With Copy   #}
+         {% if copy is defined %}
+            <p>{{ copy }}</p>
+         {% endif %}
+
+
+      {#   Left Aligned Header   #}
+      {% elseif type == 'center' %}
+
+         {#   With Category   #}
+         {% if category is defined %}
+            <h2>{{ category }}</h2>
+         {% endif %}
+
+         <h1>{{ heading }}</h1>
 
       {% endif %}
    </div>
