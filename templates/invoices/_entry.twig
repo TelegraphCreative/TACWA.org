@@ -10,26 +10,7 @@
 
 {% if not payment %}
     
-    <p>Adding to cart...{% include 'buy/_components/spinner' %}</p>
-
-    {% set donation = craft.commerce.donation %}
-    {% if donation and donation.isAvailable %}
-    <form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
-        <input type="hidden" name="action" value="commerce/cart/update-cart">
-        {{ redirectInput('?payment=true') }}
-        {{ csrfInput() }}
-        <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
-        <input type="text" name="options[donationAmount]" value="{{ entry.totalAmount }}" hidden>
-        <input type="submit" hidden/>
-    </form>
-    <script>
-        window.onload = function(){
-            document.forms['auto-add-to-cart'].submit();
-        }
-    </script>
-    {% endif %}
-
-{% else %}
+    {# <p>Adding to cart...{% include 'buy/_components/spinner' %}</p> #}
 
     <h1>{{ entry.title }}</h1>
 
@@ -39,10 +20,31 @@
     <p>Member Email: {{ entry.email }}</p>
     <p>Total: {{ entry.totalAmount }}</p>
 
+    {% set donation = craft.commerce.donation %}
+    {% if donation and donation.isAvailable %}
+    <form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
+        <input type="hidden" name="action" value="commerce/cart/update-cart">
+        {{ redirectInput(craft.app.request.absoluteUrl ~ '?payment=true') }}
+        {{ csrfInput() }}
+        <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
+        <input type="text" name="options[donationAmount]" value="{{ entry.totalAmount }}" hidden>
+        <input style="background-color: black; color: white; cursor: pointer;" type="submit" value="Pay Now">
+    </form>
+    {# <script>
+        window.onload = function(){
+            document.forms['auto-add-to-cart'].submit();
+        }
+    </script> #}
+    {% endif %}
+
+{% else %}
+
     {# FORM #}
+    <div class="flash">{{ craft.session.getFlash('notice') }}</div>
+    <div class="flash">{{ craft.session.getFlash('error') }}</div>
     <form method="POST" class="add-to-cart-form">
         <input type="hidden" name="action" value="commerce/payments/pay">
-        <input type="hidden" name="gatewayId" value="2">
+        <input type="hidden" name="gatewayId" value="1">
         {{ redirectInput('buy/confirm?number={number}') }}
         {{ csrfInput() }}
         <div class="p-10 pt-8">
@@ -77,19 +79,11 @@
             </div>
         </div>
         <div class="pl-10 pr-10 pt-5 pb-0">
-            <button type="submit"
-                    class="bg-blue-commerce text-white w-full rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
+            <button type="submit" class="bg-blue text-white w-full rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
                 Buy ${{ cart.totalPrice }}
             </button>
-
-            <div class="flex items-center justify-center mb-8 mt-10">
-                <div>
-                    <span class="font-bold">Need any help?</span>
-                    <span class="text-grey-darker">Don't hesitate to <a href="#" class="text-grey-darker underline">contact support</a>!</span>
-                </div>
-            </div>
         </div>
-    </form> #}
+    </form>
 {% endif %}
 
 {% endblock %}
