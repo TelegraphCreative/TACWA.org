@@ -1,0 +1,23 @@
+{#   Article - Index   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'left',
+         'category': 'Legislation',
+         'heading': 'Regulatory Affairs',
+         'copy': 'TACWA actively tracks and testifies as appropriate on TCEQ proposals and policies through collaboration between our Executive Director, Julie Nahrgang, TACWA President.'
+      }
+   %}
+
+   <section class="bg-gradient --top-0">
+      {#   Event Index   #}
+      {% include '_components/static/article--index' %}
+   </section>
+{% endblock %}

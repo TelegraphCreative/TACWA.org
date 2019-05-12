@@ -1,0 +1,186 @@
+//
+// Article - Detail
+//
+
+// Detail
+.article__detail {
+   @apply
+      border-b border-grey-lighter
+      mb-16 pt-5 pb-10 mb-16;
+
+   @screen lg {
+      @apply
+         absolute pin-r pin-t
+         border-t
+         max-w-xxs w-full
+         -mt-16 mr-16;
+
+         border-bottom: 0
+   }
+
+   @screen xl {
+      @apply mr-20
+   }
+
+   // Category
+   .article__category {
+      @apply
+      block
+      font-semibold leading-none text-12 text-teal uppercase
+      mb-3;
+   }
+
+   // Author
+   .article__author {
+      @apply font-normal
+   }
+}
+
+
+// Body
+.article__body {
+   @apply -mt-5 pb-24;
+
+
+   @screen sm {
+      @apply w-4/5
+   }
+
+   @screen md {
+      @apply
+         w-3/4
+         -mt-13
+   }
+
+   @screen lg {
+      @apply
+         w-2/3
+         pr-20
+   }
+
+   @screen xl {
+      @apply pr-0
+   }
+
+   // Body - Primary
+   .article__body__primary {
+      // Headings
+      h1, h2, h3, h4, h5, h6 {
+         @apply
+            font-normal leading-tight text-20 text-blue
+            mt-12 mb-2;
+
+         @screen md {
+            @apply
+               text-24
+               mt-20
+         }
+      }
+
+      // Paragraphs
+      p {
+         @apply mb-5;
+
+         a {
+            @apply font-normal text-blue;
+
+            &:hover {
+               @apply text-teal
+            }
+         }
+      }
+
+      // Blockquotes
+      blockquote {
+         @apply
+            text-20 text-blue
+            my-12 px-4;
+
+         @screen sm {
+            @apply px-6
+         }
+
+         @screen md {
+            @apply
+               text-24
+               mt-15 mb-20 px-8
+         }
+
+         @screen lg {
+            @apply px-24
+         }
+
+         span {
+            line-height: 1.66;
+
+            background-image: linear-gradient(to bottom, rgba(133, 215, 229, .5), rgba(133, 215, 229, .5));
+            background-position: 0 .9166666667em;
+            background-repeat: repeat-x;
+            background-size: 1px 16px;
+         }
+      }
+
+      // Lists
+      ul {
+         @apply
+            list-reset
+            mb-5;
+
+         li:before {
+            @apply pr-2;
+
+            content: '•';
+         }
+      }
+
+      // Images
+      img {
+         @apply
+            block
+            my-12;
+
+         @screen md {
+            @apply my-20
+         }
+      }
+
+      // Buttons
+      .btn {
+         @apply my-3
+      }
+   }
+
+   // Body - Secondary
+   .article__body__secondary {
+      @apply mt-14;
+
+      // Heading
+      h2 {
+         @apply
+            font-normal leading-tight text-20 text-blue
+            mb-5;
+
+         @screen md {
+            @apply text-24
+         }
+      }
+
+      // Citations
+      .article__citations {
+         @apply
+            border-t border-grey-lightest
+            text-12 text-grey-light
+            mt-12 pt-4;
+
+         h2 {
+            @apply
+               font-semibold text-12 text-grey-light
+               mb-3
+         }
+
+         p {
+            @apply mb-3
+         }
+      }
+   }
+}
