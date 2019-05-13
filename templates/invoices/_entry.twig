@@ -1,13 +1,212 @@
 {% extends "_layouts/_base" %} 
 {% import '_macros/global' as global %}
 
+{% set cart = craft.commerce.carts.cart %}
+{% set number = 1 %}
+
+{% set payment = craft.app.request.param('payment') %}
+
 {% block content %}
+
+{% if not payment %}
+    
+    {# <p>Adding to cart...{% include 'buy/_components/spinner' %}</p> #}
 
     <h1>{{ entry.title }}</h1>
 
-    <p>Event: {{ entry.event }}</p>
+    {# More here: http://docs.solspace.com/craft/calendar/v2/template-objects/event.html#usage-in-templates #}
+    <p>Event Title: {{ entry.event.one().title }}</p>
+    <p>Event Time: {{ entry.event.one().startDate }}</p>
     <p>Member Email: {{ entry.email }}</p>
     <p>Total: {{ entry.totalAmount }}</p>
 
+    {% set donation = craft.commerce.donation %}
+    {% if donation and donation.isAvailable %}
+    <form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
+        <input type="hidden" name="action" value="commerce/cart/update-cart">
+        {{ redirectInput(craft.app.request.absoluteUrl ~ '?payment=true') }}
+        {{ csrfInput() }}
+        <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
+        <input type="text" name="options[donationAmount]" value="{{ entry.totalAmount }}" hidden>
+        <input style="background-color: black; color: white; cursor: pointer;" type="submit" value="Pay Now">
+    </form>
+    {# <script>
+        window.onload = function(){
+            document.forms['auto-add-to-cart'].submit();
+        }
+    </script> #}
+    {% endif %}
+
+{% else %}
+
+    {# FORM #}
+    <div class="flash">{{ craft.session.getFlash('notice') }}</div>
+    <div class="flash">{{ craft.session.getFlash('error') }}</div>
+
+    <form method="POST" class="add-to-cart-form">
+        <input type="hidden" name="action" value="commerce/payments/pay">
+        {# <input type="hidden" name="gatewayId" value="1"> #}
+        {{ redirectInput('buy/confirm?number={number}') }}
+        {{ csrfInput() }}
+    {% if cart.gatewayId %}
+        <input type="hidden" name="gatewayId" value="{{ cart.gatewayId }}"/>
+        {{ cart.gateway.getPaymentFormHtml({})|raw }}
+    {% else %}
+        No Gateway ID
+    {% endif %}
+        {# <div class="p-10 pt-8">
+            <div class="flex flex-wrap">
+                <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
+                    <label for="payment" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('firstName') %}text-red{% endif %}">First Name</label>
+                    <input id="payment" type="text" name="firstName" value="{{ paymentForm.firstName ?? '' }}"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+                <div class="w-3/4 md:w-1/2-almost mb-4 ml-0 md:ml-4">
+                    <label for="lastName" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('lastName') %}text-red{% endif %}">Last Name</label>
+                    <input id="lastName" type="text" name="lastName" value="{{ paymentForm.lastName ?? '' }}"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+
+                <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
+                    <label for="number" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('number') %}text-red{% endif %}">Credit Card</label>
+                    <input id="number" type="text" name="number"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+                <div class="w-3/4 md:w-1/2-almost mb-4 ml-0 md:ml-4">
+                    <label for="cvv" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('cvv') %}text-red{% endif %}">CVV</label>
+                    <input id="cvv" type="text" name="cvv"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+
+                <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
+                    <label for="exp_month" class="block text-sm mb-2 {% if paymentForm is defined and (paymentForm.getFirstError('year') or paymentForm.getFirstError('month')) %}text-red{% endif %}">Expiry</label>
+                    <input id="exp_month" type="text" name="expiry" placeholder="02/2021"
+                        class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
+                </div>
+            </div>
+        </div> #}
+        <div class="pl-10 pr-10 pt-5 pb-0">
+            <button type="submit" class="bg-blue text-white w-full rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
+                Buy ${{ cart.totalPrice }}
+            </button>
+        </div>
+    </form>
+{% endif %}
+
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+<script>
+    function initStripe() {
+        // Because this might get executed before Stripe is loaded.
+        if (typeof Stripe === "undefined") {
+            setTimeout(initStripe, 200);
+        } else {
+            $('.stripe-form').each(function() {
+                $container = $(this);
+
+                function updateErrorMessage(event) {
+                    var displayError = $('.card-errors', $container).get(0);
+
+                    if (event.error) {
+                        displayError.textContent = event.error.message;
+                    } else {
+                        displayError.textContent = '';
+                    }
+
+                    if ($('.modal').data('modal')) {
+                        $('.modal').data('modal').updateSizeAndPosition();
+                    }
+                }
+
+                var stripe = Stripe($container.data('publishablekey'));
+                var elements = stripe.elements();
+
+                var style = {
+                    base: {
+                        // Add your base input styles here. For example:
+                        fontSize: '14px',
+                        lineHeight: '21px'
+                    }
+                };
+
+                // Create an instance of the card Element
+                var card = elements.create('card', {
+                        style: style,
+                        hidePostalCode: true
+                    }
+                );
+
+                card.addEventListener('change', updateErrorMessage);
+
+                // Add an instance of the card Element into the `card-element` <div>
+                card.mount($('.card-data', $container).empty().get(0));
+
+                var $form = $('form', $container);
+
+                if ($form.length === 0) {
+                    $form = $container.parents('form');
+                }
+
+                // Remove already bound events
+                $form.off('submit');
+
+                $form.on('submit', function(ev) {
+                    ev.preventDefault();
+
+                    // If form submitted already, disregard.
+                    if ($form.data('processing')) {
+                        return false;
+                    }
+
+                    $form.data('processing', true);
+
+                    // Compose card holder info
+                    var cardHolderName, orderEmail, ownerAddress;
+
+                    if ($('.card-holder-first-name', $form).length > 0 && $('.card-holder-last-name', $form).length > 0) {
+                        cardHolderName = $('.card-holder-first-name', $form).val() + ' ' + $('.card-holder-last-name', $form).val();
+                    }
+
+                    if ($('.stripe-address', $form).length > 0) {
+                        ownerAddress = {
+                            'line1': $('input[name=stripe-line1]', $form).val(),
+                            'city': $('input[name=stripe-city]', $form).val(),
+                            'postal_code': $('input[name=stripe-postal-code]', $form).val(),
+                            'country': $('input[name=stripe-country]', $form).val(),
+                        };
+                    }
+
+                    orderEmail = $('input[name=orderEmail]').val();
+
+                    // Tokenize the credit card details and create a payment source
+                    stripe.createSource(card, {owner: {name: cardHolderName, email: orderEmail, address: ownerAddress}}).then(function(result) {
+                        if (result.error) {
+                            updateErrorMessage(result);
+                            $form.data('processing', false);
+                        } else {
+                            // Signal to backend that 3D secure payment is required if card or gateway options demands so.
+                            if (result.source.card.three_d_secure === "required" || (result.source.card.three_d_secure === "optional" && $container.data('enforce3dsecure'))) {
+                                $form.append($('<input type="hidden" name="threeDSecure"/>').val(1));
+                            }
+
+                            // Add the payment source token to the form.
+                            $form.append($('<input type="hidden" name="stripeToken"/>').val(result.source.id));
+                            $form.get(0).submit();
+                        }
+                    });
+                });
+
+                if ($('.modal').data('modal')) {
+                    $('.modal').data('modal').updateSizeAndPosition();
+                }
+            });
+        }
+    }
+
+    initStripe();
+</script>
 
 {% endblock %}
