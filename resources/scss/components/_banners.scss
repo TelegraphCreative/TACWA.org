@@ -7,11 +7,20 @@
 
    &::before {
       @apply absolute pin;
-      background-image: url(../img/bg--water.jpg);
-      background-position: center;
+      background-image: url(../img/bg--water4.jpg);
+      background-position: center bottom;
       background-size: cover;
       opacity: .2;
       content: '';
+
+      @screen sm {
+         background-position: center
+      }
+      
+      @screen md {
+         background-image: url(../img/bg--water3.jpg);
+         background-position: center;
+      }
    }
 
    .banner__container {
