@@ -7,7 +7,7 @@
 
    &::before {
       @apply absolute pin;
-      background-image: url(../img/bg--water4.jpg);
+      background-image: url(../img/bg-water--small.jpg);
       background-position: center bottom;
       background-size: cover;
       opacity: .2;
@@ -16,9 +16,8 @@
       @screen sm {
          background-position: center
       }
-      
       @screen md {
-         background-image: url(../img/bg--water3.jpg);
+         background-image: url(../img/bg-water--large.jpg);
          background-position: center;
       }
    }
