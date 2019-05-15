@@ -55,9 +55,13 @@
 
             {#   Expiration Date   #}
             {{ form.fieldGroup(
-               'date',
+               'text',
                'half-width',
-               { label: 'Expiration date', identification: 'cc-date' }
+               {
+                  label: 'Expiration date',
+                  identification: 'cc-date',
+                  placeholder: 'MM/YY'
+               }
             )}}
 
             {#   CVC   #}
