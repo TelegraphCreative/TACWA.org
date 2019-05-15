@@ -3,48 +3,6 @@
 {% extends "_layouts/_base" %}
 {% import '_macros/global' as global %}
 
-{% set
-   meeting = {
-      heading: 'Bimonthly Meeting',
-      theme: 'With ever increasing energy costs, aeration control systems to achieve energy savings has become the focus at water resource recovery facilities (WRRFs). Advanced aeration control systems not only provide significant operational cost savings but also improved process performance at WRRFs.',
-      agenda: [
-         {
-            item: 'Information Architecture — February 1, 2019'
-         },
-         {
-            item: 'Content Strategy — February 8, 2019'
-         },
-         {
-            item: 'Visual Design — March 1, 2019'
-         },
-         {
-            item: 'Frontend Implementation — April 5, 2019'
-         },
-         {
-            item: 'Backend Development — April 26, 2019'
-         }
-         ,
-         {
-            item: 'Testing, Training, Launch — May 15, 2019'
-         }
-      ],
-      sponsors: [
-         {
-            src: '../assets/placeholder/sponsor-arcadis.png',
-            alt: ''
-         },
-         {
-            src: '../assets/placeholder/sponsor-carollo.png',
-            alt: ''
-         },
-         {
-            src: '../assets/placeholder/sponsor-garver.png',
-            alt: ''
-         }
-      ]
-   }
-%}
-
 
 {% block content %}
 
@@ -71,7 +29,7 @@
          {#    Article Body   #}
          <div class="article__body">
             {#   Primary   #}
-            <div class="article__body__primary">
+            <div class="content-block">
                <h1>Meeting Theme</h1>
                <p>With ever increasing energy costs, aeration control systems to achieve energy savings has become the focus at water resource recovery facilities (WRRFs). Advanced aeration control systems not only provide significant operational <a href="">cost savings</a> but also improved process performance at WRRFs.</p>
 
@@ -99,6 +57,7 @@
             {#   Secondary   #}
             <div class="article__body__secondary">
                {#   Media   #}
+               <h2>Attachments & Links</h2>
                {% include '_components/static/list--media'
                   with {
                      media: [

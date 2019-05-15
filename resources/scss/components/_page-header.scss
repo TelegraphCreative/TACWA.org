@@ -139,4 +139,23 @@
          }
       }
    }
+
+   // Header Background
+   .page-header__background {
+      @apply bg-center bg-cover;
+
+      height: 15rem;
+
+      @screen sm {
+         height: 20rem;
+      }
+
+      @screen md {
+         height: 25rem;
+      }
+
+      @screen lg {
+         height: 30rem;
+      }
+   }
 }

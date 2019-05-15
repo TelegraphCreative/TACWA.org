@@ -1,0 +1,130 @@
+//
+// List - Bill
+//
+
+.bill-list {
+   @apply pb-16;
+
+   // Heading
+   .bill-list__heading {
+      @apply
+         font-normal text-24 text-blue text-center
+         mb-4;
+
+      @screen md {
+         @apply text-32
+      }
+   }
+
+   // Header
+   .bill-list__header {
+      @apply hidden;
+
+      @screen md {
+         @apply
+            flex items-center
+            bg-blue-dark
+            font-medium text-18 text-white
+            rounded-t-lg
+            h-17
+            pt-2 px-5;
+
+         .bill-list__header__bill,
+         .bill-list__header__comments {
+            @apply w-1/4
+         }
+         .bill-list__header__summary {
+            @apply w-1/2
+         }
+      }
+   }
+
+   //Bills
+   .bill-list__wrapper {
+      // Bill
+      .bill-list__item {
+         @apply
+            text-14
+            py-6 px-4;
+
+         @screen sm {
+            @apply
+               flex flex-wrap
+               px-5;
+         }
+
+         @screen md {
+            @apply py-5
+         }
+
+         &:nth-child(odd) {
+            @apply bg-near-white
+         }
+
+         @screen md {
+            &:nth-child(odd) {
+               @apply bg-white
+            }
+            &:nth-child(even) {
+               @apply bg-near-white
+            }
+         }
+
+         // Info
+         .bill-list__item__bill {
+            @apply mb-3;
+
+            @screen sm {
+               @apply
+                  w-1/3
+                  mb-0
+            }
+
+            @screen md {
+               @apply
+                  w-1/4
+                  text-16
+                  pr-12
+            }
+
+            a {
+               @apply text-grey;
+
+               &:hover {
+                  @apply font-medium text-blue
+               }
+            }
+         }
+
+         // Summary
+         .bill-list__item__summary {
+            @apply mb-3;
+
+            @screen sm {
+               @apply w-2/3
+            }
+
+            @screen md {
+               @apply
+                  w-1/2
+                  mb-0 pr-12
+            }
+         }
+
+         // Comment
+         .bill-list__item__comment {
+            @screen sm {
+               @apply
+                  w-2/3
+                  ml-1/3
+            }
+
+            @screen md {
+               @apply
+                  w-1/4
+                  ml-0
+            }
+         }
+      }
+   }
+}
