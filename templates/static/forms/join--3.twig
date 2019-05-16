@@ -31,7 +31,7 @@
          %}
 
          {#   Form   #}
-         <form action="" class="form-group">
+         <form action="" class="form-group" data-validate>
             {#   Name On Card   #}
             {{ form.fieldGroup(
                'text',
@@ -46,6 +46,10 @@
                {
                   label: 'Credit card number',
                   identification: 'cc-number',
+
+                  pattern:'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]',
+                  message: 'Please enter a valid credit card number',
+
                   placeholder: '1234 1234 1234 1234'
                }
             )}}
@@ -57,6 +61,10 @@
                {
                   label: 'Expiration date',
                   identification: 'cc-date',
+
+                  pattern:'[0-9][0-9][\/][0-9][0-9]',
+                  message: 'Please use the following date format: MM/YY',
+
                   placeholder: 'MM/YY'
                }
             )}}
@@ -68,6 +76,10 @@
                {
                   label: 'CVC',
                   identification: 'cc-cvc',
+
+                  pattern:'[0-9][0-9][0-9]',
+                  message: 'Please enter a 3 digit verification code',
+
                   placeholder: '123'
                }
             )}}
@@ -76,7 +88,13 @@
             {{ form.fieldGroup(
                'number',
                'half-width',
-               { label: 'Zipcode', identification: 'cc-zip' }
+               {
+                  label: 'Zipcode',
+                  identification: 'cc-zip',
+
+                  pattern:'[0-9][0-9][0-9][0-9][0-9]',
+                  message: 'Please enter a 5 digit zipcode',
+               }
             )}}
 
             {#   Submit   #}
@@ -88,3 +106,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

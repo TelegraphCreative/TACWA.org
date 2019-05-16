@@ -34,7 +34,7 @@
          %}
 
          {#   Form   #}
-         <form action="../forms/logged-in--org-info" class="form-group">
+         <form action="../forms/logged-in--org-info" class="form-group" data-validate>
             {#   Name   #}
             {{ form.fieldGroup(
                'text',
@@ -155,7 +155,14 @@
             {{ form.fieldGroup(
                'number',
                'half-width',
-               { label: 'Zipcode', identification: 'zip', value: '76528' }
+               {
+                  label: 'Zipcode',
+                  identification: 'zip',
+
+                  pattern:'[0-9][0-9][0-9][0-9][0-9]',
+                  message: 'Please enter a 5 digit zipcode',
+
+                  value: '76528' }
             )}}
 
             {#   Submit   #}
@@ -165,3 +172,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

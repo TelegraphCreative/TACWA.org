@@ -12,7 +12,7 @@
       <div class="form-flow__wrapper">
 
          {#   Sign In   #}
-         <form action="" class="form-group  |  mb-12">
+         <form action="" class="form-group  |  mb-12" data-validate>
             <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Sign In</h1>
 
             {#   Email   #}
@@ -38,7 +38,7 @@
 
 
          {#   Checkout as Guest   #}
-         <form action="" class="form-group">
+         <form action="" class="form-group" data-validate>
             <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Checkout as Guest</h1>
 
             {#   Email   #}
@@ -55,3 +55,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

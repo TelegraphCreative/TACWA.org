@@ -29,7 +29,7 @@
          %}
 
          {#   Form   #}
-         <form action="../forms/event-registration--payment--guest" class="form-group">
+         <form action="../forms/event-registration--payment--guest" class="form-group"  data-validate>
             {#   First Name   #}
             {{ form.fieldGroup(
                'text',
@@ -65,3 +65,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

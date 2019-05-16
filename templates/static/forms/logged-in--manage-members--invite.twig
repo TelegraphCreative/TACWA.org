@@ -45,7 +45,7 @@
       <div class="form-flow__wrapper">
 
          {#   Form   #}
-         <form action="../forms/event-registration--payment--member" class="form-group --wide" id="invite-members">
+         <form action="../forms/event-registration--payment--member" class="form-group --wide" id="invite-members" data-validate>
             <div class="invite-container  |  js--invite-container">
                {% for item in inviteGroups.fields %}
                   <div class="invite-group">
@@ -58,7 +58,7 @@
 
                      {#   Email Address   #}
                      {{ form.fieldGroup(
-                        'text',
+                        'email',
                         'half-width',
                         { label: 'Email address', identification: item.email }
                      )}}
@@ -89,3 +89,4 @@
 
 
 {% do view.registerJsFile('/assets/js/static/add-invite-group.js') %}
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

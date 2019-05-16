@@ -16,7 +16,7 @@
    %}
 
    <div class="form-flow  |  container">
-      {{ global.link('../forms/join--3', 'Back', 'link --arrow --back  |  mb-2 md:mb-4') }}
+      {{ global.link('../forms/join--1', 'Back', 'link --arrow --back  |  mb-2 md:mb-4') }}
       <h2>Your Account Information</h2>
 
       <div class="form-flow__wrapper --reverse">
@@ -31,7 +31,7 @@
          %}
 
          {#   Form   #}
-         <form action="../forms/join--3" class="form-group">
+         <form action="../forms/join--3" class="form-group  |  js-bouncer">
             {#   First Name   #}
             {{ form.fieldGroup(
                'text',
@@ -64,7 +64,12 @@
             {{ form.fieldGroup(
                'password',
                'full-width',
-               { label: 'Confirm password', identification: 'confirm-password' }
+               {
+                  label: 'Confirm password',
+                  identification: 'confirm-password',
+
+                  match: 'password'
+               }
             )}}
 
             {#   Phone   #}
@@ -88,3 +93,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

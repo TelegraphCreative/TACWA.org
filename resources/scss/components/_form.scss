@@ -72,14 +72,6 @@
                text-grey-dark;
          }
 
-         // Disabled
-         &.--disabled {
-            @apply pointer-events-none;
-
-            background-color: #f6f7f9;
-            border-color: #f6f7f9
-         }
-
          // Number Spinner
          &[type=number] {
             -moz-appearance: textfield;
@@ -88,6 +80,19 @@
             &::-webkit-outer-spin-button {
                @apply m-0 appearance-none
             }
+         }
+
+         // Disabled
+         &.--disabled {
+            @apply pointer-events-none;
+
+            background-color: #f6f7f9;
+            border-color: #f6f7f9
+         }
+
+         // Error
+         &.error {
+            @apply border-red-lighter
          }
       }
    }
@@ -102,6 +107,13 @@
             w-auto
             mb-0 ml-2 pt-px pb-0
       }
+   }
+
+   // Error Message
+   .error-message {
+      @apply
+         text-12
+         -mt-3 mb-3
    }
 }
 

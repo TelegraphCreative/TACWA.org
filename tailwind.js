@@ -68,6 +68,7 @@ let colors = {
 
   'red-dark': '#cb3a37',
   'red': '#e84f4c',
+  'red-lighter': '#f73d59',
 }
 
 module.exports = {

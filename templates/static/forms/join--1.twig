@@ -21,7 +21,7 @@
       <div class="form-flow__wrapper">
 
          {#   Form   #}
-         <form action="../forms/join--2" class="form-group">
+         <form action="../forms/join--2" class="form-group" data-validate>
             {#   Name   #}
             {{ form.fieldGroup(
                'text',
@@ -36,6 +36,7 @@
                {
                   label: 'Organization Type',
                   identification: 'org-type',
+
                   placeholder: '',
                   options: [
                      { value: 'type-1', display: 'Org Type 1' },
@@ -53,6 +54,7 @@
                {
                   label: 'Size',
                   identification: 'org-size',
+
                   placeholder: '',
                   options: [
                      { value: 'org-size-1', display: 'Size 1' },
@@ -84,6 +86,7 @@
                {
                   label: 'State',
                   identification: 'state',
+
                   placeholder: '',
                   options: [
                      { value: 'AL', display: 'Alabama' },
@@ -145,7 +148,13 @@
             {{ form.fieldGroup(
                'number',
                'half-width',
-               { label: 'Zipcode', identification: 'zip' }
+               {
+                  label: 'Zipcode',
+                  identification: 'zip',
+
+                  pattern:'[0-9][0-9][0-9][0-9][0-9]',
+                  message: 'Please enter a 5 digit zipcode'
+               }
             )}}
 
             {#   Submit   #}
@@ -155,3 +164,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}
