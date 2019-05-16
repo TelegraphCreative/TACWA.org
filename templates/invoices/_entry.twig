@@ -27,6 +27,7 @@
         {{ redirectInput(craft.app.request.absoluteUrl ~ '?payment=true') }}
         {{ csrfInput() }}
         <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
+        <input type="hidden" name="email" value="{{ entry.email }}">
         <input type="text" name="options[donationAmount]" value="{{ entry.totalAmount }}" hidden>
         <input style="background-color: black; color: white; cursor: pointer;" type="submit" value="Pay Now">
     </form>

@@ -66,7 +66,18 @@ commerce:
               52a959a5-3b8f-42cf-830a-45072efd9869:
                 required: false
                 sortOrder: 1
-dateModified: 1557428853
+  emails:
+    cf239374-4a1a-4463-b94b-21f402d32c67:
+      name: 'Purchase Confirmation'
+      subject: 'Purchase Confirmation'
+      recipientType: customer
+      to: ''
+      bcc: ''
+      enabled: true
+      templatePath: shop/_email.html
+      attachPdf: ''
+      pdfTemplatePath: ''
+dateModified: 1558041321
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
