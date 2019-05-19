@@ -14,6 +14,9 @@
     "nystudio107/craft-minify": "^1.2",
     "nystudio107/craft-seomatic": "3.1.49",
     "solspace/craft3-calendar": "2.0.19",
+    "solspace/craft3-freeform": "2.5.24",
+    "solspace/craft3-freeform-payments": "1.0.5",
+    "solspace/craft3-freeform-pro": "2.5.24",
     "topshelfcraft/wordsmith": "3.0.4",
     "verbb/super-table": "2.1.17",
     "vlucas/phpdotenv": "^2.4.0"

@@ -1,0 +1,18 @@
+{#
+   Event Dates
+#}
+
+
+{% if event.allDay %}
+	{% if event.startDateLocalized.toDateString == event.endDateLocalized.toDateString %}
+		<p>{{ event.startDateLocalized|date("l, F j, Y") }}<br>All Day</p>
+	{% else %}
+		<p>{{ event.startDateLocalized|date("F j") }} - {{ event.endDateLocalized|date("j, Y") }}<br>All Day</p>
+	{% endif %}
+{% else %}
+	{% if event.startDateLocalized|date("mdY") == event.endDateLocalized|date("mdY") %}
+		<p>{{ event.startDateLocalized|date("l, F j, Y") }}<br>{{ event.startDateLocalized|date("g:i a") }} - {{ event.endDateLocalized|date("g:i a") }}</p>
+	{% else %}
+		<p>{{ event.startDateLocalized|date("l, F j, Y g:i a") }}<br>{{ event.endDateLocalized|date("l, F j, Y g:i a") }}</p>
+	{% endif %}
+{% endif %}

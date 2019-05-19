@@ -3,81 +3,70 @@
 {% import '_macros/global' as global %}
 
 
-{% set
-   featuredEvent = {
-      infoPrimary: [
-         {
-            month: 'March',
-            day: '12',
-            org: 'TACWA',
-            heading: 'Bimonthly Meeting',
-         }
-      ],
-      infoSecondary: [
-         {
-            heading: 'Time',
-            copy: '6:30pm'
-         },
-         {
-            heading: 'Host',
-            copy: 'City of Houston/Gulf Coast Authority'
-         },
-         {
-            heading: 'Sponsors',
-            copy: 'Arcadis, Black & Veatch, Carollo, Freese & Nichols, Garver, RPS'
-         },
-         {
-            heading: 'Location',
-            copy: '910 Bay Area Blvd<br> Houston, TX 77058'
-         }
-      ],
-      media: [
-         {
-            title: 'pdf_file--version-3.pdf',
-            src: '../assets/placeholder/pdf_file--version-3.pdf'
-         },
-         {
-            title: 'sample_video_with_nice_long_filename.mp4',
-            src: '../assets/placeholder/sample_video_with_nice_long_filename.mp4'
-         }
-      ]
-   }
-%}
+{% set featuredEvents = craft.calendar.events({
+  		endsAfterOrAt: "now",
+		order: "startDate ASC",
+		limit: 1
+}) %}
+{% if featuredEvents|length %}
 
+{% set featuredEvent = featuredEvents.first() %}
 
 <article class="featured-event">
    {#   Container   #}
    <div class="featured-event__container">
       {#   Info   #}
       <div class="featured-event__info">
-         {% for item in featuredEvent.infoPrimary %}
             {% include '_components/static/snippets/events--event-date'
                with {
-                  'month': item.month,
-                  'day': item.day
+                  'event': featuredEvent
                }
             %}
-         {% endfor %}
 
             <div class="featured-event__info--inner">
-               {% for item in featuredEvent.infoPrimary %}
-                  {#   Org   #}
-                  <span class="heading --tiny  |  {% if item.org == "TACWA" %}text-blue{% else %}text-teal{% endif %}">
-                     {{ item.org }}
-                  </span>
-
-                  {#   Heading   #}
-                  <h4>{{ item.heading }}</h4>
-               {% endfor %}
+        		<span class="heading --tiny  |  {% if featuredEvent.producer == "TACWA" %}text-blue{% else %}text-teal{% endif %}">
+                    {{ featuredEvent.producer }}
+                </span>
+                
+                <h4>{{ global.link('/event/' ~ featuredEvent.slug, featuredEvent.title, 'link') }}</h4>
 
                {#   Details   #}
                <div class="featured-event__info__detail">
-                  {% for item in featuredEvent.infoSecondary %}
-                     <div class="featured-event__info__detail--item">
-                        <h3 class="heading --tiny">{{ item.heading }}</h3>
-                        <p>{{ item.copy|raw }}</p>
-                     </div>
-                  {% endfor %}
+              	 <div class="featured-event__info__detail--item">
+               		<h3>Date & Time</h3>
+	                  {% include '_components/static/snippets/events--event-dates'
+	                     with {
+	                        'event': featuredEvent
+	                     }
+	                  %}
+              	 </div>
+              	 
+		         
+		         {% if featuredEvent.host %}
+		         <div class="featured-event__info__detail--item">
+		            <h3>Host</h3>
+		            <p>{{ featuredEvent.host }}</p>
+		         </div>
+		         {% endif %}
+		         
+		         {% if featuredEvent.location %}
+		         <div class="featured-event__info__detail--item">
+		            <h3>Location</h3>
+		            {{ featuredEvent.location }}
+		         </div>
+		         {% endif %}
+		         
+		         {% if featuredEvent.sponsors %}
+		         <div class="featured-event__info__detail--item">
+		            <h3>Sponsors</h3>
+		            {% set sponsors = [] %}
+		         {% for item in featuredEvent.sponsors %}
+		         	{% set sponsors = sponsors|merge([(item.sponsorLink) ? '<a href="' ~ item.sponsorLink ~ '">' ~ item.sponsorName ~ '</a>' : item.sponsorName]) %}
+		         {% endfor %}
+		         	<p>{{ sponsors|join(', ') }}</p>
+		         </div>
+		         {% endif %}
+	              
                </div>
             </div>
       </div>
@@ -85,30 +74,42 @@
       {#   Media   #}
       <div class="featured-event__media">
          <h3>Attachments & Links</h3>
-         <ul class="featured-event__media__list">
-            {% for item in featuredEvent.media %}
-               <li>
-                  <a href="{{ item.src }}" target="_blank" class="link --media  |  js--truncate-filename">
-                     <span>
-                        {{ item.title }}
-                     </span>
-                  </a>
-               </li>
-            {% endfor %}
-         </ul>
+         
+		<ul class="featured-event__media__list">
+		   {% for item in featuredEvent.attachments %}
+		      <li>
+		      		{% set file = item.attachmentFile.first() %}
+		      		{% if file %}
+		      			{% set title = (item.attachmentName) ? item.attachmentName : file.title %}
+		      			{% set src = file.getUrl() %}
+		      		{% else %}
+		      			{% set title = (item.attachmentName) ? item.attachmentName : item.attachmentLink %}
+		      			{% set src = item.attachmentLink %}
+		      		{% endif %}
+		      	
+		         <a href="{{ src }}" target="_blank" class="link --media">
+		            {{ title }}
+		         </a>
+		      </li>
+		   {% endfor %}
+		</ul>
       </div>
    </div>
 
    {#   Action   #}
    <div class="featured-event__action">
       {#   Calendar   #}
+      <div></div>
+{#
+EXPORT ICS
       <button class="btn --calendar">
          {{ global.utilityIcon('calendar', 'h-5 w-5') }}
          {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg') }}
       </button>
+#}
 
       {#   Register   #}
-      {{ global.btn('../static/events--detail', 'btn --primary --dark', 'Register') }}
+      {{ global.btn( (currentUser) ? 'events/event-registration-member?e=' ~ featuredEvent.id : 'register?e=' ~ featuredEvent.id, 'btn --primary --dark', 'Register') }}
    </div>
 </article>
 
@@ -134,3 +135,5 @@ window.onload = function() {
    }
 };
 {% endjs %}
+
+{% endif %}

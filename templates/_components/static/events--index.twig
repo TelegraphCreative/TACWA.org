@@ -6,47 +6,57 @@
 <div class="events-index  |  container">
    {#   Search & Browse   #}
    <header class="events-index__search">
-      {% include '_components/static/search' with { 'identification': 'event-index-search', 'placeholder': 'Search events...' } %}
-
-      {{ global.link('/static/events-index', 'Browse Past Events', 'link --arrow  |  flex-no-shrink my-4') }}
+   <div></div>
+{#       {% include '_components/static/search' with { 'identification': 'event-index-search', 'placeholder': 'Search events...' } %} #}
+	  {% if pastevents %}
+      {{ global.link('/events', 'Browse Upcoming Events', 'link --arrow  |  flex-no-shrink my-4') }}
+      {% else %}
+      {{ global.link('/pastevents', 'Browse Past Events', 'link --arrow  |  flex-no-shrink my-4') }}
+      {% endif %}
    </header>
 
    {#   Index   #}
+
    <div class="events-index__index">
       <div class="events-index__index__wrapper">
-         {% for i in 1..5 %}
+         {% for event in events %}
             {#   Event   #}
             <div class="events-index__event">
                <div class="events-index__event__container">
                   {#   Date   #}
                   {% include '_components/static/snippets/events--event-date'
                      with {
-                        'month': 'April',
-                        'day': '22'
+                        'event': event
                      }
                   %}
 
                   {#   Info   #}
                   <div class="events-index__event__info">
                         {#   Org   #}
-                        <span class="heading --tiny  |  text-blue
-                           {# {% if item.org == "TACWA" %}text-blue{% else %}text-teal{% endif %} #}">
-                           TACWA
+                        <span class="heading --tiny  |  {% if event.producer == "TACWA" %}text-blue{% else %}text-teal{% endif %}">
+                           {{ event.producer }}
                         </span>
 
                         {#   Heading   #}
-                        <h4>Bi-monthly Meeting Dallas Chapter</h4>
+                        <h4>{{ global.link('/event/' ~ event.slug, event.title, 'link') }}</h4>
 
                         {#   Time   #}
-                        <time>6:00pm–8:00pm</time>
-
-                        {#   Location   #}
-                        <p>Trinity Audobon Visitor Center</p>
+		                  {% include '_components/static/snippets/events--event-dates'
+		                     with {
+		                        'event': event
+		                     }
+		                  %}
+		         
+				         {% if event.location %}
+				            {{ event.location }}
+				         {% endif %}
                   </div>
                </div>
 
                {#   Register   #}
-               {{ global.btn('', 'btn --primary --dark  |  mt-4', 'Register') }}
+               {% if not pastevents %}
+               {{ global.btn( (currentUser) ? 'events/event-registration-member?e=' ~ event.id : 'register?e=' ~ event.id, 'btn --primary --dark  |  mt-4', 'Register') }}
+               {% endif %}
             </div>
          {% endfor %}
       </div>

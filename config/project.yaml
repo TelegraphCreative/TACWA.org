@@ -66,7 +66,7 @@ commerce:
               52a959a5-3b8f-42cf-830a-45072efd9869:
                 required: false
                 sortOrder: 1
-dateModified: 1557428853
+dateModified: 1558308835
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -83,6 +83,8 @@ fieldGroups:
     name: Membership
   717b2017-edbe-4c42-8377-d90ae3b3bbfe:
     name: Invoices
+  c4ab77de-5173-4d3e-be67-4b4d5ead8e01:
+    name: Events
 fields:
   52a959a5-3b8f-42cf-830a-45072efd9869:
     name: 'Organization Type'
@@ -160,6 +162,322 @@ fields:
       suffix: ''
     contentColumnType: 'decimal(12,2)'
     fieldGroup: 717b2017-edbe-4c42-8377-d90ae3b3bbfe
+  a466b0e2-5260-4966-ace1-eb1da2224c44:
+    name: 'Meeting Theme'
+    handle: meetingTheme
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  867574ca-d85b-49fb-ae40-bb6a2ab14ee4:
+    name: 'Meeting Agenda'
+    handle: meetingAgenda
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  9c2f1f0c-224a-4bc3-b0d6-2c7020707beb:
+    name: Sponsors
+    handle: sponsors
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Matrix
+    settings:
+      minBlocks: ''
+      maxBlocks: ''
+      contentTable: '{{%matrixcontent_sponsors}}'
+      localizeBlocks: false
+    contentColumnType: string
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  757e9ef7-fee6-4188-9e7f-81e1beee2e32:
+    name: Attachments
+    handle: attachments
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Matrix
+    settings:
+      minBlocks: ''
+      maxBlocks: ''
+      contentTable: '{{%matrixcontent_attachments}}'
+      localizeBlocks: false
+    contentColumnType: string
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  b783ba6d-72ba-4738-8812-164961fad9c1:
+    name: Producer
+    handle: producer
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  2a919e7a-a000-4e4d-ba0c-3362a799ad5a:
+    name: Host
+    handle: host
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  80776b69-8de5-4416-9c61-d05589b00e84:
+    name: Location
+    handle: location
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  12f7c0c6-5bd4-476c-8448-b253e240a972:
+    name: Directions
+    handle: directions
+    instructions: 'Provide map location URL'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Url
+    settings:
+      placeholder: 'https://www.google.com/maps/place/Texas+Capitol/@30.274666,-97.7447402,15.33z/data=!4m8!1m2!2m1!1stexas+capital!3m4!1s0x8644b5a014ac8dcf:0xcb6f5722a795d039!8m2!3d30.2746648!4d-97.740351'
+      maxLength: '255'
+    contentColumnType: string(255)
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  2601b0e7-e819-4ed3-82b7-49ddd58871ff:
+    name: Featured
+    handle: eventFeatured
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Lightswitch
+    settings:
+      default: ''
+    contentColumnType: boolean
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+matrixBlockTypes:
+  57de28f9-88c1-4b0f-a9b8-a358643416d0:
+    field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
+    name: Sponsor
+    handle: sponsor
+    sortOrder: 1
+    fields:
+      d5ce15e7-e3f9-408e-b8d8-e66497ab50af:
+        name: 'Sponsor Name'
+        handle: sponsorName
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        contentColumnType: text
+        fieldGroup: null
+      fd6bd82d-a651-4047-8eb8-b6188005f833:
+        name: 'Sponsor Logo'
+        handle: sponsorLogo
+        instructions: ''
+        searchable: true
+        translationMethod: site
+        translationKeyFormat: null
+        type: craft\fields\Assets
+        settings:
+          useSingleFolder: '1'
+          defaultUploadLocationSource: 'volume:7685363b-4a88-47e5-909e-5975d66170a7'
+          defaultUploadLocationSubpath: ''
+          singleUploadLocationSource: 'volume:7685363b-4a88-47e5-909e-5975d66170a7'
+          singleUploadLocationSubpath: ''
+          restrictFiles: '1'
+          allowedKinds:
+            - image
+          sources:
+            - 'volume:7685363b-4a88-47e5-909e-5975d66170a7'
+          source: null
+          targetSiteId: null
+          viewMode: large
+          limit: '1'
+          selectionLabel: ''
+          localizeRelations: false
+        contentColumnType: string
+        fieldGroup: null
+      fa20f90d-56cd-4b6a-b170-efa2c4852fa5:
+        name: 'Sponsor Link'
+        handle: sponsorLink
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Url
+        settings:
+          placeholder: ''
+          maxLength: '255'
+        contentColumnType: string(255)
+        fieldGroup: null
+    fieldLayouts:
+      fd986dcd-78af-4a02-8335-7deab832ca28:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              d5ce15e7-e3f9-408e-b8d8-e66497ab50af:
+                required: true
+                sortOrder: 1
+              fd6bd82d-a651-4047-8eb8-b6188005f833:
+                required: false
+                sortOrder: 2
+              fa20f90d-56cd-4b6a-b170-efa2c4852fa5:
+                required: false
+                sortOrder: 3
+  fab39f29-5a6a-404a-beda-8b5cc4d45986:
+    field: 757e9ef7-fee6-4188-9e7f-81e1beee2e32
+    name: Attachment
+    handle: attachment
+    sortOrder: 1
+    fields:
+      95d360a0-6cff-4054-8663-062d96a0eb50:
+        name: 'Attachment Name'
+        handle: attachmentName
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        contentColumnType: text
+        fieldGroup: null
+      19494201-f01a-4af3-94b2-0bf487015402:
+        name: 'Attachment File'
+        handle: attachmentFile
+        instructions: ''
+        searchable: true
+        translationMethod: site
+        translationKeyFormat: null
+        type: craft\fields\Assets
+        settings:
+          useSingleFolder: '1'
+          defaultUploadLocationSource: 'volume:c6fbe1e7-8a4c-4883-b313-c3ab322d8007'
+          defaultUploadLocationSubpath: ''
+          singleUploadLocationSource: 'volume:c6fbe1e7-8a4c-4883-b313-c3ab322d8007'
+          singleUploadLocationSubpath: ''
+          restrictFiles: '1'
+          allowedKinds:
+            - audio
+            - excel
+            - pdf
+            - powerpoint
+            - video
+            - word
+          sources:
+            - 'volume:c6fbe1e7-8a4c-4883-b313-c3ab322d8007'
+          source: null
+          targetSiteId: null
+          viewMode: list
+          limit: '1'
+          selectionLabel: ''
+          localizeRelations: false
+        contentColumnType: string
+        fieldGroup: null
+      58226c20-560e-4c55-b3f2-20c3ca38f2a1:
+        name: 'Attachment Link'
+        handle: attachmentLink
+        instructions: 'If adding an external URL link, do not provide an attachment file'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Url
+        settings:
+          placeholder: ''
+          maxLength: '255'
+        contentColumnType: string(255)
+        fieldGroup: null
+    fieldLayouts:
+      3dc894bd-2a89-4147-a0f3-68fc55272f5b:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              95d360a0-6cff-4054-8663-062d96a0eb50:
+                required: false
+                sortOrder: 1
+              19494201-f01a-4af3-94b2-0bf487015402:
+                required: false
+                sortOrder: 2
+              58226c20-560e-4c55-b3f2-20c3ca38f2a1:
+                required: false
+                sortOrder: 3
 plugins:
   minify:
     edition: standard
@@ -194,10 +512,10 @@ plugins:
     enabled: true
     schemaVersion: 2.0.5
     settings:
-      overlapThreshold: 5
-      timeInterval: 30
-      eventDuration: 60
-      allDay: false
+      overlapThreshold: '5'
+      timeInterval: '30'
+      eventDuration: '60'
+      allDay: ''
       demoBannerDisabled: '1'
       showMiniCal: '1'
       showDisabledEvents: '1'
@@ -248,6 +566,18 @@ plugins:
       enablePerEmailEmailTemplateIdOverride: 0
       sentEmailsLimit: null
     enabled: true
+  freeform:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.1.3
+  freeform-pro:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.1.3
+  freeform-payments:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.3
 routes:
   aaf119ab-8284-4150-bba5-55f622ac1f62:
     template: /calendar-demo/mini_cal
@@ -534,6 +864,20 @@ routes:
     uriPattern: 'calendar-demo/resources/event_data/<number:\d+>'
     sortOrder: 20
     siteUid: null
+  17b95149-4615-4225-a67f-798e287447b8:
+    template: /static/events--index
+    uriParts:
+      - events
+    uriPattern: events
+    sortOrder: 21
+    siteUid: null
+  a14cfcd2-b851-4d94-872a-8bb35257bf58:
+    template: /static/pastevents--index
+    uriParts:
+      - pastevents
+    uriPattern: pastevents
+    sortOrder: 22
+    siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:
     name: Invoices
@@ -576,23 +920,42 @@ siteGroups:
     name: TACWA
 sites:
   0d0840a6-2776-46d9-b404-951195224e26:
-    baseUrl: $DEFAULT_SITE_URL
-    handle: default
-    hasUrls: true
-    language: en-US
-    name: TACWA
-    primary: true
     siteGroup: 31074194-aa36-4955-b5f6-9258521b749e
-    sortOrder: 1
+    name: TACWA
+    handle: default
+    language: en-US
+    hasUrls: true
+    baseUrl: $DEFAULT_SITE_URL
+    sortOrder: '1'
+    primary: '1'
 system:
   edition: pro
   name: TACWA
   live: true
   schemaVersion: 3.1.27
-  timeZone: America/Los_Angeles
+  timeZone: America/Chicago
 users:
   requireEmailVerification: true
   allowPublicRegistration: true
   defaultGroup: ''
   photoVolumeUid: null
   photoSubpath: null
+volumes:
+  c6fbe1e7-8a4c-4883-b313-c3ab322d8007:
+    name: Files
+    handle: files
+    type: craft\volumes\Local
+    hasUrls: true
+    url: /cms_assets/Files/
+    settings:
+      path: cms_assets/Files/
+    sortOrder: '1'
+  7685363b-4a88-47e5-909e-5975d66170a7:
+    name: Logos
+    handle: logos
+    type: craft\volumes\Local
+    hasUrls: true
+    url: /cms_assets/Logos
+    settings:
+      path: cms_assets/Logos/
+    sortOrder: '2'

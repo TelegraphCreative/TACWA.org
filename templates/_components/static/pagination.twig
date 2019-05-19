@@ -2,19 +2,26 @@
 
 {% import '_macros/global' as global %}
 
+{% if pageInfo.totalPages > 1 %}
 
 <div class="pagination">
-   <a href="#" class="pagination__button --disabled">
+   <a href="{{ pageInfo.prevUrl }}" class="pagination__button {% if not pageInfo.prevUrl %} --disabled {% endif %}">
       {{ global.utilityIcon('chevron', 'h-3 w-2  |  rotate-180deg  |  fill-current') }}
    </a>
+   
+   {% for page, url in pageInfo.getPrevUrls(5) %}
+    <a class="pagination__button" href="{{ url }}">{{ page }}</a>
+	{% endfor %}
+	
+	<span class="pagination__button --active">{{ pageInfo.currentPage }}</span>
+	
+	{% for page, url in pageInfo.getNextUrls(5) %}
+	    <a class="pagination__button" href="{{ url }}">{{ page }}</a>
+	{% endfor %}
 
-   <a href="#" class="pagination__button --active">1</a>
-
-   {% for i in 2..5 %}
-      <a href="#" class="pagination__button">{{ i }}</a>
-   {% endfor %}
-
-   <a href="#" class="pagination__button">
+   <a href="{{ pageInfo.nextUrl }}" class="pagination__button {% if not pageInfo.nextUrl %} --disabled {% endif %}">
       {{ global.utilityIcon('chevron', 'h-3 w-2  |  fill-current') }}
    </a>
 </div>
+
+{% endif %}

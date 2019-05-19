@@ -6,13 +6,24 @@
 <ul class="list--media">
    {% for item in media %}
       <li class="list--media__item">
-         <a href="{{ item.src }}" target="_blank">
-            {% if item.type == 'file' %}
+      		{% set file = item.attachmentFile.first() %}
+      		{% if file %}
+      			{% set type = 'file' %}
+      			{% set title = (item.attachmentName) ? item.attachmentName : file.title %}
+      			{% set src = file.getUrl() %}
+      		{% else %}
+      			{% set type = 'link' %}
+      			{% set title = (item.attachmentName) ? item.attachmentName : item.attachmentLink %}
+      			{% set src = item.attachmentLink %}
+      		{% endif %}
+      	
+         <a href="{{ src }}" target="_blank">
+            {% if type == 'file' %}
                {{ global.utilityIcon('attachment', 'h-5 w-6  |  mr-4') }}
             {% else %}
                {{ global.utilityIcon('link', 'h-5 w-6  |  mr-4') }}
             {% endif %}
-            {{ item.title }}
+            {{ title }}
          </a>
       </li>
    {% endfor %}

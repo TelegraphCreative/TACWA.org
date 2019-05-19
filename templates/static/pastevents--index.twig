@@ -6,32 +6,23 @@
 
 {% block content %}
 
-	{% set pastevents = false %}
+	{% set pastevents = true %}
 
    {#   Page Header   #}
    {% include '_components/static/page-header'
       with {
          'type': 'Events',
-         'heading': 'Upcoming Events'
+         'heading': 'Past Events'
       }
    %}
    
 	{% set eventOptions = {
-		endsAfterOrAt: "now",
-		order: "startDate ASC",
-		limit: 1
+		endsBeforeOrAt: "now",
+		order: "startDate DESC",
+		limit: 6
 	} %}
 	
 	{% paginate craft.calendar.events(eventOptions) as pageInfo, events %}
-
-   {% if pageInfo.currentPage == 1 %}
-   <section class="mb-20">
-      <div class="container">
-         {#   Featured Event   #}
-         {% include '_components/static/events--featured' %}
-      </div>
-   </section>
-   {% endif %}
 
    <section class="bg-gradient">
       {#   Event Index   #}

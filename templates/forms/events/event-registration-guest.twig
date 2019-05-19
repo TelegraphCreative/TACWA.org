@@ -1,0 +1,89 @@
+{#   Join TACWA - Organization Information   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Event Registration'
+      }
+   %}
+	
+	<style>
+		ul.freeform-pages { display:none !important; }
+		label {
+			display:block;
+			font-weight:500 !important;
+			line-height:1.25;
+			font-size:.75rem;
+			color:#1a3b78;
+			width:100%;
+			margin-bottom:1px;
+			padding-bottom:.25rem;
+		}
+		input[type='text'], input[type='email'], input[type='password'], textarea, select, #form-input-payment_card_number, #form-input-payment_card_expiry, #form-input-payment_card_cvc {
+			display:block;
+			background-color:#FFF;
+			border:2px solid #d7dee4;
+			border-radius: .1875rem;
+			font-weight:400;
+			font-size:1rem;
+			color:#33414c;
+			height:3rem;
+			width:100%;
+			margin-bottom:.2rem;
+			padding-left:1rem;
+			padding-right:1rem;
+			transition-timing-function:ease-in-out;
+			transition-property:all;
+			transition-duration:.3s;
+			font-family:Poppins, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+		}
+		input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, textarea:focus, select:focus {
+			background-color:#f7f9fd;
+			border-color:#214b98;
+			color:#33414c;
+		}
+		.freeform-row input[type='submit'], .freeform-row button {
+			border:1px solid #214b98;
+			background-color: #214b98;
+			color:#FFF;
+			height:3rem;
+			padding-left:1.5rem;
+			padding-right:1.5rem;
+			border-radius: .1875rem;
+			text-align:center;
+			line-height:2.875rem;
+			font-weight:500;
+			transition-timing-function:ease;
+			transition-duration: .15s;
+			transition-property: all;
+			cursor:pointer;
+			margin-top:1.75rem;
+		}
+		{# .form-flow { max-width:35rem; padding-right:3.5rem; } #}
+		iframe {
+			overflow:visible !important;
+			height:40px !important;
+			padding:10px 0px !important;
+		}
+		#form-input-payment_card_number, #form-input-payment_card_expiry, #form-input-payment_card_cvc {
+			padding-top:15px;
+		}
+	</style>
+   
+	<div class="form-flow  |  container">
+		<div class="form-flow__wrapper">		
+			
+			{{ craft.freeform.form("eventRegistrationGuest").render }}
+			 
+		</div>
+	</div>
+
+{% endblock %}
