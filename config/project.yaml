@@ -77,7 +77,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558331666
+dateModified: 1558370584
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1518,9 +1518,9 @@ sections:
       14a6a885-cbfe-4ca0-9ea8-a991d87048be:
         name: Accounts
         handle: accounts
-        hasTitleField: true
+        hasTitleField: false
         titleLabel: Title
-        titleFormat: ''
+        titleFormat: '{firstName} {lastName}'
         sortOrder: 1
         fieldLayouts:
           58e31a81-c301-4393-ac24-c85474882986:
@@ -1529,30 +1529,9 @@ sections:
                 name: 'Individual Accounts'
                 sortOrder: 1
                 fields:
-                  3886c2ab-817a-4c8c-ae01-b42a40141f6f:
-                    required: false
-                    sortOrder: 1
-                  5243e16b-6f62-4c5e-ad4f-256c52376272:
-                    required: false
-                    sortOrder: 2
                   20f946d4-489d-4594-a04b-c228d8dabe66:
                     required: false
-                    sortOrder: 3
-                  c29e1bbd-b573-4e4a-8a0f-986c7423d540:
-                    required: false
-                    sortOrder: 4
-                  2249a606-0c7a-4862-9556-2e513bbb35db:
-                    required: false
-                    sortOrder: 5
-                  a608acf4-749f-4039-b882-bd41a859ba5e:
-                    required: false
-                    sortOrder: 6
-                  e1d949da-d328-43f9-8d1f-533b94855986:
-                    required: false
-                    sortOrder: 7
-                  3338f043-940d-4b12-828a-9e6bf3c0b903:
-                    required: false
-                    sortOrder: 8
+                    sortOrder: 1
   881a7eed-b46b-4eac-8816-d38f8f2dd3c5:
     name: 'Event Attendees'
     handle: eventAttendees
@@ -1583,13 +1562,13 @@ sections:
                   801e1bb4-0e4e-4ad7-9847-83fbb30c06a1:
                     required: false
                     sortOrder: 1
-                  9d2ad63a-b77c-4f6a-88aa-a3845c39b216:
-                    required: false
-                    sortOrder: 2
                   28038f74-7228-40bd-9472-e4268575f608:
                     required: false
-                    sortOrder: 3
+                    sortOrder: 2
                   39d23809-1de1-4d77-8994-68327c3373f0:
+                    required: false
+                    sortOrder: 3
+                  9d2ad63a-b77c-4f6a-88aa-a3845c39b216:
                     required: false
                     sortOrder: 4
                   78b1a226-bdeb-4cff-8c3f-8c7e496eb69a:
@@ -1635,9 +1614,9 @@ system:
 users:
   requireEmailVerification: true
   allowPublicRegistration: true
-  defaultGroup: ''
-  photoVolumeUid: null
-  photoSubpath: null
+  defaultGroup: '3'
+  photoVolumeUid: c6fbe1e7-8a4c-4883-b313-c3ab322d8007
+  photoSubpath: ''
   groups:
     9b5e1115-6ad5-42fa-800d-f77c13d476c0:
       name: 'Admin User'
@@ -1666,33 +1645,15 @@ users:
       name: 'Standard User'
       handle: standardUser
   fieldLayouts:
-    1ed7f8cf-944e-461d-8299-63a26201e63d:
+    75aa31de-eed0-41ab-9240-6527ae42ab5f:
       tabs:
         -
           name: 'Account Info'
           sortOrder: 1
           fields:
-            3886c2ab-817a-4c8c-ae01-b42a40141f6f:
-              required: false
-              sortOrder: 1
-            5243e16b-6f62-4c5e-ad4f-256c52376272:
-              required: false
-              sortOrder: 2
-            3338f043-940d-4b12-828a-9e6bf3c0b903:
-              required: false
-              sortOrder: 3
-            e1d949da-d328-43f9-8d1f-533b94855986:
-              required: false
-              sortOrder: 4
             20f946d4-489d-4594-a04b-c228d8dabe66:
               required: false
-              sortOrder: 5
-            c29e1bbd-b573-4e4a-8a0f-986c7423d540:
-              required: false
-              sortOrder: 6
-            a9292c85-4806-4d82-b9e4-babc4e5ca546:
-              required: false
-              sortOrder: 7
+              sortOrder: 1
 volumes:
   c6fbe1e7-8a4c-4883-b313-c3ab322d8007:
     name: Files
