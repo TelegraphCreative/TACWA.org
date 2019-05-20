@@ -24,7 +24,7 @@
             %}
 
             <div class="featured-event__info--inner">
-        		<span class="heading --tiny  |  {% if featuredEvent.producer == "TACWA" %}text-blue{% else %}text-teal{% endif %}">
+        		<span class="heading --tiny  |  {{ (featuredEvent.producer == "TACWA" ) ? 'text-blue' : 'text-teal' }}">
                     {{ featuredEvent.producer }}
                 </span>
                 
@@ -109,7 +109,7 @@ EXPORT ICS
 #}
 
       {#   Register   #}
-      {{ global.btn( (currentUser) ? 'events/event-registration-member?e=' ~ featuredEvent.id : 'register?e=' ~ featuredEvent.id, 'btn --primary --dark', 'Register') }}
+      {{ global.btn( (currentUser) ? '/forms/events/event-registration-member?e=' ~ featuredEvent.id : 'register?e=' ~ featuredEvent.id, 'btn --primary --dark', 'Register') }}
    </div>
 </article>
 

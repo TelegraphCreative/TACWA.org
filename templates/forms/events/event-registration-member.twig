@@ -14,6 +14,28 @@
          'heading': 'Event Registration'
       }
    %}
+   
+			
+	{% set successParam = craft.app.request.getParam('success') %}
+	{% if successParam is not null %}
+	
+	<div class="form-flow  |  container">
+	  Thanks, we have received your registration!
+	</div>
+	  
+	{% else %}
+   
+   {% set eventId = craft.request.getParam('e') %}
+   {% if eventId %}
+   		{% set event = craft.calendar.event(eventId) %}
+	{% endif %}
+	
+   {% if event is not defined %}
+   <div class="form-flow  |  container">
+	  Something went wrong!
+	</div>
+
+	{% else %}
 	
 	<style>
 		ul.freeform-pages { display:none !important; }
@@ -67,7 +89,9 @@
 			cursor:pointer;
 			margin-top:1.75rem;
 		}
-		{# .form-flow { max-width:35rem; padding-right:3.5rem; } #}
+		.form-flow__detail {
+			margin-top:3.25rem !important;
+		}
 		iframe {
 			overflow:visible !important;
 			height:40px !important;
@@ -83,8 +107,8 @@
 			
 			<div class="form-flow__detail">
 				<h3 class="heading --tiny  |  text-teal">Your Order</h3>
-				<p class="form-flow__detail__description">8th Annual Water Reuse in Texas Conference - Early Member Registration</p>
-				<p class="form-flow__detail__total">Total: $20</p>
+				<p class="form-flow__detail__description">{{ event.title }} - Early Member Registration</p>
+				<p class="form-flow__detail__total">Total: ${{ event.memberPrice }}</p>
 			</div>
 			
 			{{ craft.freeform.form("eventRegistrationMember", {
@@ -95,17 +119,18 @@
 				lastName: currentUser.lastName,
 				email: currentUser.email,
 				companyName: craft.entries.organization,
-				eventID: entry.id,
+				eventId: eventId,
+				calendarEvent: event.title,
+				eventCostMember: event.memberPrice
 			  }
 			}).render() }}
-			
-			{% set successParam = craft.app.request.getParam('success') %}
-			{% if successParam is not null %}
-			  Thanks {{ submission.firstName }}, we've received your message and will get back to you shortly!
-			{% endif %}
 
 			 
 		</div>
 	</div>
+   {% endif %}
+	
+	
+	{% endif %}
 
 {% endblock %}

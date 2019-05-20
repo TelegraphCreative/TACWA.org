@@ -77,7 +77,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558041321
+dateModified: 1558331666
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -96,6 +96,10 @@ fieldGroups:
     name: Invoices
   c4ab77de-5173-4d3e-be67-4b4d5ead8e01:
     name: Events
+  d5fd3663-5d9c-4a01-8732-221be89b430b:
+    name: 'Event Attendees'
+  70bd7234-0f4f-44ba-b0fa-192f7cfe89aa:
+    name: 'Individual Accounts'
 fields:
   52a959a5-3b8f-42cf-830a-45072efd9869:
     name: 'Organization Type'
@@ -104,22 +108,15 @@ fields:
     searchable: false
     translationMethod: none
     translationKeyFormat: null
-    type: craft\fields\Dropdown
+    type: craft\fields\PlainText
     settings:
-      options:
-        -
-          label: 'Collection and Treatment Systems'
-          value: collectionAndTreatmentSystems
-          default: '1'
-        -
-          label: 'Collection Systems only'
-          value: collectionSystemsOnly
-          default: ''
-        -
-          label: Affiliates
-          value: affiliates
-          default: ''
-    contentColumnType: string
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
     fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
   e1d949da-d328-43f9-8d1f-533b94855986:
     name: Email
@@ -325,6 +322,486 @@ fields:
       default: ''
     contentColumnType: boolean
     fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  3886c2ab-817a-4c8c-ae01-b42a40141f6f:
+    name: 'First Name'
+    handle: firstName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  5243e16b-6f62-4c5e-ad4f-256c52376272:
+    name: 'Last Name'
+    handle: lastName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  4f1e6876-519a-4b6b-9577-6a30811b55d4:
+    name: 'Affiliate Size'
+    handle: affiliateSize
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  36b5cb14-bf1a-4c0a-977f-7471fbd840ac:
+    name: 'Name on Card'
+    handle: nameOnCard
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  3338f043-940d-4b12-828a-9e6bf3c0b903:
+    name: 'Organization Name'
+    handle: organizationName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  41b58f73-7ef5-490f-8006-d10ce689ace7:
+    name: 'Organization Size'
+    handle: organizationSize
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Dropdown
+    settings:
+      options:
+        -
+          label: ''
+          value: ''
+          default: ''
+    contentColumnType: string
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  e1cfca04-1645-4700-8851-1c066e479a72:
+    name: 'Organization Street Address'
+    handle: organizationStreetAddress
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  a9292c85-4806-4d82-b9e4-babc4e5ca546:
+    name: 'Organization Title'
+    handle: organizationTitle
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  2674b937-9f0c-4bda-8140-9d4a3916d3aa:
+    name: 'Admin First Name'
+    handle: adminFirstName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  49bcb3aa-599b-44d4-8ad0-383e2a7133d0:
+    name: 'Admin Last Name'
+    handle: adminLastName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  20f946d4-489d-4594-a04b-c228d8dabe66:
+    name: 'Individual Account Title'
+    handle: individualAccountTitle
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 70bd7234-0f4f-44ba-b0fa-192f7cfe89aa
+  c29e1bbd-b573-4e4a-8a0f-986c7423d540:
+    name: 'Individual Account Username'
+    handle: individualAccountUsername
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 70bd7234-0f4f-44ba-b0fa-192f7cfe89aa
+  2249a606-0c7a-4862-9556-2e513bbb35db:
+    name: Organization
+    handle: organization
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Entries
+    settings:
+      sources:
+        - 'section:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'
+      source: null
+      targetSiteId: null
+      viewMode: null
+      limit: '1'
+      selectionLabel: ''
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: 70bd7234-0f4f-44ba-b0fa-192f7cfe89aa
+  801e1bb4-0e4e-4ad7-9847-83fbb30c06a1:
+    name: 'Attendee Company Name'
+    handle: attendeeCompanyName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  9d2ad63a-b77c-4f6a-88aa-a3845c39b216:
+    name: 'Attendee Email'
+    handle: attendeeEmail
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  28038f74-7228-40bd-9472-e4268575f608:
+    name: 'Attendee First Name'
+    handle: attendeeFirstName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  39d23809-1de1-4d77-8994-68327c3373f0:
+    name: 'Attendee Last Name'
+    handle: attendeeLastName
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  78b1a226-bdeb-4cff-8c3f-8c7e496eb69a:
+    name: 'Attendee Phone'
+    handle: attendeePhone
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  a608acf4-749f-4039-b882-bd41a859ba5e:
+    name: 'Attendee Title'
+    handle: attendeeTitle
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  538bce48-89cc-4d55-8943-e7028ec7f3f4:
+    name: 'Attendee Zip Code'
+    handle: attendeeZipCode
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  a6de647e-81c7-476f-b48e-29a55b41bddf:
+    name: 'Member Price'
+    handle: memberPrice
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Number
+    settings:
+      defaultValue: '20'
+      min: '0'
+      max: null
+      decimals: 0
+      size: null
+      prefix: $
+      suffix: ''
+    contentColumnType: integer(10)
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  ae9d23f0-5227-4698-ab06-5add317abe90:
+    name: 'Guest Price'
+    handle: guestPrice
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Number
+    settings:
+      defaultValue: '45'
+      min: '0'
+      max: null
+      decimals: 0
+      size: null
+      prefix: $
+      suffix: ''
+    contentColumnType: integer(10)
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  e5069548-2240-4d5b-a283-0835dc0b0a0d:
+    name: 'Event Id'
+    handle: eventId
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  88ead14e-afd6-4123-9dfc-8fb2a4a667f1:
+    name: 'Event Cost - Member'
+    handle: eventCostMember
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  23d5a028-620e-4b78-8897-75946ee5662a:
+    name: 'Event Cost - Guest'
+    handle: eventCostGuest
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  51e1fa0b-8b10-4be0-bdee-d62bae4d9130:
+    name: Event
+    handle: calendarEvent
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: Solspace\Calendar\FieldTypes\EventFieldType
+    settings:
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: null
+      limit: ''
+      selectionLabel: ''
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
+  d7e46e92-0f9f-4bc6-a77e-e79a20c46ba7:
+    name: 'Collection and Treatment Systems'
+    handle: collectionAndTreatmentSystems
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  9064eb7f-43cf-4daf-87b3-7c6b05295a14:
+    name: 'Collection System Only'
+    handle: collectionSystemOnly
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -581,6 +1058,41 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 2.1.3
+    settings:
+      pluginName: null
+      formTemplateDirectory: null
+      emailTemplateDirectory: null
+      emailTemplateStorage: db
+      defaultView: dashboard
+      fieldDisplayOrder: name
+      showTutorial: false
+      removeNewlines: false
+      defaultTemplates: true
+      footerScripts: false
+      formSubmitDisable: false
+      freeformHoneypot: true
+      spamProtectionBehaviour: simulate_success
+      submissionThrottlingCount: null
+      submissionThrottlingTimeFrame: null
+      blockedEmails: null
+      blockedKeywords: null
+      blockedKeywordsError: 'Invalid Entry Data'
+      blockedEmailsError: 'Invalid Email Address'
+      showErrorsForBlockedEmails: false
+      showErrorsForBlockedKeywords: false
+      blockedIpAddresses: null
+      purgableSubmissionAgeInDays: null
+      purgableSpamAgeInDays: null
+      salesforce_client_id: null
+      salesforce_client_secret: null
+      salesforce_username: null
+      salesforce_password: null
+      spamFolderEnabled: false
+      recaptchaEnabled: false
+      recaptchaKey: null
+      recaptchaSecret: null
+      renderFormHtmlInCpViews: true
+      autoScrollToErrors: true
   freeform-pro:
     edition: standard
     enabled: true
@@ -889,6 +1401,13 @@ routes:
     uriPattern: pastevents
     sortOrder: 22
     siteUid: null
+  21a17f95-13b6-4ed3-90df-3f73256f793a:
+    template: /forms/login/registration-success
+    uriParts:
+      - registration-success
+    uriPattern: registration-success
+    sortOrder: 23
+    siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:
     name: Invoices
@@ -926,6 +1445,174 @@ sections:
                   e5456dca-cb28-4635-9b5d-9a4c63812296:
                     required: true
                     sortOrder: 4
+  a67807ff-5b97-45d4-abdc-9d1f65e0ebdf:
+    name: Membership
+    handle: membership
+    type: channel
+    enableVersioning: true
+    propagateEntries: true
+    siteSettings:
+      0d0840a6-2776-46d9-b404-951195224e26:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'membership/{slug}'
+        template: ''
+    entryTypes:
+      cdcc2d9e-ffc6-46bc-8295-109bdd268608:
+        name: Membership
+        handle: membership
+        hasTitleField: false
+        titleLabel: Title
+        titleFormat: '{organizationName}'
+        sortOrder: 1
+        fieldLayouts:
+          2e2110c4-7a31-4118-bbb0-5d077e865385:
+            tabs:
+              -
+                name: Membership
+                sortOrder: 1
+                fields:
+                  2674b937-9f0c-4bda-8140-9d4a3916d3aa:
+                    required: false
+                    sortOrder: 1
+                  49bcb3aa-599b-44d4-8ad0-383e2a7133d0:
+                    required: false
+                    sortOrder: 2
+                  36b5cb14-bf1a-4c0a-977f-7471fbd840ac:
+                    required: false
+                    sortOrder: 3
+                  3338f043-940d-4b12-828a-9e6bf3c0b903:
+                    required: false
+                    sortOrder: 4
+                  e1cfca04-1645-4700-8851-1c066e479a72:
+                    required: false
+                    sortOrder: 5
+                  a9292c85-4806-4d82-b9e4-babc4e5ca546:
+                    required: false
+                    sortOrder: 6
+                  52a959a5-3b8f-42cf-830a-45072efd9869:
+                    required: false
+                    sortOrder: 7
+                  d7e46e92-0f9f-4bc6-a77e-e79a20c46ba7:
+                    required: false
+                    sortOrder: 8
+                  9064eb7f-43cf-4daf-87b3-7c6b05295a14:
+                    required: false
+                    sortOrder: 9
+                  4f1e6876-519a-4b6b-9577-6a30811b55d4:
+                    required: false
+                    sortOrder: 10
+  549a0023-c777-4881-95e4-5221b84c4ff8:
+    name: Accounts
+    handle: accounts
+    type: channel
+    enableVersioning: true
+    propagateEntries: true
+    siteSettings:
+      0d0840a6-2776-46d9-b404-951195224e26:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'accounts/{slug}'
+        template: ''
+    entryTypes:
+      14a6a885-cbfe-4ca0-9ea8-a991d87048be:
+        name: Accounts
+        handle: accounts
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          58e31a81-c301-4393-ac24-c85474882986:
+            tabs:
+              -
+                name: 'Individual Accounts'
+                sortOrder: 1
+                fields:
+                  3886c2ab-817a-4c8c-ae01-b42a40141f6f:
+                    required: false
+                    sortOrder: 1
+                  5243e16b-6f62-4c5e-ad4f-256c52376272:
+                    required: false
+                    sortOrder: 2
+                  20f946d4-489d-4594-a04b-c228d8dabe66:
+                    required: false
+                    sortOrder: 3
+                  c29e1bbd-b573-4e4a-8a0f-986c7423d540:
+                    required: false
+                    sortOrder: 4
+                  2249a606-0c7a-4862-9556-2e513bbb35db:
+                    required: false
+                    sortOrder: 5
+                  a608acf4-749f-4039-b882-bd41a859ba5e:
+                    required: false
+                    sortOrder: 6
+                  e1d949da-d328-43f9-8d1f-533b94855986:
+                    required: false
+                    sortOrder: 7
+                  3338f043-940d-4b12-828a-9e6bf3c0b903:
+                    required: false
+                    sortOrder: 8
+  881a7eed-b46b-4eac-8816-d38f8f2dd3c5:
+    name: 'Event Attendees'
+    handle: eventAttendees
+    type: channel
+    enableVersioning: true
+    propagateEntries: true
+    siteSettings:
+      0d0840a6-2776-46d9-b404-951195224e26:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'event-attendees/{slug}'
+        template: ''
+    entryTypes:
+      01cd1087-2d0b-47b1-9f99-6162263af36d:
+        name: 'Event Attendees'
+        handle: eventAttendees
+        hasTitleField: false
+        titleLabel: Title
+        titleFormat: '{eventId}: {attendeeFirstName} {attendeeLastName}'
+        sortOrder: 1
+        fieldLayouts:
+          1fab0d52-e2b3-4e5b-b341-ef220361e721:
+            tabs:
+              -
+                name: 'Event Attendees'
+                sortOrder: 1
+                fields:
+                  801e1bb4-0e4e-4ad7-9847-83fbb30c06a1:
+                    required: false
+                    sortOrder: 1
+                  9d2ad63a-b77c-4f6a-88aa-a3845c39b216:
+                    required: false
+                    sortOrder: 2
+                  28038f74-7228-40bd-9472-e4268575f608:
+                    required: false
+                    sortOrder: 3
+                  39d23809-1de1-4d77-8994-68327c3373f0:
+                    required: false
+                    sortOrder: 4
+                  78b1a226-bdeb-4cff-8c3f-8c7e496eb69a:
+                    required: false
+                    sortOrder: 5
+                  a608acf4-749f-4039-b882-bd41a859ba5e:
+                    required: false
+                    sortOrder: 6
+                  538bce48-89cc-4d55-8943-e7028ec7f3f4:
+                    required: false
+                    sortOrder: 7
+                  e5069548-2240-4d5b-a283-0835dc0b0a0d:
+                    required: false
+                    sortOrder: 8
+                  88ead14e-afd6-4123-9dfc-8fb2a4a667f1:
+                    required: false
+                    sortOrder: 9
+                  23d5a028-620e-4b78-8897-75946ee5662a:
+                    required: false
+                    sortOrder: 10
+                  51e1fa0b-8b10-4be0-bdee-d62bae4d9130:
+                    required: false
+                    sortOrder: 11
 siteGroups:
   31074194-aa36-4955-b5f6-9258521b749e:
     name: TACWA
@@ -951,6 +1638,61 @@ users:
   defaultGroup: ''
   photoVolumeUid: null
   photoSubpath: null
+  groups:
+    9b5e1115-6ad5-42fa-800d-f77c13d476c0:
+      name: 'Admin User'
+      handle: adminUser
+      permissions:
+        - accessplugin-calendar
+        - accessplugin-commerce
+        - accessplugin-freeform-payments
+        - accessplugin-freeform
+        - accessplugin-seomatic
+        - accesscp
+        - registerusers
+        - moderateusers
+        - assignuserpermissions
+        - assignusergroups
+        - editusers
+    a75cb198-4938-4475-b269-040a342a4a59:
+      name: 'Member Admin'
+      handle: memberAdmin
+      permissions:
+        - registerusers
+        - moderateusers
+        - assignuserpermissions
+        - editusers
+    3bff8613-3ec3-44a2-b05b-a35edefaa0d5:
+      name: 'Standard User'
+      handle: standardUser
+  fieldLayouts:
+    1ed7f8cf-944e-461d-8299-63a26201e63d:
+      tabs:
+        -
+          name: 'Account Info'
+          sortOrder: 1
+          fields:
+            3886c2ab-817a-4c8c-ae01-b42a40141f6f:
+              required: false
+              sortOrder: 1
+            5243e16b-6f62-4c5e-ad4f-256c52376272:
+              required: false
+              sortOrder: 2
+            3338f043-940d-4b12-828a-9e6bf3c0b903:
+              required: false
+              sortOrder: 3
+            e1d949da-d328-43f9-8d1f-533b94855986:
+              required: false
+              sortOrder: 4
+            20f946d4-489d-4594-a04b-c228d8dabe66:
+              required: false
+              sortOrder: 5
+            c29e1bbd-b573-4e4a-8a0f-986c7423d540:
+              required: false
+              sortOrder: 6
+            a9292c85-4806-4d82-b9e4-babc4e5ca546:
+              required: false
+              sortOrder: 7
 volumes:
   c6fbe1e7-8a4c-4883-b313-c3ab322d8007:
     name: Files

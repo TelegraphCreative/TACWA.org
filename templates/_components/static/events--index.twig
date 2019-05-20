@@ -33,7 +33,7 @@
                   {#   Info   #}
                   <div class="events-index__event__info">
                         {#   Org   #}
-                        <span class="heading --tiny  |  {% if event.producer == "TACWA" %}text-blue{% else %}text-teal{% endif %}">
+                        <span class="heading --tiny  |  {{ (event.producer == "TACWA" ) ? 'text-blue' : 'text-teal' }}">
                            {{ event.producer }}
                         </span>
 
@@ -55,7 +55,7 @@
 
                {#   Register   #}
                {% if not pastevents %}
-               {{ global.btn( (currentUser) ? 'events/event-registration-member?e=' ~ event.id : 'register?e=' ~ event.id, 'btn --primary --dark  |  mt-4', 'Register') }}
+               {{ global.btn( (currentUser) ? '/forms/events/event-registration-member?e=' ~ event.id : 'register?e=' ~ event.id, 'btn --primary --dark  |  mt-4', 'Register') }}
                {% endif %}
             </div>
          {% endfor %}

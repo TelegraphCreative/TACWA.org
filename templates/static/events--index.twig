@@ -19,7 +19,7 @@
 	{% set eventOptions = {
 		endsAfterOrAt: "now",
 		order: "startDate ASC",
-		limit: 1
+		limit: 6
 	} %}
 	
 	{% paginate craft.calendar.events(eventOptions) as pageInfo, events %}

@@ -1,9 +1,11 @@
 {#
    Event Date
 #}
+{% if event is defined %}
 <div class="event-date {{ (event.endDateLocalized|date('Ymd') < now|date('Ymd')) ? 'past' : '' }}">
    <div>
       <span class="event-date__month">{{ event.startDateLocalized|date("F") }}</span>
       <span class="event-date__day">{{ event.startDateLocalized|date("j") }}</span>
    </div>
 </div>
+{% endif %}

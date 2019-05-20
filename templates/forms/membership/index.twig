@@ -100,5 +100,22 @@
 			 
 		</div>
 	</div>
+	
+{% js %}
+
+function setSubscription() {
+	var org = document.getElementById("form-input-organizationType").value;
+	var subscription = '';
+	if (org == 'collectionAndTreatmentSystems') {
+		subscription = document.getElementById("form-input-collectionAndTreatmentSystems").value;
+	} else if (org == 'collectionSystemOnly') {
+		subscription = document.getElementById("form-input-collectionSystemOnly").value;
+	} else if (org == 'affiliate') {
+		subscription = document.getElementById("form-input-affiliateSize").value;
+	}
+	document.getElementById('form-input-subscriptionPlanID').value = subscription;
+}
+
+{% endjs %}
 
 {% endblock %}

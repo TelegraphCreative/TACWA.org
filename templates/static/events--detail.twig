@@ -11,19 +11,19 @@
          {{ global.link('/events', 'Upcoming Events', 'link --arrow --back  |  mb-2 md:mb-4') }}
          <h1>{{ event.title }}</h1>
 
-
+		 {% set pastEvent = (event.startDateLocalized|date('Ymd') < now|date('Ymd')) %}
 
          {#   Event Details   #}
          <div class="event__detail">
 		   {#   Action   #}
-		   <div class="event__detail__action {% if pastEvent is defined %}--disabled{% endif %}">
-		      {% if pastEvent is defined %}
+		   <div class="event__detail__action {% if pastEvent %}--disabled{% endif %}">
+		      {% if pastEvent %}
 		         {{ global.btn('/static/forms/event-registration--contact--guest', 'btn --primary --dark --wide  |  sm:mx-2', 'Register') }}
 		
 		         <p>This is a past event</p>
 		      {% else %}
 		         {#   Register   #}
-		         {{ global.btn( (currentUser) ? 'events/event-registration-member?e=' ~ event.id : 'register?e=' ~ event.id, 'btn --primary --dark --wide  |  sm:mx-2', 'Register') }}
+		         {{ global.btn( (currentUser) ? '/forms/events/event-registration-member?e=' ~ event.id : 'register?e=' ~ event.id, 'btn --primary --dark --wide  |  sm:mx-2', 'Register') }}
 		         {#   Add to Calendar   #}
 {# 		         {{ global.btn('', 'btn --primary --light --wide  |  sm:mx-2', 'Add to Calendar') }} #}
 {#
