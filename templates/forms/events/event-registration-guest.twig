@@ -112,7 +112,7 @@
 			
 			<div class="form-flow__detail">
 				<h3 class="heading --tiny  |  text-teal">Your Order</h3>
-				<p class="form-flow__detail__description">{{ event.title }} - Early Member Registration</p>
+				<p class="form-flow__detail__description">{{ global.link('/event/' ~ event.slug, event.title, 'link') }} - Guest Registration</p>
 				<p class="form-flow__detail__total">Total: ${{ event.guestPrice }}</p>
 			</div>
 			
