@@ -23,13 +23,9 @@
 		         <p>This is a past event</p>
 		      {% else %}
 		         {#   Register   #}
-		         {{ global.btn( (currentUser) ? '/forms/events/event-registration-member?e=' ~ event.id : 'register?e=' ~ event.id, 'btn --primary --dark --wide  |  sm:mx-2', 'Register') }}
+		         {{ global.btn( '/event-registration/' ~ event.id, 'btn --primary --dark --wide  |  sm:mx-2', 'Register') }}
 		         {#   Add to Calendar   #}
-{# 		         {{ global.btn('', 'btn --primary --light --wide  |  sm:mx-2', 'Add to Calendar') }} #}
-{#
-		      {% set events = craft.calendar.events({ calendarId: [event.id] }) %}
-		      {{ craft.calendar.export(events) }}
-#}
+		         {{ global.btn('/export/event/' ~ event.id, 'btn --primary --light --wide  |  sm:mx-2', 'Add to Calendar') }}
 		      {% endif %}
 		   </div>
 		
@@ -84,50 +80,57 @@
 
          {#   Event Content   #}
          <div class="event__info">
+			{% if event.meetingTheme %}
             {#   Theme   #}
             <div class="event__info__item">
                <h2>Meeting Theme</h2>
                <p>{{ event.meetingTheme }}</p>
             </div>
-
+            {% endif %}
+			
+			{% if event.meetingAgenda %}
             {#   Agenda   #}
             <div class="event__info__item">
                <h2>Meeting Agenda</h2>
                <p>{{ event.meetingAgenda }}</p>
-{#
-               <ul class="event__info__list">
-                  {% for item in meeting.agenda %}
-                     <li>{{ item.item }}</li>
-                  {% endfor %}
-               </ul>
-#}
             </div>
-
+            {% endif %}
+			
+			{% if event.sponsors %}
+	         	{% set sponsorLogos = false %}
+	         	{% for item in event.sponsors %}
+	         		{% if item.sponsorLogo.first() %}
+	         			{% set sponsorLogos = true %}
+	         		{% endif %}
+	         	{% endfor %}
+	         	
+	         	{% if sponsorLogos %}
             {#   Sponsors   #}
             <div class="event__info__item">
                <h2>Sponsors</h2>
                <div class="event__info__logo-grid">
                   {% for item in event.sponsors %}
-                  {% set image = item.sponsorLogo.first() %}
-                     <div>
-                     	{% if item.sponsorLink %}
-                     	<a href="{{ item.sponsorLink }}">
-                     	{% endif %}
-                     
-					 	{% if image %}
-                        <img alt="{{ item.sponsorName }}" src="{{ image.getUrl() }}">
-                        {% else %}
-                        {{ item.sponsorName }}
-                        {% endif %}
-                        
-                     	{% if item.sponsorLink %}
-                     	</a>
-                     	{% endif %}
-                     </div>
+	                  {% set image = item.sponsorLogo.first() %}
+	                  {% if image %}
+	                     <div>
+	                     	{% if item.sponsorLink %}
+	                     	<a href="{{ item.sponsorLink }}">
+	                     	{% endif %}
+	                     
+	                        <img alt="{{ item.sponsorName }}" src="{{ image.getUrl() }}">
+	                        
+	                     	{% if item.sponsorLink %}
+	                     	</a>
+	                     	{% endif %}
+	                     </div>
+	                    {% endif %}
                   {% endfor %}
                </div>
             </div>
+            	{% endif %}
+            {% endif %}
 
+			{% if event.attachments %}
             {#   Media   #}
             <div class="event__info__item">
                {% include '_components/static/list--media'
@@ -136,6 +139,8 @@
                   }
                %}
             </div>
+            {% endif %}
+            
          </div>
 
       </div>

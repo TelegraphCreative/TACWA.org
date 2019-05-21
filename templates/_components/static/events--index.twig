@@ -55,7 +55,7 @@
 
                {#   Register   #}
                {% if not pastevents %}
-               {{ global.btn( (currentUser) ? '/forms/events/event-registration-member?e=' ~ event.id : 'register?e=' ~ event.id, 'btn --primary --dark  |  mt-4', 'Register') }}
+               {{ global.btn( '/event-registration/' ~ event.id, 'btn --primary --dark  |  mt-4', 'Register') }}
                {% endif %}
             </div>
          {% endfor %}

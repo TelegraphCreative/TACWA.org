@@ -6,20 +6,30 @@
 {% import '_macros/global' as global %}
 {% import '_macros/forms' as form %}
 
+{% set baseUrlSegments = 1 %}
+{% set segment1 = craft.app.request.segment(baseUrlSegments + 1) %}
+{% if craft.session.isLoggedIn %}
+{% redirect "event-registration/member/" ~ segment1 %}
+{% endif %}
+
 
 {% block content %}
+
    <div class="form-flow--login  |  container  |  mt-12 sm:mt-24">
       <div class="form-flow__wrapper">
+      
+         <form method="post" accept-charset="UTF-8" class="form-group  |  mb-12">
+         	{{ csrfInput() }}
+            <input type="hidden" name="action" value="users/login">
 
-         {#   Sign In   #}
-         <form action="" class="form-group  |  mb-12">
+			
             <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Sign In</h1>
 
             {#   Email   #}
             {{ form.fieldGroup(
                'email',
                'full-width',
-               { label: '', identification: 'email', placeholder: 'Email' }
+               { label: '', identification: 'loginName', placeholder: 'Email' }
             )}}
 
             {#   Password   #}
@@ -34,22 +44,32 @@
 
             {#   Submit   #}
             {{ form.submit( '--small  |  mt-7', 'Login') }}
+            {{ redirectInput('/event-registration/member/' ~ segment1) }}
+            {% if errorMessage is defined %}
+               <p>{{ errorMessage }}</p>
+            {% endif %}
          </form>
 
 
          {#   Checkout as Guest   #}
          <form action="" class="form-group">
             <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Checkout as Guest</h1>
+            
+            <div class="field-group --full-width">
+            {{ global.btn( '/event-registration/guest/' ~ segment1, 'btn --primary --dark  |  sm:mx-2', 'Continue') }}
+            </div>
 
             {#   Email   #}
+{#
             {{ form.fieldGroup(
                'email',
                'full-width',
                { label: '', identification: 'email', placeholder: 'Email' }
             )}}
+#}
 
             {#   Submit   #}
-            {{ form.submit( '--small  |  mt-4', 'Login') }}
+{#             {{ form.submit( '--small  |  mt-4', 'Login') }} #}
          </form>
       </div>
    </div>

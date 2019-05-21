@@ -4,6 +4,14 @@
 {% import '_macros/global' as global %}
 {% import '_macros/forms' as form %}
 
+{% set baseUrlSegments = 1 %}
+{% set segment1 = craft.app.request.segment(baseUrlSegments + 1) %}
+{% set segment2 = craft.app.request.segment(baseUrlSegments + 2) %}
+
+{% if craft.session.isLoggedIn %}
+{% redirect "event-registration/member/" ~ segment2 %}
+{% endif %}
+
 
 {% block content %}
 
@@ -24,18 +32,16 @@
 	  
 	{% else %}
    
-   {% set eventId = craft.request.getParam('e') %}
+   {% set eventId = segment2 %}
    {% if eventId %}
    		{% set event = craft.calendar.event(eventId) %}
 	{% endif %}
 	
-   {% if event is not defined %}
-   <div class="form-flow  |  container">
-	  Something went wrong!
-	</div>
+   {% if event is not defined or event is empty %}
+	  {% redirect "events" %}
 
 	{% else %}
-	
+		
 	<style>
 		ul.freeform-pages { display:none !important; }
 		label {

@@ -26,7 +26,11 @@ return [
         // Whether to save the project config out to config/project.yaml
         // (see https://docs.craftcms.com/v3/project-config.html)
         'useProjectConfigFile' => true,
+        
+	    'loginPath' => 'login',
+	    'postLoginRedirect' => 'events',
     ],
+
 
     // Dev environment settings
     'dev' => [

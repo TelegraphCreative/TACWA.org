@@ -98,18 +98,16 @@
 
    {#   Action   #}
    <div class="featured-event__action">
-      {#   Calendar   #}
-      <div></div>
-{#
-EXPORT ICS
+      {#   Calendar   #}	  
+	  <a href="/export/event/{{ featuredEvent.id }}">
       <button class="btn --calendar">
          {{ global.utilityIcon('calendar', 'h-5 w-5') }}
          {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg') }}
       </button>
-#}
+	  </a>
 
       {#   Register   #}
-      {{ global.btn( (currentUser) ? '/forms/events/event-registration-member?e=' ~ featuredEvent.id : 'register?e=' ~ featuredEvent.id, 'btn --primary --dark', 'Register') }}
+      {{ global.btn( '/event-registration/' ~ featuredEvent.id, 'btn --primary --dark', 'Register') }}
    </div>
 </article>
 

@@ -39,7 +39,6 @@
 
             {#   Submit   #}
             {{ form.submit( '--small  |  mt-7', 'Login') }}
-            {{ redirectInput('/event/event-for-sponsorship') }}
             {% if errorMessage is defined %}
                <p>{{ errorMessage }}</p>
             {% endif %}

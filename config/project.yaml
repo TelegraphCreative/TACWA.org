@@ -77,7 +77,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558370584
+dateModified: 1558448732
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1407,6 +1407,53 @@ routes:
       - registration-success
     uriPattern: registration-success
     sortOrder: 23
+    siteUid: null
+  f8e70d01-06b1-4b69-9b4f-dd8f9132eb74:
+    template: /static/event--export
+    uriParts:
+      - export/event/
+      -
+        - number
+        - \d+
+    uriPattern: 'export/event/<number:\d+>'
+    sortOrder: 24
+    siteUid: null
+  bc4093af-c659-4aea-af87-0b45490e76fc:
+    template: /static/forms/event-registration--login--checkout/
+    uriParts:
+      - event-registration/
+      -
+        - number
+        - \d+
+    uriPattern: 'event-registration/<number:\d+>'
+    sortOrder: 25
+    siteUid: null
+  5eba0a4a-b319-44e7-bcc7-004d3a117c92:
+    template: /forms/events/event-registration-member
+    uriParts:
+      - event-registration/member/
+      -
+        - number
+        - \d+
+    uriPattern: 'event-registration/member/<number:\d+>'
+    sortOrder: 26
+    siteUid: null
+  f0af1e20-fbd8-48c0-b15e-cbf71794df8a:
+    template: /forms/events/event-registration-guest
+    uriParts:
+      - event-registration/guest/
+      -
+        - number
+        - \d+
+    uriPattern: 'event-registration/guest/<number:\d+>'
+    sortOrder: 27
+    siteUid: null
+  b1e3efe4-806b-4758-81b3-890173927048:
+    template: /forms/login/login
+    uriParts:
+      - login
+    uriPattern: login
+    sortOrder: 28
     siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:
