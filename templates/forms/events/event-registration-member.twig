@@ -10,7 +10,7 @@
 
 {# {% requireLogin %} #}
 {% if not craft.session.isLoggedIn %}
-{% redirect "event-registration/" ~ segment2 %}
+{% redirect "/event-registration/" ~ segment2 %}
 {% endif %}
 
 
