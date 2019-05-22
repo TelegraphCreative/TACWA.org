@@ -1,0 +1,7 @@
+{% import '_macros/global' as global %}
+
+{{ block.header }}
+{{ block.description }}
+{% if block.button|length %}
+    {{ block.button }}
+{% endif %}

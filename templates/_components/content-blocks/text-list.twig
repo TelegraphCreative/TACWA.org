@@ -1,0 +1,20 @@
+{% import '_macros/global' as global %}
+
+{% set list = block.textList2Column %}
+
+{% if block.header|length %}
+    {{ block.header }}
+{% endif %}
+
+{% if list|length %}
+    {% for item in list %}
+        {{ item.listItem }}
+        {% if item.button|length %}
+                {{ item.button }}
+                {{ item.listItem }}
+            {% else %}
+                {{ item.listItem }}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+

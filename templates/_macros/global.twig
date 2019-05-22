@@ -29,6 +29,15 @@
 {% macro btnButton(classes, text) %}
    <button class="{{ classes }}">{{ text }}</button>
 {% endmacro %}
+{% macro linkIt(source, classes) %}
+   {% if source %}
+        {# More options here: https://github.com/fruitstudios/craft-linkit/blob/master/README.md #}
+        {% set attributes = {
+            class: classes
+        } %}
+        {{ source.link(attributes) }}
+    {% endif %}
+{% endmacro %}
 
 
 {#   Links   #}
@@ -115,7 +124,6 @@
         {% case "logo" %}
             logo
         {% default %}
-
 
     {% endswitch %}
 

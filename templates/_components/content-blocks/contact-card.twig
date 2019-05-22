@@ -1,0 +1,21 @@
+{% import '_macros/global' as global %}
+{{ block.header }}
+
+{% if block.subheader %}
+    {{ block.subheader }}
+{% endif %}
+
+{{ block.role }}
+
+{% if block.address|length %}
+    {{ block.address }}
+{% endif %}
+
+{% if block.phone|length %}
+    {{ block.phone }}
+{% endif %}
+
+{% if block.email|length %}
+    {{ block.email }}
+{% endif %}
+

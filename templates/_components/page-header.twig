@@ -1,0 +1,24 @@
+{#   Page - Header   #}
+{% if type == 'border' %}
+   <header class="border-b border-grey-lighter  |  mt-12 mb-14 pb-6">
+{% else %}
+   <header class="mt-12 sm:mt-24">
+{% endif %}
+
+   <div class="container">
+      {% if type == 'standard' %}
+
+         <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-20 md:mb-32">{{ heading }}</h1>
+
+      {% elseif type == 'Events' %}
+
+         <h2 class="font-semibold text-12 text-teal uppercase">{{ type }}</h2>
+         <h1 class="font-normal text-24 md:text-40 text-blue  |  max-w-md md:max-w-lg  |  mb-5">{{ heading }}</h1>
+
+      {% elseif type == 'border' %}
+
+         <h1 class="font-normal leading-tight text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg">{{ heading }}</h1>
+
+      {% endif %}
+   </div>
+</header>

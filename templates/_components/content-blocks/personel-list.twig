@@ -1,0 +1,13 @@
+{% import '_macros/global' as global %}
+
+{% set list = block.list %}
+{% if block.header|length %}
+    {{ block.header }}
+{% endif %}
+
+{% if list|length %}
+    {% for item in list %}
+        {{ item.fullName}}
+        {{ item.role}}
+    {% endfor %}
+{% endif %}

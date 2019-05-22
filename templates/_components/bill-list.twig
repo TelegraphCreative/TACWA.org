@@ -1,0 +1,18 @@
+{% if blocks|length %}
+    {% for item in blocks %}
+    
+        {% if item.header|length %}
+            {{ item.header }}
+        {% endif %}
+
+        {% for item in item.list %}
+            
+            {{ item.billName }}
+            {{ item.billSource }}
+            {{ item.billLink }}
+            {{ item.summary }}
+            {{ item.comments }}
+            
+        {% endfor %}
+    {% endfor %}
+{% endif %}
