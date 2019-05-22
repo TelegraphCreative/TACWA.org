@@ -15,7 +15,20 @@
                id="{{ attr.identification }}"
                {% if attr.value is defined %}value="{{ attr.value }}"{% endif %}
                {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
-               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}"
+
+               {% if attr.pattern is defined %}
+                  pattern="{{ attr.pattern }}"
+               {% endif %}
+               {% if attr.message is defined %}
+                  data-bouncer-message="{{ attr.message }}"
+               {% endif %}
+
+               {% if attr.required is defined %}
+               {% else %}
+                  required
+               {% endif %}
+            >
          </div>
 
       {% case "email" %}
@@ -28,7 +41,12 @@
                type="email"
                name="{{ attr.identification }}"
                id="{{ attr.identification }}"
-            {% if attr.value is defined %}value="{{ attr.value }}"{% endif %}
+               {% if attr.required is defined %}
+               {% else %}
+                  required
+               {% endif %}
+
+               {% if attr.value is defined %}value="{{ attr.value }}"{% endif %}
                {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
                class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
          </div>
@@ -43,6 +61,21 @@
                type="number"
                name="{{ attr.identification }}"
                id="{{ attr.identification }}"
+
+               {% if attr.required is defined %}
+               {% else %}
+                  required
+               {% endif %}
+
+               {% if attr.pattern is defined %}
+                  pattern="{{ attr.pattern }}"
+               {% endif %}
+
+               {% if attr.message is defined %}
+                  data-bouncer-message="{{ attr.message }}"
+               {% endif %}
+
+               {% if attr.value is defined %}value="{{ attr.value }}"{% endif %}
                {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
                class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
          </div>
@@ -85,6 +118,17 @@
                type="password"
                name="{{ attr.identification }}"
                id="{{ attr.identification }}"
+
+               required
+
+               {% if attr.match is defined %}
+                  data-bouncer-match="#{{ attr.match }}"
+               {% endif %}
+
+               {% if attr.message is defined %}
+                  data-bouncer-mismatch-message="{{ attr.message }}"
+               {% endif %}
+
                {% if attr.placeholder is defined %}placeholder="{{ attr.placeholder }}"{% endif %}
                class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
          </div>
@@ -98,16 +142,21 @@
             <select
                name="{{ attr.identification }}"
                id="{{ attr.identification }}"
-               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}">
+               class="field-group__input --field {% if attr.classes is defined %}{{ attr.classes }}{% endif %}"
+
+               {% if attr.required is defined %}
+               {% else %}
+                  required
+               {% endif %}>
                {% if attr.placeholder is defined %}
                   <option value="" hidden disabled selected>{{ attr.placeholder }}</option>
                {% endif %}
                {% for item in attr.options %}
-                  <option value="{{ item.value }}">{{ item.display }}</option>
+                  <option value="{{ item.value }}" {% if item.selected is defined %}selected{% endif %}>{{ item.display }}</option>
                {% endfor %}
             </select>
 
-            <svg class="block absolute pin-r -mt-11 mr-7  |  w-2 h-3 rotate-90deg  |  fill-current text-grey-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
+            <svg class="block absolute pin-r pin-t mt-10 mr-7  |  w-2 h-3 rotate-90deg  |  fill-current text-grey-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
                <path d="M1.9 0L0 1.88 6.18 8 0 14.12 1.9 16 10 8 1.9 0z"/>
             </svg>
          </div>
@@ -128,6 +177,8 @@
    {% endswitch %}
 {% endmacro %}
 
+
+{#   Checkbox   #}
 {% macro checkbox(classes, copy) %}
    <div class="flex  |  w-full  |  px-2">
       <label for=""></label>
@@ -141,9 +192,17 @@
    </div>
 {% endmacro %}
 
+
+{#   Submit Inputs   #}
 {% macro submit(classes, value) %}
-   <div class="w-full  |  px-2">
+   <div class="px-2">
       <input type="submit" value="{{ value }}" class="btn --primary --dark {{ classes }}">
+   </div>
+{% endmacro %}
+
+{% macro submitLight(classes, value) %}
+   <div class="px-2">
+      <input type="submit" value="{{ value }}" class="btn --primary --light {{ classes }}">
    </div>
 {% endmacro %}
 

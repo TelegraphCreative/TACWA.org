@@ -1,0 +1,82 @@
+{#   Bill Tracker   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'center',
+         'category': 'Legislative Issues',
+         'heading': 'Bill Tracker',
+      }
+   %}
+
+   <section class="container">
+      {#   Overview   #}
+      <div class="content-block  |  mb-16 mx-auto">
+         <h2>Meeting Theme</h2>
+         <p>The Texas Legislature meets in Austin every odd-numbered year (from January through May) to pass new laws. All legislation must undergo at least one public hearing in both a House and Senate committee before it can be passed into law. These hearings are the key opportunities for input to be provided to policymakers. Legislative committee hearings are held intensively from January through May of odd numbered years and periodically outside of these regular sessions, as scheduled by the committee chairs. </p>
+
+         <h2>Heading Above List</h2>
+         <ul>
+            <li>Information Architecture — February 1, 2019</li>
+            <li>Content Strategy — February 8, 2019</li>
+            <li>Visual Design — March 1, 2019</li>
+            <li>Frontend Implementation — April 5, 2019</li>
+            <li>Backend Development — April 26, 2019</li>
+            <li>Testing, Training, Launch — May 15, 2019</li>
+         </ul>
+      </div>
+
+      {#   Bill List   #}
+      <div class="bill-list">
+         {#   Heading   #}
+         <h2 class="bill-list__heading">85th Session Bills</h2>
+
+         {#   Header   #}
+         <div class="bill-list__header">
+            <div class="bill-list__header__bill">
+               Bill
+            </div>
+
+            <div class="bill-list__header__summary">
+               Summary
+            </div>
+
+            <div class="bill-list__header__comments">
+               Comments
+            </div>
+         </div>
+
+         {#   Bill Wrapper   #}
+         <div class="bill-list__wrapper">
+            {% for i in 1..12 %}
+               {#   Bill   #}
+               <div class="bill-list__item">
+
+                  {#   Info   #}
+                  <div class="bill-list__item__bill">
+                     <a href="#">HB 91</a>
+                     <p>White, James (R)</p>
+                  </div>
+
+                  {#   Summary   #}
+                  <div class="bill-list__item__summary">
+                     <p>Relating to a review of occupational licensing requirements related to an applicant's criminal history.</p>
+                  </div>
+
+                  {#   Comment   #}
+                  <div class="bill-list__item__comment">
+                     <p>Under review</p>
+                  </div>
+               </div>
+            {% endfor %}
+         </div>
+      </div>
+   </section>
+
+{% endblock %}

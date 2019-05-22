@@ -1,0 +1,48 @@
+{#   Article - Index   #}
+
+{% import '_macros/global' as global %}
+
+
+<div class="article-index  pt-4 mt-20   events-index  |  container">
+   {#   Search & Filter   #}
+   <header class="article-index__search">
+      {#   Search   #}
+      {% include '_components/static/search' with { 'identification': 'event-index-search', 'placeholder': 'Search events...' } %}
+
+      {#   Filter   #}
+      <div class="article-index__filter">
+         <select name="article-index__filter" id="article-index__filter">
+               <option value="all">All Categories</option>
+               <option value="category-1">Category 1</option>
+               <option value="category-2">Category 2</option>
+               <option value="category-3">Category 3</option>
+               <option value="category-4">Category 4</option>
+         </select>
+         <svg class="block absolute pin-r -mt-8 mr-4  |  rotate-90deg  |  fill-current text-blue  |  z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
+            <path d="M1.9 0L0 1.88 6.18 8 0 14.12 1.9 16 10 8 1.9 0z"/>
+         </svg>
+      </div>
+
+   </header>
+
+   {#   Index   #}
+   <div class="article-index__index">
+      {% for i in 1..6 %}
+         <div class="article-index__article">
+            <div class="article-index__article__info">
+               <span class="article__info__category">Article Category</span>
+               <h3 class="article__info__heading">Shorter Article Title 1-Row</h3>
+               <h4 class="article__info__author">by Macia Gonzalez</h4>
+               <time class="article__info__date">March 28, 2019</time>
+            </div>
+
+            <div class="article-index__article__summary">
+               <p>Display/list all committees somehow shown within the four broad groups Knowledge, Delivery, Stakeholder, Management. Each committee should then be linked or anchored to it's mission statement/goal on a page. </p>
+            </div>
+         </div>
+      {% endfor %}
+
+      {#   Pagination   #}
+      {% include '_components/static/pagination' %}
+   </div>
+</div>

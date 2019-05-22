@@ -6,6 +6,16 @@
 
 {% block content %}
 
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'left',
+         'heading': 'Bimonthly Meeting',
+         'button_url': '/static/events--index',
+         'button_text': 'Upcoming Events'
+      }
+   %}
+
    <section class="event">
       <div class="container  |  lg:relative">
          {{ global.link('/events', 'Upcoming Events', 'link --arrow --back  |  mb-2 md:mb-4') }}

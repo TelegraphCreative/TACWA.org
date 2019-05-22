@@ -48,10 +48,18 @@
 
 {% block content %}
 
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'left',
+         'heading': 'Bimonthly Meeting',
+         'button_url': '/static/events--index',
+         'button_text': 'Upcoming Events'
+      }
+   %}
+
    <section class="event">
       <div class="container  |  lg:relative">
-         {{ global.link('/static/events--index', 'Upcoming Events', 'link --arrow --back  |  mb-2 md:mb-4') }}
-         <h1>{{ meeting.heading }}</h1>
 
          {#   Event Details   #}
          {% include '_components/static/event--detail'
@@ -92,6 +100,7 @@
 
             {#   Media   #}
             <div class="event__info__item">
+               <h2>Attachments & Links</h2>
                {% include '_components/static/list--media'
                   with {
                      media: [

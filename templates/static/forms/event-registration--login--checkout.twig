@@ -17,12 +17,9 @@
 
    <div class="form-flow--login  |  container  |  mt-12 sm:mt-24">
       <div class="form-flow__wrapper">
-      
-         <form method="post" accept-charset="UTF-8" class="form-group  |  mb-12">
-         	{{ csrfInput() }}
-            <input type="hidden" name="action" value="users/login">
 
-			
+         {#   Sign In   #}
+         <form action="" class="form-group  |  mb-12" data-validate>
             <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Sign In</h1>
 
             {#   Email   #}
@@ -75,3 +72,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

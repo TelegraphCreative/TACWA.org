@@ -1,0 +1,98 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{#   User Logged In   #}
+{% set loggedIn = 'true' %}
+
+{#   Content   #}
+{% set
+   content = {
+      membershipStartDate: '03/01/2019',
+      membershipEndDate: '03/01/2020',
+      annualDues: '$45'
+   }
+%}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Organization Settings',
+         'tabs': 'true',
+         'activeTab': '2'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      <h2>Membership</h2>
+
+      <div class="form-flow__wrapper">
+         {#   Form   #}
+         <form action="../forms/logged-in--org-membership" class="form-group">
+            {#   Membership Start Date   #}
+            <div class="form-group__membership-dates">
+               <div class="form-group__membership-dates__item">
+                  <span>Start Date</span>
+                  <p>{{ content.membershipStartDate }}</p>
+               </div>
+
+               {#   Membership End Date   #}
+               <div class="form-group__membership-dates__item">
+                  <span>End Date</span>
+                  <p>{{ content.membershipEndDate }}</p>
+               </div>
+            </div>
+
+            {#   Organization Type   #}
+            {{ form.fieldGroup(
+               'select',
+               'full-width',
+               {
+                  label: 'Organization Type',
+                  identification: 'org-type',
+                  options: [
+                     { value: 'type-1', display: 'Org Type 1' },
+                     { value: 'type-2', display: 'Public Wastewater Utility', selected: 'yes' },
+                     { value: 'type-3', display: 'Org Type 3' },
+                     { value: 'type-4', display: 'Org Type 4' }
+                  ]
+               }
+            )}}
+
+            {#   Organization Type   #}
+            {{ form.fieldGroup(
+               'select',
+               'full-width',
+               {
+                  label: 'Size',
+                  identification: 'org-size',
+                  options: [
+                     { value: 'type-1', display: '1-5 employees' },
+                     { value: 'type-2', display: '5-10 employees', selected: 'yes' },
+                     { value: 'type-3', display: '10-25 employees' },
+                     { value: 'type-4', display: '25-50 employees' }
+                  ]
+               }
+            )}}
+
+            {#   Dues   #}
+            <p class="font-semibold  |  w-full  |  mt-1 px-2">Total Annual Dues: {{ content.annualDues }}</p>
+
+            <div class="flex flex-wrap  |  mt-4">
+               {#   Submit   #}
+               {{ form.submit( 'mt-4', 'Update Membership') }}
+
+               {#   Cancel   #}
+               {{ form.submitLight( 'mt-4', 'Cancel Membership') }}
+            </div>
+         </form>
+      </div>
+   </div>
+
+{% endblock %}
