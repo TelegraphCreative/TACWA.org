@@ -22,13 +22,14 @@
          {#   Detail   #}
          {% include '_components/static/form-flow--detail'
             with {
+               'heading': 'Your Order',
                'description': '8th Annual Water Reuse in Textas Conference - Early Registration',
                'total': '$45'
             }
          %}
 
          {#   Form   #}
-         <form action="../forms/event-registration--payment--guest" class="form-group">
+         <form action="../forms/event-registration--payment--guest" class="form-group"  data-validate>
             {#   First Name   #}
             {{ form.fieldGroup(
                'text',
@@ -64,3 +65,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

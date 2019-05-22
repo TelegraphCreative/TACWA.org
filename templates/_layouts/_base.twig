@@ -18,8 +18,10 @@ craft.app.request.segments|last %} {# Base Layout #}
         {% do view.registerCssFile('/assets/css/app.css') %}
         {# Favicons #}
         {% include '_components/site-favicons' %}
+
+        <script src="https://cdn.jsdelivr.net/gh/cferdinandi/bouncer@1/dist/bouncer.polyfills.min.js"></script>
     </head>
-    
+
     <body class="flex">
         <div class="site-container  |  min-h-screen flex flex-col w-full">
             {% include '_components/static/site-header' %}

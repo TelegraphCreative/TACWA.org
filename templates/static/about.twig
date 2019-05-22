@@ -1,0 +1,223 @@
+{#   About Us   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+{% set
+   officers = [
+      {
+         office: 'President',
+         name: 'Magda Alanis'
+      },
+      {
+         office: 'Vice President',
+         name: 'Ron Patel'
+      },
+      {
+         office: 'Secretary',
+         name: 'Bill Gause'
+      },
+      {
+         office: 'Secretary',
+         name: 'Bill Gause'
+      },
+      {
+         office: 'Secretary',
+         name: 'Bill Gause'
+      },
+      {
+         office: 'Secretary',
+         name: 'Bill Gause'
+      }
+   ]
+%}
+{% set
+   affiliates = [
+      { affiliate: 'ADS Environmental Services' },
+      { affiliate: 'AECOM' },
+      { affiliate: 'Alan Plummer Associates, Inc.' },
+      { affiliate: 'Amarillo Testing and Engineering, Inc.' },
+      { affiliate: 'Michael Baker Jr. Inc.' },
+      { affiliate: 'Black & Veatch' },
+      { affiliate: 'Brown and Caldwell' },
+      { affiliate: 'Brown & Gay Engineering' },
+      { affiliate: 'Brown & Potts, LLP' },
+      { affiliate: 'Camp, Dresser & McKee' },
+      { affiliate: 'Carollo Engineers' },
+      { affiliate: 'CH2M Hill' },
+      { affiliate: 'Chiang, Patel & Yerby, Inc.' },
+      { affiliate: 'Espey Consultants, Inc.' },
+      { affiliate: 'Freese and Nichols' },
+      { affiliate: 'HDR, Inc.' },
+      { affiliate: 'Head Engineering Consultants Inc.' },
+      { affiliate: 'Huitt-Zollars' },
+      { affiliate: 'Jacobs Engineering' },
+      { affiliate: 'Kimley-Horn & Assoc.' },
+      { affiliate: 'Klotz Assoicates, Inc.' },
+      { affiliate: 'Lloyd Gosselink' },
+      { affiliate: 'LNV Engineering' },
+      { affiliate: 'Lockwood, Andrews & Newnam' },
+      { affiliate: 'Malcolm Pirnie, Inc.' },
+      { affiliate: 'National Assoication of Clean Water Agencies' },
+      { affiliate: 'Nellor Environmental Assoc.' },
+      { affiliate: 'Parkhill, Smith & Cooper, Inc' },
+      { affiliate: 'Parsons Water & Infrastructure' },
+      { affiliate: 'PENCCO, Inc.' },
+      { affiliate: 'Perkins Consultants' },
+      { affiliate: 'Stantec' },
+      { affiliate: 'Texas Municipal League' },
+      { affiliate: 'Texas Water Development Board' },
+      { affiliate: 'United Water' },
+      { affiliate: 'Water Environment Association of Texas (WEAT)' },
+      { affiliate: 'Young Professional Resources' },
+   ]
+%}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'center',
+         'category': 'TACWA',
+         'heading': 'About Us',
+         'image': '../assets/img/ocean.jpg'
+      }
+   %}
+
+   <section class="pb-22">
+      <div class="container">
+         <div class="content-block --tight  |  mx-auto">
+            {#   Overview   #}
+            <h2>Overview</h2>
+            <p>Our national group, NACWA, is a nationally recognized leader in environmental policy and a sought-after technical resource on water quality and ecosystem protection issues. They parallel the maturation of the nation’s most successful environmental law – the Clean Water Act. NACWA was established in 1970 by a group of individuals representing 22 large municipal sewerage agencies. They came together to secure federal funding for municipal wastewater treatment and discuss emerging national interest in improving the quality of the nation’s waters. Based upon the shared goal of effectively representing the interests and priorities of publicly-owned treatment works (POTWs), they formed what is now known as NACWA.</p>
+
+            <a href="../static/forms/join--1" class="btn --primary --dark" target="_blank">Join Now</a>
+
+            {#   Vision   #}
+            <h2>Vision</h2>
+            <p>Like NACWA, TACWA shares the same position in the protection of the State’s environmental treasures. In addition, we provide unique opportunities for public wastewater utility agencies to improve their effectiveness, enhance professional development, and achieve goals and objectives shared by POTWs across the state and nation. With the existence of TACWA and the good relationship we have with TCEQ, we help to shape the course of environmental protection well into the next century. TACWA members consider the protection of water quality to be our mission and our mandate.</p>
+
+            {#   Mission   #}
+            <h2>Mission</h2>
+            <p>A primary goal of TACWA is the protection and enhancement of water quality in Texas through the application of scientifically based and technically sound management of wastewater. TACWA maintains a key role in the development of environmental legislation, and works closely with the Texas Commission on Environmental Quality (TCEQ) and the Environmental Protection Agency (EPA) in the implementation of environmental programs.</p>
+         </div>
+      </div>
+
+      {#   Banner   #}
+      {% include '_components/static/banner'
+         with {
+            'classes': '--centered  |  my-16',
+            'heading': 'Become a Member',
+            'copy': 'At $50 per year, a WEAT membership provides ample benefit to you, your employer, and the environment as you gain access to networking and professional development events, service activities, and interaction with innovative technologies.'
+         }
+      %}
+
+      <div class="container">
+         <div class="content-block --tight  |  mx-auto">
+            <h2>Officers</h2>
+            <div class="officers-list">
+               {% for item in officers %}
+                  <div class="officers-list__item">
+                     <h3>{{ item.office }}</h3>
+                     <p class="">{{ item.name }}</p>
+                  </div>
+               {% endfor %}
+            </div>
+
+            {#   By Laws   #}
+            <h2>By Laws</h2>
+            {% include '_components/static/list--media'
+               with {
+                  media: [
+                     {
+                        title: 'TACWA-bylaws-2019.pdf',
+                        type: 'file',
+                        src: '../assets/placeholder/pdf_file--version-3.pdf'
+                     }
+                  ]
+               }
+            %}
+
+            {#   Links   #}
+            <h2>Links</h2>
+            {% include '_components/static/list--media'
+               with {
+                  media: [
+                     {
+                        title: 'National Association of Clean Water Agencies',
+                        type: 'link',
+                        src: 'http://example.com'
+                     },
+                     {
+                        title: 'Water Environment Federation',
+                        type: 'link',
+                        src: 'http://example.com'
+                     },
+                     {
+                        title: 'Water Environment Asscation of Texas',
+                        type: 'link',
+                        src: 'http://example.com'
+                     },
+                     {
+                        title: 'Texas Commission on Environmental Quality',
+                        type: 'link',
+                        src: 'http://example.com'
+                     }
+                  ]
+               }
+            %}
+
+            {#   Contact   #}
+            <h2>Contact</h2>
+            <div class="contact-card">
+               <div class="contact-card__container">
+                  <h3>
+                     TACWA<br>
+                     c/o Wes Kucera
+                  </h3>
+
+                  <p>Managing Director Water & Wastewater</p>
+
+               </div>
+               <div class="contact-card__action">
+                  <div class="contact-card__action__item">
+                     <div class="contact-card__action__item__icon">
+                        {{ global.utilityIcon("location", "h-6 w-5") }}
+                     </div>
+                     <p>
+                        City of Garland<br>
+                        2343 Forest Lane<br>
+                        Garland, TX 75042
+                     </p>
+                  </div>
+
+                  <div class="contact-card__action__item">
+                     <div class="contact-card__action__item__icon">
+                        {{ global.utilityIcon("phone", "h-6 w-4") }}
+                     </div>
+                     <p>(972) 205-3283</p>
+                  </div>
+
+                  <div class="contact-card__action__item">
+                     <div class="contact-card__action__item__icon">
+                        {{ global.utilityIcon("email", "h-5 w-6") }}
+                     </div>
+                     <a href="#">wkucera@garlandtx.gov</a>
+                  </div>
+               </div>
+            </div>
+
+            {#   Affiliates   #}
+            <h2>Corporate affiliates that support TACWA include:</h2>
+            <ul class="two-column-list">
+               {% for item in affiliates %}
+                  <li>{{ item.affiliate }}</li>
+               {% endfor %}
+            </ul>
+         </div>
+      </div>
+   </section>
+
+{% endblock %}

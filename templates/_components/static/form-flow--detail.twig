@@ -1,7 +1,21 @@
 {#   Form Flow - Detail  #}
 
+{% import '_macros/global' as global %}
+
+
 <div class="form-flow__detail">
-   <h3 class="heading --tiny  |  text-teal">Your Order</h3>
+   {#   Heading   #}
+   <h3 class="heading --tiny  |  text-teal">{{ heading }}</h3>
+   {#   Description   #}
    <p class="form-flow__detail__description">{{ description }}</p>
-   <p class="form-flow__detail__total">Total: {{ total }}</p>
+
+   {#   Total   #}
+   {% if total is defined %}
+      <p class="form-flow__detail__total">Total: {{ total }}</p>
+   {% endif %}
+
+   {#   Button   #}
+   {% if button_url is defined %}
+      {{ global.btn(button_url, 'btn --primary --light', button_text) }}
+   {% endif %}
 </div>

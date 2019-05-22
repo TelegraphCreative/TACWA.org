@@ -1,24 +1,89 @@
 {#   Page - Header   #}
-{% if type == 'border' %}
-   <header class="border-b border-grey-lighter  |  mt-12 mb-14 pb-6">
-{% else %}
-   <header class="mt-12 sm:mt-24">
-{% endif %}
 
-   <div class="container">
+{% import '_macros/global' as global %}
+
+
+<header class="page-header {% if type == 'border' %}--border{% elseif type == 'left' %}--left{% elseif type == 'center' %}--center{% endif %}">
+
+      {#   Standard Header   #}
       {% if type == 'standard' %}
 
-         <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-20 md:mb-32">{{ heading }}</h1>
+         <div class="container">
+            <h1>{{ heading }}</h1>
+         </div>
 
-      {% elseif type == 'Events' %}
 
-         <h2 class="font-semibold text-12 text-teal uppercase">{{ type }}</h2>
-         <h1 class="font-normal text-24 md:text-40 text-blue  |  max-w-md md:max-w-lg  |  mb-5">{{ heading }}</h1>
-
+      {#   Border Header   #}
       {% elseif type == 'border' %}
 
-         <h1 class="font-normal leading-tight text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg">{{ heading }}</h1>
+         <div class="container">
+            {#   Border With Tabs   #}
+            {% if tabs is defined %}
+               <h1>{{ heading }}</h1>
+               {% if tabs == 'true' %}
+                  <div class="page-header__tabs">
 
+                     <a href="../forms/logged-in--org-info" class="{% if activeTab == '1' %}--is-active{% endif %}" style="">Information</a>
+                     <a href="../forms/logged-in--org-membership" class="{% if activeTab == '2' %}--is-active{% endif %}" style="">Membership</a>
+                  </div>
+               {% endif %}
+
+            {#   Border With Link   #}
+            {% elseif link_url is defined %}
+
+               <div class="page-header__link">
+                  <h1>{{ heading }}</h1>
+
+                  {{ global.btn( link_url, 'btn --primary --light', link_text ) }}
+               </div>
+
+            {#   Simple Border   #}
+            {% else %}
+
+               <h1>{{ heading }}</h1>
+
+            {% endif %}
+         </div>
+
+
+      {#   Left Aligned Header   #}
+      {% elseif type == 'left' %}
+
+         <div class="container">
+            {#   With Category   #}
+            {% if category is defined %}
+               <h2>{{ category }}</h2>
+            {% endif %}
+
+            {#   With Link   #}
+            {% if button_url is defined %}
+               {{ global.link(button_url, button_text, 'link --arrow --back  |  mb-2 md:mb-4') }}
+            {% endif %}
+
+            <h1>{{ heading }}</h1>
+
+            {#   With Copy   #}
+            {% if copy is defined %}
+               <p>{{ copy }}</p>
+            {% endif %}
+         </div>
+
+
+      {#   Left Aligned Header   #}
+      {% elseif type == 'center' %}
+
+         <div class="container">
+            {#   With Category   #}
+            {% if category is defined %}
+               <h2>{{ category }}</h2>
+            {% endif %}
+
+            <h1>{{ heading }}</h1>
+         </div>
+
+         {% if image is defined %}
+            <div class="page-header__background" style="background-image: url({{ image }})"></div>
+         {% endif %}
       {% endif %}
-   </div>
+
 </header>

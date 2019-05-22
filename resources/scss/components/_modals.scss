@@ -1,0 +1,140 @@
+//
+// Modals
+//
+
+// Visibility
+.modal__container {
+   @apply
+      absolute invisible pin z-50;
+
+   // Modal Overlay
+   .modal__overlay {
+      @apply
+         fixed pin
+         bg-white opacity-0
+         timing-1 duration-3 property-all
+   }
+
+   .modal {
+      @apply
+         opacity-0
+         timing-1 duration-2 property-all
+   }
+
+   // When Visible
+   &.--is-visible {
+      @apply visible;
+
+      // Opacity Overlay
+      .modal__overlay {
+         @apply
+            opacity-50
+      }
+
+      .modal {
+         @apply
+            opacity-100
+      }
+   }
+}
+
+.modal__container {
+   @apply
+      flex items-center
+      px-4;
+
+   @screen sm {
+      @apply px-6
+   }
+
+
+   // Modal
+   .modal {
+      @apply
+         relative z-50
+         bg-white rounded-lg
+         max-w-md w-full
+         mx-auto;
+
+      box-shadow: 0 31px 41px 0 rgba(33,43,54,0.20), 0 2px 16px 0 rgba(33,43,54,0.08);
+
+      // Header
+      .modal__header {
+         @apply
+            flex items-center justify-between
+            h-16
+            border-b border-grey-lighter
+            p-4;
+
+         @screen sm {
+            @apply px-6
+         }
+
+         // Title
+         .modal__title {
+            @apply
+               font-medium leading-tight text-18 text-grey-dark
+               pt-px;
+
+            @screen sm {
+               @apply text-20
+            }
+
+            @screen md {
+               @apply text-24
+            }
+         }
+
+         // Close Button
+         .modal__close-btn {
+            @apply text-grey;
+
+            height: 14px;
+            width: 14px;
+
+            &:hover {
+               @apply text-grey-dark
+            }
+
+            @screen sm {
+               height: 18px;
+               width: 18px
+            }
+         }
+      }
+
+      // Copy
+      .modal__copy {
+         @apply pt-8 pb-10 px-4;
+
+         @screen sm {
+            @apply pt-10 pb-12 px-6
+         }
+
+         p {
+            @apply text-grey-dark text-14;
+
+            @screen sm {
+               @apply text-16
+            }
+
+            @screen md {
+               @apply text-18
+            }
+         }
+      }
+
+      // Action
+      .modal__action {
+         @apply
+            flex items-center justify-end
+            border-t border-grey-lighter
+            h-20
+            px-4;
+
+         @screen sm {
+            @apply px-6
+         }
+      }
+   }
+}

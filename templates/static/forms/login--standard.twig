@@ -13,7 +13,7 @@
       <div class="form-flow__wrapper">
 
          {#   Form   #}
-         <form action="" class="form-group">
+         <form action="" class="form-group" data-validate>
             <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Sign In</h1>
 
             {#   Email   #}
@@ -40,3 +40,6 @@
    </div>
 
 {% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

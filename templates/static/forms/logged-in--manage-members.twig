@@ -1,0 +1,76 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{#   User Logged In   #}
+{% set loggedIn = 'true' %}
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Manage Members',
+         'link_url': '../forms/logged-in--manage-members--invite',
+         'link_text': 'Invite Members'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      <h2>Active Members</h2>
+
+      <div class="flex flex-wrap" style="max-width: 50rem">
+         {% for i in 1..6 %}
+            <div class="sm:flex sm:items-center sm:justify-between  |  w-full  |  mb-6 pr-4 pb-6  |  border-b border-grey-lighter">
+               <div class="mb-3 sm:mb-0">
+                  <h3 class="font-normal leading-tight text-16  |  mb-1">Bill Gause</h3>
+                  <p class="leading-tight">astone@dentonwaterutil.org</p>
+               </div>
+
+               {{ global.btnButton( 'btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger', 'Deactivate Account') }}
+            </div>
+         {% endfor %}
+      </div>
+   </div>
+
+
+   {#   Deactivate Module   #}
+   <div class="modal__container  |  js--deactivate-modal">
+      {#   Overlay   #}
+      <div class="modal__overlay"></div>
+
+      {#   Modal   #}
+      <div class="modal">
+         {#   Header   #}
+         <div class="modal__header">
+            <h1 class="modal__title">Deactivate account?</h1>
+
+            <button class="modal__close-btn  |  js--modal__close-btn">
+               {{ global.utilityIcon('close') }}
+            </button>
+         </div>
+
+         {#   Copy   #}
+         <div class="modal__copy">
+            <p>Are you sure you want to deactive this account? Once deactivated, this member will no longer be able to sign in to TACWA.org</p>
+         </div>
+
+         {#   Action   #}
+         <div class="modal__action">
+            {#   Cancel   #}
+            <button class="btn --simple  |  mr-4  |  js--modal__cancel-btn" type="button">Cancel</button>
+
+            {#   Deactivate   #}
+            <input type="submit" value="Deactivate" class="btn --primary --caution">
+         </div>
+      </div>
+   </div>
+
+
+{% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/reveal-modal.js') %}

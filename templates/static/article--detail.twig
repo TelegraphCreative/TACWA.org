@@ -1,0 +1,99 @@
+{#   Article - Detail   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'left',
+         'button_url': '/static/article--index',
+         'button_text': 'Regulatory Affairs',
+         'heading': 'Article Title Here'
+      }
+   %}
+
+   <section class="article">
+      <div class="container  |  lg:relative">
+         {#   Article Detail   #}
+         <div class="article__detail">
+            <span class="article__category">Article Category</span>
+            <h4 class="article__author">by Macia Gonzalez</h4>
+            <time class="article__publish-date">March 28, 2019</time>
+         </div>
+
+
+         {#    Article Body   #}
+         <div class="article__body">
+            {#   Primary   #}
+            <div class="content-block">
+               <h1>Meeting Theme</h1>
+               <p>With ever increasing energy costs, aeration control systems to achieve energy savings has become the focus at water resource recovery facilities (WRRFs). Advanced aeration control systems not only provide significant operational <a href="">cost savings</a> but also improved process performance at WRRFs.</p>
+
+               <blockquote>
+                  <span>
+                     Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.
+                  </span>
+               </blockquote>
+
+               <img src="../assets/placeholder/article.jpg" alt="">
+
+               <h2>Heading Above List</h2>
+               <ul>
+                  <li>Information Architecture — February 1, 2019</li>
+                  <li>Content Strategy — February 8, 2019</li>
+                  <li>Visual Design — March 1, 2019</li>
+                  <li>Frontend Implementation — April 5, 2019</li>
+                  <li>Backend Development — April 26, 2019</li>
+                  <li>Testing, Training, Launch — May 15, 2019</li>
+               </ul>
+
+               <a href="https://google.com" class="btn --primary --dark" target="_blank">Inline Button</a>
+            </div>
+
+            {#   Secondary   #}
+            <div class="article__body__secondary">
+               {#   Media   #}
+               <h2>Attachments & Links</h2>
+               {% include '_components/static/list--media'
+                  with {
+                     media: [
+                        {
+                           title: 'pdf_file--version-3.pdf',
+                           type: 'file',
+                           src: '../assets/placeholder/pdf_file--version-3.pdf'
+                        },
+                        {
+                           title: 'sample_video_with_nice_long_filename.mp4',
+                           type: 'file',
+                           src: '../assets/placeholder/sample_video_with_nice_long_filename.mp4'
+                        },
+                        {
+                           title: 'Meeting Notes 03-12-2019',
+                           type: 'link',
+                           src: 'http://example.com/'
+                        },
+                        {
+                           title: 'Letter to Senators',
+                           type: 'link',
+                           src: 'http://example.com/'
+                        }
+                     ]
+                  }
+               %}
+
+               {#   Citations   #}
+               <div class="article__citations">
+                  <h2>Citations</h2>
+                  <p>Author(s). "Title of Article." Title of Periodical, Day Month Year, pages. Poniewozik, James. "TV Makes a Too-Close Call." Time, 20 Nov. 2000, pp. 70-71. Buchman, Dana. "A Special Education." Good Housekeeping, Mar. 2006, pp. 143-48.</p>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </section>
+
+{% endblock %}

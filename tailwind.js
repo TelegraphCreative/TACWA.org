@@ -62,6 +62,13 @@ let colors = {
   'blue-light': '#b7dee5',
   'blue-lighter': '#f7f9fd',
   'blue-lightest': '#f6fbfd',
+
+  'green-dark': '#35B170',
+  'green': '#56d191',
+
+  'red-dark': '#cb3a37',
+  'red': '#e84f4c',
+  'red-lighter': '#f73d59',
 }
 
 module.exports = {
@@ -190,6 +197,7 @@ module.exports = {
   textSizes: {
     '11': '.6875rem',  // 11px
     '12': '.75rem',    // 12px
+    '13': '.8125rem',  // 13px
     '14': '.875rem',   // 14px
     '16': '1rem',      // 16px
     '18': '1.125rem',  // 18px
@@ -199,15 +207,6 @@ module.exports = {
     '30': '1.875rem',  // 30px
     '32': '2rem',      // 32px
     '40': '2.5rem',    // 40px
-    //'xs': '.75rem',     // 12px
-    //'sm': '.875rem',    // 14px
-    //'base': '1rem',     // 16px
-    //'lg': '1.125rem',   // 18px
-    //'xl': '1.25rem',    // 20px
-    //'2xl': '1.5rem',    // 24px
-    //'3xl': '1.875rem',  // 30px
-    //'4xl': '2.25rem',   // 36px
-    //'5xl': '3rem',      // 48px
   },
 
 
@@ -522,6 +521,7 @@ module.exports = {
     '12': '3rem',
     '13': '3.25rem',
     '16': '4rem',
+    '17': '4.25rem',
     '20': '5rem',
     '24': '6rem',
     '26': '6.5rem',
@@ -658,13 +658,16 @@ module.exports = {
     '4': '1rem',
     '5': '1.25rem',
     '6': '1.5rem',
+    '7': '1.75rem',
     '8': '2rem',
     '10': '2.5rem',
     '12': '3rem',
     '14': '3.5rem',
+    '15': '3.75rem',
     '16': '4rem',
     '18': '4.5rem',
     '20': '5rem',
+    '22': '5.5rem',
     '24': '6rem',
     '32': '8rem',
   },
@@ -702,10 +705,12 @@ module.exports = {
     '11': '2.75rem',
     '12': '3rem',
     '14': '3.5rem',
+    '15': '3.75rem',
     '16': '4rem',
     '20': '5rem',
     '24': '6rem',
     '32': '8rem',
+    '1/3': '33.33333%',
   },
 
 

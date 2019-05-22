@@ -7,14 +7,14 @@
 {% block content %}
 
    {#   Page Header   #}
-   {# {% include '_components/page-header'
+   {% include '_components/page-header'
       with {
          'type': 'center',
          'category': 'TACWA',
          'heading': entry.title,
          'image': '../assets/img/ocean.jpg'
       }
-   %} #}
+   %}
 
 
    {% include '_components/content-blocks' with { blocks: entry.contentBlocks } %}
