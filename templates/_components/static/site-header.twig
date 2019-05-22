@@ -13,12 +13,12 @@
 
       {#   Action   #}
       <div class="site-header__action">
-         {% if loggedIn is defined %}
+         {% if craft.session.isLoggedIn %}
             {#   User - Logged In   #}
             {% include '_components/static/site-user-menu' %}
          {% else %}
             {#   User - Login   #}
-            {{ global.btn('/static/forms/login--standard', 'account__login-btn  |  btn --login', 'Login') }}
+            {{ global.btn('/login', 'account__login-btn  |  btn --login', 'Login') }}
          {% endif %}
 
 
