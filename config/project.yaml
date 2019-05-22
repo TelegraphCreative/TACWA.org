@@ -89,7 +89,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558551628
+dateModified: 1558554267
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1033,6 +1033,32 @@ fields:
       localizeBlocks: false
     contentColumnType: string
     fieldGroup: 5bdf5ddd-2b30-406f-9569-78ad50940967
+  c7cbbe89-2df1-428f-a9d4-1d7cf33443a1:
+    name: 'Fullwidth Image'
+    handle: fullwidthImage
+    instructions: ''
+    searchable: false
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: '1'
+      defaultUploadLocationSource: 'volume:c6fbe1e7-8a4c-4883-b313-c3ab322d8007'
+      defaultUploadLocationSubpath: ''
+      singleUploadLocationSource: 'volume:264c204b-bf72-4045-9802-bce191b5d329'
+      singleUploadLocationSubpath: ''
+      restrictFiles: '1'
+      allowedKinds:
+        - image
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: large
+      limit: '1'
+      selectionLabel: Image
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: 2fc6dea0-1e25-48a8-a8c7-566245fda0d3
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -1705,8 +1731,8 @@ matrixBlockTypes:
                 sortOrder: 3
   0c7e6ade-3abe-4695-aa3a-e0c3893f0353:
     field: 287f12cd-234f-4d5b-99e5-190535c91a65
-    name: 'Personal List'
-    handle: personalList
+    name: 'Personel List'
+    handle: personelList
     sortOrder: 7
     fields:
       fc339958-f21f-4f7b-9cc2-a6da629528df:
@@ -1762,49 +1788,6 @@ matrixBlockTypes:
               57a4f996-0859-4fcb-9039-bfdf1abcf5cf:
                 required: true
                 sortOrder: 2
-  8665ebbd-1235-4de0-99a0-706e57255d83:
-    field: 287f12cd-234f-4d5b-99e5-190535c91a65
-    name: 'Fullwidth Image'
-    handle: fullwidthImage
-    sortOrder: 8
-    fields:
-      0fc52532-f333-43e1-8956-127884318e0c:
-        name: Image
-        handle: image
-        instructions: ''
-        searchable: true
-        translationMethod: site
-        translationKeyFormat: null
-        type: craft\fields\Assets
-        settings:
-          useSingleFolder: ''
-          defaultUploadLocationSource: 'volume:264c204b-bf72-4045-9802-bce191b5d329'
-          defaultUploadLocationSubpath: ''
-          singleUploadLocationSource: 'volume:c6fbe1e7-8a4c-4883-b313-c3ab322d8007'
-          singleUploadLocationSubpath: ''
-          restrictFiles: '1'
-          allowedKinds:
-            - image
-          sources:
-            - 'volume:264c204b-bf72-4045-9802-bce191b5d329'
-          source: null
-          targetSiteId: null
-          viewMode: large
-          limit: '1'
-          selectionLabel: Image
-          localizeRelations: false
-        contentColumnType: string
-        fieldGroup: null
-    fieldLayouts:
-      9a9d283e-696d-4a10-93d4-a487e4308b8b:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              0fc52532-f333-43e1-8956-127884318e0c:
-                required: true
-                sortOrder: 1
   d2d1f5c4-d5f3-4a0b-83cd-73a41fa98b4c:
     field: 4fed9fe4-96d0-433f-8c55-578ac1d8ea75
     name: Header
@@ -3063,11 +3046,14 @@ sections:
                 sortOrder: 1
                 fields:
                   1c13b276-95e9-4764-8a6a-136978342270:
-                    required: false
+                    required: true
                     sortOrder: 1
+                  c7cbbe89-2df1-428f-a9d4-1d7cf33443a1:
+                    required: false
+                    sortOrder: 2
                   287f12cd-234f-4d5b-99e5-190535c91a65:
                     required: true
-                    sortOrder: 2
+                    sortOrder: 3
               -
                 name: 'Additional Info'
                 sortOrder: 2
@@ -3090,7 +3076,7 @@ sections:
                 sortOrder: 1
                 fields:
                   1c13b276-95e9-4764-8a6a-136978342270:
-                    required: false
+                    required: true
                     sortOrder: 1
                   12fa7cf0-1265-4316-8935-d7d94bd377fe:
                     required: true

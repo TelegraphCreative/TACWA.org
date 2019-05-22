@@ -19,10 +19,10 @@
         
         {# Contact Card #}
         {% case "contactCard" %}
-            {% include '_components/content-blocks/article' %}
+            {% include '_components/content-blocks/contact-card' %}
         
         {# Text List 2 Col #}
-        {% case "textList" %}
+        {% case "textList2Column" %}
             {% include '_components/content-blocks/text-list' %}
         
         {# Billboard #}
@@ -32,14 +32,15 @@
         {# Personel List #}
         {% case "personelList" %}
             {% include '_components/content-blocks/personel-list' %}
-
-        {# Fullwidth Image #}
-        {% case "fullwidthImage" %}
-            {% include '_components/content-blocks/fullwidth-image' %}
-
+        
         
         {% default %}
-            This block isn't defined!
+            <div class="py-12 text-center text-sm">
+                    <p>This block isn't defined, but it's coming in with this info:</p>
+                    <p><strong>{{ block.type }}</strong></p>
+            </div>
+            
+
         
         {% endswitch %}
     {% endfor %}

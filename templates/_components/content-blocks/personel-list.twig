@@ -1,13 +1,19 @@
 {% import '_macros/global' as global %}
 
 {% set list = block.list %}
-{% if block.header|length %}
-    {{ block.header }}
-{% endif %}
-
-{% if list|length %}
-    {% for item in list %}
-        {{ item.fullName}}
-        {{ item.role}}
-    {% endfor %}
-{% endif %}
+<div class="container">
+    <div class="content-block --tight  |  mx-auto">
+    {% if block.header|length %}
+        <h2>{{ block.header }}</h2> 
+    {% endif %}
+    {% if list|length %}
+    <div class="officers-list">
+        {% for item in list %}
+            <div class="officers-list__item">
+                <h3>{{ item.role }}</h3>
+                <p class="">{{ item.fullName}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>

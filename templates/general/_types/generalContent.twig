@@ -7,15 +7,18 @@
 {% block content %}
 
    {#   Page Header   #}
+   {% set headerImage = false %}
+   {% if entry.fullwidthImage.one()|length %}
+      {% set headerImage = entry.fullwidthImage.one().url %}
+   {% endif %}
    {% include '_components/page-header'
       with {
          'type': 'center',
-         'category': 'TACWA',
+         'category': entry.pageLabel,
          'heading': entry.title,
-         'image': '../assets/img/ocean.jpg'
+         'image': headerImage
       }
    %}
-
 
    {% include '_components/content-blocks' with { blocks: entry.contentBlocks } %}
    

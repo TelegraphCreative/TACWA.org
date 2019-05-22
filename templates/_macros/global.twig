@@ -41,6 +41,15 @@
    </a>
 {% endmacro %}
 
+{% macro linkIt(source, classes) %}	
+   {% if source %}	
+        {# More options here: https://github.com/fruitstudios/craft-linkit/blob/master/README.md #}	
+        {% set attributes = {	
+            class: classes	
+        } %}	
+        {{ source.link(attributes) }}	
+    {% endif %}	
+{% endmacro %}
 
 {# Utility Icons #}
 {% macro utilityIcon(icon, classes) %}
