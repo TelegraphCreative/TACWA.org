@@ -8,7 +8,7 @@ categoryGroups:
     siteSettings:
       0d0840a6-2776-46d9-b404-951195224e26:
         hasUrls: true
-        uriFormat: 'regulatory-affairs-categories/{slug}'
+        uriFormat: 'articles/{slug}'
         template: articles/_category
   f967e704-63ae-4be4-8fa2-54fe2456024b:
     name: 'Main Menu'
@@ -131,7 +131,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558618509
+dateModified: 1558631771
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA

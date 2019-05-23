@@ -4,7 +4,6 @@
     {% for block in blocks.all() %}
         {% switch block.type %}
 
-
         {# Article Body #}
         {% case "articleBody" %}
             {% include '_components/content-blocks/article' %}
@@ -33,6 +32,9 @@
         {% case "personelList" %}
             {% include '_components/content-blocks/personel-list' %}
         
+        {# Hero Image #}
+        {% case "heroImage" %}
+            {% include '_components/content-blocks/hero-image' %}
         
         {% default %}
             <div class="py-12 text-center text-sm">
@@ -40,8 +42,6 @@
                     <p><strong>{{ block.type }}</strong></p>
             </div>
             
-
-        
         {% endswitch %}
     {% endfor %}
     

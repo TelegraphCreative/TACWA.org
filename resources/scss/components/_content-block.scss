@@ -35,29 +35,30 @@
    blockquote {
       @apply
          text-20 text-blue
-         my-12 px-4;
+         my-12;
+         // px-4
 
-      @screen sm {
-         @apply px-6
-      }
+      // @screen sm {
+      //    @apply px-6
+      // }
 
       @screen md {
-         @apply
-            text-24
-            mt-15 mb-20 px-8
+         @apply text-24
+            mt-15 mb-20;
+            // px-8
       }
 
-      @screen lg {
-         @apply px-24
-      }
+      // @screen lg {
+      //    @apply px-24
+      // }
 
       span {
+         @apply inline;
          line-height: 1.66;
-
          background-image: linear-gradient(to bottom, rgba(133, 215, 229, .5), rgba(133, 215, 229, .5));
          background-position: 0 .9166666667em;
          background-repeat: repeat-x;
-         background-size: 1px 16px;
+         background-size: 1px 8px;
       }
    }
 
