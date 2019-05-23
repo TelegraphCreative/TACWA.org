@@ -1,6 +1,7 @@
 {% import '_macros/global' as global %}
 {% set list = block.list %}
-<div class="container">
+
+<div class="{% if entry.type != 'articles'  %}container{% endif %}">
     <div class="content-block --tight  |  mx-auto">
 
     {% if block.header|length %}

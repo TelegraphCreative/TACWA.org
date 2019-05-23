@@ -8,7 +8,8 @@
    
    {# Settings #}
    {% set searchQuery = craft.app.request.param('query') %}
-   {% set entriesPer = entry.entriesPerPage %}
+   {# {% set entriesPer = entry.entriesPerPage %} #}
+   {% set entriesPer = 1 %}
    {% set allArticles = craft.entries.section('articles') %}
    {% set articleCategories = craft.categories.group('regulatoryAffairsCategories') %}
 
@@ -59,10 +60,10 @@
             <div class="article-index__index">
                
                {# All Articles #}
-               {% paginate allArticles as pageInfo, articlesList %}
+               {% paginate allArticles.limit(entriesPer) as pageInfo, articlesList %}
                {# UNLESS Query Results #}
                {% if searchQuery %}
-                  {% paginate relatedArticles as pageInfo, articlesList %}
+                  {% paginate relatedArticles.limit(entriesPer) as pageInfo, articlesList %}
                {% endif %}
 
                {# List #}
@@ -73,6 +74,9 @@
                {% else %}
                   Looks like there aren't any articles right now!
                {% endif %}
+
+               {#   Pagination   #}
+               {% include '_components/static/pagination' with { searchQuery: searchQuery } %}
             </div>
 
          </div>

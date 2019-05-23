@@ -6,7 +6,7 @@ mix
 	.setPublicPath('./web')
 
 	// The App Build
-	//.js('resources/js/app.js', 'assets/js')
+	.js('resources/js/app.js', 'assets/js')
 	.sass('resources/scss/app.scss', 'assets/css')
 	.sass('resources/scss/styleguide.scss', 'assets/css')
 	.copyDirectory('resources/placeholder', 'web/assets/placeholder')

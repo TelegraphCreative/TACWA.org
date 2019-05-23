@@ -1,0 +1,48 @@
+{#   Article - Detail   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+
+   {% include '_components/page-header'
+      with {
+         'type': 'left',
+         'button_url': '/articles',
+         'button_text': 'Regulatory Affairs',
+         'heading': entry.title
+      }
+   %}
+
+    {% set category = entry.category.one() %}
+
+   <section class="article">
+      <div class="container  |  lg:relative">
+         {#   Article Detail   #}
+         <div class="article__detail">
+            <a href="{{ category.url }}" class="article__category">
+                {{ category.title }}
+            </a>
+            <h4 class="article__author">by {{ entry.author.fullName }}</h4>
+            <time class="article__publish-date">{{ entry.postDate| date('M d, Y') }}</time>
+         </div>
+
+        <div class="article__body">
+            {% include '_components/content-blocks' with { blocks: entry.articleBlocks } %}
+
+            {#   Citations   #}
+            {% if entry.citations|length %}
+            <div class="article__body__secondary">
+               <div class="article__citations">
+                  <h2>Citations</h2>
+                  <p>{{ entry.citations }}</p>
+               </div>
+            </div>               
+            {% endif %}
+        </div>
+
+      </div>
+   </section>
+
+{% endblock %}
