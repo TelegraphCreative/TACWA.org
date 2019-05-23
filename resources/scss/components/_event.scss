@@ -97,11 +97,13 @@
                }
 
                img {
-                  @apply max-h-16;
+                  @apply block max-h-16;
 
                   @screen lg {
                      @apply max-h-20
                   }
+
+                  max-width: 80%!important;
                }
             }
          }

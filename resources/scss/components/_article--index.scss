@@ -60,7 +60,7 @@
             height: 16px;
             width: 10px;
          }
-         
+
          /*
          svg {
             @apply
@@ -140,11 +140,15 @@
          // Info Heading
          .article__info__heading {
             @apply
-               font-normal leading-tight text-20 text-blue
+               font-normal leading-tight no-underline text-20 text-blue
                mb-1;
 
             @screen lg {
                @apply text-24
+            }
+
+            &:hover {
+               @apply text-teal-light
             }
          }
 

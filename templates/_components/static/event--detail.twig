@@ -55,7 +55,7 @@
             <p>{{ item.copy|raw }}</p>
 
             {% if item.link_text is defined %}
-               <a href="{{ item.link_url }}">{{ item.link_text }}</a>
+               <a href="{{ item.link_url }}" target="_blank">{{ item.link_text }}</a>
             {% endif %}
          </div>
       {% endfor %}

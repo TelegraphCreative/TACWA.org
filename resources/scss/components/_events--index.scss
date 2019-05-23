@@ -59,6 +59,21 @@
                      @apply mb-1
                   }
 
+                  a {
+                     @apply
+                        block
+                        font-medium leading-tight no-underline text-20 text-blue
+                        mb-2;
+
+                     @screen md {
+                        @apply text-24
+                     }
+
+                     &:hover {
+                        @apply text-teal-light
+                     }
+                  }
+
                   h4 {
                      @apply
                         font-medium leading-tight text-20 text-blue

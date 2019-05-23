@@ -13,6 +13,22 @@
                 url: "/"
             },
             {
+                name: "About",
+                url: "/static/about"
+            },
+            {
+                name: "Article Index",
+                url: "/static/article--index"
+            },
+            {
+                name: "Article Detail",
+                url: "/static/article--detail"
+            },
+            {
+                name: "Bill Tracker",
+                url: "/static/bill-tracker"
+            },
+            {
                 name: "Events Index",
                 url: "/static/events--index"
             },
@@ -22,7 +38,7 @@
             },
             {
                 name: "Event Detail (past)",
-                url: "/static/forms/events--detail--past-event"
+                url: "/static/events--detail--past-event"
             },
             {
                 name: "Event Reg. - Contact Guest",
@@ -77,28 +93,28 @@
                 url: "/static/forms/login--standard"
             }
         ]
-    } 
+    }
 %}
 
 
 {# Base Layout #}
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en-US">
     <head>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta charset="utf-8" /> 
+        <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
         <meta name="referrer" content="origin-when-cross-origin" />
-        
+
         {% do view.registerCssFile('/assets/css/styleguide.css') %}
         {% do view.registerCssFile('/assets/css/app.css') %}
 
         {# Favicons #}
         {% include '_components/site-favicons' %}
 
-    </head> 
+    </head>
     <body>
         <div class="site-container" id="app">
 
@@ -139,7 +155,7 @@
 
                 {# Footer #}
                 <div class="py-12 container gutter"></div>
-                
+
             </main>
 
         </div>
@@ -148,6 +164,6 @@
 
     {# {% do view.registerJsFile('/assets/js/app.js') %} #}
     {% do view.registerJsFile('/assets/js/styleguide.js') %}
-	
+
 </html>
 {%- endminify -%}

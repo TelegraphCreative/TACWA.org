@@ -2,6 +2,7 @@
 // Form
 //
 
+
 // Form Group
 .form-group {
    @apply
@@ -93,6 +94,15 @@
          // Error
          &.error {
             @apply border-red-lighter
+         }
+
+         // Hide Select Arrow in IE 11
+         &::-ms-expand {
+            @apply hidden
+         }
+
+         &::-webkit-input-placeholder {
+            padding-top: 4px;
          }
       }
    }

@@ -79,7 +79,9 @@
          }
          */
 
-         @apply flex items-center;
+         @apply
+            flex items-center
+            ml-auto;
 
          @screen sm {
             .btn.--site-menu {
