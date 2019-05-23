@@ -1,0 +1,81 @@
+{#   Article - Index   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+   
+   {# Settings #}
+   {% set searchQuery = craft.app.request.param('query') %}
+   {% set entriesPer = entry.entriesPerPage %}
+   {% set allArticles = craft.entries.section('articles') %}
+   {% set articleCategories = craft.categories.group('regulatoryAffairsCategories') %}
+
+   {# Header IF Query Results  #}
+   {% if searchQuery %}
+      {% set relatedArticles = allArticles.search(searchQuery) %} 
+      {% set queryCount = relatedArticles.count()  %} 
+      {% if queryCount > 1 %}
+         {% set searchResultsCopy = 'Showing ' ~ queryCount ~ ' results. <a class="text-grey-light" href="/articles">View all articles.</a>' %}
+      {% elseif queryCount == 0 %}
+         {% set searchResultsCopy = 'No results' %}
+      {% else %}
+         {% set searchResultsCopy = 'Showing ' ~ queryCount ~ ' result. <a class="text-grey-light" href="/articles">View all articles.</a>' %}
+      {% endif %}
+
+      {#   Page Header   #}
+      {% include '_components/page-header'
+         with {
+            'type': 'left',
+            'category': 'Searched for: ' ~ searchQuery,
+            'heading': 'Search Results',
+            'copy': searchResultsCopy
+         }
+      %}
+
+   {% else %}
+
+      {#   Default Page Header   #}
+      {% include '_components/page-header'
+         with {
+            'type': 'left',
+            'category': entry.pageLabel,
+            'heading': entry.title,
+            'copy': entry.pageDescription
+         }
+      %}
+   {% endif %}
+
+   <section class="bg-gradient --top-0">
+      {#   Event Index   #}
+   
+         <div class="article-index  pt-4 mt-20   events-index  |  container">
+
+            {# Filters/Search #}
+            {% include '_components/articles-filter-bar' with { categoryGroup: articleCategories, channel: allArticles } %}
+
+            {# Articles #}
+            <div class="article-index__index">
+               
+               {# All Articles #}
+               {% paginate allArticles as pageInfo, articlesList %}
+               {# UNLESS Query Results #}
+               {% if searchQuery %}
+                  {% paginate relatedArticles as pageInfo, articlesList %}
+               {% endif %}
+
+               {# List #}
+               {% if articlesList|length %}
+                  {% for entry in articlesList %}
+                    {% include '_components/article-card' with { content: entry } %}
+                  {% endfor %}
+               {% else %}
+                  Looks like there aren't any articles right now!
+               {% endif %}
+            </div>
+
+         </div>
+      
+   </section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{#   Bill Tracker   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/page-header'
+      with {
+         'type': 'center',
+         'category': entry.pageLabel,
+         'heading': entry.title,
+      }
+   %}
+
+   <section class="container">
+
+      {# Content Blocks #}
+      {% include '_components/content-blocks/article' with { block: entry } %}      
+
+      {# Bill Tracker List #}
+      {% include '_components/bill-list' with { blocks: entry.billsList } %}
+      
+   </section>
+
+{% endblock %}

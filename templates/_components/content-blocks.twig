@@ -1,0 +1,49 @@
+
+{% if blocks|length %}
+
+    {% for block in blocks.all() %}
+        {% switch block.type %}
+
+
+        {# Article Body #}
+        {% case "articleBody" %}
+            {% include '_components/content-blocks/article' %}
+        
+        {# Button #}
+        {% case "button" %}
+            {% include '_components/content-blocks/button' %}
+        
+        {# Link Asset List #}
+        {% case "linkAssetList" %}
+            {% include '_components/content-blocks/link-asset-list' %}
+        
+        {# Contact Card #}
+        {% case "contactCard" %}
+            {% include '_components/content-blocks/contact-card' %}
+        
+        {# Text List 2 Col #}
+        {% case "textList2Column" %}
+            {% include '_components/content-blocks/text-list' %}
+        
+        {# Billboard #}
+        {% case "billboard" %}
+            {% include '_components/content-blocks/billboard' %}
+
+        {# Personel List #}
+        {% case "personelList" %}
+            {% include '_components/content-blocks/personel-list' %}
+        
+        
+        {% default %}
+            <div class="py-12 text-center text-sm">
+                    <p>This block isn't defined, but it's coming in with this info:</p>
+                    <p><strong>{{ block.type }}</strong></p>
+            </div>
+            
+
+        
+        {% endswitch %}
+    {% endfor %}
+    
+
+{% endif %}

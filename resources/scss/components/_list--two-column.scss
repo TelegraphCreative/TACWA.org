@@ -1,0 +1,42 @@
+//
+// List - Two Column
+//
+
+.two-column-list {
+   @apply mt-5;
+
+   @media screen and (min-width: 22.5rem) {
+      columns: 2;
+      column-gap: 1.5rem
+   }
+
+   @screen sm {
+      column-gap: 3rem
+   }
+
+   @screen md {
+      @apply mt-8
+   }
+
+   @screen lg {
+      column-gap: 2rem
+   }
+
+   li {
+      @apply
+         text-14
+         w-full
+         mb-3;
+
+      line-height: 16px;
+
+      @media screen and (min-width: 22.5rem) {
+         @apply mb-4
+      }
+
+      @screen md {
+         @apply text-16 mb-2;
+         line-height: 24px;
+      }
+   }
+}

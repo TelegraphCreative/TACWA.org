@@ -18,11 +18,6 @@
 
    <section class="event">
       <div class="container  |  lg:relative">
-         {{ global.link('/events', 'Upcoming Events', 'link --arrow --back  |  mb-2 md:mb-4') }}
-         <h1>{{ event.title }}</h1>
-
-		 {% set pastEvent = (event.startDateLocalized|date('Ymd') < now|date('Ymd')) %}
-
          {#   Event Details   #}
          <div class="event__detail">
 		   {#   Action   #}
@@ -143,6 +138,7 @@
 			{% if event.attachments %}
             {#   Media   #}
             <div class="event__info__item">
+               <h2>Attachments & Links</h2>
                {% include '_components/static/list--media'
                   with {
                      media: event.attachments

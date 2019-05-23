@@ -15,16 +15,12 @@
                 "reference": "7b32a4bc0a247b07490dc57399aaaa06b5b32632",
                 "shasum": ""
             },
-            "require-dev": {
-                "phpunit/phpunit": "~3.7.0"
-            },
             "type": "library",
             "autoload": {
                 "psr-0": {
                     "Thumbor": "lib"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1597,11 +1593,11 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.7",
+            "version": "2.1.8",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/709f21f92707308cdf8f9bcfa1af4cb26586521e",
-                "reference": "709f21f92707308cdf8f9bcfa1af4cb26586521e",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/c26463ff9241f27907112fbcd0c86fa670cfef98",
+                "reference": "c26463ff9241f27907112fbcd0c86fa670cfef98",
                 "shasum": ""
             },
             "require": {
@@ -1645,7 +1641,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-12-04T22:38:24+00:00"
+            "time": "2019-05-16T22:02:54+00:00"
         },
         {
             "name": "elvanto/litemoji",
@@ -2366,11 +2362,11 @@
         },
         {
             "name": "icanboogie/inflector",
-            "version": "v1.4.4",
+            "version": "v1.5.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ICanBoogie/Inflector/zipball/a875d3c16215327e1a2555592b167ae2591c5c2f",
-                "reference": "a875d3c16215327e1a2555592b167ae2591c5c2f",
+                "url": "https://api.github.com/repos/ICanBoogie/Inflector/zipball/fb6ca7977f8a7ebb46aff0183ee868d798f77ab8",
+                "reference": "fb6ca7977f8a7ebb46aff0183ee868d798f77ab8",
                 "shasum": ""
             },
             "require": {
@@ -2409,7 +2405,7 @@
                 "singularize",
                 "underscore"
             ],
-            "time": "2017-06-30T13:16:14+00:00"
+            "time": "2019-05-21T19:05:31+00:00"
         },
         {
             "name": "imgix/imgix-php",
@@ -2566,10 +2562,6 @@
             "require": {
                 "php": ">=5.4.0"
             },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.13",
-                "phpunit/phpunit": "~4.8|~5.7"
-            },
             "suggest": {
                 "ext-gd": "to use the GD image adapter.",
                 "ext-gmagick": "to use the Gmagick image adapter.",
@@ -2581,7 +2573,6 @@
                     "ColorThief\\": "lib/ColorThief"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "CC-BY-2.5"
             ],
@@ -2604,11 +2595,11 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.51",
+            "version": "1.0.52",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/755ba7bf3fb9031e6581d091db84d78275874396",
-                "reference": "755ba7bf3fb9031e6581d091db84d78275874396",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c5a5097156387970e6f0ccfcdf03f752856f3391",
+                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391",
                 "shasum": ""
             },
             "require": {
@@ -2679,7 +2670,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-03-30T13:22:34+00:00"
+            "time": "2019-05-20T20:21:14+00:00"
         },
         {
             "name": "league/html-to-markdown",
@@ -3637,7 +3628,6 @@
                     "nystudio107\\imageoptimize\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -3649,8 +3639,8 @@
             ],
             "description": "Automatically create & optimize responsive image transforms, using either native Craft transforms or a service like Imgix, with zero template changes.",
             "keywords": [
-                "Craft",
                 "cms",
+                "craft",
                 "craft-plugin",
                 "craftcms",
                 "image",
@@ -3659,6 +3649,10 @@
                 "optimize",
                 "optimize-images"
             ],
+            "support": {
+                "docs": "https://github.com/nystudio107/craft-imageoptimize/blob/v1/README.md",
+                "issues": "https://github.com/nystudio107/craft-imageoptimize/issues"
+            },
             "time": "2019-02-23T03:27:15+00:00"
         },
         {
@@ -3681,7 +3675,6 @@
                     "nystudio107\\imageoptimizeimgix\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -3698,6 +3691,10 @@
                 "image-transform",
                 "imgix"
             ],
+            "support": {
+                "docs": "https://github.com/nystudio107/craft-imageoptimize-imgix/blob/v1/README.md",
+                "issues": "https://github.com/nystudio107/craft-imageoptimize-imgix/issues"
+            },
             "time": "2019-02-23T03:24:51+00:00"
         },
         {
@@ -3720,7 +3717,6 @@
                     "nystudio107\\imageoptimizethumbor\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -3737,6 +3733,10 @@
                 "image-transform",
                 "thumbor"
             ],
+            "support": {
+                "docs": "https://github.com/nystudio107/craft-imageoptimize-thumbor/blob/v1/README.md",
+                "issues": "https://github.com/nystudio107/craft-imageoptimize-thumbor/issues"
+            },
             "time": "2019-03-11T12:43:56+00:00"
         },
         {
@@ -5285,11 +5285,11 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.35.0",
+            "version": "v6.35.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/a5f6d81ad82852d34a21dfa8d50a82db98ffe6e5",
-                "reference": "a5f6d81ad82852d34a21dfa8d50a82db98ffe6e5",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/f2fefccf3b56b453d65959f44f35b7fb9a8ae9bc",
+                "reference": "f2fefccf3b56b453d65959f44f35b7fb9a8ae9bc",
                 "shasum": ""
             },
             "require": {
@@ -5332,7 +5332,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2019-05-14T19:58:30+00:00"
+            "time": "2019-05-21T05:25:45+00:00"
         },
         {
             "name": "sunra/php-simple-html-dom-parser",
@@ -6167,7 +6167,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -7107,7 +7107,6 @@
                     "yii\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],

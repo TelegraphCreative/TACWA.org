@@ -1,0 +1,34 @@
+{#   Site Header   #}
+
+{% import '_macros/global' as global %}
+
+<div class="site-header">
+   <div class="site-header__container  |  container">
+      {#   Logo   #}
+      <a class="site-header__logo" href="/">
+         <h1 class="element-invisible">Texas Association of Clean Water Agencies</h1>
+
+         <!--<img src="{{ siteUrl }}/assets/img/tacwa-logo.png">-->
+      </a>
+
+      {#   Action   #}
+      <div class="site-header__action">
+         {% if craft.session.isLoggedIn %}
+            {#   User - Logged In   #}
+            {% include '_components/site-user-menu' %}
+         {% else %}
+            {#   User - Login   #}
+            {{ global.btn('/login', 'account__login-btn  |  btn --login', 'Login') }}
+         {% endif %}
+
+
+         {#   Nav   #}
+         <button class="btn --site-menu  |  js--site-menu__open-btn">
+            Navigation {{ global.utilityIcon('hamburger') }}
+         </button>
+      </div>
+
+      {#   Menu   #}
+      {% include '_components/site-menu' %}
+   </div>
+</div>

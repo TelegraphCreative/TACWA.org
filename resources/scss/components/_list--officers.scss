@@ -1,0 +1,39 @@
+//
+// List - Officers
+//
+
+.officers-list {
+   @apply -mt-5 mb-10;
+
+   @screen md {
+      @apply mb-16
+   }
+
+   .officers-list__item {
+      @apply
+         flex items-center justify-between
+         border-b border-grey-lighter;
+
+         padding: 24px 0 22px 0;
+
+      h3 {
+         @apply
+            font-semibold text-12 text-grey-light uppercase
+            my-0;
+
+         @screen md {
+            @apply text-13
+         }
+      }
+
+      p {
+         @apply
+            text-14
+            mb-0;
+
+         @screen md {
+            @apply text-16
+         }
+      }
+   }
+}

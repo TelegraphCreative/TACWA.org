@@ -1,79 +1,39 @@
 {% extends "_layouts/_base" %}
 {% import '_macros/global' as global %}
 
-{#   Content   #}
-{% set
-   homeContent = {
-      content: [
-         {
-            icon: "meeting",
-            heading: "Come to a meeting!",
-            copy: "Members gather bimonthly to stay informed and network with peers. Join us!"
-         },
-         {
-            icon: "vision",
-            heading: "Catch our Vision",
-            copy: "We create opportunities for public wastewater utility agencies to improve their effectiveness and achieve shared goals at the state & national level."
-         },
-         {
-            icon: "mission",
-            heading: "Discover our Mission",
-            copy: "We exist to ensure the protection and enhancement of water quality in Texas using scientifically based & technically sound management."
-         },
-      ],
-      calendar: [
-         {
-            month: 'March',
-            day: '12',
-            org: 'TACWA',
-            heading: 'Bi-monthly Meeting Dallas Chapter',
-            location: 'Trinity Audobon Visitor Center'
-         },
-         {
-            month: 'April',
-            day: '18',
-            org: 'TACWA',
-            heading: 'Bi-monthly Meeting Dallas Chapter',
-            location: 'Trinity Audobon Visitor Center'
-         },
-         {
-            month: 'May',
-            day: '11',
-            org: 'WEAT',
-            heading: 'Bi-monthly Meeting Dallas Chapter',
-            location: 'Austin Convention Center'
-         }
-      ]
-   }
-%}
-
 {% block content %}
 
-   {% include '_components/static/page-header'
+   {% set pageDescription = entry.pageDescription %}
+   {% if pageDescription|length %}
+   {% include '_components/page-header'
       with {
          'type': 'standard',
-         'heading': 'Texas Association of Clean Water Agencies represents interests of major wastewater utilities throughout the State of Texas.'
+         'heading': pageDescription
       }
    %}
+   {% endif %}
 
    <section class="bg-gradient">
       <div class="container">
          <div class="md:flex md:flex-wrap md:justify-between">
 
             {#   Icon Content Blocks   #}
+            {% set featureList = entry.featureList %}
+            {% if featureList|length %}
             <div class="content-block--icon__container  |  md:w-1/2">
                {#   Block   #}
-               {% for item in homeContent.content %}
+               {% for item in featureList %}
                   <div class="content-block--icon       mb-12 md:mb-16">
                      {#   Icon   #}
                      {{ global.utilityIcon(item.icon) }}
                      {#   Heading   #}
-                     <h3 class="content-block--icon__heading">{{ item.heading }}</h3>
+                     <h3 class="content-block--icon__heading">{{ item.header }}</h3>
                      {#   Copy   #}
-                     <p class="content-block--icon__copy">{{ item.copy }}</p>
+                     <p class="content-block--icon__copy">{{ item.description }}</p>
                   </div>
                {% endfor %}
             </div>
+            {% endif %}
 			
 			
 			{% set events = craft.calendar.events({
@@ -125,12 +85,16 @@
    </section>
 
    {#   Banner   #}
-   {% include '_components/static/banner'
+   {% set billboard = entry.billboard %}
+   {% if billboard|length %}
+   {% include '_components/banner'
       with {
-         'classes': '',
-         'heading': 'Already a Member?',
-         'copy': 'Looking for a presentation you found informative or notes from a meeting you missed? Look no further.'
+         classes: '',
+         heading: billboard.one().header,
+         copy: billboard.one().description,
+         button: billboard.one().button
       }
    %}
+   {% endif %}
 
 {% endblock %}

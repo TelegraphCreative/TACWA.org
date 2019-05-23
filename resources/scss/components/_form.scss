@@ -2,10 +2,36 @@
 // Form
 //
 
+// Form Group
 .form-group {
    @apply
       flex flex-wrap self-start
-      -mx-2
+      -mx-2;
+
+   // Member Ship Dates
+   .form-group__membership-dates {
+      @apply
+         flex
+         w-full;
+
+      .form-group__membership-dates__item {
+         @apply
+            w-1/2
+            mb-7 px-2;
+
+         span {
+            @apply
+               block
+               font-medium leading-tight text-12 text-blue-dark
+               w-full
+               mb-px pb-1
+         }
+
+         p {
+            @apply mt-3
+         }
+      }
+   }
 }
 
 .field-group {
@@ -46,14 +72,6 @@
                text-grey-dark;
          }
 
-         // Disabled
-         &.--disabled {
-            @apply pointer-events-none;
-
-            background-color: #f6f7f9;
-            border-color: #f6f7f9
-         }
-
          // Number Spinner
          &[type=number] {
             -moz-appearance: textfield;
@@ -62,6 +80,19 @@
             &::-webkit-outer-spin-button {
                @apply m-0 appearance-none
             }
+         }
+
+         // Disabled
+         &.--disabled {
+            @apply pointer-events-none;
+
+            background-color: #f6f7f9;
+            border-color: #f6f7f9
+         }
+
+         // Error
+         &.error {
+            @apply border-red-lighter
          }
       }
    }
@@ -76,6 +107,13 @@
             w-auto
             mb-0 ml-2 pt-px pb-0
       }
+   }
+
+   // Error Message
+   .error-message {
+      @apply
+         text-12 text-red-lighter
+         -mt-3 mb-3
    }
 }
 
@@ -137,14 +175,15 @@ input[type=checkbox] {
 .form-flow {
    @apply pb-18;
 
+   // Flow Wrapper
    .form-flow__wrapper {
       @screen md {
-         @apply flex justify-between
+         @apply flex
       }
 
       &.--reverse {
          @screen md {
-            @apply flex-row-reverse
+            @apply flex-row-reverse justify-between
          }
       }
    }
@@ -159,14 +198,24 @@ input[type=checkbox] {
       }
    }
 
+   // Form Group
    .form-group {
       @screen sm {
          @apply
             max-w-sm
-            pr-14
+            pr-14;
+      }
+
+      &.--wide {
+         @screen sm {
+            @apply pr-0;
+
+            max-width: 50rem
+         }
       }
    }
 
+   // Flow Detail
    .form-flow__detail {
       @apply
          border-b border-grey-lightest
@@ -188,7 +237,9 @@ input[type=checkbox] {
       }
 
       .form-flow__detail__description {
-         @apply mb-3;
+         @apply
+            max-w-sm
+            mb-3;
 
          @screen md {
             @apply
@@ -221,9 +272,26 @@ input[type=checkbox] {
 
    .form-group {
       @screen sm {
-            @apply
-               max-w-sm
-               pr-14
+         @apply
+            max-w-sm
+            pr-14
       }
+   }
+}
+
+.invite-container {
+   @apply
+      w-full;
+
+   max-width: 50rem
+}
+.invite-group {
+   @apply
+      flex flex-wrap
+      w-full
+      mb-4;
+
+   @screen sm {
+      @apply mb-0
    }
 }

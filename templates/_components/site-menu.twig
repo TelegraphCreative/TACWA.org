@@ -1,0 +1,57 @@
+{#   Site Menu   #}
+
+{% import '_macros/global' as global %}
+
+{% set menu = craft.categories.group('mainMenu')%}
+
+{#   Site Menu Container   #}
+<div class="site-menu__container">
+   {#   Opacity Overlay   #}
+   <div class="site-menu__overlay"></div>
+
+   {#   Site Menu Wrapper   #}
+   <div class="site-menu__wrapper">
+      {#   Site Menu   #}
+      <nav class="site-menu">
+         {#   Close Button   #}
+         <button class="btn --site-menu__close  |  js--site-menu__close-btn">
+            Close {{ global.utilityIcon('close') }}
+         </button>
+
+            {#   Menu List   #}
+            <ul class="site-menu__list">
+            {% for category in menu.all() %}
+                
+                {# With Dropdown #}
+                {% if category.hasDescendants() %}
+                
+                <li class="site-menu__item --dropdown">
+                    {#   Menu Item Title & Icon   #}
+                    <span>
+                        {{ category.title }}
+                        {{ global.utilityIcon('chevron') }}
+                    </span>
+
+                    {#   Submenu   #}
+                    <ul class="site-menu__submenu">
+                        {% set subPages = craft.categories.descendantOf(category) %}
+
+                        {% for subPage in subPages %}
+                            <li class="site-menu__sub-item"><a href="{{ subPage.url }}">{{ subPage.title }}</a></li>
+                        {% endfor %} 
+
+                    </ul>
+                </li>
+                
+                {% elseif category.level == 1 %}
+                    {#   Menu Item   #}
+                    <li class="site-menu__item"><a href="{{ category.url }}">{{ category.title }}</a></li>
+                {% endif %}
+                
+            {% endfor %} 
+            </ul>
+
+         
+      </nav>
+   </div>
+</div>

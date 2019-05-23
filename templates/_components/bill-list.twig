@@ -1,0 +1,58 @@
+{% if blocks|length %}
+{#   Bill List   #}
+<div class="bill-list">
+    {% set header = blocks.one().header %}
+    {% if header|length %}
+        {#   Heading   #}
+        <h2 class="bill-list__heading">{{ header }}</h2>
+    {% endif %}
+    
+    {#   Header   #}
+    <div class="bill-list__header">
+    <div class="bill-list__header__bill">
+        Bill
+    </div>
+
+    <div class="bill-list__header__summary">
+        Summary
+    </div>
+
+    <div class="bill-list__header__comments">
+        Comments
+    </div>
+    </div>
+
+
+    {#   Bill Wrapper   #}
+    <div class="bill-list__wrapper">
+
+        {% for item in blocks.one().list %}
+                
+        {#   Bill   #}
+        <div class="bill-list__item">
+
+            {#   Info   #}
+            <div class="bill-list__item__bill">
+                {% if item.billLink %}
+                    <a href="{{ item.billLink }}">{{ item.billName }}</a>
+                    {% else %}
+                    {{ item.billName }}                    
+                {% endif %}
+                <p>{{ item.billSource }}</p>
+            </div>
+
+            {#   Summary   #}
+            <div class="bill-list__item__summary">
+                <p>{{ item.summary }}</p>
+            </div>
+
+            {#   Comment   #}
+            <div class="bill-list__item__comment">
+                <p>{{ item.comments }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endif %}

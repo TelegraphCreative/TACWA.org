@@ -1,0 +1,7 @@
+{% import '_macros/global' as global %}
+<form class="search-form" action="{{ url('/articles') }}">
+    <input class="search-form__input" type="search" name="{{ identification }}" id="{{ identification }}" placeholder="{{ placeholder }}">
+    <label class="search-form__label" for="{{ identification }}">
+        {{ global.utilityIcon('search', 'h-5 w-5') }}
+    </label>
+</form>
