@@ -11,4 +11,10 @@
    @screen sm {
       background-position: center 5rem;
    }
+
+   &.--top-0 {
+      @screen sm {
+         background-position: center 0;
+      }
+   }
 }

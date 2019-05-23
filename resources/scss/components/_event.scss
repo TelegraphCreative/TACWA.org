@@ -6,10 +6,6 @@
 .event {
    @apply mt-12;
 
-   @screen sm {
-      @apply mt-24
-   }
-
    h1 {
       @apply
          font-normal text-24 text-blue

@@ -1,0 +1,118 @@
+//
+// Card - Contact
+//
+
+.contact-card {
+   @apply
+      border border-grey-lighter rounded-lg
+      py-10 px-4;
+
+   @screen sm {
+      @apply px-6
+   }
+
+   @screen md {
+      @apply
+         flex
+         px-8
+   }
+
+   .contact-card__container {
+      @apply
+         border-b border-grey-lighter
+         mb-7 pb-6;
+
+      @screen sm {
+         @apply mb-8 pb-7
+      }
+
+      @screen md {
+         @apply
+            flex-no-shrink
+            border-r border-b-0
+            mr-5 mb-0 pb-0;
+
+         width: 15.5rem;
+      }
+
+      h3 {
+         @apply
+            text-16 text-grey
+            mt-0;
+      }
+
+      p {
+         @apply
+            text-14
+            mb-0
+      }
+   }
+
+   .contact-card__action {
+      @screen sm {
+         @apply
+            flex flex-wrap
+            -mx-6;
+      }
+
+      @screen md {
+         @apply
+            block
+            mx-0
+      }
+
+      .contact-card__action__item {
+         @apply
+            flex
+            mb-7;
+
+         @screen sm {
+            @apply
+               w-1/2
+               px-6
+         }
+
+         @screen md {
+            @apply
+               w-full
+               px-0
+         }
+
+         &:nth-child(3) {
+            @apply mb-0
+         }
+
+         .contact-card__action__item__icon {
+            @apply
+               flex justify-center self-start
+               w-6
+               mr-3
+         }
+
+         p {
+            @apply mb-0
+         }
+
+         a {
+            @apply
+               font-normal no-underline text-teal;
+
+            &:hover {
+               @apply text-teal-light
+            }
+         }
+
+         // Phone Icon Alignment
+         &:nth-child(2) {
+            p { margin-top: 2px }
+         }
+
+         // Email Icon Alignment
+         &:nth-child(3) {
+            .contact-card__action__item__icon {
+               margin-top: 2px;
+            }
+         }
+      }
+   }
+}

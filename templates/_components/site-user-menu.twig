@@ -1,0 +1,30 @@
+{#   Site User Menu   #}
+
+{% import '_macros/global' as global %}
+{% set menu = craft.categories.group('userMenu')%}
+
+
+<div class="site-user-menu">
+   <button class="btn --site-user-menu  |  js--site-user-menu__btn">
+      <span>Your Account</span>
+      {{ global.utilityIcon('user', 'h-4 w-4') }}
+      {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg  |  text-grey') }}
+   </button>
+
+   <div class="site-user-menu__list_wrapper  |  js--site-user-menu">
+      <ul class="site-user-menu__list">
+          {% for category in menu.all() %}
+                
+
+                {% if category.level == 1 %}
+                    {#   Menu Item   #}
+                    <li class="site-user-menu__list__item"><a href="{{ category.url }}">{{ category.title }}</a></li>
+                {% endif %}
+                
+        {% endfor %} 
+            <li class="site-user-menu__list__item">
+               <a href="logout">Logout</a>
+            </li>
+      </ul>
+   </div>
+</div>

@@ -1,0 +1,56 @@
+{% import '_macros/global' as global %}
+
+<div class="container">
+    <div class="content-block --tight  |  mx-auto">
+
+        <h2>Contact</h2>
+
+        <div class="contact-card">
+            <div class="contact-card__container">
+                <h3>
+                    {{ block.header }}
+                    {% if block.subheader %}
+                        <br>{{ block.subheader }}
+                    {% endif %}
+                </h3>
+
+                <p>{{ block.role }}</p>
+
+            </div>
+            <div class="contact-card__action">
+                <div class="contact-card__action__item">
+                    <div class="contact-card__action__item__icon">
+                    {{ global.utilityIcon("location", "h-6 w-5") }}
+                    </div>
+
+                    {% if block.address|length %}
+                    <p>
+                        {{ block.address.address1 }}<br>
+                        {{ block.address.address2 }}<br>
+                        {{ block.address.locality }}, {{ block.address.administrativeArea }} {{ block.address.postalCode }} 
+                    </p>
+                    {% endif %}
+                </div>
+
+                <div class="contact-card__action__item">
+                    <div class="contact-card__action__item__icon">
+                    {{ global.utilityIcon("phone", "h-6 w-4") }}
+                    </div>
+                    {% if block.phone|length %}
+                        <p><a href="tel:{{ block.phone }}"{{ block.phone }}></a></p>
+                    {% endif %}
+                </div>
+
+                <div class="contact-card__action__item">
+                    <div class="contact-card__action__item__icon">
+                    {{ global.utilityIcon("email", "h-5 w-6") }}
+                    </div>
+                    {% if block.email|length %}
+                        <a href="mailto:{{ block.email }}">{{ block.email }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

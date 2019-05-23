@@ -1,0 +1,54 @@
+{#   Article - Index   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+   
+   {# Settings #}
+   {% set section = craft.entries.section('articlesLanding').one() %}
+   {% set sectionArticles = craft.entries.section('articles') %}
+   {% set entriesPer = section.entriesPerPage %}
+   {% set allArticles = sectionArticles.relatedTo(category) %}
+   {% set articleCategories = craft.categories.group('regulatoryAffairsCategories') %}
+   
+    {#   Default Page Header   #}
+    {% include '_components/page-header'
+        with {
+        'type': 'left',
+        'category': 'Category: ' ~ category,
+        'heading': section.title,
+        'copy': '<a class="text-grey-light" href="/articles">View all articles</a>'
+        }
+    %}
+
+   <section class="bg-gradient --top-0">
+      {#   Event Index   #}
+   
+         <div class="article-index  pt-4 mt-20   events-index  |  container">
+
+            {# Filters/Search #}
+            {% include '_components/articles-filter-bar' with { categoryGroup: articleCategories, channel: sectionArticles } %}
+
+            {# Articles #}
+            <div class="article-index__index">
+               
+               {# All Articles #}
+               {% paginate allArticles as pageInfo, articlesList %}
+
+
+               {# List #}
+               {% if articlesList|length %}
+                  {% for entry in articlesList %}
+                    {% include '_components/article-card' with { content: entry } %}
+                  {% endfor %}
+               {% else %}
+                  Looks like there aren't any articles right now!
+               {% endif %}
+            </div>
+
+         </div>
+      
+   </section>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% import '_macros/global' as global %}
+
+{% if block.button|length %}
+    {% set billboardButton = block.button %}
+    {% else %}
+    {% set billboardButton = false %}
+{% endif %}
+
+{% include '_components/banner'
+    with {
+        classes: '--centered  |  my-16',
+        heading: block.header,
+        copy: block.description,
+        button: billboardButton
+    }
+%}

@@ -1,0 +1,19 @@
+{#   About Us   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'center',
+         'category': '404',
+         'heading': 'Page Not Found',
+         'image': '' 
+      }
+   %}
+
+{% endblock %}
