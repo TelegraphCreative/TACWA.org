@@ -10,6 +10,48 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'regulatory-affairs-categories/{slug}'
         template: articles/_category
+  f967e704-63ae-4be4-8fa2-54fe2456024b:
+    name: 'Main Menu'
+    handle: mainMenu
+    structure:
+      uid: ce64f6c1-00f3-4c9b-a959-1e3a8cbea17f
+      maxLevels: '2'
+    siteSettings:
+      0d0840a6-2776-46d9-b404-951195224e26:
+        hasUrls: false
+        uriFormat: null
+        template: null
+    fieldLayouts:
+      f39a0df6-137c-4914-a31d-ff2dfc86514e:
+        tabs:
+          -
+            name: Navigation
+            sortOrder: 1
+            fields:
+              88b90c3c-09be-40f7-92c5-dba95c4fa073:
+                required: true
+                sortOrder: 1
+  f02ec9e8-5835-46f4-a915-c20570586ec6:
+    name: 'User Menu'
+    handle: userMenu
+    structure:
+      uid: 78ddca1f-1b18-479e-a4e7-e8b8082b9a42
+      maxLevels: '1'
+    siteSettings:
+      0d0840a6-2776-46d9-b404-951195224e26:
+        hasUrls: false
+        uriFormat: null
+        template: null
+    fieldLayouts:
+      a5b41be3-8385-4f12-96f7-82ee931da26f:
+        tabs:
+          -
+            name: Navigation
+            sortOrder: 1
+            fields:
+              88b90c3c-09be-40f7-92c5-dba95c4fa073:
+                required: true
+                sortOrder: 1
 commerce:
   orderStatuses:
     26b9b2ad-9f9d-42fb-b542-83612b6b9238:
@@ -89,7 +131,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558569955
+dateModified: 1558618509
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -118,6 +160,8 @@ fieldGroups:
     name: 'General Content'
   84b5df00-92dd-4d80-8c08-6b2eb24920d6:
     name: Articles
+  38071e3f-a9cb-41b2-a86e-4e2af67617e3:
+    name: Navigation
 fields:
   52a959a5-3b8f-42cf-830a-45072efd9869:
     name: 'Organization Type'
@@ -1059,6 +1103,80 @@ fields:
       localizeRelations: false
     contentColumnType: string
     fieldGroup: 2fc6dea0-1e25-48a8-a8c7-566245fda0d3
+  88b90c3c-09be-40f7-92c5-dba95c4fa073:
+    name: Link
+    handle: linkItem
+    instructions: ''
+    searchable: false
+    translationMethod: none
+    translationKeyFormat: null
+    type: fruitstudios\linkit\fields\LinkitField
+    settings:
+      selectLinkText: ''
+      types:
+        fruitstudios\linkit\models\Email:
+          enabled: ''
+          customLabel: ''
+          customPlaceholder: ''
+        fruitstudios\linkit\models\Phone:
+          enabled: ''
+          customLabel: ''
+          customPlaceholder: ''
+        fruitstudios\linkit\models\Url:
+          enabled: '1'
+          customLabel: ''
+          customPlaceholder: ''
+          allowAlias: '1'
+          allowMailto: '1'
+          allowHash: '1'
+          allowPaths: '1'
+        fruitstudios\linkit\models\Twitter:
+          enabled: ''
+          customLabel: ''
+          customPlaceholder: ''
+        fruitstudios\linkit\models\Facebook:
+          enabled: ''
+          customLabel: ''
+          customPlaceholder: ''
+        fruitstudios\linkit\models\Instagram:
+          enabled: ''
+          customLabel: ''
+          customPlaceholder: ''
+        fruitstudios\linkit\models\LinkedIn:
+          enabled: ''
+          customLabel: ''
+          customPlaceholder: ''
+        fruitstudios\linkit\models\Entry:
+          enabled: '1'
+          customLabel: ''
+          sources: '*'
+          customSelectionLabel: ''
+        fruitstudios\linkit\models\Category:
+          enabled: '1'
+          customLabel: ''
+          sources: '*'
+          customSelectionLabel: ''
+        fruitstudios\linkit\models\Asset:
+          enabled: '1'
+          customLabel: ''
+          sources: '*'
+          customSelectionLabel: ''
+        fruitstudios\linkit\models\User:
+          enabled: ''
+          customLabel: ''
+          sources: '*'
+          customSelectionLabel: ''
+          userPath: ''
+        fruitstudios\linkit\models\Product:
+          enabled: '1'
+          customLabel: ''
+          sources: '*'
+          customSelectionLabel: ''
+      allowCustomText: ''
+      defaultText: ''
+      allowTarget: '1'
+    contentColumnType: text
+    fieldGroup: 84b5df00-92dd-4d80-8c08-6b2eb24920d6
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
