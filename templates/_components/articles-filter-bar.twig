@@ -1,0 +1,25 @@
+{#   Search & Filter   #}
+<header class="article-index__search">
+    {#   Search   #}
+    {% include '_components/search-form' with { 'identification': 'query', 'placeholder': 'Search events...' } %}
+
+    {#   Filter   #}
+    {% set categories = categoryGroup.relatedTo(channel).all() %}
+
+    {% if categories|length %}
+    <div class="article-index__filter">
+        <select name="article-index__filter" id="article-index__filter">
+            <option value="all">All Categories</option>
+            
+            {% for category in categories %}
+                <option value="{{ category.url }}">{{ category.title }}</option>
+            {% endfor %}
+            
+        </select>
+        <svg class="block absolute pin-r -mt-8 mr-4  |  rotate-90deg  |  fill-current text-blue  |  z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
+        <path d="M1.9 0L0 1.88 6.18 8 0 14.12 1.9 16 10 8 1.9 0z"/>
+        </svg>
+    </div>
+    {% endif %}
+
+</header>

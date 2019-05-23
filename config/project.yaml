@@ -89,7 +89,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558554267
+dateModified: 1558569955
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -945,7 +945,7 @@ fields:
     settings:
       branchLimit: ''
       sources: '*'
-      source: null
+      source: 'group:e5b83b7e-82a4-4b81-92f2-c913a841453c'
       targetSiteId: null
       viewMode: null
       limit: null
@@ -957,7 +957,7 @@ fields:
     name: 'Page Description'
     handle: pageDescription
     instructions: ''
-    searchable: false
+    searchable: true
     translationMethod: none
     translationKeyFormat: null
     type: craft\fields\PlainText
@@ -3107,8 +3107,8 @@ sections:
       e35a8987-5237-49eb-8487-b2962e03253d:
         name: 'Articles Landing'
         handle: articlesLanding
-        hasTitleField: false
-        titleLabel: ''
+        hasTitleField: true
+        titleLabel: Title
         titleFormat: '{section.name|raw}'
         sortOrder: 1
         fieldLayouts:
@@ -3164,16 +3164,22 @@ sections:
                   e5be8f68-d8e7-49a0-aacc-32e09a9dc793:
                     required: true
                     sortOrder: 1
+                  12c649de-1ef8-4a5d-b3a5-e0d057835568:
+                    required: false
+                    sortOrder: 2
               -
                 name: 'Additional Info'
                 sortOrder: 2
                 fields:
-                  9d99712f-c3d6-4cdf-82c0-8d08ae024b21:
+                  184e1681-0381-4cd0-b901-39b832077ddf:
                     required: true
                     sortOrder: 1
+                  9d99712f-c3d6-4cdf-82c0-8d08ae024b21:
+                    required: true
+                    sortOrder: 2
                   c8b4a871-7a48-4dc6-bb5a-df7eef0f547b:
                     required: false
-                    sortOrder: 2
+                    sortOrder: 3
 siteGroups:
   31074194-aa36-4955-b5f6-9258521b749e:
     name: TACWA
