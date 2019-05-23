@@ -4,8 +4,7 @@
 {% import '_macros/global' as global %}
 {% import '_macros/forms' as form %}
 
-{#   User Logged In   #}
-{% set loggedIn = 'true' %}
+{% requireLogin %}
 
 {% block content %}
 
