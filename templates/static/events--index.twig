@@ -6,8 +6,6 @@
 
 {% block content %}
 
-	{% set pastevents = false %}
-
    {#   Page Header   #}
    {% include '_components/static/page-header'
       with {
@@ -36,7 +34,11 @@
 
    <section class="bg-gradient">
       {#   Event Index   #}
-      {% include '_components/static/events--index' %}
+      {% include '_components/static/events--index'
+	      with {
+		     'pastevents': false,
+		     'myevents': false 
+	      } %}
    </section>
 
 {% endblock %}

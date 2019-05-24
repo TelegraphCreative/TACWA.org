@@ -31,6 +31,9 @@ categoryGroups:
               88b90c3c-09be-40f7-92c5-dba95c4fa073:
                 required: true
                 sortOrder: 1
+              4c59c1c4-4012-45d2-8bb5-2a1b7d302fb8:
+                required: false
+                sortOrder: 2
   f02ec9e8-5835-46f4-a915-c20570586ec6:
     name: 'User Menu'
     handle: userMenu
@@ -52,6 +55,9 @@ categoryGroups:
               88b90c3c-09be-40f7-92c5-dba95c4fa073:
                 required: true
                 sortOrder: 1
+              933e99b6-82b4-45ee-a2b0-41ecbd76bba0:
+                required: false
+                sortOrder: 2
 commerce:
   orderStatuses:
     26b9b2ad-9f9d-42fb-b542-83612b6b9238:
@@ -131,7 +137,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1558618509
+dateModified: 1558685167
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1177,6 +1183,145 @@ fields:
       allowTarget: '1'
     contentColumnType: text
     fieldGroup: 84b5df00-92dd-4d80-8c08-6b2eb24920d6
+  933e99b6-82b4-45ee-a2b0-41ecbd76bba0:
+    name: 'User Group'
+    handle: userGroup
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: superbig\usergroupfield\fields\UserGroupFieldField
+    settings:
+      mode: checkboxes
+    contentColumnType: text
+    fieldGroup: 38071e3f-a9cb-41b2-a86e-4e2af67617e3
+  22cb13e6-e05a-4b6e-b28b-2c14f50f7e52:
+    name: Phone
+    handle: phone
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 70bd7234-0f4f-44ba-b0fa-192f7cfe89aa
+  eb246c49-b328-461b-a536-e45dcb7bc85c:
+    name: 'Organization City'
+    handle: organizationCity
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  9b9e8cb4-116a-432e-a022-a6fcdb3dcce6:
+    name: 'Organization State'
+    handle: organizationState
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  df92811d-6fde-446f-842a-66ba49629aed:
+    name: 'Organization Zip'
+    handle: organizationZip
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  e9c32793-36fc-42da-bdcf-1ca45d21b4d2:
+    name: 'Stripe ID'
+    handle: stripeId
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  4c59c1c4-4012-45d2-8bb5-2a1b7d302fb8:
+    name: Hide/Show
+    handle: hideShow
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\RadioButtons
+    settings:
+      options:
+        -
+          label: 'Always Show'
+          value: alwaysShow
+          default: '1'
+        -
+          label: 'Show Logged In'
+          value: showLoggedIn
+          default: ''
+        -
+          label: 'Hide Logged In'
+          value: hideLoggedIn
+          default: ''
+    contentColumnType: string
+    fieldGroup: 38071e3f-a9cb-41b2-a86e-4e2af67617e3
+  e0c6dc01-333d-4c7d-8500-648b9df0de0f:
+    name: User
+    handle: user
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Users
+    settings:
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: null
+      limit: '1'
+      selectionLabel: ''
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -2559,6 +2704,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.3
+  user-group-field:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 routes:
   aaf119ab-8284-4150-bba5-55f622ac1f62:
     template: /calendar-demo/mini_cal
@@ -2913,6 +3062,13 @@ routes:
     uriPattern: login
     sortOrder: 28
     siteUid: null
+  e4476035-8c37-4b2c-b964-efb43aae1395:
+    template: /forms/login/password-reset
+    uriParts:
+      - password-reset
+    uriPattern: password-reset
+    sortOrder: 29
+    siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:
     name: Invoices
@@ -2992,21 +3148,30 @@ sections:
                   e1cfca04-1645-4700-8851-1c066e479a72:
                     required: false
                     sortOrder: 5
-                  a9292c85-4806-4d82-b9e4-babc4e5ca546:
+                  eb246c49-b328-461b-a536-e45dcb7bc85c:
                     required: false
                     sortOrder: 6
-                  52a959a5-3b8f-42cf-830a-45072efd9869:
+                  9b9e8cb4-116a-432e-a022-a6fcdb3dcce6:
                     required: false
                     sortOrder: 7
-                  d7e46e92-0f9f-4bc6-a77e-e79a20c46ba7:
+                  df92811d-6fde-446f-842a-66ba49629aed:
                     required: false
                     sortOrder: 8
-                  9064eb7f-43cf-4daf-87b3-7c6b05295a14:
+                  52a959a5-3b8f-42cf-830a-45072efd9869:
                     required: false
                     sortOrder: 9
-                  4f1e6876-519a-4b6b-9577-6a30811b55d4:
+                  d7e46e92-0f9f-4bc6-a77e-e79a20c46ba7:
                     required: false
                     sortOrder: 10
+                  9064eb7f-43cf-4daf-87b3-7c6b05295a14:
+                    required: false
+                    sortOrder: 11
+                  4f1e6876-519a-4b6b-9577-6a30811b55d4:
+                    required: false
+                    sortOrder: 12
+                  e9c32793-36fc-42da-bdcf-1ca45d21b4d2:
+                    required: false
+                    sortOrder: 13
   549a0023-c777-4881-95e4-5221b84c4ff8:
     name: Accounts
     handle: accounts
@@ -3097,6 +3262,9 @@ sections:
                   51e1fa0b-8b10-4be0-bdee-d62bae4d9130:
                     required: false
                     sortOrder: 11
+                  e0c6dc01-333d-4c7d-8500-648b9df0de0f:
+                    required: false
+                    sortOrder: 12
   5efb2a03-4709-4bf2-a280-5f3f3d005828:
     name: Home
     handle: home
@@ -3705,21 +3873,6 @@ users:
   photoVolumeUid: c6fbe1e7-8a4c-4883-b313-c3ab322d8007
   photoSubpath: ''
   groups:
-    9b5e1115-6ad5-42fa-800d-f77c13d476c0:
-      name: 'Admin User'
-      handle: adminUser
-      permissions:
-        - accessplugin-calendar
-        - accessplugin-commerce
-        - accessplugin-freeform-payments
-        - accessplugin-freeform
-        - accessplugin-seomatic
-        - accesscp
-        - registerusers
-        - moderateusers
-        - assignuserpermissions
-        - assignusergroups
-        - editusers
     a75cb198-4938-4475-b269-040a342a4a59:
       name: 'Member Admin'
       handle: memberAdmin
@@ -3732,7 +3885,7 @@ users:
       name: 'Standard User'
       handle: standardUser
   fieldLayouts:
-    75aa31de-eed0-41ab-9240-6527ae42ab5f:
+    fc235e42-1e8e-4a73-8680-2e3365cb3fe9:
       tabs:
         -
           name: 'Account Info'
@@ -3741,6 +3894,12 @@ users:
             20f946d4-489d-4594-a04b-c228d8dabe66:
               required: false
               sortOrder: 1
+            22cb13e6-e05a-4b6e-b28b-2c14f50f7e52:
+              required: false
+              sortOrder: 2
+            2249a606-0c7a-4862-9556-2e513bbb35db:
+              required: false
+              sortOrder: 3
 volumes:
   c6fbe1e7-8a4c-4883-b313-c3ab322d8007:
     name: Files

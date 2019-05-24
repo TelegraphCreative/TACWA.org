@@ -1,0 +1,75 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{% requireLogin %}
+
+{% set organization = currentUser.organization.one() %}
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Your Profile'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      <h2>Contact Information</h2>
+
+      <div class="flex flex-wrap" style="max-width: 50rem">
+
+         {#   Form   #}
+         <form id="profile-form" class="form-group profile-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+			<input type="hidden" name="action" value="users/save-user">
+			
+			{{ csrfInput() }}
+			
+			<input type="hidden" name="userId" value="{{ currentUser.id }}">
+			
+			{#   First Name   #}
+			<div class="field-group --full-width">
+                <label for="firstName" class="field-group__label">First Name</label>
+                <input type="text" name="firstName" id="firstName" value="{{ currentUser.firstName }}" class="field-group__input --field " required>
+			</div>
+			
+			{#   Last Name   #}
+			<div class="field-group --full-width">
+                <label for="lastName" class="field-group__label">Last Name</label>
+                <input type="text" name="lastName" id="lastName" value="{{ currentUser.lastName }}" class="field-group__input --field " required>
+			</div>
+			
+			{#   Email Address   #}
+			<div class="field-group --full-width">
+                <label for="email" class="field-group__label">Email Address</label>
+                <input type="text" name="email" id="email" value="{{ currentUser.email }}" class="field-group__input --field " disabled>
+			</div>
+			
+			{#   Organization Name   #}
+			<div class="field-group --full-width">
+                <label for="organizationName" class="field-group__label">Organization Name</label>
+                <input type="text" name="organizationName" id="organizationName" value="{{ organization.organizationName }}" class="field-group__input --field " disabled>
+			</div>
+			
+			{#   Phone   #}
+			<div class="field-group --full-width">
+                <label for="fields[phone]" class="field-group__label">Phone (optional)</label>
+                <input type="phone" name="fields[phone]" id="fields[phone]" value="{{ currentUser.phone }}" class="field-group__input --field ">
+			</div>
+
+            <div class="flex flex-wrap  |  mt-4">
+               {#   Submit   #}
+               {{ form.submit( 'mt-4', 'Save Changes') }}
+            </div>
+		</form>
+      </div>
+   </div>
+
+{% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

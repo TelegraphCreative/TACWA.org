@@ -1,6 +1,5 @@
 {% extends "_layouts/_base" %} 
 {% import '_macros/global' as global %}
-{% import '_macros/forms' as form %}
 
 {% set cart = craft.commerce.carts.cart %}
 {% set number = 1 %}
@@ -9,30 +8,17 @@
 
 {% block content %}
 
-	{#   Page Header   #}
-   {% include '_components/static/page-header'
-      with {
-         'type': 'border',
-         'heading': 'Invoice'
-      }
-   %}
-
-<div class="container">
-
 {% if not payment %}
     
-    
-	
     {# <p>Adding to cart...{% include 'buy/_components/spinner' %}</p> #}
-	
 
-	<h2 class="mb-4">{{ entry.title }}</h2>
+    <h1>{{ entry.title }}</h1>
 
     {# More here: http://docs.solspace.com/craft/calendar/v2/template-objects/event.html#usage-in-templates #}
-    <p class="mb-4"><strong>Event Title:</strong><br>{{ entry.event.one().title }}</p>
-    <p class="mb-4"><strong>Event Time:</strong><br>{{ entry.event.one().startDate }}</p>
-    <p class="mb-4"><strong>Member Email:</strong><br>{{ entry.email }}</p>
-    <p class="mb-4"><strong>Total:</strong><br>{{ entry.totalAmount }}</p>
+    <p>Event Title: {{ entry.event.one().title }}</p>
+    <p>Event Time: {{ entry.event.one().startDate }}</p>
+    <p>Member Email: {{ entry.email }}</p>
+    <p>Total: {{ entry.totalAmount }}</p>
 
     {% set donation = craft.commerce.donation %}
     {% if donation and donation.isAvailable %}
@@ -43,7 +29,7 @@
         <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
         <input type="hidden" name="email" value="{{ entry.email }}">
         <input type="text" name="options[donationAmount]" value="{{ entry.totalAmount }}" hidden>
-        <input style="cursor: pointer;" class="btn --primary --dark" type="submit" value="Pay Now">
+        <input style="background-color: black; color: white; cursor: pointer;" type="submit" value="Pay Now">
     </form>
     {# <script>
         window.onload = function(){
@@ -51,14 +37,8 @@
         }
     </script> #}
     {% endif %}
-    
 
 {% else %}
-
-
-
-<div class="form-flow  |  container">
-	<div class="form__wrapper">   
 
     {# FORM #}
     <div class="flash">{{ craft.session.getFlash('notice') }}</div>
@@ -87,6 +67,7 @@
                     <input id="lastName" type="text" name="lastName" value="{{ paymentForm.lastName ?? '' }}"
                         class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
                 </div>
+
                 <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
                     <label for="number" class="block text-sm mb-2 {% if paymentForm is defined and paymentForm.getFirstError('number') %}text-red{% endif %}">Credit Card</label>
                     <input id="number" type="text" name="number"
@@ -97,6 +78,7 @@
                     <input id="cvv" type="text" name="cvv"
                         class="w-full text-sm bg-grey-light text-grey-darkest rounded px-3 py-3 outline-0">
                 </div>
+
                 <div class="w-3/4 md:w-1/2-almost mb-4 md:mb-0">
                     <label for="exp_month" class="block text-sm mb-2 {% if paymentForm is defined and (paymentForm.getFirstError('year') or paymentForm.getFirstError('month')) %}text-red{% endif %}">Expiry</label>
                     <input id="exp_month" type="text" name="expiry" placeholder="02/2021"
@@ -105,21 +87,12 @@
             </div>
         </div> #}
         <div class="pl-10 pr-10 pt-5 pb-0">
-            <button type="submit" class="bg-blue text-white rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
-                Pay ${{ cart.totalPrice }}
+            <button type="submit" class="bg-blue text-white w-full rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
+                Buy ${{ cart.totalPrice }}
             </button>
         </div>
     </form>
-    
-        
-	</div>
-</div>    
-    
-    
 {% endif %}
-
-
-</div>
 
 <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -194,7 +167,7 @@
                     // Compose card holder info
                     var cardHolderName, orderEmail, ownerAddress;
 
-                    if ($('.card-holder-first-name ', $form).length > 0 && $('.card-holder-last-name', $form).length > 0) {
+                    if ($('.card-holder-first-name', $form).length > 0 && $('.card-holder-last-name', $form).length > 0) {
                         cardHolderName = $('.card-holder-first-name', $form).val() + ' ' + $('.card-holder-last-name', $form).val();
                     }
 

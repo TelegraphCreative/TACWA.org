@@ -1,0 +1,88 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{% requireLogin %}
+{% if not currentUser.isInGroup('memberAdmin') %}
+    {% redirect '/account/profile' %}
+{% endif %}
+
+{% set organization = currentUser.organization.one() %}
+{% if not organization %}
+    {% redirect '/account/profile' %}
+{% endif %}
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Organization Settings',
+         'tabs': 'true',
+         'activeTab': '1'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+
+      <div class="form-flow__wrapper --reverse">
+         {#   Detail   #}
+         {% include '_components/static/form-flow--detail'
+            with {
+               'heading': 'Add Your Team!',
+               'description': 'Invite your colleauges to sign into TACWA.org to register for events, manage their account, and more.',
+               'button_url': '../account/members-invite',
+               'button_text': 'Invite Members'
+            }
+         %}
+         
+         {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %}
+         
+         
+         {{ craft.freeform.form("organizationInformation", {
+			  labelClass: "form-label",
+			  inputClass: "form-control",
+			  overrideValues: {
+			    organizationName: organization.organizationName,
+				organizationType: organization.organizationType,
+				collectionAndTreatmentSystems: organization.collectionAndTreatmentSystems,
+				collectionSystemOnly: organization.collectionSystemOnly,
+				affiliateSize: organization.affiliateSize,
+				organizationStreetAddress: organization.organizationStreetAddress,
+				organizationCity: organization.organizationCity,
+				organizationState: organization.organizationState,
+				organizationZip: organization.organizationZip,
+				subscriptionPlanID: planId,
+				entryId: organization.id
+			  }
+			}).render() }}
+      </div>
+   </div>
+
+{% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}
+
+	
+{% js %}
+
+document.addEventListener('DOMContentLoaded', function() {
+	var field, fields = [
+		"organizationName",
+		"organizationStreetAddress",
+		"organizationCity",
+		"organizationState",
+		"organizationZip"
+	];
+	
+	for(var i=0, len=fields.length; i < len; ++i) {
+		field = document.getElementsByName(fields[i]);
+		field[0].setAttribute("name", "fields["+fields[i]+"]");
+	}
+}, false);
+
+{% endjs %}

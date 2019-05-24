@@ -1,7 +1,6 @@
 {#   Site Menu   #}
 
 {% import '_macros/global' as global %}
-
 {% set menu = craft.categories.group('mainMenu')%}
 
 {#   Site Menu Container   #}
@@ -25,6 +24,8 @@
                 {# With Dropdown #}
                 {% if category.hasDescendants() %}
                 
+                {% if category.hideShow == 'alwaysShow' or (currentUser and category.hideShow == 'showLoggedIn') or (not currentUser and category.hideShow == 'hideLoggedIn') %}
+                
                 <li class="site-menu__item --dropdown">
                     {#   Menu Item Title & Icon   #}
                     <span>
@@ -37,15 +38,21 @@
                         {% set subPages = craft.categories.descendantOf(category) %}
 
                         {% for subPage in subPages %}
-                            <li class="site-menu__sub-item"><a href="{{ subPage.url }}">{{ subPage.title }}</a></li>
+                        	{% if subPage.hideShow == 'alwaysShow' or (currentUser and subPage.hideShow == 'showLoggedIn') or (not currentUser and subPage.hideShow == 'hideLoggedIn') %}
+                            <li class="site-menu__sub-item"><a target="{{ (subPage.linkItem.target) ? '_blank' : '_self' }}" href="{{ subPage.linkItem.url }}">{{ subPage.title }}</a></li>
+                            {% endif %}
                         {% endfor %} 
 
                     </ul>
                 </li>
                 
+                {% endif %}
+                
                 {% elseif category.level == 1 %}
                     {#   Menu Item   #}
-                    <li class="site-menu__item"><a href="{{ category.url }}">{{ category.title }}</a></li>
+                    {% if category.hideShow == 'alwaysShow' or (currentUser and category.hideShow == 'showLoggedIn') or (not currentUser and category.hideShow == 'hideLoggedIn') %}
+                    <li class="site-menu__item"><a target="{{ (category.linkItem.target) ? '_blank' : '_self' }}" href="{{ category.linkItem.url }}">{{ category.title }}</a></li>
+                    {% endif %}
                 {% endif %}
                 
             {% endfor %} 

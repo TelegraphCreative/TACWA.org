@@ -6,6 +6,8 @@
 
 {% block content %}
 
+	{% set pastEvent = (event.startDateLocalized|date('Ymd') < now|date('Ymd')) %}
+
    {#   Page Header   #}
    {% include '_components/static/page-header'
       with {

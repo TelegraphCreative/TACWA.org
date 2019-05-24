@@ -16,14 +16,14 @@
           {% for category in menu.all() %}
                 
 
-                {% if category.level == 1 %}
+                {% if category.level == 1 and category.userGroup.inGroup(currentUser) %}
                     {#   Menu Item   #}
-                    <li class="site-user-menu__list__item"><a href="{{ category.url }}">{{ category.title }}</a></li>
+                    <li class="site-user-menu__list__item"><a href="{{ category.linkItem.url }}">{{ category.title }}</a></li>
                 {% endif %}
                 
         {% endfor %} 
             <li class="site-user-menu__list__item">
-               <a href="logout">Logout</a>
+               <a href="/logout">Logout</a>
             </li>
       </ul>
    </div>

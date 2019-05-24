@@ -20,7 +20,7 @@
 
 			
             <h1 class="font-normal text-24 md:text-32 text-blue  |  max-w-md md:max-w-lg  |  mb-8 px-2">Sign In</h1>
-            <h4 class="font-normal mb-8 px-2">Thank you for registering your organization with TACWA, please log in with your username and password chosen in the registration process.</h4>
+            <h4 class="font-normal mb-8 px-2">Thank you for registering with TACWA, please log in with your email and password chosen during the registration process.</h4>
 
             {#   Email   #}
             {{ form.fieldGroup(
@@ -37,7 +37,7 @@
             )}}
 
             {#   Reset Password   #}
-            {{ form.helpLink('/', 'Reset Password') }}
+            {{ form.helpLink('/password-reset', 'Reset Password') }}
 
             {#   Submit   #}
             {{ form.submit( '--small  |  mt-7', 'Login') }}

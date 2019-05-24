@@ -1,0 +1,59 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{% requireLogin %}
+
+{% block content %}
+
+
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Your Events'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+
+      
+
+         {#   Form   #}
+{#
+    {{currentUser.id}}
+    {% set submissions = craft.freeform.submissions({
+	    form: 'eventRegistrationMember',
+	    
+	}) %}
+	
+	{% for submission in submissions %}
+	<div>{{ submission.user  }}</div>
+	{% endfor %}
+#}
+         
+   
+	{% set eventOptions = {
+		order: "startDate DESC",
+		limit: 6
+	} %}
+	
+	{% paginate craft.calendar.events(eventOptions) as pageInfo, events %}
+
+   <section class="bg-gradient">
+      {#   Event Index   #}
+      {% include '_components/static/events--index'
+	      with {
+		     'pastevents': true,
+		     'myevents': true 
+	      } %}
+   </section>
+   </div>
+
+{% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

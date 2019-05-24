@@ -1,0 +1,106 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{% requireLogin %}
+{% if not currentUser.isInGroup('memberAdmin') %}
+    {% redirect '/account/profile' %}
+{% endif %}
+
+{% set organization = currentUser.organization.one() %}
+{% if not organization %}
+    {% redirect '/account/profile' %}
+{% endif %}
+
+{#   Content   #}
+{% set
+   content = {
+      membershipStartDate: '03/01/2019',
+      membershipEndDate: '03/01/2020',
+      annualDues: '$45'
+   }
+%}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Organization Settings',
+         'tabs': 'true',
+         'activeTab': '2'
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      
+
+      <div class="form-flow__wrapper">
+      
+         
+         {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %}
+         
+         
+         {{ craft.freeform.form("organizationMembership", {
+			  labelClass: "form-label",
+			  inputClass: "form-control",
+			  overrideValues: {
+				organizationType: organization.organizationType,
+				collectionAndTreatmentSystems: organization.collectionAndTreatmentSystems,
+				collectionSystemOnly: organization.collectionSystemOnly,
+				affiliateSize: organization.affiliateSize,
+				subscriptionPlanID: planId,
+				entryId: organization.id
+			  }
+			}).render() }}
+			
+			
+      </div>
+   </div>
+
+{% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}
+
+	
+{% js %}
+
+document.addEventListener('DOMContentLoaded', function() {
+	var field, fields = [
+		"organizationType",
+		"collectionAndTreatmentSystems",
+		"collectionSystemOnly",
+		"affiliateSize"
+	];
+	
+	for(var i=0, len=fields.length; i < len; ++i) {
+		field = document.getElementsByName(fields[i]);
+		field[0].setAttribute("name", "fields["+fields[i]+"]");
+	}
+}, false);
+
+function setSubscription() {
+	var org = document.getElementById("form-input-organizationType").value;
+	var subscription = '';
+	if (org == 'collectionAndTreatmentSystems') {
+		subscription = document.getElementById("form-input-collectionAndTreatmentSystems").value;
+		document.getElementById('form-input-collectionSystemOnly').value = '';
+		document.getElementById('form-input-affiliateSize').value = '';
+	} else if (org == 'collectionSystemOnly') {
+		subscription = document.getElementById("form-input-collectionSystemOnly").value;
+		document.getElementById('form-input-collectionAndTreatmentSystems').value = '';
+		document.getElementById('form-input-affiliateSize').value = '';
+	} else if (org == 'affiliate') {
+		subscription = document.getElementById("form-input-affiliateSize").value;
+		document.getElementById('form-input-collectionAndTreatmentSystems').value = '';
+		document.getElementById('form-input-collectionSystemOnly').value = '';
+	}
+	document.getElementById('form-input-subscriptionPlanID').value = subscription;
+}
+
+{% endjs %}

@@ -1,0 +1,91 @@
+{#   Logged In - Org Info   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{% requireLogin %}
+
+{% set
+   inviteGroups = {
+      fields: [
+         {
+            name: 'name--1', email: 'email--1'
+         },
+         {
+            name: 'name--2', email: 'email--2'
+         },
+         {
+            name: 'name--3', email: 'email--3'
+         },
+         {
+            name: 'name--4', email: 'email--4'
+         },
+         {
+            name: 'name--5', email: 'email--5'
+         }
+      ],
+   }
+%}
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Manage Members',
+      }
+   %}
+
+   <div class="form-flow  |  container">
+      {{ global.link('../account/manage-members', 'Back', 'link --arrow --back  |  mb-2 md:mb-4') }}
+      <h2>Invite Members</h2>
+
+      <div class="form-flow__wrapper">
+
+         {#   Form   #}
+         <form action="../forms/event-registration--payment--member" class="form-group --wide" id="invite-members" data-validate>
+            <div class="invite-container  |  js--invite-container">
+               {% for item in inviteGroups.fields %}
+                  <div class="invite-group">
+                     {#   Name   #}
+                     {{ form.fieldGroup(
+                        'text',
+                        'half-width',
+                        { label: 'Name', identification: item.name }
+                     )}}
+
+                     {#   Email Address   #}
+                     {{ form.fieldGroup(
+                        'email',
+                        'half-width',
+                        { label: 'Email address', identification: item.email }
+                     )}}
+                  </div>
+               {% endfor %}
+            </div>
+
+            {#   Add Button   #}
+            <div class="w-full  |  -mt-2 mb-2 px-2">
+               {{ global.btnButton( 'btn --add  |  mt-4  |  js--add-button', 'Add another member') }}
+            </div>
+
+            {#   Submit and Cancel   #}
+            <div class="flex flex-wrap  |  mt-4">
+               {#   Submit   #}
+               {{ form.submit( 'mt-4', 'Send Invitation') }}
+
+               {#   Cancel   #}
+               <button
+                  class="btn --simple  |  mt-4 ml-4" type="button"
+                  onClick="function clearForm(){ document.getElementById('invite-members').reset(); } clearForm();"
+               >Cancel</button>
+            </div>
+         </form>
+      </div>
+   </div>
+{% endblock %}
+
+
+{% do view.registerJsFile('/assets/js/static/add-invite-group.js') %}
+{% do view.registerJsFile('/assets/js/static/form-validation.js') %}

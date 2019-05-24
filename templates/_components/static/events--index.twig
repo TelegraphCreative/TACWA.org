@@ -7,12 +7,14 @@
    {#   Search & Browse   #}
    <header class="events-index__search">
    <div></div>
+   	{% if not myevents %}
 {#       {% include '_components/static/search' with { 'identification': 'event-index-search', 'placeholder': 'Search events...' } %} #}
 	  {% if pastevents %}
       {{ global.link('/events', 'Browse Upcoming Events', 'link --arrow  |  flex-no-shrink my-4') }}
       {% else %}
       {{ global.link('/pastevents', 'Browse Past Events', 'link --arrow  |  flex-no-shrink my-4') }}
       {% endif %}
+    {% endif %}
    </header>
 
    {#   Index   #}
