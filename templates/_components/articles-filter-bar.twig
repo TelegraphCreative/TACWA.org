@@ -8,14 +8,27 @@
 
     {% if categories|length %}
     <div class="article-index__filter">
-        <select name="article-index__filter" id="article-index__filter">
-            <option value="all">All Categories</option>
-            
-            {% for category in categories %}
-                <option value="{{ category.url }}">{{ category.title }}</option>
-            {% endfor %}
-            
-        </select>
+
+        {% if categoryActive is defined %}
+            {% set selectedOption = categoryActive %}
+            {% else %}
+            {% set selectedOption = '/articles' %}
+        {% endif %}
+
+
+        {% set categoryData = [] %}
+
+        {% for category in categories %}
+            {% set categoryData = categoryData|merge([{
+                title: category.title,
+                url: category.url,
+                slug: category.slug
+            }]) %}
+        {% endfor %}
+
+        <select_dropdown :data="{{ categoryData | json_encode }}" :selectedOption="'{{ selectedOption }}'" :channel="'/articles'" :channelname="'All Articles'" name="article-index__filter" id="article-index__filter">
+        </select_dropdown>
+
         <svg class="block absolute pin-r -mt-8 mr-4  |  rotate-90deg  |  fill-current text-blue  |  z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
         <path d="M1.9 0L0 1.88 6.18 8 0 14.12 1.9 16 10 8 1.9 0z"/>
         </svg>

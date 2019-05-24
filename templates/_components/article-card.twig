@@ -5,12 +5,14 @@
         <a href="{{ category.url }}" class="article__info__category">
             {{ category.title }}
         </a>
-        <h3 class="article__info__heading">{{ content.title }}</h3>
+        <h3 class="article__info__heading">
+            <a href="{{ content.url }}" class="no-underline">{{ content.title }}</a>
+        </h3>
         <h4 class="article__info__author">by {{ content.author.fullName }}</h4>
         <time class="article__info__date">{{ content.postDate| date('M d, Y') }}</time>
     </div>
 
-    <div class="article-index__article__summary">
+    <a href="{{ content.url }}" class="article-index__article__summary | block no-underline">
         {{ content.pageDescription | chop(limit=60, unit='w', append= '…') }}
-    </div>
+    </a>
 </div>

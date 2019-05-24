@@ -9,7 +9,8 @@
    {# Settings #}
    {% set section = craft.entries.section('articlesLanding').one() %}
    {% set sectionArticles = craft.entries.section('articles') %}
-   {% set entriesPer = section.entriesPerPage %}
+   {# {% set entriesPer = section.entriesPerPage %} #}
+   {% set entriesPer = 1 %}
    {% set allArticles = sectionArticles.relatedTo(category) %}
    {% set articleCategories = craft.categories.group('regulatoryAffairsCategories') %}
    
@@ -29,14 +30,14 @@
          <div class="article-index  pt-4 mt-20   events-index  |  container">
 
             {# Filters/Search #}
+            {% set sectionArticles = craft.entries.section('articles') %}
             {% include '_components/articles-filter-bar' with { categoryGroup: articleCategories, channel: sectionArticles } %}
 
             {# Articles #}
             <div class="article-index__index">
                
                {# All Articles #}
-               {% paginate allArticles as pageInfo, articlesList %}
-
+               {% paginate allArticles.limit(entriesPer) as pageInfo, articlesList %}
 
                {# List #}
                {% if articlesList|length %}
@@ -46,6 +47,9 @@
                {% else %}
                   Looks like there aren't any articles right now!
                {% endif %}
+
+               {#   Pagination   #}
+               {% include '_components/static/pagination' with { searchQuery: false } %}
             </div>
 
          </div>

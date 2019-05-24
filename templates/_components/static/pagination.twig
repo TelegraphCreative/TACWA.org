@@ -4,22 +4,23 @@
 
 {% if pageInfo.totalPages > 1 %}
 
+
 <div class="pagination">
-   <a href="{{ pageInfo.prevUrl }}" class="pagination__button {% if not pageInfo.prevUrl %} --disabled {% endif %}">
+   <a href="{{ pageInfo.prevUrl }}{% if searchQuery|length %}?query={{ searchQuery }}{% endif %}" class="pagination__button {% if not pageInfo.prevUrl %} --disabled {% endif %}">
       {{ global.utilityIcon('chevron', 'h-3 w-2  |  rotate-180deg  |  fill-current') }}
    </a>
    
    {% for page, url in pageInfo.getPrevUrls(5) %}
-    <a class="pagination__button" href="{{ url }}">{{ page }}</a>
+    <a class="pagination__button" href="{{ url }}{% if searchQuery|length %}?query={{ searchQuery }}{% endif %}">{{ page }}</a>
 	{% endfor %}
 	
 	<span class="pagination__button --active">{{ pageInfo.currentPage }}</span>
 	
 	{% for page, url in pageInfo.getNextUrls(5) %}
-	    <a class="pagination__button" href="{{ url }}">{{ page }}</a>
+	    <a class="pagination__button" href="{{ url }}{% if searchQuery|length %}?query={{ searchQuery }}{% endif %}">{{ page }}</a>
 	{% endfor %}
 
-   <a href="{{ pageInfo.nextUrl }}" class="pagination__button {% if not pageInfo.nextUrl %} --disabled {% endif %}">
+   <a href="{{ pageInfo.nextUrl }}{% if searchQuery|length %}?query={{ searchQuery }}{% endif %}" class="pagination__button {% if not pageInfo.nextUrl %} --disabled {% endif %}">
       {{ global.utilityIcon('chevron', 'h-3 w-2  |  fill-current') }}
    </a>
 </div>
