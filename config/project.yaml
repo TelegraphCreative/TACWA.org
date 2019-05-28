@@ -137,7 +137,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1559027466
+dateModified: 1559053515
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -2624,7 +2624,7 @@ plugins:
   sprout-fields:
     edition: standard
     enabled: true
-    schemaVersion: 3.2.8
+    schemaVersion: 3.4.0
   image-optimize:
     edition: standard
     enabled: true
