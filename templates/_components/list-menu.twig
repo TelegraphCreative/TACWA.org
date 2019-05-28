@@ -3,9 +3,9 @@
    {% for category in menu.all() %}
                 
          {# With Dropdown #}
-         {% if category.level == 1 %}
+         {% if category.level == 1 and category.hideShow == 'alwaysShow' or (currentUser and category.hideShow == 'showLoggedIn') or (not currentUser and category.hideShow == 'hideLoggedIn') %}
             {#   Menu Item   #}
-            <li class="menu-list__item |"><a href="{{ category.url }}" class="menu-bar__link">{{ category.title }}</a></li>
+            <li class="menu-list__item |"><a target="{{ (category.linkItem.target) ? '_blank' : '_self' }}" href="{{ category.linkItem.url }}" class="menu-bar__link">{{ category.title }}</a></li>
          {% endif %}
          
    {% endfor %} 

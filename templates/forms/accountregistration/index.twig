@@ -5,6 +5,18 @@
 {% import '_macros/forms' as form %}
 
 
+{% set baseUrlSegments = 1 %}
+{% set segment1 = craft.app.request.segment(baseUrlSegments + 1) %}
+
+{% set orgId = segment1 %}
+{% if orgId %}
+   	{% set organization = craft.entries().id(orgId).one() %}
+{% endif %}
+
+{% if organization is not defined or organization is empty %}
+	{% redirect "/" %}
+{% endif %}
+
 {% block content %}
 
    {#   Page Header   #}
@@ -16,12 +28,21 @@
    %}
    
 	<div class="form-flow  |  container">
+		{{ organization.organizationName }}
 		{% if craft.app.request.param('status') == 'true' %}
 			<h3>Thanks for signing up for an account with TACWA!</h3>
 		{% endif %}
 		
-		<div class="form-flow__wrapper">		
-			{{ craft.freeform.form("accountRegistration").render }}			 
+		<div class="form-flow__wrapper">
+				
+			{{ craft.freeform.form("accountRegistration", {
+			  labelClass: "form-label",
+			  inputClass: "form-control",
+			  overrideValues: {
+			    organization: organization.id,
+			    organizationName: organization.organizationName
+			  }
+			}).render }}			 
 		</div>
 	</div>
 

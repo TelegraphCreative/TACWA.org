@@ -5,6 +5,20 @@
 {% import '_macros/forms' as form %}
 
 {% requireLogin %}
+{% if not currentUser.isInGroup('memberAdmin') %}
+    {% redirect '/account/profile' %}
+{% endif %}
+
+
+{% set organization = craft.entries().id(currentUser.organizationId).one() %}
+{% if not organization %}
+    {% redirect '/account/profile' %}
+{% endif %}
+{% set orgUsers = craft.users({
+   search: 'organizationId::' ~ currentUser.organizationId,
+   status: ['active', 'suspended'],
+   order: 'lastname, firstname'
+}) %}
 
 {% block content %}
 
@@ -17,19 +31,48 @@
          'link_text': 'Invite Members'
       }
    %}
-
+   
    <div class="form-flow  |  container">
       <h2>Active Members</h2>
+      
+      {% set submission = craft.freeform.submissions({
+		  id: 158
+		}).first() %}
+	{{ craft.freeform.joinConnect(158) }}
 
       <div class="flex flex-wrap" style="max-width: 50rem">
-         {% for i in 1..6 %}
-            <div class="sm:flex sm:items-center sm:justify-between  |  w-full  |  mb-6 pr-4 pb-6  |  border-b border-grey-lighter">
+         {% for user in orgUsers %}
+            <div class="sm:flex sm:items-center sm:justify-between  |  w-full  |  mb-6 pr-4 pb-6  |  border-b border-grey-lighter memberListItem {{ (user.status == 'active') ? 'activeUser' : 'suspendedUser' }}">
                <div class="mb-3 sm:mb-0">
-                  <h3 class="font-normal leading-tight text-16  |  mb-1">Bill Gause</h3>
-                  <p class="leading-tight">astone@dentonwaterutil.org</p>
+                  <h3 class="font-normal leading-tight text-16  |  mb-1">{{ user.firstName }} {{ user.lastName }}</h3>
+                  <p class="leading-tight">{{ user.email }}</p>
+                  <p>
+                  {% if user.isInGroup('memberAdmin') %}
+                  Admin
+                  {% else %}
+				  Member
+				  {% endif %}
+                  </p>
                </div>
-
-               {{ global.btnButton( 'btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger', 'Deactivate Account') }}
+               
+               {% if currentUser.id != user.id %}
+			   
+			   	<form method="post" id="suspendUser">
+				    {{ getCsrfInput() }}
+				    <input type="hidden" name="userId" value="{{ user.id }}">
+			   {% if user.status == 'active' %}
+				    <input type="hidden" name="action" value="users/suspend-user">
+				    <input class="btn --deactivate  |  sm:ml-4  |  {# js--deactivate-trigger #}" type="submit" value="Deactivate Account">
+				{% else %}
+				    <input type="hidden" name="action" value="users/unsuspend-user">
+				    <input class="btn --reactivate --deactivate  |  sm:ml-4  |  {# js--deactivate-trigger #}" type="submit" value="Reactivate Account">
+				{% endif %}
+				</form>
+				
+				
+{#                {{ global.btnButton( 'btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger', 'Deactivate Account') }} #}
+               
+               {% endif %}
             </div>
          {% endfor %}
       </div>

@@ -36,6 +36,10 @@
                     {#   Submenu   #}
                     <ul class="site-menu__submenu">
                         {% set subPages = craft.categories.descendantOf(category) %}
+                        
+                        {% if category.linkItem.url %}
+                        <li class="site-menu__sub-item"><a target="{{ (category.linkItem.target) ? '_blank' : '_self' }}" href="{{ category.linkItem.url }}">{{ category.title }}</a></li>
+                        {% endif %}
 
                         {% for subPage in subPages %}
                         	{% if subPage.hideShow == 'alwaysShow' or (currentUser and subPage.hideShow == 'showLoggedIn') or (not currentUser and subPage.hideShow == 'hideLoggedIn') %}

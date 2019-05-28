@@ -6,6 +6,7 @@
 {% set featuredEvents = craft.calendar.events({
   		endsAfterOrAt: "now",
 		order: "startDate ASC",
+		search: "eventFeatured::1",
 		limit: 1
 }) %}
 {% if featuredEvents|length %}

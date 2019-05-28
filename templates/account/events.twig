@@ -23,20 +23,27 @@
       
 
          {#   Form   #}
-{#
-    {{currentUser.id}}
     {% set submissions = craft.freeform.submissions({
-	    form: 'eventRegistrationMember',
-	    
-	}) %}
-	
-	{% for submission in submissions %}
-	<div>{{ submission.user  }}</div>
-	{% endfor %}
-#}
+	    	form: 'eventRegistrationMember'
+	    }) %}
+	{% set events = [] %}
+    {% for submission in submissions %}
+	    {% if submission.user == currentUser.id %}
+		    {% set events = events|merge([submission.eventId.value]) %}
+	    {% endif %}
+    {% endfor %}
+    
+    {% if not events %}
+    
+    
+    <h3>You are not currently registered for any events.</h3>
+    
+    
+    {% else %}
          
    
 	{% set eventOptions = {
+		id: events,
 		order: "startDate DESC",
 		limit: 6
 	} %}
@@ -51,6 +58,11 @@
 		     'myevents': true 
 	      } %}
    </section>
+   
+   
+   {% endif %}
+   
+   
    </div>
 
 {% endblock %}

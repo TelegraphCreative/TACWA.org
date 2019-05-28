@@ -24,7 +24,8 @@
   },
   "autoload": {
     "psr-4": {
-      "modules\\": "modules/"
+      "modules\\": "modules/",
+      "tacwamodule\\": "modules/tacwamodule/"
     }
   },
   "config": {
