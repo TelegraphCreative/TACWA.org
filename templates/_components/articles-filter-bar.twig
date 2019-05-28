@@ -7,7 +7,7 @@
     {% set categories = categoryGroup.relatedTo(channel).all() %}
 
     {% if categories|length %}
-    <div class="article-index__filter">
+    <div class="article-index__filter" id="app">
 
         {% if categoryActive is defined %}
             {% set selectedOption = categoryActive %}
