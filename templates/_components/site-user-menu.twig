@@ -3,20 +3,24 @@
 {% import '_macros/global' as global %}
 {% set menu = craft.categories.group('userMenu')%}
 
-
 <div class="site-user-menu">
    <button class="btn --site-user-menu  |  js--site-user-menu__btn">
       <span>Your Account</span>
       {{ global.utilityIcon('user', 'h-4 w-4') }}
       {{ global.utilityIcon('chevron', 'h-3 w-2  |  ml-3  |  rotate-90deg  |  text-grey') }}
    </button>
-
    <div class="site-user-menu__list_wrapper  |  js--site-user-menu">
       <ul class="site-user-menu__list">
           {% for category in menu.all() %}
-                
 
-                {% if category.level == 1 and category.userGroup.inGroup(currentUser) %}
+                {% if category.level == 1 %}
+                {#  
+                 Note (from LB)
+                 @ryan/@christian - 
+                 I wasn't sure what this line was for but it was throwing an error ("Variable "category" does not exist.")
+                 There's an if statement to check for logged in user in `site-header.twig`. 
+                 Is there an additional need to show some nav items in this list to only select users? 
+                 #}
                     {#   Menu Item   #}
                     <li class="site-user-menu__list__item"><a href="{{ category.linkItem.url }}">{{ category.title }}</a></li>
                 {% endif %}

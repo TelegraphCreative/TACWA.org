@@ -6,13 +6,14 @@
   --menu-sm-offset: 4.5rem;
 }
 
-
 @tailwind preflight;
 @tailwind components;
 @tailwind utilities;
 
-// // Base
+// Base
 // @import "base/fonts";
+@import "vendor/lazysizes";
+@import "base/image";
 @import "base/typography";
 @import "base/transition";
 @import "base/grid";
@@ -86,10 +87,7 @@
 //   @apply text-green;
 // }
 
-
-
-
 .element-invisible {
-	@apply absolute h-px overflow-hidden w-px;
-	clip: rect(1px, 1px, 1px, 1px)
+  @apply absolute h-px overflow-hidden w-px;
+  clip: rect(1px, 1px, 1px, 1px);
 }

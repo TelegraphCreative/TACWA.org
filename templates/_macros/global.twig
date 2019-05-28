@@ -1,22 +1,16 @@
 {# Image #}
 {% macro image(source, class) %}
     {# Source #}
-    {% if class %}
-        {% set classes = class %}
-    {% else %}
-        {% set classes = '' %}
-    {% endif %}
-
     {% if source|length %}
-        <figure class="image {{ classes }}">
-            <img data-src="{{ source.src() }}"
-                    data-srcset="{{ source.srcset() }}"
+        <figure class="image | lazyload{% if class %} | {{ class }}{% endif %}" style="padding-top: calc({{source.height}} / {{source.width}} * 100%);">
+            <img data-src="{{ source.optimizeImage.src() }}"
+                    data-srcset="{{ source.optimizeImage.srcset() }}"
                     sizes="100vw"
                     class="lazyload" />
         </figure>
     {% else %}
         {# Placeholder #}
-        <figure class="image {{ classes }}">
+        <figure class="image{% if class %} | {{ class }}{% endif %}">
         </figure>
     {% endif %}
 {% endmacro %}

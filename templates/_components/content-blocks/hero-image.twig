@@ -1,3 +1,5 @@
-<img src="{{ block.image.one().url }}" height="{{ block.image.one().height }}" width="{{ block.image.one().width }}" alt="">
+{% import '_macros/global' as global %}
+{{ global.image( block.image.one(), '-fit-cover' ) }}
+{# <img src="{{ block.image.one().url }}" height="{{ block.image.one().height }}" width="{{ block.image.one().width }}" alt=""> #}
 
 

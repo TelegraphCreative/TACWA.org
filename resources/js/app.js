@@ -2,7 +2,7 @@
 window.Vue = require("vue");
 
 // Imports
-
+import lazysizes from "lazysizes";
 import select_dropdown from "./components/SelectDropdown";
 
 // Vue App

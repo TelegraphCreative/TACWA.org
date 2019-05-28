@@ -137,7 +137,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1559053515
+dateModified: 1559054222
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1357,6 +1357,57 @@ fields:
       columnType: text
     contentColumnType: text
     fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  30716169-ca83-41a4-9280-86dabc80ca74:
+    name: 'Optimize Image '
+    handle: optimizeImage
+    instructions: ''
+    searchable: false
+    translationMethod: none
+    translationKeyFormat: null
+    type: nystudio107\imageoptimize\fields\OptimizedImages
+    settings:
+      displayOptimizedImageVariants: '1'
+      displayDominantColorPalette: ''
+      displayLazyLoadPlaceholderImages: ''
+      variants:
+        -
+          width: '1200'
+          useAspectRatio: '1'
+          aspectRatioX: '16'
+          aspectRatioY: '9'
+          retinaSizes:
+            - '1'
+          quality: '82'
+          format: jpg
+        -
+          width: '992'
+          useAspectRatio: '1'
+          aspectRatioX: '16'
+          aspectRatioY: '9'
+          retinaSizes:
+            - '1'
+          quality: '82'
+          format: jpg
+        -
+          width: '768'
+          useAspectRatio: '1'
+          aspectRatioX: '4'
+          aspectRatioY: '3'
+          retinaSizes:
+            - '1'
+          quality: '60'
+          format: jpg
+        -
+          width: '576'
+          useAspectRatio: '1'
+          aspectRatioX: '4'
+          aspectRatioY: '3'
+          retinaSizes:
+            - '1'
+          quality: '60'
+          format: jpg
+    contentColumnType: text
+    fieldGroup: 84b5df00-92dd-4d80-8c08-6b2eb24920d6
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -2604,6 +2655,39 @@ matrixBlockTypes:
               92fdce5a-11ef-4197-a434-d419e06ebabe:
                 required: true
                 sortOrder: 3
+  959b6193-cbd7-422f-aabb-72990757bc7e:
+    field: e5be8f68-d8e7-49a0-aacc-32e09a9dc793
+    name: Blockquote
+    handle: blockquote
+    sortOrder: 5
+    fields:
+      ad643d41-2578-40f0-8b62-8a89175d621b:
+        name: Quote
+        handle: quote
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: '1'
+          initialRows: '2'
+          charLimit: ''
+          columnType: text
+        contentColumnType: text
+        fieldGroup: null
+    fieldLayouts:
+      a8b5e52b-c7b2-4018-b8ee-b40aacf9d191:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              ad643d41-2578-40f0-8b62-8a89175d621b:
+                required: false
+                sortOrder: 1
 plugins:
   minify:
     edition: standard
@@ -3980,6 +4064,16 @@ volumes:
     settings:
       path: cms_assets/Logos/
     sortOrder: '2'
+    fieldLayouts:
+      06466571-836e-4554-bc0b-85dc16b38c03:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              30716169-ca83-41a4-9280-86dabc80ca74:
+                required: false
+                sortOrder: 1
   264c204b-bf72-4045-9802-bce191b5d329:
     name: Images
     handle: images
@@ -3988,4 +4082,14 @@ volumes:
     url: /cms_assets/Images/
     settings:
       path: cms_assets/Images/
-    sortOrder: 3
+    sortOrder: '3'
+    fieldLayouts:
+      cf8b8791-71b2-40fc-a13d-d3b89e1010cc:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              30716169-ca83-41a4-9280-86dabc80ca74:
+                required: false
+                sortOrder: 1

@@ -1,20 +1,3 @@
-// Image Helpers
-.fit {
-  &-cover {
-    object-fit: cover;
-  }
-  &-contain {
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 767px) {
-  .object-right--sm {
-    object-position: right;
-  }
-}
-
-// Image Element
 .image {
   @apply relative
         overflow-hidden;
@@ -38,6 +21,20 @@
     @apply .overflow-visible;
   }
 
+  // Fit
+  &.-fit {
+    &-cover {
+      img {
+        object-fit: cover;
+      }
+    }
+    &-contain {
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+
   // Ratios
   &.-is1x1 {
     padding-top: 100%;
@@ -48,7 +45,7 @@
   }
 
   &.-is8x20 {
-    padding-top: 169.25%;
+    padding-top: 150%;
   }
 
   &.-is8x10 {
@@ -60,7 +57,7 @@
   }
 
   &.-is16x9 {
-    padding-top: 65.25%;
+    padding-top: 62.5%;
   }
 
   &.-is2x1 {
@@ -69,26 +66,5 @@
 
   &.-is3x2 {
     padding-top: 40.7%;
-  }
-
-  // Shadow
-  &.-inner-shadow::before {
-    content: "";
-    @apply absolute 
-        h-full w-full
-        pin-t pin-l
-        z-10
-        block
-        shadow-inner;
-  }
-  &.rounded-full.-inner-shadow::before {
-    @apply rounded-full;
-  }
-
-  // Screens
-  @screen md {
-    &.-md\:is2x1 {
-      padding-top: 50%;
-    }
   }
 }
