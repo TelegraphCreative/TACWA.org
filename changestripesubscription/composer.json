@@ -1,0 +1,40 @@
+{
+    "name": "cleaveco/change-stripe-subscription",
+    "description": "Modify an organization's Stripe subscription",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "change stripe subscription"
+    ],
+    "support": {
+        "docs": "???",
+        "issues": "???"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "John Mueller",
+            "homepage": "http://cleave.co"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "cleaveco\\changestripesubscription\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Change Stripe Subscription",
+        "handle": "change-stripe-subscription",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "???",
+        "class": "cleaveco\\changestripesubscription\\ChangeStripeSubscription"
+    }
+}

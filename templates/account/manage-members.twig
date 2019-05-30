@@ -34,11 +34,6 @@
    
    <div class="form-flow  |  container">
       <h2>Active Members</h2>
-      
-      {% set submission = craft.freeform.submissions({
-		  id: 158
-		}).first() %}
-	{{ craft.freeform.joinConnect(158) }}
 
       <div class="flex flex-wrap" style="max-width: 50rem">
          {% for user in orgUsers %}

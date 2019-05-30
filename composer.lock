@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cc03058689a37057360bb2028b59fcc",
+    "content-hash": "80c431f97bc5d5f530628e388e0dcacf",
     "packages": [
         {
             "name": "99designs/phumbor",
@@ -20,12 +20,16 @@
                 "reference": "7b32a4bc0a247b07490dc57399aaaa06b5b32632",
                 "shasum": ""
             },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7.0"
+            },
             "type": "library",
             "autoload": {
                 "psr-0": {
                     "Thumbor": "lib"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -450,6 +454,53 @@
                 "markdown-extra"
             ],
             "time": "2018-03-26T11:24:36+00:00"
+        },
+        {
+            "name": "cleaveco/change-stripe-subscription",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "./changestripesubscription",
+                "reference": "894aa4ca34345898bc58c0d831d7450bfdf722c1"
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0-RC1"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Change Stripe Subscription",
+                "handle": "change-stripe-subscription",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "???",
+                "class": "cleaveco\\changestripesubscription\\ChangeStripeSubscription"
+            },
+            "autoload": {
+                "psr-4": {
+                    "cleaveco\\changestripesubscription\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Mueller",
+                    "homepage": "http://cleave.co"
+                }
+            ],
+            "description": "Modify an organization's Stripe subscription",
+            "keywords": [
+                "change stripe subscription",
+                "cms",
+                "craft",
+                "craft-plugin",
+                "craftcms"
+            ],
+            "support": {
+                "docs": "???",
+                "issues": "???"
+            }
         },
         {
             "name": "clue/stream-filter",
@@ -1779,11 +1830,6 @@
                 "doctrine/lexer": "^1.0.1",
                 "php": ">= 5.5"
             },
-            "require-dev": {
-                "dominicsayers/isemail": "dev-master",
-                "phpunit/phpunit": "^4.8.35||^5.7||^6.0",
-                "satooshi/php-coveralls": "^1.0.1"
-            },
             "suggest": {
                 "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
             },
@@ -1798,7 +1844,6 @@
                     "Egulias\\EmailValidator\\": "EmailValidator"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2637,7 +2682,6 @@
                     "lib/helpers.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2837,6 +2881,10 @@
             "require": {
                 "php": ">=5.4.0"
             },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.13",
+                "phpunit/phpunit": "~4.8|~5.7"
+            },
             "suggest": {
                 "ext-gd": "to use the GD image adapter.",
                 "ext-gmagick": "to use the Gmagick image adapter.",
@@ -2848,6 +2896,7 @@
                     "ColorThief\\": "lib/ColorThief"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "CC-BY-2.5"
             ],
@@ -2889,10 +2938,6 @@
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
-            "require-dev": {
-                "phpspec/phpspec": "^3.4",
-                "phpunit/phpunit": "^5.7.10"
-            },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
                 "ext-ftp": "Allows you to use FTP server storage",
@@ -2920,7 +2965,6 @@
                     "League\\Flysystem\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3993,6 +4037,7 @@
                     "nystudio107\\imageoptimize\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -4004,8 +4049,8 @@
             ],
             "description": "Automatically create & optimize responsive image transforms, using either native Craft transforms or a service like Imgix, with zero template changes.",
             "keywords": [
+                "Craft",
                 "cms",
-                "craft",
                 "craft-plugin",
                 "craftcms",
                 "image",
@@ -4014,10 +4059,6 @@
                 "optimize",
                 "optimize-images"
             ],
-            "support": {
-                "docs": "https://github.com/nystudio107/craft-imageoptimize/blob/v1/README.md",
-                "issues": "https://github.com/nystudio107/craft-imageoptimize/issues"
-            },
             "time": "2019-02-23T03:27:15+00:00"
         },
         {
@@ -4045,6 +4086,7 @@
                     "nystudio107\\imageoptimizeimgix\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -4061,10 +4103,6 @@
                 "image-transform",
                 "imgix"
             ],
-            "support": {
-                "docs": "https://github.com/nystudio107/craft-imageoptimize-imgix/blob/v1/README.md",
-                "issues": "https://github.com/nystudio107/craft-imageoptimize-imgix/issues"
-            },
             "time": "2019-02-23T03:24:51+00:00"
         },
         {
@@ -4092,6 +4130,7 @@
                     "nystudio107\\imageoptimizethumbor\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -4108,10 +4147,6 @@
                 "image-transform",
                 "thumbor"
             ],
-            "support": {
-                "docs": "https://github.com/nystudio107/craft-imageoptimize-thumbor/blob/v1/README.md",
-                "issues": "https://github.com/nystudio107/craft-imageoptimize-thumbor/issues"
-            },
             "time": "2019-03-11T12:43:56+00:00"
         },
         {
@@ -5958,7 +5993,6 @@
                     "superbig\\usergroupfield\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5970,12 +6004,16 @@
             ],
             "description": "Field type that let you select one or more user groups",
             "keywords": [
-                "Craft",
                 "cms",
+                "craft",
                 "craft-plugin",
                 "craftcms",
                 "user group field"
             ],
+            "support": {
+                "docs": "https://github.com/superbigco/craft-usergroupfield/blob/master/README.md",
+                "issues": "https://github.com/superbigco/craft-usergroupfield/issues"
+            },
             "time": "2019-02-25T19:50:48+00:00"
         },
         {
@@ -6847,7 +6885,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -7877,6 +7915,7 @@
                     "yii\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -8337,12 +8376,9 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {
-        "barrelstrength/sprout-email": 10,
-        "fortrabbit/craft-copy": 5
-    },
-    "prefer-stable": false,
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": []

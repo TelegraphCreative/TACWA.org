@@ -13,6 +13,8 @@
 {% endif %}
 
 
+
+
 {% block content %}
 
    {#   Page Header   #}
@@ -41,6 +43,8 @@
 	  {% redirect "events" %}
 
 	{% else %}
+	
+	{% set eventPrice = (event.guestPrice > 0) ? event.guestPrice : (event.memberPrice > 0) ? event.memberPrice : 0 %}
    
 	<div class="form-flow  |  container">
 		<div class="form-flow__wrapper --reverse">		
@@ -48,7 +52,7 @@
 			<div class="form-flow__detail">
 				<h3 class="heading --tiny  |  text-teal">Your Order</h3>
 				<p class="form-flow__detail__description"><a href="/event/{{ event.slug }}" class="link">{{ event.title }}</a> - Guest Registration</p>
-				<p class="form-flow__detail__total">Total: ${{ event.guestPrice }}</p>
+				<p class="form-flow__detail__total">Total: {{ (eventPrice > 0) ? '$' ~ eventPrice : 'FREE' }}</p>
 			</div>
 						
 			{{ craft.freeform.form("eventRegistrationGuest", {
@@ -57,7 +61,7 @@
 			  overrideValues: {
 				eventId: eventId,
 				calendarEvent: event.title,
-				eventCostGuest: event.guestPrice
+				eventCostGuest: eventPrice
 			  }
 			}).render() }}
 

@@ -5,28 +5,15 @@
 {% import '_macros/forms' as form %}
 
 {% requireLogin %}
+{% if not currentUser.isInGroup('memberAdmin') %}
+    {% redirect '/account/profile' %}
+{% endif %}
 
-{% set
-   inviteGroups = {
-      fields: [
-         {
-            name: 'name--1', email: 'email--1'
-         },
-         {
-            name: 'name--2', email: 'email--2'
-         },
-         {
-            name: 'name--3', email: 'email--3'
-         },
-         {
-            name: 'name--4', email: 'email--4'
-         },
-         {
-            name: 'name--5', email: 'email--5'
-         }
-      ],
-   }
-%}
+{% set organization = craft.entries().id(currentUser.organizationId).one() %}
+{% if not organization %}
+    {% redirect '/account/profile' %}
+{% endif %}
+
 {% block content %}
 
    {#   Page Header   #}
@@ -44,25 +31,23 @@
       <div class="form-flow__wrapper">
 
          {#   Form   #}
-         <form action="../forms/event-registration--payment--member" class="form-group --wide" id="invite-members" data-validate>
+         <form method="post" class="form-group --wide" id="invite-members" data-validate>
+         	<input type="hidden" name="action" value="freeform/api/invites">
+         	<input type="hidden" name="invites" id="invites" value="1">
+         	<input type="hidden" name="orgId" value="{{ currentUser.organizationId }}">
+         	<input type="hidden" name="orgName" value="{{ organization.organizationName }}">
+         	{{ csrfInput() }}
             <div class="invite-container  |  js--invite-container">
-               {% for item in inviteGroups.fields %}
-                  <div class="invite-group">
-                     {#   Name   #}
-                     {{ form.fieldGroup(
-                        'text',
-                        'half-width',
-                        { label: 'Name', identification: item.name }
-                     )}}
-
-                     {#   Email Address   #}
-                     {{ form.fieldGroup(
-                        'email',
-                        'half-width',
-                        { label: 'Email address', identification: item.email }
-                     )}}
-                  </div>
-               {% endfor %}
+               	<div class="invite-group">
+               		<div class="field-group --half-width">
+               			<label for="name--1" class="field-group__label">Name</label> 
+               			<input type="text" name="name--1" id="name--1" class="name field-group__input --field ">
+               		</div> 
+               		<div class="field-group --half-width">
+               			<label for="email--1" class="field-group__label">Email address</label> 
+               			<input type="email" name="email--1" id="email--1" class="email field-group__input --field ">
+               		</div>
+               	</div>
             </div>
 
             {#   Add Button   #}
@@ -73,7 +58,7 @@
             {#   Submit and Cancel   #}
             <div class="flex flex-wrap  |  mt-4">
                {#   Submit   #}
-               {{ form.submit( 'mt-4', 'Send Invitation') }}
+               {{ form.submit( 'mt-4 sendInvites', 'Send Invitation') }}
 
                {#   Cancel   #}
                <button
@@ -84,8 +69,9 @@
          </form>
       </div>
    </div>
+
 {% endblock %}
 
-
-{% do view.registerJsFile('/assets/js/static/add-invite-group.js') %}
-{% do view.registerJsFile('/assets/js/static/form-validation.js') %}
+{% do view.registerJsFile('/assets/js/add-invite-group.js') %}
+{# {% do view.registerJsFile('/assets/js/static/add-invite-group.js') %} #}
+{# {% do view.registerJsFile('/assets/js/static/form-validation.js') %} #}

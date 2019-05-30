@@ -14,6 +14,7 @@
 {% endif %}
 
 
+
 {% block content %}
 
    {#   Page Header   #}
@@ -43,6 +44,19 @@
 	  {% redirect "events" %}
 
 	{% else %}
+	
+	
+    {% set submissions = craft.freeform.submissions({
+	    	form: 'eventRegistrationMember'
+	    }) %}
+	{% set registered = false %}
+    {% for submission in submissions if not registered %}
+	    {% if submission.user == currentUser.id and submission.eventId == eventId %}
+		    {% set registered = true %}
+	    {% endif %}
+    {% endfor %}
+	
+	{% set eventPrice = (event.memberPrice > 0) ? event.memberPrice : 0 %}
    
 	<div class="form-flow  |  container">
 		<div class="form-flow__wrapper --reverse">		
@@ -50,8 +64,16 @@
 			<div class="form-flow__detail">
 				<h3 class="heading --tiny  |  text-teal">Your Order</h3>
 				<p class="form-flow__detail__description"><a href="/event/{{ event.slug }}" class="link">{{ event.title }}</a> - Member Registration</p>
-				<p class="form-flow__detail__total">Total: ${{ event.memberPrice }}</p>
+				<p class="form-flow__detail__total">Total: {{ (eventPrice > 0) ? '$' ~ eventPrice : 'FREE' }}</p>
 			</div>
+			
+    
+			{% if registered %}
+			
+			<h3>You are already registered for this event.</h3>
+			
+			{% else %}
+    
 			
 			{{ craft.freeform.form("eventRegistrationMember", {
 			  labelClass: "form-label",
@@ -64,11 +86,13 @@
 				eventId: eventId,
 				event: eventId,
 				calendarEvent: event.title,
-				eventCostMember: event.memberPrice,
+				eventCostMember: eventPrice,
 				phone: currentUser.phone,
 				user: currentUser.id
 			  }
 			}).render() }}
+			
+			{% endif %}
 
 			 
 		</div>
