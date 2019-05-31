@@ -137,7 +137,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1559169673
+dateModified: 1559334808
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1408,6 +1408,23 @@ fields:
           format: jpg
     contentColumnType: text
     fieldGroup: 84b5df00-92dd-4d80-8c08-6b2eb24920d6
+  6ab59793-e626-4751-9cc3-272b9d6e89df:
+    name: 'Order Number'
+    handle: orderNumber
+    instructions: 'This field should be left blank on creation. The system will fill it in when paid.'
+    searchable: false
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: '1'
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: string
+    contentColumnType: string
+    fieldGroup: 717b2017-edbe-4c42-8377-d90ae3b3bbfe
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -3242,9 +3259,12 @@ sections:
                     sortOrder: 1
                   e1d949da-d328-43f9-8d1f-533b94855986:
                     required: false
-                    sortOrder: 3
+                    sortOrder: 2
                   e5456dca-cb28-4635-9b5d-9a4c63812296:
                     required: true
+                    sortOrder: 3
+                  6ab59793-e626-4751-9cc3-272b9d6e89df:
+                    required: false
                     sortOrder: 4
   a67807ff-5b97-45d4-abdc-9d1f65e0ebdf:
     name: Membership
