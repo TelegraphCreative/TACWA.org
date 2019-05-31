@@ -3,7 +3,7 @@
 {% import '_macros/forms' as form %}
 
 {% set cart = craft.commerce.carts.cart %}
-{% set number = 1 %}
+{# {% set number = 1 %} #}
 
 {% set payment = craft.app.request.param('payment') %}
 
@@ -20,12 +20,7 @@
 <div class="container">
 
 {% if not payment %}
-    
-    
 	
-    {# <p>Adding to cart...{% include 'buy/_components/spinner' %}</p> #}
-	
-
 	<h2 class="mb-4">{{ entry.title }}</h2>
 
     {# More here: http://docs.solspace.com/craft/calendar/v2/template-objects/event.html#usage-in-templates #}
@@ -34,8 +29,15 @@
     <p class="mb-4"><strong>Member Email:</strong><br>{{ entry.email }}</p>
     <p class="mb-4"><strong>Total:</strong><br>{{ entry.totalAmount }}</p>
 
+    {% set donationInCart = false %}
+    {% for item in cart.lineItems %}
+        {% if item.snapshot.description == 'Donation' %}
+            {% set donationInCart = true %}
+        {% endif %}
+    {% endfor %}
+
     {% set donation = craft.commerce.donation %}
-    {% if donation and donation.isAvailable %}
+    {% if donation and donation.isAvailable and not donationInCart %}
     <form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
         <input type="hidden" name="action" value="commerce/cart/update-cart">
         {{ redirectInput(craft.app.request.absoluteUrl ~ '?payment=true') }}
@@ -50,6 +52,10 @@
             document.forms['auto-add-to-cart'].submit();
         }
     </script> #}
+    {% else %}
+        <a href="?payment=true" class="bg-blue text-white rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark no-underline">
+            Pay Now
+        </a> 
     {% endif %}
     
 
@@ -67,7 +73,7 @@
     <form method="POST" class="add-to-cart-form">
         <input type="hidden" name="action" value="commerce/payments/pay">
         {# <input type="hidden" name="gatewayId" value="1"> #}
-        {{ redirectInput('buy/confirm?number={number}') }}
+        {# {{ redirectInput('buy/confirm?number={number}') }} #}
         {{ csrfInput() }}
     {% if cart.gatewayId %}
         <input type="hidden" name="gatewayId" value="{{ cart.gatewayId }}"/>
