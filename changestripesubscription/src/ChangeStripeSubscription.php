@@ -16,6 +16,7 @@ use Craft;
 use craft\elements\Entry;
 use craft\events\ElementEvent;
 use craft\services\Elements;
+use craft\elements\User;
 
 use craft\base\Plugin;
 use craft\services\Plugins;
@@ -24,6 +25,7 @@ use \Solspace\Freeform\Services\FormsService;
 use \Solspace\Freeform\Events\Forms\AfterSubmitEvent;
 use \Solspace\Freeform\Services\SubmissionsService;
 use \Solspace\Freeform\Events\Submissions\SubmitEvent;
+use \Solspace\FreeformPayments\Variables;
 
 use yii\base\Event;
 
@@ -87,6 +89,7 @@ class ChangeStripeSubscription extends Plugin
     }
     
     private $_planId = '';
+    private $_subscriptionId = '';
 
     
     // make sure to register this plugin by running from vagrant shell: composer require cleaveco/change-stripe-subscription
@@ -152,11 +155,9 @@ class ChangeStripeSubscription extends Plugin
 
           // taken from: https://stripe.com/docs/billing/subscriptions/upgrading-downgrading
           // we should pull api keys from .env -john
-          \Stripe\Stripe::setApiKey('sk_test_3RLMomOGCp5ztT65ag7GW38r00IaZkr1rf');
+          \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
 
-          $currentSub = 'sub_F6H3o1AWj96nZr';
-          $currentSub = 'sub_F7e7xNJ70U88Y7';
-          // $newSub = 'plan_F6HOCl6mKYldJd';
+          $currentSub = $savedEntry->stripeSubscriptionId;
 
           // this namespace should work b/c of Composer's autoloading (defined in /web/index.php)
           // if it doesn't, we'll need some troubleshooting -john
@@ -180,19 +181,55 @@ class ChangeStripeSubscription extends Plugin
       // Not sure if it's the correct event, but seems like we'll want to do it on submission -john
       // Submission
       Event::on(
-        SubmissionsService::class,
-        SubmissionsService::EVENT_AFTER_SUBMIT,
+        FormsService::class,
+        FormsService::EVENT_AFTER_SUBMIT,
         // if I remove any function args it executes this block... but without any data -john
-        function (SubmitEvent $event) {
-          $submission = $event->getElement();
+        function (AfterSubmitEvent $event) {
+//           $submission = $event->getElement();
           $form       = $event->getForm();
             
           // Get a specific field value
           // only do this for org update submissions
           // change this to get new plan -john
           // $value = $form->get('firstName')->getValue();
-          $this->logg(json_encode($submission));
-          $this->logg(json_encode($form));
+//           $this->logg('Form: '.json_encode($form));
+          
+          if ($form->getHandle() == 'joinTACWA') {
+	          
+		    $creationId = $form->get('creationId')->getValue();
+		    
+			if (!$creationId) return false;
+		    
+		    $searchQuery = 'creationId:"'.$creationId.'"';
+		    
+		    // GET ORGANIZATION BY CREATION ID
+		    $organization = \craft\elements\Entry::find()
+			    ->search($searchQuery)
+			    ->one();
+			
+		    
+			if (!$organization) {
+				$this->logg('No organization found. '.$searchQuery);
+				return false;
+			}
+			
+			$stripeId = 'cus_temp';
+			$organization->setFieldValues(['stripeId' => $stripeId]);
+			Craft::$app->getElements()->saveElement($organization, false);
+			
+		    // GET USER BY CREATION ID
+			$admin = \craft\elements\User::find()
+			    ->search($searchQuery)
+			    ->one();
+			
+			if (!$admin) {
+				$this->logg('No admin found. '.$searchQuery);
+				return false;
+			}
+			
+			$admin->setFieldValues(['organizationId' => $organization->id]);
+			Craft::$app->getElements()->saveElement($admin, false);
+          }
   
           //   // Iterate over all posted fields and get their values
           //   foreach ($form->getLayout()->getFields() as $field) {
@@ -204,30 +241,6 @@ class ChangeStripeSubscription extends Plugin
     
           //       $field->getValue();
           //   }
-    
-            // Do something with this data
-          // Set your secret key: remember to change this to your live secret key in production
-          // See your keys here: https://dashboard.stripe.com/account/apikeys
-
-          // // taken from: https://stripe.com/docs/billing/subscriptions/upgrading-downgrading
-          // // we should pull api keys from .env -john
-          // \Stripe\Stripe::setApiKey('sk_test_3RLMomOGCp5ztT65ag7GW38r00IaZkr1rf');
-
-          // $currentSub = 'sub_F6H3o1AWj96nZr';
-          // $newSub = 'plan_F6HOCl6mKYldJd';
-
-          // // this namespace should work b/c of Composer's autoloading (defined in /web/index.php)
-          // // if it doesn't, we'll need some troubleshooting -john
-          // $subscription = \Stripe\Subscription::retrieve($currentSub);
-          // \Stripe\Subscription::update($currentSub, [
-          //   'cancel_at_period_end' => false,
-          //   'items' => [
-          //     [
-          //       'id' => $subscription->items->data[0]->id,
-          //       'plan' => $newSub,
-          //     ],
-          //   ],
-          // ]);
         }
       );
 

@@ -4,6 +4,10 @@
 {% import '_macros/global' as global %}
 {% import '_macros/forms' as form %}
 
+{% if currentUser %}
+	{% redirect '/account/profile' %}
+{% endif %}
+
 
 {% set baseUrlSegments = 1 %}
 {% set segment1 = craft.app.request.segment(baseUrlSegments + 1) %}

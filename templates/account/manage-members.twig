@@ -34,6 +34,12 @@
    
    <div class="form-flow  |  container">
       <h2>Active Members</h2>
+      
+      
+			{{ craft.freeform.form("joinTACWApage1", {
+			  labelClass: "form-label",
+			  inputClass: "form-control"
+			}).render }}
 
       <div class="flex flex-wrap" style="max-width: 50rem">
          {% for user in orgUsers %}
@@ -52,20 +58,21 @@
                
                {% if currentUser.id != user.id %}
 			   
-			   	<form method="post" id="suspendUser">
+			   
+			   {% if user.status == 'active' %}
+               		<button class="btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger" type="button" data-id="{{ user.id }}">Deactivate Account</button>
+{# 				    <input class="btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger" type="submit" value="Deactivate Account" data-id="{{ user.id }}"> #}
+				{% else %}
+					<form method="post" id="suspendUser">
 				    {{ getCsrfInput() }}
 				    <input type="hidden" name="userId" value="{{ user.id }}">
-			   {% if user.status == 'active' %}
-				    <input type="hidden" name="action" value="users/suspend-user">
-				    <input class="btn --deactivate  |  sm:ml-4  |  {# js--deactivate-trigger #}" type="submit" value="Deactivate Account">
-				{% else %}
 				    <input type="hidden" name="action" value="users/unsuspend-user">
-				    <input class="btn --reactivate --deactivate  |  sm:ml-4  |  {# js--deactivate-trigger #}" type="submit" value="Reactivate Account">
+				    <input class="btn --reactivate --deactivate  |  sm:ml-4" type="submit" value="Reactivate Account">
+				    </form>
 				{% endif %}
-				</form>
 				
 				
-{#                {{ global.btnButton( 'btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger', 'Deactivate Account') }} #}
+				
                
                {% endif %}
             </div>
@@ -101,7 +108,12 @@
             <button class="btn --simple  |  mr-4  |  js--modal__cancel-btn" type="button">Cancel</button>
 
             {#   Deactivate   #}
-            <input type="submit" value="Deactivate" class="btn --primary --caution">
+            <form method="post" id="suspendUser">
+			    {{ getCsrfInput() }}
+			    <input type="hidden" id="userId" name="userId" value="">
+			    <input type="hidden" name="action" value="users/suspend-user">
+				<input type="submit" value="Deactivate" class="btn --primary --caution">
+			</form>
          </div>
       </div>
    </div>
@@ -110,4 +122,4 @@
 {% endblock %}
 
 
-{% do view.registerJsFile('/assets/js/static/reveal-modal.js') %}
+{% do view.registerJsFile('/assets/js/deactivate-member-modal.js') %}

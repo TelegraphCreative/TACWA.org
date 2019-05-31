@@ -4,6 +4,10 @@
 {% import '_macros/global' as global %}
 {% import '_macros/forms' as form %}
 
+{% if currentUser %}
+	{% redirect '/account/profile' %}
+{% endif %}
+
 {% set creationId = [] %}
 {% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
 {% set numbers = '0123456789' %}
@@ -31,8 +35,20 @@
 	
 
    
-	<div class="form-flow  |  container">
-		<div class="form-flow__wrapper">		
+	
+	
+	<div class="form-flow  |  container" id="joinTacwaForm">
+
+      <div class="form-flow__wrapper">
+      
+      	<div class="form-flow__detail" id="joinSidebar" style="display:none;">
+      		<h3 class="heading --tiny  |  text-teal">Add Your Team!</h3>
+	  		<p class="form-flow__detail__description">Invite your colleagues to sign into TACWA.org to register for events, manage their account, and more.</p>
+	  		<a href="../account/members-invite" class="btn --primary --light">Invite Members</a>
+	  	</div>
+			
+
+{# 			{% if craft.app.request.param('creationId') %} #}
 			
 			{{ craft.freeform.form("joinTACWA", {
 			  labelClass: "form-label",
@@ -41,31 +57,29 @@
 			    creationId: creationId
 			  }
 			}).render }}
+			
+{#
+			{% else %}
+			
+			{{ craft.freeform.form("ryanTest").render }}	
+			
+			{% endif %}
+#}
 			 
 		</div>
 	</div>
-	
-{% js %}
-
-function setSubscription() {
-	var org = document.getElementById("form-input-organizationType").value;
-	var subscription = '';
-	if (org == 'collectionAndTreatmentSystems') {
-		subscription = document.getElementById("form-input-collectionAndTreatmentSystems").value;
-		document.getElementById('form-input-collectionSystemOnly').value = '';
-		document.getElementById('form-input-affiliateSize').value = '';
-	} else if (org == 'collectionSystemOnly') {
-		subscription = document.getElementById("form-input-collectionSystemOnly").value;
-		document.getElementById('form-input-collectionAndTreatmentSystems').value = '';
-		document.getElementById('form-input-affiliateSize').value = '';
-	} else if (org == 'affiliate') {
-		subscription = document.getElementById("form-input-affiliateSize").value;
-		document.getElementById('form-input-collectionAndTreatmentSystems').value = '';
-		document.getElementById('form-input-collectionSystemOnly').value = '';
-	}
-	document.getElementById('form-input-subscriptionPlanID').value = subscription;
-}
-
-{% endjs %}
 
 {% endblock %}
+
+{% do view.registerJsFile('/assets/js/set-subscription.js') %}
+{% js %}
+if(currentPage > 1) {
+{# 	alert(document.getElementById()) #}
+	var x = document.getElementsByClassName('form-flow__wrapper');
+	var i;
+	for (i = 0; i < x.length; i++) {
+	  x[i].classList.add("--reverse");
+	} 
+	document.getElementById('joinSidebar').style.display = "block";
+}
+{% endjs %}

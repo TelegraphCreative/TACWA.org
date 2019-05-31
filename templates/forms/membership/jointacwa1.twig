@@ -1,0 +1,54 @@
+{#   Join TACWA - Organization Information   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{% if currentUser %}
+	{% redirect '/account/profile' %}
+{% endif %}
+
+{% set creationId = [] %}
+{% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
+{% set numbers = '0123456789' %}
+
+{% for i in 1..10 %}
+    {% set randomCharacter = random(alpha ~ alpha|upper ~ numbers ~ '-_') %}
+    {% set creationId = creationId|merge([randomCharacter]) %}
+{% endfor %}
+{% set creationId = creationId|join %}
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Join TACWA'
+      }
+   %}
+	
+
+   
+	
+	
+	<div class="form-flow  |  container" id="joinTacwaForm">
+
+      <div class="form-flow__wrapper">
+			
+			
+			{{ craft.freeform.form("joinTACWApage1", {
+			  labelClass: "form-label",
+			  inputClass: "form-control",
+			  overrideValues: {
+			    creationId: creationId
+			  }
+			}).render }}
+			 
+		</div>
+	</div>
+
+{% endblock %}
+
+{% do view.registerJsFile('/assets/js/set-subscription.js') %}

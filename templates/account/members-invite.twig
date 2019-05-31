@@ -32,7 +32,7 @@
 
          {#   Form   #}
          <form method="post" class="form-group --wide" id="invite-members" data-validate>
-         	<input type="hidden" name="action" value="freeform/api/invites">
+         	<input type="hidden" name="action" value="change-stripe-subscription/default/invite">
          	<input type="hidden" name="invites" id="invites" value="1">
          	<input type="hidden" name="orgId" value="{{ currentUser.organizationId }}">
          	<input type="hidden" name="orgName" value="{{ organization.organizationName }}">
@@ -64,14 +64,23 @@
                <button
                   class="btn --simple  |  mt-4 ml-4" type="button"
                   onClick="function clearForm(){ document.getElementById('invite-members').reset(); } clearForm();"
-               >Cancel</button>
+               >Clear Form</button>
             </div>
          </form>
       </div>
+      
+      {% set sent = craft.app.request.param('success') %}
+      {% if sent > 0 %}
+      <div class="form-flow__wrapper" style="margin-top:20px;">
+      	{% if sent > 1 %}
+	  		Your {{ sent }} invitations have been sent.
+	  	{% else %}
+	  		Your invitation has been sent.
+	  	{% endif %}
+      </div>
+{% endif %}
    </div>
 
 {% endblock %}
 
 {% do view.registerJsFile('/assets/js/add-invite-group.js') %}
-{# {% do view.registerJsFile('/assets/js/static/add-invite-group.js') %} #}
-{# {% do view.registerJsFile('/assets/js/static/form-validation.js') %} #}

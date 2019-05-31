@@ -13,6 +13,15 @@
 {% redirect "/event-registration/" ~ segment2 %}
 {% endif %}
 
+   
+   {% set eventId = segment2 %}
+   {% if eventId %}
+   		{% set event = craft.calendar.event(eventId) %}
+	{% endif %}
+	
+	{% if event is not defined or event is empty %}
+	  {% redirect "events" %}
+	{% endif %}
 
 
 {% block content %}
@@ -30,19 +39,19 @@
 	{% if successParam is not null %}
 	
 	<div class="form-flow  |  container">
-	  Thanks, we have received your registration!
+		{% if event.successMessage %}
+		
+			{{ event.successMessage }}
+			
+		{% else %}
+		
+			Thanks, we have received your registration!
+	  
+	  	{% endif %}
+	  	
+	  	{{ global.btn( '/event/' ~ event.slug, 'btn --primary --dark  |  sm:my-2', 'Return to ' ~ event.title) }}
 	</div>
 	  
-	{% else %}
-   
-   {% set eventId = segment2 %}
-   {% if eventId %}
-   		{% set event = craft.calendar.event(eventId) %}
-	{% endif %}
-	
-   {% if event is not defined or event is empty %}
-	  {% redirect "events" %}
-
 	{% else %}
 	
 	
@@ -73,16 +82,19 @@
 			<h3>You are already registered for this event.</h3>
 			
 			{% else %}
-    
+			
+			{% set organization = craft.entries().id(currentUser.organizationId).one() %}
 			
 			{{ craft.freeform.form("eventRegistrationMember", {
+				returnUrl: '/event-registration/member/' ~ eventId ~ '?success=1',
 			  labelClass: "form-label",
 			  inputClass: "form-control",
 			  overrideValues: {
 			    firstName: currentUser.firstName,
 				lastName: currentUser.lastName,
 				email: currentUser.email,
-				companyName: craft.entries.organization,
+				organizationName: organization.organizationName,
+				JobTitle: currentUser.individualAccountTitle,
 				eventId: eventId,
 				event: eventId,
 				calendarEvent: event.title,
@@ -97,7 +109,6 @@
 			 
 		</div>
 	</div>
-   {% endif %}
 	
 	
 	{% endif %}

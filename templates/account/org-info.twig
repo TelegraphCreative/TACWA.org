@@ -9,7 +9,7 @@
     {% redirect '/account/profile' %}
 {% endif %}
 
-{% set organization = currentUser.organization.one() %}
+{% set organization = craft.entries().id(currentUser.organizationId).one() %}
 {% if not organization %}
     {% redirect '/account/profile' %}
 {% endif %}

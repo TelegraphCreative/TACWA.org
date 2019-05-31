@@ -10,4 +10,8 @@
          
    {% endfor %} 
 
+    {% if currentUser and currentUser.admin %}
+    	<li class="menu-list__item |"><a href="/admin" class="menu-bar__link">Admin</a></li>
+    {% endif %}
+
 </ul>

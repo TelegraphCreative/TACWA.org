@@ -9,21 +9,23 @@
     {% redirect '/account/profile' %}
 {% endif %}
 
-{% set organization = currentUser.organization.one() %}
+{% set organization = craft.entries().id(currentUser.organizationId).one() %}
 {% if not organization %}
     {% redirect '/account/profile' %}
 {% endif %}
 
-{#   Content   #}
-{% set
-   content = {
-      membershipStartDate: '03/01/2019',
-      membershipEndDate: '03/01/2020',
-      annualDues: '$45'
-   }
-%}
 
+      	
+{% set payments = null %}
+{% set submissions = craft.freeform.submissions({
+	form: 'joinTACWA'
+}) %}
 
+{% for submission in submissions if submission.creationId == organization.creationId %}
+	{% set payments = craft.freeformPayments.payments(submission.id) %}
+{% endfor %}
+ 
+ {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %}
 
 
 {% block content %}
@@ -40,12 +42,9 @@
 
    <div class="form-flow  |  container">
       
-
       <div class="form-flow__wrapper">
       
-         
-         {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %}
-         
+      {{ craft.changestripesubscription.getSubscription(1) }}
          
          {{ craft.freeform.form("organizationMembership", {
 			  labelClass: "form-label",
@@ -56,6 +55,7 @@
 				collectionSystemOnly: organization.collectionSystemOnly,
 				affiliateSize: organization.affiliateSize,
 				subscriptionPlanID: planId,
+				stripeSubscriptionId: payments.resourceId,
 				entryId: organization.id
 			  }
 			}).render() }}
@@ -64,45 +64,81 @@
       </div>
    </div>
 
+
+   {#   Deactivate Module   #}
+   <div class="modal__container  |  js--cancelSubscription-modal">
+      {#   Overlay   #}
+      <div class="modal__overlay"></div>
+
+      {#   Modal   #}
+      <div class="modal">
+         {#   Header   #}
+         <div class="modal__header">
+            <h1 class="modal__title">Cancel Subscription?</h1>
+
+            <button class="modal__close-btn  |  js--modal__close-btn">
+               {{ global.utilityIcon('close') }}
+            </button>
+         </div>
+
+         {#   Copy   #}
+         <div class="modal__copy">
+            <p>Are you sure you want to cancel this subscription? Once cancelled, all members of this organization will no longer be able to sign in to TACWA.org</p>
+         </div>
+
+         {#   Action   #}
+         <div class="modal__action">
+            {#   Cancel   #}
+            <button class="btn --simple  |  mr-4  |  js--modal__cancel-btn" type="button">Cancel</button>
+
+            {#   Deactivate   #}
+            <form method="post" id="cancelSubscription">
+			    {{ getCsrfInput() }}
+			    <input type="hidden" id="organizationId" name="organizationId" value="{{ organization.id }}">
+			    <input type="hidden" id="organizationId" name="stripeSubscriptionId" value="{{ payments.resourceId }}">
+			    <input type="hidden" name="action" value="change-stripe-subscription/default/cancelsubscription">
+				<input type="submit" value="Cancel Subscription" class="btn --primary --caution">
+			</form>
+         </div>
+      </div>
+   </div>
+
 {% endblock %}
 
 
+{% do view.registerJsFile('/assets/js/cancel-subscription-modal.js') %}
+{% do view.registerJsFile('/assets/js/set-subscription.js') %}
 {% do view.registerJsFile('/assets/js/static/form-validation.js') %}
 
 	
+
 {% js %}
+
+var planPrices = [
+{% set planPrices = [] %}
+{% set plans = craft.commerce.getPlans().getAllPlans() %}
+{% for plan in plans %}
+    {% set planData = plan.planData|json_decode %}
+    {% set planPrices = planPrices|merge([{'id': planData.plan.id, 'amount': (planData.plan.amount / 100)|currency}]) %}
+    {id: "{{ planData.plan.id }}", amount: "{{ (planData.plan.amount / 100)|currency }}"},
+{% endfor %}
+];
 
 document.addEventListener('DOMContentLoaded', function() {
 	var field, fields = [
 		"organizationType",
 		"collectionAndTreatmentSystems",
 		"collectionSystemOnly",
-		"affiliateSize"
+		"affiliateSize",
+		"stripeSubscriptionId"
 	];
 	
 	for(var i=0, len=fields.length; i < len; ++i) {
 		field = document.getElementsByName(fields[i]);
 		field[0].setAttribute("name", "fields["+fields[i]+"]");
 	}
+	
+	updatePrice('{{ planId }}');
 }, false);
-
-function setSubscription() {
-	var org = document.getElementById("form-input-organizationType").value;
-	var subscription = '';
-	if (org == 'collectionAndTreatmentSystems') {
-		subscription = document.getElementById("form-input-collectionAndTreatmentSystems").value;
-		document.getElementById('form-input-collectionSystemOnly').value = '';
-		document.getElementById('form-input-affiliateSize').value = '';
-	} else if (org == 'collectionSystemOnly') {
-		subscription = document.getElementById("form-input-collectionSystemOnly").value;
-		document.getElementById('form-input-collectionAndTreatmentSystems').value = '';
-		document.getElementById('form-input-affiliateSize').value = '';
-	} else if (org == 'affiliate') {
-		subscription = document.getElementById("form-input-affiliateSize").value;
-		document.getElementById('form-input-collectionAndTreatmentSystems').value = '';
-		document.getElementById('form-input-collectionSystemOnly').value = '';
-	}
-	document.getElementById('form-input-subscriptionPlanID').value = subscription;
-}
 
 {% endjs %}

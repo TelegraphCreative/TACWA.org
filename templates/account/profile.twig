@@ -6,7 +6,7 @@
 
 {% requireLogin %}
 
-{% set organization = currentUser.organization.one() %}
+{% set organization = craft.entries().id(currentUser.organizationId).one() %}
 
 {% block content %}
 

@@ -73,20 +73,6 @@ commerce:
       sortOrder: 99
       default: false
   productTypes:
-    2dc8282e-b766-402d-8e9a-e8fd5887e3e9:
-      name: Clothing
-      handle: clothing
-      hasDimensions: true
-      hasVariants: false
-      hasVariantTitleField: false
-      titleFormat: '{product.title}'
-      skuFormat: ''
-      descriptionFormat: ''
-      siteSettings:
-        0d0840a6-2776-46d9-b404-951195224e26:
-          hasUrls: true
-          uriFormat: 'shop/products/{slug}'
-          template: shop/products/_product
     5f110223-b3fc-4c8c-8a1a-48d2c84c0f33:
       name: Sponsorships
       handle: sponsorships
@@ -137,7 +123,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1559169673
+dateModified: 1559331573
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -560,7 +546,7 @@ fields:
     contentColumnType: text
     fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
   20f946d4-489d-4594-a04b-c228d8dabe66:
-    name: 'Individual Account Title'
+    name: 'Job Title'
     handle: individualAccountTitle
     instructions: ''
     searchable: true
@@ -575,42 +561,6 @@ fields:
       charLimit: ''
       columnType: text
     contentColumnType: text
-    fieldGroup: 70bd7234-0f4f-44ba-b0fa-192f7cfe89aa
-  c29e1bbd-b573-4e4a-8a0f-986c7423d540:
-    name: 'Individual Account Username'
-    handle: individualAccountUsername
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: 70bd7234-0f4f-44ba-b0fa-192f7cfe89aa
-  2249a606-0c7a-4862-9556-2e513bbb35db:
-    name: Organization
-    handle: organization
-    instructions: ''
-    searchable: true
-    translationMethod: site
-    translationKeyFormat: null
-    type: craft\fields\Entries
-    settings:
-      sources:
-        - 'section:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'
-      source: null
-      targetSiteId: null
-      viewMode: null
-      limit: '1'
-      selectionLabel: ''
-      localizeRelations: false
-    contentColumnType: string
     fieldGroup: 70bd7234-0f4f-44ba-b0fa-192f7cfe89aa
   801e1bb4-0e4e-4ad7-9847-83fbb30c06a1:
     name: 'Attendee Company Name'
@@ -1408,6 +1358,44 @@ fields:
           format: jpg
     contentColumnType: text
     fieldGroup: 84b5df00-92dd-4d80-8c08-6b2eb24920d6
+  3a7edab9-968b-4a65-8837-0e2696094561:
+    name: 'Stripe Subscription ID'
+    handle: stripeSubscriptionId
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  6eb048cd-9344-437e-951c-c1127d4441f9:
+    name: 'Success Message'
+    handle: successMessage
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -2755,6 +2743,30 @@ plugins:
     edition: lite
     enabled: true
     schemaVersion: 2.1.06
+    settings:
+      weightUnits: lb
+      dimensionUnits: in
+      emailSenderAddress: ''
+      emailSenderName: ''
+      orderPdfPath: shop/_pdf/order
+      pdfPaperSize: letter
+      pdfPaperOrientation: portrait
+      orderPdfFilenameFormat: 'Order-{number}'
+      emailSenderAddressPlaceholder: null
+      emailSenderNamePlaceholder: null
+      minimumTotalPriceStrategy: default
+      paymentCurrency: null
+      purgeInactiveCarts: true
+      purgeInactiveCartsDuration: P3M
+      gatewayPostRedirectTemplate: ''
+      useBillingAddressForTax: false
+      validateBusinessTaxIdAsVatId: false
+      requireShippingAddressAtCheckout: false
+      requireBillingAddressAtCheckout: false
+      autoSetNewCartAddresses: true
+      pdfAllowRemoteImages: false
+      orderReferenceFormat: '{{number[:7]}}'
+      cartVariable: cart
   commerce-stripe:
     edition: standard
     enabled: true
@@ -2782,8 +2794,8 @@ plugins:
     schemaVersion: 2.1.3
     settings:
       pluginName: null
-      formTemplateDirectory: null
-      emailTemplateDirectory: null
+      formTemplateDirectory: freeform_formatting/
+      emailTemplateDirectory: ''
       emailTemplateStorage: db
       defaultView: dashboard
       fieldDisplayOrder: name
@@ -3209,6 +3221,13 @@ routes:
     uriPattern: jointacwa
     sortOrder: 31
     siteUid: null
+  916b0b47-e298-4142-936b-d6bd0db3e3fd:
+    template: /forms/membership/jointacwa1
+    uriParts:
+      - jointacwa1
+    uriPattern: jointacwa1
+    sortOrder: 32
+    siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:
     name: Invoices
@@ -3312,9 +3331,12 @@ sections:
                   e9c32793-36fc-42da-bdcf-1ca45d21b4d2:
                     required: false
                     sortOrder: 13
-                  46326181-04fa-4006-a80d-0fda8443316d:
+                  3a7edab9-968b-4a65-8837-0e2696094561:
                     required: false
                     sortOrder: 14
+                  46326181-04fa-4006-a80d-0fda8443316d:
+                    required: false
+                    sortOrder: 15
   549a0023-c777-4881-95e4-5221b84c4ff8:
     name: Accounts
     handle: accounts
@@ -4040,9 +4062,6 @@ users:
             22cb13e6-e05a-4b6e-b28b-2c14f50f7e52:
               required: false
               sortOrder: 2
-            2249a606-0c7a-4862-9556-2e513bbb35db:
-              required: false
-              sortOrder: 3
             fc398f61-3b5e-4314-8a62-17fc929099ba:
               required: false
               sortOrder: 4
