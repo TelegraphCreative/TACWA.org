@@ -134,7 +134,7 @@ class DefaultController extends Controller
 		
 		$this->logg('Are you here');
 		
-		return $this->redirect('registration-success');
+		return $this->redirect('');
 	}
 	
 	

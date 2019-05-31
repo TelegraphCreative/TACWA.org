@@ -18,6 +18,14 @@
 {% endfor %}
 {% set creationId = creationId|join %}
 
+{% if craft.app.request.getSegment(2) %}
+	{% set submission = craft.freeform.submissions({
+	    token: craft.app.request.getSegment(2),
+	    form: 'joinTACWApage1',
+	}).one %}
+{% endif %}
+
+
 
 {% block content %}
 
@@ -34,9 +42,58 @@
 	
 	
 	<div class="form-flow  |  container" id="joinTacwaForm">
-
-      <div class="form-flow__wrapper">
 			
+			{% if craft.app.request.getSegment(2) and submission %}
+
+		<div class="form-flow__wrapper --reverse">
+			
+			{# GET SUBSCRIPTION PRICE #}
+			{% set subscriptionPrice = '$0' %}
+			{% set plans = craft.commerce.getPlans().getAllPlans() %}
+			{% for plan in plans %}
+			    {% set planData = plan.planData|json_decode %}
+				{% if planData.plan.id == submission.subscriptionPlanID %}
+					{% set subscriptionPrice = (planData.plan.amount / 100)|currency %}
+				{% endif %}
+			{% endfor %}
+			
+			{# GET SUBSCRIPTION DESCRIPTION #}
+			{% if submission.organizationType.value == 'collectionAndTreatmentSystems' %}
+				{% set subscriptionDescription = 'population of ' ~ submission.collectionAndTreatmentSystems %}
+			{% elseif submission.organizationType.value == 'collectionSystemOnly' %}
+				{% set subscriptionDescription = 'population of ' ~ submission.collectionSystemOnly %}
+			{% else %}
+				{% set subscriptionDescription = 'size of ' ~ submission.affiliateSize %}
+			{% endif %}
+			
+	      	<div class="form-flow__detail" id="joinSidebar">
+	      		<h3 class="heading --tiny  |  text-teal">Your Order</h3>
+		  		<p class="form-flow__detail__description">TACWA Annual Membership for Organizations of type {{ submission.organizationType }} with {{ subscriptionDescription }}</p>
+		  		<p class="form-flow__detail__total">Total: {{ subscriptionPrice }}</p>
+		  	</div>
+			
+			{{ craft.freeform.form("joinTACWApage2", {
+			  labelClass: "form-label",
+			  inputClass: "form-control",
+			  overrideValues: {
+			    creationId: submission.creationId,
+			    organizationName: submission.organizationName,
+			    organizationType: submission.organizationType.value,
+			    collectionAndTreatmentSystems: submission.collectionAndTreatmentSystems.value,
+			    collectionSystemOnly: submission.collectionSystemOnly.value,
+			    streetAddress: submission.streetAddress,
+			    city: submission.city,
+			    state: submission.state.value,
+			    zipCode: submission.zipCode,
+			    subscriptionPlanID: submission.subscriptionPlanID
+			  }
+			}).render }}
+			 
+		</div>
+			
+			{% else %}
+
+		<div class="form-flow__wrapper">
 			
 			{{ craft.freeform.form("joinTACWApage1", {
 			  labelClass: "form-label",
@@ -47,6 +104,8 @@
 			}).render }}
 			 
 		</div>
+			
+			{% endif %}
 	</div>
 
 {% endblock %}

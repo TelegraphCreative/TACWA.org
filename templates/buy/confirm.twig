@@ -1,0 +1,40 @@
+{% extends 'buy/_layout/main' %}
+{% set number = craft.app.request.param('number') %}
+{% set invoiceId = craft.app.request.param('invoice') %}
+{% set order = craft.orders.number(number).one() %}
+{% set entry = craft.entries.id(invoiceId).one() %}
+
+{% if not number
+    or order is null
+    or entry is null
+    or order.isCompleted == false
+%}
+{% redirect '' %}
+{% endif %}
+
+{% block title %}
+Thank you for your payment!
+{% endblock %}
+
+{% block content %}
+
+{% if entry != null %}
+    {# This should probably be done in PHP. POC to get it working #}
+    {% do entry.setFieldValue('orderNumber', number) %}
+    {% do craft.app.getElements().saveElement(entry) %}
+    {% if entry.hasErrors %}
+        <p>Error updating Entry.</p>
+        <ul class="errors">
+            {% for error in entry.getErrors() %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+
+<div class="m-10">
+{% set item = order.lineItems|first %}
+    {% set description = (item.description == 'Donation') ? entry.title : item.description %}
+    <h3><span class="text-blue">{{ description }}</span> is paid for. We have charged your card <span class="text-blue">{{ order.totalPrice|commerceCurrency(order.currency) }}</span>. Please check your email for your receipt.</h3>
+</div>
+{% endblock %}

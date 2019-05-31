@@ -3,7 +3,7 @@
 {% import '_macros/forms' as form %}
 
 {% set cart = craft.commerce.carts.cart %}
-{% set number = 1 %}
+{# {% set number = 1 %} #}
 
 {% set payment = craft.app.request.param('payment') %}
 
@@ -20,12 +20,7 @@
 <div class="container">
 
 {% if not payment %}
-    
-    
 	
-    {# <p>Adding to cart...{% include 'buy/_components/spinner' %}</p> #}
-	
-
 	<h2 class="mb-4">{{ entry.title }}</h2>
 
     {# More here: http://docs.solspace.com/craft/calendar/v2/template-objects/event.html#usage-in-templates #}
@@ -34,24 +29,44 @@
     <p class="mb-4"><strong>Member Email:</strong><br>{{ entry.email }}</p>
     <p class="mb-4"><strong>Total:</strong><br>{{ entry.totalAmount }}</p>
 
-    {% set donation = craft.commerce.donation %}
-    {% if donation and donation.isAvailable %}
-    <form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
-        <input type="hidden" name="action" value="commerce/cart/update-cart">
-        {{ redirectInput(craft.app.request.absoluteUrl ~ '?payment=true') }}
-        {{ csrfInput() }}
-        <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
-        <input type="hidden" name="email" value="{{ entry.email }}">
-        <input type="text" name="options[donationAmount]" value="{{ entry.totalAmount }}" hidden>
-        <input style="cursor: pointer;" class="btn --primary --dark" type="submit" value="Pay Now">
-    </form>
-    {# <script>
-        window.onload = function(){
-            document.forms['auto-add-to-cart'].submit();
-        }
-    </script> #}
+    {# Invoice already paid #}
+    {% if entry.orderNumber %}
+
+        <h3>Invoice Paid</h3>
+        
+    {% else %}
+
+        {# check if invoice is already in cart #}
+        {% set donationInCart = false %}
+        {% for item in cart.lineItems %}
+            {% if item.snapshot.description == 'Donation' %}
+                {% set donationInCart = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% set donation = craft.commerce.donation %}
+        {% if donation and donation.isAvailable and not donationInCart %}
+        <form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
+            <input type="hidden" name="action" value="commerce/cart/update-cart">
+            {{ redirectInput(craft.app.request.absoluteUrl ~ '?payment=true') }}
+            {{ csrfInput() }}
+            <input type="hidden" name="purchasableId" value="{{ craft.commerce.donation.id }}">
+            <input type="hidden" name="email" value="{{ entry.email }}">
+            <input type="hidden" name="options[donationAmount]" value="{{ entry.totalAmount }}">
+            <input style="cursor: pointer;" class="btn --primary --dark" type="submit" value="Pay Now">
+        </form>
+        {# <script>
+            window.onload = function(){
+                document.forms['auto-add-to-cart'].submit();
+            }
+        </script> #}
+        {% else %}
+            <a href="?payment=true" class="bg-blue text-white rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark no-underline">
+                Pay Now
+            </a> 
+        {% endif %}
+
     {% endif %}
-    
 
 {% else %}
 
@@ -67,13 +82,19 @@
     <form method="POST" class="add-to-cart-form">
         <input type="hidden" name="action" value="commerce/payments/pay">
         {# <input type="hidden" name="gatewayId" value="1"> #}
-        {{ redirectInput('buy/confirm?number={number}') }}
+        <input type="hidden" name="redirect" value="{{ ('buy/confirm?number={number}&invoice=' ~ entry.id) | hash }}">
         {{ csrfInput() }}
     {% if cart.gatewayId %}
         <input type="hidden" name="gatewayId" value="{{ cart.gatewayId }}"/>
         {{ cart.gateway.getPaymentFormHtml({})|raw }}
+        <div class="pl-10 pr-10 pt-5 pb-0">
+            <button type="submit" class="bg-blue text-white rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
+                Pay ${{ cart.totalPrice }}
+            </button>
+        </div>
     {% else %}
-        No Gateway ID
+        {# <p>No Gateway ID</p> #}
+        <p><a href="/{{ craft.app.request.fullPath }}">View Invoice</a></p>
     {% endif %}
         {# <div class="p-10 pt-8">
             <div class="flex flex-wrap">
@@ -104,11 +125,6 @@
                 </div>
             </div>
         </div> #}
-        <div class="pl-10 pr-10 pt-5 pb-0">
-            <button type="submit" class="bg-blue text-white rounded px-4 py-4 mb-2 text-lg hover:bg-blue-dark">
-                Pay ${{ cart.totalPrice }}
-            </button>
-        </div>
     </form>
     
         
