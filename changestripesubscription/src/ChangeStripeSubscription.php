@@ -196,6 +196,16 @@ class ChangeStripeSubscription extends Plugin
           
           if ($form->getHandle() == 'joinTACWApage2') {
 	          
+	        $organizationID = $form->get('entryId')->getValue();
+	        $organization = \craft\elements\Entry::find()
+	        	->anyStatus()
+			    ->id($organizationID)
+			    ->one();
+			$organization->enabled = true;
+	        Craft::$app->getElements()->saveElement($organization, false);
+	        
+	          
+/*
 		    $creationId = $form->get('creationId')->getValue();
 		    
 			if (!$creationId) return false;
@@ -212,9 +222,11 @@ class ChangeStripeSubscription extends Plugin
 				$this->logg('No organization found. '.$searchQuery);
 				return false;
 			}
+*/
 			
 // 			$stripeId = 'cus_temp';
 // 			$organization->setFieldValues(['stripeId' => $stripeId]);
+/*
 			Craft::$app->getElements()->saveElement($organization, false);
 			
 		    // GET USER BY CREATION ID
@@ -229,6 +241,7 @@ class ChangeStripeSubscription extends Plugin
 			
 			$admin->setFieldValues(['organizationId' => $organization->id]);
 			Craft::$app->getElements()->saveElement($admin, false);
+*/
           }
   
           //   // Iterate over all posted fields and get their values

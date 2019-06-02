@@ -47,6 +47,12 @@
 
 		<div class="form-flow__wrapper --reverse">
 			
+			{% set organization = craft.entries()
+			    .section('membership')
+			    .anyStatus()
+			    .search('creationId:"' ~ submission.creationId ~ '"')
+			    .one() %}
+			
 			{# GET SUBSCRIPTION PRICE #}
 			{% set subscriptionPrice = '$0' %}
 			{% set plans = craft.commerce.getPlans().getAllPlans() %}
@@ -77,17 +83,7 @@
 			  inputClass: "form-control",
 			  overrideValues: {
 			    creationId: submission.creationId,
-			    organizationName: submission.organizationName,
-			    organizationType: submission.organizationType.value,
-			    collectionAndTreatmentSystems: submission.collectionAndTreatmentSystems.value,
-			    collectionSystemOnly: submission.collectionSystemOnly.value,
-			    streetAddress: submission.streetAddress,
-			    city: submission.city,
-			    state: submission.state.value,
-			    zipCode: submission.zipCode,
-			    subscriptionPlanID: submission.subscriptionPlanID
-			    
-			    ,firstName: 'xxxxxxxxxx'
+			    entryId: organization.id
 			  }
 			}).render }}
 			 
