@@ -127,16 +127,6 @@ class DefaultController extends Controller
 	    return $this->redirect($returnUrl.'?success='.$sent);
 	}
 	
-
-    public function actionJoin()
-    {
-		$this->requirePostRequest();
-		
-		$this->logg('Are you here');
-		
-		return $this->redirect('');
-	}
-	
 	
     public function actionCancelsubscription()
     {

@@ -123,7 +123,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1559341533
+dateModified: 1559452150
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -3238,22 +3238,15 @@ routes:
     uriPattern: jointacwa
     sortOrder: 31
     siteUid: null
-  916b0b47-e298-4142-936b-d6bd0db3e3fd:
-    template: /forms/membership/jointacwa1
+  ac6a5a1e-25e2-42aa-acdc-d3b33faf4a4e:
+    template: /forms/membership
     uriParts:
-      - jointacwa1
-    uriPattern: jointacwa1
-    sortOrder: 32
-    siteUid: null
-  5af04bbe-33e3-48f9-bee4-58bb19c501d2:
-    template: /forms/membership/jointacwa1
-    uriParts:
-      - jointacwa1/
+      - jointacwa/
       -
         - '*'
         - '[^\/]+'
-    uriPattern: 'jointacwa1/<any:[^\/]+>'
-    sortOrder: 33
+    uriPattern: 'jointacwa/<any:[^\/]+>'
+    sortOrder: 34
     siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:
@@ -4076,6 +4069,10 @@ users:
         - moderateusers
         - assignuserpermissions
         - editusers
+        - 'publishentries:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'
+        - 'publishpeerentries:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'
+        - 'editpeerentries:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'
+        - 'editentries:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'
     3bff8613-3ec3-44a2-b05b-a35edefaa0d5:
       name: 'Standard User'
       handle: standardUser

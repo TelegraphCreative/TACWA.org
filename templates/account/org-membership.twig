@@ -18,7 +18,7 @@
       	
 {% set payments = null %}
 {% set submissions = craft.freeform.submissions({
-	form: 'joinTACWA'
+	form: 'joinTACWApage2'
 }) %}
 
 {% for submission in submissions if submission.creationId == organization.creationId %}
@@ -43,8 +43,6 @@
    <div class="form-flow  |  container">
       
       <div class="form-flow__wrapper">
-      
-      {{ craft.changestripesubscription.getSubscription(1) }}
          
          {{ craft.freeform.form("organizationMembership", {
 			  labelClass: "form-label",

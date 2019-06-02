@@ -194,7 +194,7 @@ class ChangeStripeSubscription extends Plugin
           // $value = $form->get('firstName')->getValue();
 //           $this->logg('Form: '.json_encode($form));
           
-          if ($form->getHandle() == 'joinTACWA') {
+          if ($form->getHandle() == 'joinTACWApage2') {
 	          
 		    $creationId = $form->get('creationId')->getValue();
 		    
@@ -213,8 +213,8 @@ class ChangeStripeSubscription extends Plugin
 				return false;
 			}
 			
-			$stripeId = 'cus_temp';
-			$organization->setFieldValues(['stripeId' => $stripeId]);
+// 			$stripeId = 'cus_temp';
+// 			$organization->setFieldValues(['stripeId' => $stripeId]);
 			Craft::$app->getElements()->saveElement($organization, false);
 			
 		    // GET USER BY CREATION ID
