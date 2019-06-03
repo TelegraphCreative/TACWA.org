@@ -13,7 +13,7 @@
 
       {#   Action   #}
       <div class="site-header__action">
-         {% if craft.session.isLoggedIn %}
+         {% if currentUser %}
             {#   User - Logged In   #}
             {% include '_components/site-user-menu' %}
          {% else %}

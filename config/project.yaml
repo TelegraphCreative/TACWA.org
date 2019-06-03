@@ -123,7 +123,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1559452150
+dateModified: 1559583414
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1140,10 +1140,18 @@ fields:
     searchable: true
     translationMethod: none
     translationKeyFormat: null
-    type: superbig\usergroupfield\fields\UserGroupFieldField
+    type: craft\fields\Checkboxes
     settings:
-      mode: checkboxes
-    contentColumnType: text
+      options:
+        -
+          label: 'Member Admin'
+          value: memberAdmin
+          default: ''
+        -
+          label: 'Standard User'
+          value: standardUser
+          default: ''
+    contentColumnType: string
     fieldGroup: 38071e3f-a9cb-41b2-a86e-4e2af67617e3
   22cb13e6-e05a-4b6e-b28b-2c14f50f7e52:
     name: Phone
@@ -2709,7 +2717,7 @@ plugins:
   super-table:
     edition: standard
     enabled: true
-    schemaVersion: 2.0.10
+    schemaVersion: 2.0.12
   sprout-fields:
     edition: standard
     enabled: true
@@ -2751,7 +2759,7 @@ plugins:
   seomatic:
     edition: standard
     enabled: true
-    schemaVersion: 3.0.7
+    schemaVersion: 3.0.8
   wordsmith:
     edition: standard
     enabled: true
@@ -2787,7 +2795,7 @@ plugins:
   commerce-stripe:
     edition: standard
     enabled: true
-    schemaVersion: 1.0.0
+    schemaVersion: '2.0'
   sprout-email:
     settings:
       pluginNameOverride: ''
@@ -4052,12 +4060,12 @@ system:
   edition: pro
   name: TACWA
   live: true
-  schemaVersion: 3.1.27
+  schemaVersion: 3.1.28
   timeZone: America/Chicago
 users:
   requireEmailVerification: true
   allowPublicRegistration: true
-  defaultGroup: '3'
+  defaultGroup: 3bff8613-3ec3-44a2-b05b-a35edefaa0d5
   photoVolumeUid: c6fbe1e7-8a4c-4883-b313-c3ab322d8007
   photoSubpath: ''
   groups:

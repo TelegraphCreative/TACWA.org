@@ -5,13 +5,13 @@
 
 {% set featuredEvents = craft.calendar.events({
   		endsAfterOrAt: "now",
-		order: "startDate ASC",
+		orderBy: "startDate ASC",
 		search: "eventFeatured::1",
 		limit: 1
-}) %}
+}).all() %}
 {% if featuredEvents|length %}
 
-{% set featuredEvent = featuredEvents.first() %}
+{% set featuredEvent = featuredEvents.one() %}
 
 <article class="featured-event">
    {#   Container   #}
@@ -79,7 +79,7 @@
 		<ul class="featured-event__media__list">
 		   {% for item in featuredEvent.attachments %}
 		      <li>
-		      		{% set file = item.attachmentFile.first() %}
+		      		{% set file = item.attachmentFile.one() %}
 		      		{% if file %}
 		      			{% set title = (item.attachmentName) ? item.attachmentName : file.title %}
 		      			{% set src = file.getUrl() %}

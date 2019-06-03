@@ -157,12 +157,12 @@ class ChangeStripeSubscription extends Plugin
           // we should pull api keys from .env -john
           \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
 
-          $currentSub = $savedEntry->stripeSubscriptionId;
+          $subscriptionID = $savedEntry->stripeSubscriptionId;
 
           // this namespace should work b/c of Composer's autoloading (defined in /web/index.php)
           // if it doesn't, we'll need some troubleshooting -john
-          $subscription = \Stripe\Subscription::retrieve($currentSub);
-          \Stripe\Subscription::update($currentSub, [
+          $subscription = \Stripe\Subscription::retrieve($subscriptionID);
+          \Stripe\Subscription::update($subscriptionID, [
             'cancel_at_period_end' => false,
             'items' => [
               [
@@ -172,7 +172,7 @@ class ChangeStripeSubscription extends Plugin
             ],
           ]);
 		    
-		    $this->logg('Change subscription to '.$planId);
+		    $this->logg('Change subscription ('.$subscriptionID.') to '.$planId);
 		});
 
 
@@ -192,7 +192,6 @@ class ChangeStripeSubscription extends Plugin
           // only do this for org update submissions
           // change this to get new plan -john
           // $value = $form->get('firstName')->getValue();
-//           $this->logg('Form: '.json_encode($form));
           
           if ($form->getHandle() == 'joinTACWApage2') {
 	          
@@ -204,56 +203,8 @@ class ChangeStripeSubscription extends Plugin
 			$organization->enabled = true;
 	        Craft::$app->getElements()->saveElement($organization, false);
 	        
-	          
-/*
-		    $creationId = $form->get('creationId')->getValue();
-		    
-			if (!$creationId) return false;
-		    
-		    $searchQuery = 'creationId:"'.$creationId.'"';
-		    
-		    // GET ORGANIZATION BY CREATION ID
-		    $organization = \craft\elements\Entry::find()
-			    ->search($searchQuery)
-			    ->one();
-			
-		    
-			if (!$organization) {
-				$this->logg('No organization found. '.$searchQuery);
-				return false;
-			}
-*/
-			
-// 			$stripeId = 'cus_temp';
-// 			$organization->setFieldValues(['stripeId' => $stripeId]);
-/*
-			Craft::$app->getElements()->saveElement($organization, false);
-			
-		    // GET USER BY CREATION ID
-			$admin = \craft\elements\User::find()
-			    ->search($searchQuery)
-			    ->one();
-			
-			if (!$admin) {
-				$this->logg('No admin found. '.$searchQuery);
-				return false;
-			}
-			
-			$admin->setFieldValues(['organizationId' => $organization->id]);
-			Craft::$app->getElements()->saveElement($admin, false);
-*/
+	
           }
-  
-          //   // Iterate over all posted fields and get their values
-          //   foreach ($form->getLayout()->getFields() as $field) {
-    
-          //       // Bypass fields such as HTML or Submit, etc.
-          //       if ($field instanceof NoStorageInterface) {
-          //           continue;
-          //       }
-    
-          //       $field->getValue();
-          //   }
         }
       );
 

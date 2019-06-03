@@ -17,8 +17,8 @@
 {% set orgUsers = craft.users({
    search: 'organizationId::' ~ currentUser.organizationId,
    status: ['active', 'suspended'],
-   order: 'lastname, firstname'
-}) %}
+   orderBy: 'lastname asc, firstname asc'
+}).all() %}
 
 {% block content %}
 
@@ -43,9 +43,7 @@
                   <p class="leading-tight">{{ user.email }}</p>
                   <p>
                   {% if user.isInGroup('memberAdmin') %}
-                  Admin
-                  {% else %}
-				  Member
+                  <span class="isAdmin">Admin</span>
 				  {% endif %}
                   </p>
                </div>
@@ -58,10 +56,10 @@
 {# 				    <input class="btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger" type="submit" value="Deactivate Account" data-id="{{ user.id }}"> #}
 				{% else %}
 					<form method="post" id="suspendUser">
-				    {{ getCsrfInput() }}
+				    {{ csrfInput() }}
 				    <input type="hidden" name="userId" value="{{ user.id }}">
 				    <input type="hidden" name="action" value="users/unsuspend-user">
-				    <input class="btn --reactivate --deactivate  |  sm:ml-4" type="submit" value="Reactivate Account">
+				    <input class="btn --reactivate --deactivate  |  sm:ml-4" type="submit" value="Re-activate Account">
 				    </form>
 				{% endif %}
 				
@@ -103,7 +101,7 @@
 
             {#   Deactivate   #}
             <form method="post" id="suspendUser">
-			    {{ getCsrfInput() }}
+			    {{ csrfInput() }}
 			    <input type="hidden" id="userId" name="userId" value="">
 			    <input type="hidden" name="action" value="users/suspend-user">
 				<input type="submit" value="Deactivate" class="btn --primary --caution">

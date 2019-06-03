@@ -73,7 +73,7 @@
 		         <div class="event__detail__item">
 		            <h3>Sponsors</h3>
 		            {% set sponsors = [] %}
-		         {% for item in event.sponsors %}
+		         {% for item in event.sponsors.all() %}
 		         	{% set sponsors = sponsors|merge([(item.sponsorLink) ? '<a href="' ~ item.sponsorLink ~ '">' ~ item.sponsorName ~ '</a>' : item.sponsorName]) %}
 		         {% endfor %}
 		         	<p>{{ sponsors|join(', ') }}</p>
@@ -105,8 +105,8 @@
 			
 			{% if event.sponsors %}
 	         	{% set sponsorLogos = false %}
-	         	{% for item in event.sponsors %}
-	         		{% if item.sponsorLogo.first() %}
+	         	{% for item in event.sponsors.all() %}
+	         		{% if item.sponsorLogo.one() %}
 	         			{% set sponsorLogos = true %}
 	         		{% endif %}
 	         	{% endfor %}
@@ -116,8 +116,8 @@
             <div class="event__info__item">
                <h2>Sponsors</h2>
                <div class="event__info__logo-grid">
-                  {% for item in event.sponsors %}
-	                  {% set image = item.sponsorLogo.first() %}
+                  {% for item in event.sponsors.all() %}
+	                  {% set image = item.sponsorLogo.one() %}
 	                  {% if image %}
 	                     <div>
 	                     	{% if item.sponsorLink %}

@@ -19,7 +19,7 @@
 {% set payments = null %}
 {% set submissions = craft.freeform.submissions({
 	form: 'joinTACWApage2'
-}) %}
+}).all() %}
 
 {% for submission in submissions if submission.creationId == organization.creationId %}
 	{% set payments = craft.freeformPayments.payments(submission.id) %}
@@ -91,7 +91,7 @@
 
             {#   Deactivate   #}
             <form method="post" id="cancelSubscription">
-			    {{ getCsrfInput() }}
+			    {{ csrfInput() }}
 			    <input type="hidden" id="organizationId" name="organizationId" value="{{ organization.id }}">
 			    <input type="hidden" id="organizationId" name="stripeSubscriptionId" value="{{ payments.resourceId }}">
 			    <input type="hidden" name="action" value="change-stripe-subscription/default/cancelsubscription">

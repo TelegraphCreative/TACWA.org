@@ -3,6 +3,8 @@
 {% import '_macros/global' as global %}
 {% set menu = craft.categories.group('userMenu')%}
 
+
+
 <div class="site-user-menu">
    <button class="btn --site-user-menu  |  js--site-user-menu__btn">
       <span>{{ currentUser.firstName }}</span>
@@ -14,6 +16,14 @@
           {% for category in menu.all() %}
 
                 {% if category.level == 1 %}
+                	{% set showItem = false %}
+                	{% for group in category.userGroup %}
+                		{% if currentUser.isInGroup(group.value) %}
+                			{% set showItem = true %}
+                		{% endif %}
+                	{% endfor %}
+                	
+                	{% if showItem %}
                 {#  
                  Note (from LB)
                  @ryan/@christian - 
@@ -23,6 +33,7 @@
                  #}
                     {#   Menu Item   #}
                     <li class="site-user-menu__list__item"><a href="{{ category.linkItem.url }}">{{ category.title }}</a></li>
+					{% endif %}
                 {% endif %}
                 
         {% endfor %} 

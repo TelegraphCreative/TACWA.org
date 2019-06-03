@@ -3,9 +3,9 @@
 
 
 <ul class="list--media">
-   {% for item in media %}
+   {% for item in media.all() %}
       <li class="list--media__item">
-      		{% set file = item.attachmentFile.first() %}
+      		{% set file = item.attachmentFile.one() %}
       		{% if file %}
       			{% set type = 'file' %}
       			{% set title = (item.attachmentName) ? item.attachmentName : file.title %}

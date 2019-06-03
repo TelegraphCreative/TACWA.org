@@ -78,7 +78,7 @@
 			
 			{% set events = craft.calendar.events({
 				endsAfterOrAt: "now",
-				order: "startDate ASC",
+				orderBy: "startDate ASC",
 				limit: 3
 			}) %}
             {#   Upcoming Events   #}

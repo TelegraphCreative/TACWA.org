@@ -81,7 +81,7 @@
             <h1>{{ heading }}</h1>
          </div>
 
-         {% if image %}
+         {% if image is defined %}
             <div class="page-header__background" style="background-image: url({{ image }})"></div>
          {% endif %}
       {% endif %}

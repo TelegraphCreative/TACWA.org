@@ -1,7 +1,7 @@
 {#   Site Menu   #}
 
 {% import '_macros/global' as global %}
-{% set menu = craft.categories.group('mainMenu')%}
+{% set menu = craft.categories.group('mainMenu').all() %}
 
 {#   Site Menu Container   #}
 <div class="site-menu__container">
@@ -19,7 +19,7 @@
 
             {#   Menu List   #}
             <ul class="site-menu__list">
-            {% for category in menu.all() %}
+            {% for category in menu %}
                 
                 {# With Dropdown #}
                 {% if category.hasDescendants() %}
@@ -35,7 +35,7 @@
 
                     {#   Submenu   #}
                     <ul class="site-menu__submenu">
-                        {% set subPages = craft.categories.descendantOf(category) %}
+                        {% set subPages = craft.categories.descendantOf(category).all() %}
                         
                         {% if category.linkItem.url %}
                         <li class="site-menu__sub-item"><a target="{{ (category.linkItem.target) ? '_blank' : '_self' }}" href="{{ category.linkItem.url }}">{{ category.title }}</a></li>
