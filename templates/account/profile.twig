@@ -49,11 +49,15 @@
                 <input type="text" name="email" id="email" value="{{ currentUser.email }}" class="field-group__input --field " disabled>
 			</div>
 			
+			{% if organization %}
+			
 			{#   Organization Name   #}
 			<div class="field-group --full-width">
                 <label for="organizationName" class="field-group__label">Organization Name</label>
                 <input type="text" name="organizationName" id="organizationName" value="{{ organization.organizationName }}" class="field-group__input --field " disabled>
 			</div>
+			
+			{% endif %}
 			
 			{#   Phone   #}
 			<div class="field-group --full-width">
