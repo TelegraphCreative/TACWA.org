@@ -39,7 +39,8 @@
             }
          %}
          
-         {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %}
+{#          {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %} #}
+         {% set planId = (organization.organizationType == 'collectionAndTreatmentSystems') ? organization.collectionAndTreatmentSystems : (organization.organizationType == 'collectionSystemOnly') ? organization.collectionSystemOnly : organization.affiliateSize %}
          
          
          {{ craft.freeform.form("organizationInformation", {
