@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "07d18f4ca29748431495e7641c9d427e",
+    "content-hash": "e81887e40c7cad34432e5c83b9dd6842",
     "packages": [
         {
             "name": "99designs/phumbor",
@@ -3899,11 +3899,11 @@
         },
         {
             "name": "nystudio107/craft-seomatic",
-            "version": "3.2.6",
+            "version": "3.2.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nystudio107/craft-seomatic/zipball/46a0c126932c5c570d901dc8ea3982c26512126f",
-                "reference": "46a0c126932c5c570d901dc8ea3982c26512126f",
+                "url": "https://api.github.com/repos/nystudio107/craft-seomatic/zipball/1ffe6b820df3c317f7ff007b9d262aceb206658e",
+                "reference": "1ffe6b820df3c317f7ff007b9d262aceb206658e",
                 "shasum": ""
             },
             "require": {
@@ -3967,7 +3967,7 @@
                 "docs": "https://nystudio107.com/plugins/seomatic/documentation",
                 "issues": "https://nystudio107.com/plugins/seomatic/support"
             },
-            "time": "2019-05-29T19:48:45+00:00"
+            "time": "2019-06-03T18:31:29+00:00"
         },
         {
             "name": "ostark/yii2-artisan-bridge",
