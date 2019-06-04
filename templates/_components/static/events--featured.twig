@@ -64,7 +64,7 @@
 		         {% for item in featuredEvent.sponsors %}
 		         	{% set sponsors = sponsors|merge([(item.sponsorLink) ? '<a href="' ~ item.sponsorLink ~ '">' ~ item.sponsorName ~ '</a>' : item.sponsorName]) %}
 		         {% endfor %}
-		         	<p>{{ sponsors|join(', ') }}</p>
+		         	<p>{{ sponsors|join(', ')|raw }}</p>
 		         </div>
 		         {% endif %}
 	              

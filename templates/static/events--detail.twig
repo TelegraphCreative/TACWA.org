@@ -12,8 +12,8 @@
    {% include '_components/static/page-header'
       with {
          'type': 'left',
-         'heading': 'Bimonthly Meeting',
-         'button_url': '/static/events--index',
+         'heading': event.title,
+         'button_url': '/events',
          'button_text': 'Upcoming Events'
       }
    %}
@@ -76,7 +76,7 @@
 		         {% for item in event.sponsors.all() %}
 		         	{% set sponsors = sponsors|merge([(item.sponsorLink) ? '<a href="' ~ item.sponsorLink ~ '">' ~ item.sponsorName ~ '</a>' : item.sponsorName]) %}
 		         {% endfor %}
-		         	<p>{{ sponsors|join(', ') }}</p>
+		         	<p>{{ sponsors|join(', ')|raw }}</p>
 		         </div>
 		         {% endif %}
 		   </div>
