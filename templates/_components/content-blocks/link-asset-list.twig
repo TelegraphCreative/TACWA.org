@@ -10,7 +10,7 @@
 
     {% if list|length %}
         <ul class="list--media">
-        {% for item in list %}
+        {% for item in list.all() %}
 
             {% set type = 'link' %}
             {% if 'Asset' in item.item.type %}

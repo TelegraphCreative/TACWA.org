@@ -8,7 +8,7 @@
 
 {% set baseUrlSegments = 1 %}
 {% set segment1 = craft.app.request.segment(baseUrlSegments + 1) %}
-{% if craft.session.isLoggedIn %}
+{% if not craft.app.user.isGuest %}
 {% redirect "/event-registration/member/" ~ segment1 %}
 {% endif %}
 

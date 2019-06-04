@@ -61,7 +61,7 @@
 		         <div class="featured-event__info__detail--item">
 		            <h3>Sponsors</h3>
 		            {% set sponsors = [] %}
-		         {% for item in featuredEvent.sponsors %}
+		         {% for item in featuredEvent.sponsors.all() %}
 		         	{% set sponsors = sponsors|merge([(item.sponsorLink) ? '<a href="' ~ item.sponsorLink ~ '">' ~ item.sponsorName ~ '</a>' : item.sponsorName]) %}
 		         {% endfor %}
 		         	<p>{{ sponsors|join(', ')|raw }}</p>
@@ -77,7 +77,7 @@
          <h3>Attachments & Links</h3>
          
 		<ul class="featured-event__media__list">
-		   {% for item in featuredEvent.attachments %}
+		   {% for item in featuredEvent.attachments.all() %}
 		      <li>
 		      		{% set file = item.attachmentFile.one() %}
 		      		{% if file %}
