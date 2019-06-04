@@ -41,9 +41,10 @@
    
 	
 	
-	<div class="form-flow  |  container" id="joinTacwaForm">
 			
 			{% if craft.app.request.getSegment(2) and submission %}
+			
+	<div class="form-flow  |  container page2" id="joinTacwaForm">
 
 		<div class="form-flow__wrapper --reverse">
 			
@@ -97,8 +98,11 @@
 			}).render }}
 			 
 		</div>
+	</div>
 			
 			{% else %}
+			
+	<div class="form-flow  |  container page1" id="joinTacwaForm">
 
 		<div class="form-flow__wrapper">
 			
@@ -111,9 +115,10 @@
 			}).render }}
 			 
 		</div>
+		
+	</div>
 			
 			{% endif %}
-	</div>
 
 {% endblock %}
 
