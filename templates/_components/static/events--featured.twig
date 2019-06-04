@@ -8,10 +8,10 @@
 		orderBy: "startDate ASC",
 		search: "eventFeatured::1",
 		limit: 1
-}).all() %}
+}).one() %}
 {% if featuredEvents|length %}
 
-{% set featuredEvent = featuredEvents.one() %}
+{% set featuredEvent = featuredEvents %}
 
 <article class="featured-event">
    {#   Container   #}
