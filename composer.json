@@ -11,7 +11,7 @@
     "barrelstrength/sprout-email": "4.0.0",
     "barrelstrength/sprout-fields": "^3.2",
     "cleaveco/change-stripe-subscription": "^1.0",
-    "craftcms/cms": "3.1.28",
+    "craftcms/cms": "3.1.29",
     "craftcms/commerce": "2.1.6.1",
     "craftcms/commerce-stripe": "2.0.1.1",
     "craftcms/mailgun": "1.4.2",
