@@ -28,7 +28,8 @@ return [
         'useProjectConfigFile' => true,
         
 	    'loginPath' => 'login',
-	    'postLoginRedirect' => 'events',
+        'postLoginRedirect' => 'events',
+        'useEmailAsUsername' => true
     ],
 
 
