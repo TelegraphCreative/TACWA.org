@@ -33,10 +33,13 @@
    %}
    
    <div class="form-flow  |  container">
-      <h2>Active Members</h2>
+      <h2>Members</h2>
 
       <div class="flex flex-wrap" style="max-width: 50rem">
+      	{% for i in 0..1 %}
+      
          {% for user in orgUsers %}
+         	{% if user.isInGroup('memberAdmin') != i %}
             <div class="sm:flex sm:items-center sm:justify-between  |  w-full  |  mb-6 pr-4 pb-6  |  border-b border-grey-lighter memberListItem {{ (user.status == 'active') ? 'activeUser' : 'suspendedUser' }}">
                <div class="mb-3 sm:mb-0">
                   <h3 class="font-normal leading-tight text-16  |  mb-1">{{ user.firstName }} {{ user.lastName }}</h3>
@@ -50,25 +53,17 @@
                
                {% if currentUser.id != user.id %}
 			   
-			   
-			   {% if user.status == 'active' %}
-               		<button class="btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger" type="button" data-id="{{ user.id }}">Deactivate Account</button>
-{# 				    <input class="btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger" type="submit" value="Deactivate Account" data-id="{{ user.id }}"> #}
-				{% else %}
-					<form method="post" id="suspendUser">
-				    {{ csrfInput() }}
-				    <input type="hidden" name="userId" value="{{ user.id }}">
-				    <input type="hidden" name="action" value="users/unsuspend-user">
-				    <input class="btn --reactivate --deactivate  |  sm:ml-4" type="submit" value="Re-activate Account">
-				    </form>
-				{% endif %}
-				
-				
-				
+				   	{% if user.status == 'active' %}
+	               		<button class="btn --deactivate  |  sm:ml-4  |  js--deactivate-trigger" type="button" data-id="{{ user.id }}">Deactivate Account</button>
+					{% else %}
+	               		<button class="btn --reactivate  |  sm:ml-4  |  js--activate-trigger" type="button" data-id="{{ user.id }}">Re-activate Account</button>
+					{% endif %}
                
                {% endif %}
             </div>
+            {% endif %}
          {% endfor %}
+	  	{% endfor %}
       </div>
    </div>
 
@@ -102,9 +97,47 @@
             {#   Deactivate   #}
             <form method="post" id="suspendUser">
 			    {{ csrfInput() }}
-			    <input type="hidden" id="userId" name="userId" value="">
+			    <input type="hidden" id="deactivateUserId" name="userId" value="">
 			    <input type="hidden" name="action" value="users/suspend-user">
 				<input type="submit" value="Deactivate" class="btn --primary --caution">
+			</form>
+         </div>
+      </div>
+   </div>
+
+
+   {#   Activate Module   #}
+   <div class="modal__container  |  js--activate-modal">
+      {#   Overlay   #}
+      <div class="modal__overlay"></div>
+
+      {#   Modal   #}
+      <div class="modal">
+         {#   Header   #}
+         <div class="modal__header">
+            <h1 class="modal__title">Activate account?</h1>
+
+            <button class="modal__close-btn  |  js--modalActivate__close-btn">
+               {{ global.utilityIcon('close') }}
+            </button>
+         </div>
+
+         {#   Copy   #}
+         <div class="modal__copy">
+            <p>Are you sure you want to active this account?</p>
+         </div>
+
+         {#   Action   #}
+         <div class="modal__action">
+            {#   Cancel   #}
+            <button class="btn --simple  |  mr-4  |  js--modalActivate__cancel-btn" type="button">Cancel</button>
+
+            {#   Deactivate   #}
+            <form method="post" id="activateUser">
+			    {{ csrfInput() }}
+			    <input type="hidden" id="activateUserId" name="userId" value="">
+			    <input type="hidden" name="action" value="users/unsuspend-user">
+				<input type="submit" value="Activate" class="btn --primary --caution">
 			</form>
          </div>
       </div>

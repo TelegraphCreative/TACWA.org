@@ -82,7 +82,15 @@
 
          {#   Copy   #}
          <div class="modal__copy">
-            <p>Are you sure you want to cancel this subscription? Once cancelled, all members of this organization will no longer be able to sign in to TACWA.org</p>
+            <p>Are you sure you want to cancel this subscription? Once cancelled, all members of this organization will no longer be able to sign in to TACWA.org.</p>
+            {{ craft.freeform.form("cancelSubscription", {
+			  labelClass: "form-label",
+			  inputClass: "form-control",
+			  overrideValues: {
+				organizationName: organization.organizationName,
+				organization: organization.id
+			  }
+			}).render() }}
          </div>
 
          {#   Action   #}
@@ -91,6 +99,7 @@
             <button class="btn --simple  |  mr-4  |  js--modal__cancel-btn" type="button">Cancel</button>
 
             {#   Deactivate   #}
+{#
             <form method="post" id="cancelSubscription">
 			    {{ csrfInput() }}
 			    <input type="hidden" id="organizationId" name="organizationId" value="{{ organization.id }}">
@@ -98,6 +107,7 @@
 			    <input type="hidden" name="action" value="change-stripe-subscription/default/cancelsubscription">
 				<input type="submit" value="Cancel Subscription" class="btn --primary --caution">
 			</form>
+#}
          </div>
       </div>
    </div>

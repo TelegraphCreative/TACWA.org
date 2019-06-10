@@ -100,7 +100,8 @@
 				calendarEvent: event.title,
 				eventCostMember: eventPrice,
 				phone: currentUser.phone,
-				user: currentUser.id
+				user: currentUser.id,
+				emailMessage: event.emailMessage|e('html')
 			  }
 			}).render() }}
 			
@@ -114,3 +115,7 @@
 	{% endif %}
 
 {% endblock %}
+
+
+{# {% do view.registerJsFile('/assets/js/form-validation.js') %} #}
+{% do view.registerJsFile('/assets/js/spin.js') %}

@@ -29,6 +29,7 @@ return [
         
 	    'loginPath' => 'login',
 	    'postLoginRedirect' => 'events',
+	    'useEmailAsUsername' => true
     ],
 
 

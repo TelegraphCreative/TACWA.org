@@ -111,9 +111,7 @@ class DefaultController extends Controller
 				
 				$html = '<p>Hello '.$name.',</p><p>You have been invited to join TACWA by '.$organizationName.'. Please <a href="'.$registrationURL.'">click here</a> to register and set up your account.</p>';
 				$html = str_replace('#body#', $html, $template);
-				
-				$sendTo = $name.' <'.$email.'>';
-				$rc = \Craft::$app
+								$rc = \Craft::$app
 			        ->getMailer()
 			        ->compose()
 			        ->setTo($email)
@@ -125,6 +123,41 @@ class DefaultController extends Controller
 		}
 	    
 	    return $this->redirect($returnUrl.'?success='.$sent);
+	}
+	
+	
+    public function actionRequestcancelsubscription()
+    {
+	    $this->requirePostRequest();
+	    
+	    $organizationId = \Craft::$app->request->getBodyParam('organizationId');
+	    
+	    return $this->redirect(UrlHelper::siteUrl()); 
+	    
+/*
+	    $activeUsers = \craft\elements\User::find()
+		    ->search('organizationId::' . $organizationId)
+		    ->all();
+
+		foreach($activeUsers as $user) {
+			if (!$user->admin) {
+				\Craft::$app->users->suspendUser($user);
+			}
+		}
+		
+	    
+	    $stripeSubscriptionId = \Craft::$app->request->getBodyParam('stripeSubscriptionId');
+          // taken from: https://stripe.com/docs/billing/subscriptions/upgrading-downgrading
+          // we should pull api keys from .env -john
+          \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
+
+          // this namespace should work b/c of Composer's autoloading (defined in /web/index.php)
+          // if it doesn't, we'll need some troubleshooting -john
+          $subscription = \Stripe\Subscription::retrieve($stripeSubscriptionId);
+          $subscription->cancel();
+		
+		return $this->redirect(UrlHelper::siteUrl());
+*/
 	}
 	
 	

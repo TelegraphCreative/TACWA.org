@@ -7,6 +7,10 @@
 {% requireLogin %}
 
 {% set organization = craft.entries().id(currentUser.organizationId).one() %}
+{% set orgUsers = craft.users({
+   search: 'organizationId::' ~ currentUser.organizationId,
+   orderBy: 'lastname asc, firstname asc'
+}).all() %}
 
 {% block content %}
 
@@ -19,9 +23,34 @@
    %}
 
    <div class="form-flow  |  container">
+		<div class="form-flow__wrapper --reverse">		
+			
+			<div class="form-flow__detail">
+				<h3 class="heading --tiny  |  text-teal">Members</h3>
+		      	{% for i in 0..1 %}
+		      
+		         {% for user in orgUsers %}
+		         	{% if user.isInGroup('memberAdmin') != i %}
+		            <div class="sm:flex sm:items-center sm:justify-between  |  w-full  |  mb-6 pr-4 pb-6  |  border-b border-grey-lighter memberListItem {{ (user.status == 'active') ? 'activeUser' : 'suspendedUser' }}">
+		               <div class="mb-3 sm:mb-0">
+		                  <h3 class="font-normal leading-tight text-16  |  mb-1">{{ user.firstName }} {{ user.lastName }}</h3>
+		                  <p class="leading-tight">{{ user.email }}</p>
+		                  <p>
+		                  {% if user.isInGroup('memberAdmin') %}
+		                  <span class="isAdmin">Admin</span>
+						  {% endif %}
+		                  </p>
+		               </div>
+		            </div>
+		            {% endif %}
+		         {% endfor %}
+			  	{% endfor %}
+			</div>
+			
+			<div>
       <h2>Contact Information</h2>
 
-      <div class="flex flex-wrap" style="max-width: 50rem">
+      <div class="flex flex-wrap" style="max-width: 50rem">	
 
          {#   Form   #}
          <form id="profile-form" class="form-group profile-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -70,6 +99,8 @@
                {{ form.submit( 'mt-4', 'Save Changes') }}
             </div>
 		</form>
+      </div>
+      </div>
       </div>
    </div>
 
