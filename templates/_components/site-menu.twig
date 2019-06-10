@@ -60,6 +60,10 @@
                 {% endif %}
                 
             {% endfor %} 
+
+            {% if currentUser and currentUser.admin %}
+               <li class="site-menu__item"><a href="/admin" class="menu-bar__link">Admin Dashboard</a></li>
+            {% endif %}
             </ul>
 
          

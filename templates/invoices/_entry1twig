@@ -41,8 +41,8 @@
 {% else %}
 
     {# FORM #}
-    <div class="flash">{{ craft.session.getFlash('notice') }}</div>
-    <div class="flash">{{ craft.session.getFlash('error') }}</div>
+    <div class="flash">{{ craft.app.session.getFlash('notice') }}</div>
+    <div class="flash">{{ craft.app.session.getFlash('error') }}</div>
 
     <form method="POST" class="add-to-cart-form">
         <input type="hidden" name="action" value="commerce/payments/pay">

@@ -59,7 +59,7 @@
 	    	form: 'eventRegistrationMember'
 	    }) %}
 	{% set registered = false %}
-    {% for submission in submissions if not registered %}
+    {% for submission in submissions.all() if not registered %}
 	    {% if submission.user == currentUser.id and submission.eventId == eventId %}
 		    {% set registered = true %}
 	    {% endif %}
