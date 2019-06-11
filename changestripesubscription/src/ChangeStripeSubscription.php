@@ -46,6 +46,7 @@ use yii\base\Event;
  */
 class ChangeStripeSubscription extends Plugin
 {
+    
     // Static Properties
     // =========================================================================
 
@@ -207,6 +208,18 @@ class ChangeStripeSubscription extends Plugin
           }
         }
       );
+    
+    
+    // STRIPE WEBHOOK - CUSTOMER SUBSCRIPTION DELETED
+    Event::on(
+        \rias\stripewebhooks\records\StripeWebhookCall::class,
+        'stripe-webhooks::customer.subscription.deleted',
+        function (\rias\stripewebhooks\events\WebhookEvent $event) {
+            $webhookCall = $event->model;
+            
+            $this->logg('Webhook Call ('.$webhookCall.')');
+        }
+    );
 
 /**
  * Logging in Craft involves using one of the following methods:
@@ -235,6 +248,11 @@ class ChangeStripeSubscription extends Plugin
             __METHOD__
         );
     }
+
+    
+    public $controllerMap = [
+        'subscription' => DefaultController::class,
+    ];
 
     // Protected Methods
     // =========================================================================

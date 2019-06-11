@@ -123,7 +123,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1560031171
+dateModified: 1560265879
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -376,60 +376,9 @@ fields:
       default: ''
     contentColumnType: boolean
     fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
-  3886c2ab-817a-4c8c-ae01-b42a40141f6f:
-    name: 'First Name'
-    handle: firstName
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
-  5243e16b-6f62-4c5e-ad4f-256c52376272:
-    name: 'Last Name'
-    handle: lastName
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
   4f1e6876-519a-4b6b-9577-6a30811b55d4:
     name: 'Affiliate Size'
     handle: affiliateSize
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
-  36b5cb14-bf1a-4c0a-977f-7471fbd840ac:
-    name: 'Name on Card'
-    handle: nameOnCard
     instructions: ''
     searchable: true
     translationMethod: none
@@ -497,40 +446,6 @@ fields:
   a9292c85-4806-4d82-b9e4-babc4e5ca546:
     name: 'Organization Title'
     handle: organizationTitle
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
-  2674b937-9f0c-4bda-8140-9d4a3916d3aa:
-    name: 'Admin First Name'
-    handle: adminFirstName
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
-  49bcb3aa-599b-44d4-8ad0-383e2a7133d0:
-    name: 'Admin Last Name'
-    handle: adminLastName
     instructions: ''
     searchable: true
     translationMethod: none
@@ -1207,23 +1122,6 @@ fields:
   df92811d-6fde-446f-842a-66ba49629aed:
     name: 'Organization Zip'
     handle: organizationZip
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
-  e9c32793-36fc-42da-bdcf-1ca45d21b4d2:
-    name: 'Stripe ID'
-    handle: stripeId
     instructions: ''
     searchable: true
     translationMethod: none
@@ -2889,6 +2787,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  stripe-webhooks:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 routes:
   aaf119ab-8284-4150-bba5-55f622ac1f62:
     template: /calendar-demo/mini_cal
@@ -3314,7 +3216,7 @@ sections:
                   e5456dca-cb28-4635-9b5d-9a4c63812296:
                     required: true
                     sortOrder: 3
-                  6ab59793-e626-4751-9cc3-272b9d6e89df:
+                  56298a51-2e6a-4fbe-a55e-cbc8850bab9f:
                     required: false
                     sortOrder: 4
   a67807ff-5b97-45d4-abdc-9d1f65e0ebdf:
@@ -3344,15 +3246,6 @@ sections:
                 name: Membership
                 sortOrder: 1
                 fields:
-                  2674b937-9f0c-4bda-8140-9d4a3916d3aa:
-                    required: false
-                    sortOrder: 1
-                  49bcb3aa-599b-44d4-8ad0-383e2a7133d0:
-                    required: false
-                    sortOrder: 2
-                  36b5cb14-bf1a-4c0a-977f-7471fbd840ac:
-                    required: false
-                    sortOrder: 3
                   3338f043-940d-4b12-828a-9e6bf3c0b903:
                     required: false
                     sortOrder: 4
@@ -3380,9 +3273,6 @@ sections:
                   4f1e6876-519a-4b6b-9577-6a30811b55d4:
                     required: false
                     sortOrder: 12
-                  e9c32793-36fc-42da-bdcf-1ca45d21b4d2:
-                    required: false
-                    sortOrder: 13
                   3a7edab9-968b-4a65-8837-0e2696094561:
                     required: false
                     sortOrder: 14
