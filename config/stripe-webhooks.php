@@ -1,9 +1,12 @@
+<?php
+	
+	
 return [
     /*
      * Stripe will sign each webhook using a secret. You can find the used secret at the
      * webhook configuration settings: https://dashboard.stripe.com/account/webhooks.
      */
-    'signingSecret' => '',
+    'signingSecret' => 'whsec_iYsCVWR6rRQtRVWm97q0QcIEtwlQhV8Q',
 
     /*
      * You can define the job that should be run when a certain webhook hits your application
@@ -13,7 +16,7 @@ return [
      * https://stripe.com/docs/api#event_types.
      */
     'jobs' => [
-<!--         'customer.subscription.deleted' => \modules\sitemodule\jobs\StripeWebhooks\HandleChargeableSource::class, -->
+        // 'customer.subscription.deleted' => \modules\sitemodule\jobs\StripeWebhooks\HandleChargeableSource::class,
     ],
 
     /*
