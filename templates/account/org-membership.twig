@@ -86,8 +86,9 @@
             {{ craft.freeform.form("cancelSubscription", {
 			  labelClass: "form-label",
 			  inputClass: "form-control",
+			  returnUrl: siteUrl,
 			  overrideValues: {
-				organizationName: organization.organizationName,
+				orgName: organization.organizationName,
 				organization: organization.id
 			  }
 			}).render() }}

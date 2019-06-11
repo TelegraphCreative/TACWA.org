@@ -1,4 +1,4 @@
-{% extends 'buy/_layout/main' %}
+{% extends "_layouts/_base" %}
 {% set number = craft.app.request.param('number') %}
 {% set invoiceId = craft.app.request.param('invoice') %}
 {% set order = craft.orders.number(number).one() %}
@@ -12,29 +12,45 @@
 {% redirect '' %}
 {% endif %}
 
-{% block title %}
-Thank you for your payment!
-{% endblock %}
+
 
 {% block content %}
 
-{% if entry != null %}
-    {# This should probably be done in PHP. POC to get it working #}
-    {% do entry.setFieldValue('orderNumber', number) %}
-    {% do craft.app.getElements().saveElement(entry) %}
-    {% if entry.hasErrors %}
-        <p>Error updating Entry.</p>
-        <ul class="errors">
-            {% for error in entry.getErrors() %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endif %}
+	  	{#   Page Header   #}
+		{% include '_components/static/page-header'
+		  with {
+		     'type': 'border',
+		     'heading': 'Thank you for your support!'
+		  }
+		%}
+		
+   <div class="form-flow  |  container  |  mt-12 sm:mt-24">
+      <div class="form-flow__wrapper">
 
-<div class="m-10">
-{% set item = order.lineItems|first %}
-    {% set description = (item.description == 'Donation') ? entry.title : item.description %}
-    <h3><span class="text-blue">{{ description }}</span> is paid for. We have charged your card <span class="text-blue">{{ order.totalPrice|commerceCurrency(order.currency) }}</span>. Please check your email for your receipt.</h3>
-</div>
+
+
+
+		{% if entry != null %}
+		    {# This should probably be done in PHP. POC to get it working #}
+		    {% do entry.setFieldValue('orderNumber', number) %}
+		    {% do craft.app.getElements().saveElement(entry) %}
+		    {% if entry.hasErrors %}
+		        <p>Error updating Entry.</p>
+		        <ul class="errors">
+		            {% for error in entry.getErrors() %}
+		                <li>{{ error }}</li>
+		            {% endfor %}
+		        </ul>
+		    {% endif %}
+		{% endif %}
+		
+		<div>
+		{% set item = order.lineItems|first %}
+		    {% set description = (item.description == 'Donation') ? entry.title : item.description %}
+		    <h3 style="font-weight:normal;"><span class="text-blue">{{ description }}</span> has been paid in full. Your card has been charged <span class="text-blue">{{ order.totalPrice|commerceCurrency(order.currency) }}</span>. Please email <a href="mailto:tacwaadmin@weat.org">tacwaadmin@weat.org</a> with any questions about the event.</h3>
+		</div>
+
+      </div>
+   </div>
+   
 {% endblock %}

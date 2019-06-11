@@ -91,7 +91,7 @@ class ChangeStripeSubscription extends Plugin
     private $_planId = '';
     private $_subscriptionId = '';
 
-    
+
     // make sure to register this plugin by running from vagrant shell: composer require cleaveco/change-stripe-subscription
     // you'll need you're composer.json to match the one in this branch so that it can pick up the symlink -john
     // more here: https://docs.craftcms.com/v3/extend/plugin-guide.html#loading-your-plugin-into-a-craft-project
