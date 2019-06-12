@@ -125,10 +125,6 @@ class DefaultController extends Controller
 	    return $this->redirect($returnUrl.'?success='.$sent);
 	}
 	
-	public function actionTest() {
-		echo 'hey';
-	}
-	
 	
     public function actionRequestcancelsubscription()
     {

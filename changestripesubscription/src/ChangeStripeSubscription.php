@@ -187,12 +187,18 @@ class ChangeStripeSubscription extends Plugin
         // if I remove any function args it executes this block... but without any data -john
         function (AfterSubmitEvent $event) {
 //           $submission = $event->getElement();
+          $submission = $event->getSubmission();
           $form       = $event->getForm();
             
           // Get a specific field value
           // only do this for org update submissions
           // change this to get new plan -john
           // $value = $form->get('firstName')->getValue();
+          
+/*
+          $payments = \FreeformPayments::payments($submission->id);
+          var_dump($payments);
+*/
           
           if ($form->getHandle() == 'joinTACWApage2') {
 	          
@@ -201,6 +207,10 @@ class ChangeStripeSubscription extends Plugin
 	        	->anyStatus()
 			    ->id($organizationID)
 			    ->one();
+			    
+// 			$payments = craft\freeformPayments\payments($submission.id);
+			// WOULD LIKE TO GET SUBSCRIPTION ID FROM PAYMENT DETAIL TO ADD TO ORGANIZATION
+
 			$organization->enabled = true;
 	        Craft::$app->getElements()->saveElement($organization, false);
 	        
@@ -248,11 +258,6 @@ class ChangeStripeSubscription extends Plugin
             __METHOD__
         );
     }
-
-    
-    public $controllerMap = [
-        'subscription' => DefaultController::class,
-    ];
 
     // Protected Methods
     // =========================================================================

@@ -3,6 +3,9 @@
 {% import '_macros/global' as global %}
 
 {% if pageInfo.totalPages > 1 %}
+{% if searchQuery is empty %}
+{% set searchQuery = null %}
+{% endif %}
 
 
 <div class="pagination">
