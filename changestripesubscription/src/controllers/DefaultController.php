@@ -13,10 +13,13 @@ namespace cleaveco\changestripesubscription\controllers;
 use cleaveco\changestripesubscription\ChangeStripeSubscription;
 
 use Craft;
+use craft\db\Query;
 use craft\services;
 use craft\helpers\UrlHelper;
 use craft\web\Controller;
 use craft\elements\User;
+
+use \Solspace\FreeformPayments\FreeformPayments;
 
 /**
  * Default Controller
@@ -163,6 +166,77 @@ class DefaultController extends Controller
 	
     public function actionCancelsubscription()
     {
+	    $orgID = Craft::$app->request->getQueryParam('id');
+	    $organizationID = Craft::$app->request->getQueryParam('id');
+        $organization = \craft\elements\Entry::find()
+        	->id($organizationID)
+		    ->one();
+	    
+	    if ($organization) {
+		    
+		    $html = '<h2>Organization: '.$organization->organizationName.'</h2>';
+		    
+		    $query = (new Query())
+	        	->select(['id'])
+	        	->from('freeform_forms')
+	        	->filterWhere(
+		        	['handle' => 'joinTACWApage2']
+	        	);
+	        $formId = $query->scalar();
+	        
+	        if ($formId) {
+	        
+		        $query       = (new Query())
+		            ->select(["id"])
+		            ->from('freeform_submissions')
+		            ->filterWhere(
+		                [
+			                'formId'	=> $formId,
+		                    "field_42"	=> $organization->creationId
+		                ]
+		            );
+		        $submissionId = $query->scalar();
+		        
+		        if ($submissionId) {
+				        
+			        $activeUsers = \craft\elements\User::find()
+					    ->search('organizationId::' . $organizationID)
+					    ->all();
+					
+					$suspendedUserCnt = 0;
+					foreach($activeUsers as $user) {
+						if (!$user->admin) {
+							$suspendedUserCnt++;
+							\Craft::$app->users->suspendUser($user);
+						}
+					}
+					if ($suspendedUserCnt>0) Craft::$app->getSession()->setNotice('Users suspended: '.$suspendedUserCnt);
+			        
+			        $payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
+			        
+			        if ($payments && $payments->status == 'active') {
+						$subscription = ChangeStripeSubscription::getInstance()->getSubscription($payments->resourceId);
+						$subscription->cancel();
+						Craft::$app->getSession()->setNotice('Stripe Subscription Cancelled');
+		            }
+	            }
+	        }
+	        
+	        $organization->enabled = false;
+	        Craft::$app->getElements()->saveElement($organization, false);
+	        Craft::$app->getSession()->setNotice('Organization Disabled');
+	        
+	        return $this->redirect(UrlHelper::siteUrl().'admin/entries/membership/'.$organizationID);
+	    } else {
+		    Craft::$app->session->setError('Organization not found');
+		    return $this->redirect(UrlHelper::siteUrl().'admin/entries/membership');
+	    }
+    }
+	
+	
+/*
+    public function actionCancelsubscription()
+    {
 	    $this->requirePostRequest();
 	    
 	    $organizationId = \Craft::$app->request->getBodyParam('organizationId');
@@ -190,6 +264,7 @@ class DefaultController extends Controller
 		
 		return $this->redirect(UrlHelper::siteUrl());
 	}
+*/
 	
 
     private function logg($message) {

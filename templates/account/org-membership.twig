@@ -24,6 +24,8 @@
 {% for submission in submissions if submission.creationId == organization.creationId %}
 	{% set payments = craft.freeformPayments.payments(submission.id) %}
 {% endfor %}
+
+{# {% set subscription = craft.changestripesubscription.getSubscription(payments.resourceId) %} #}
  
 {#  {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %} #}
  {% set planId = (organization.organizationType == 'collectionAndTreatmentSystems') ? organization.collectionAndTreatmentSystems : (organization.organizationType == 'collectionSystemOnly') ? organization.collectionSystemOnly : organization.affiliateSize %}
@@ -44,6 +46,8 @@
    <div class="form-flow  |  container">
       
       <div class="form-flow__wrapper">
+      
+      
          
          {{ craft.freeform.form("organizationMembership", {
 			  labelClass: "form-label",

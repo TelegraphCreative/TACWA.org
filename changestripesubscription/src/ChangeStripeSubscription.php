@@ -13,10 +13,14 @@ namespace cleaveco\changestripesubscription;
 
 use Craft;
 
+use craft\db\Query;
 use craft\elements\Entry;
 use craft\events\ElementEvent;
 use craft\services\Elements;
 use craft\elements\User;
+use craft\helpers\UrlHelper;
+use craft\web\twig\variables\CraftVariable;
+use cleaveco\changestripesubscription\variables\defaultVariable;
 
 use craft\base\Plugin;
 use craft\services\Plugins;
@@ -25,7 +29,8 @@ use \Solspace\Freeform\Services\FormsService;
 use \Solspace\Freeform\Events\Forms\AfterSubmitEvent;
 use \Solspace\Freeform\Services\SubmissionsService;
 use \Solspace\Freeform\Events\Submissions\SubmitEvent;
-use \Solspace\FreeformPayments\Variables;
+
+use \Solspace\FreeformPayments\FreeformPayments;
 
 use yii\base\Event;
 
@@ -91,7 +96,14 @@ class ChangeStripeSubscription extends Plugin
     
     private $_planId = '';
     private $_subscriptionId = '';
-
+	
+	public function getSubscription($subscriptionId) {
+		
+		\Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
+		$subscription = \Stripe\Subscription::retrieve($subscriptionId);
+		
+		return $subscription;
+	}
 
     // make sure to register this plugin by running from vagrant shell: composer require cleaveco/change-stripe-subscription
     // you'll need you're composer.json to match the one in this branch so that it can pick up the symlink -john
@@ -100,6 +112,65 @@ class ChangeStripeSubscription extends Plugin
     {
       parent::init();
       self::$plugin = $this;
+      
+      Craft::$app->getView()->hook('cp.entries.edit.details', function(array &$context) {
+        /** @var EntryModel $entry **/
+        $entry = $context['entry'];
+
+        // Make sure this is the correct section
+        if ($entry->sectionId == 2) { // MEMBERSHIP SECTION
+	        $query = (new Query())
+	        	->select(['id'])
+	        	->from('freeform_forms')
+	        	->filterWhere(
+		        	['handle' => 'joinTACWApage2']
+	        	);
+	        $formId = $query->scalar();
+	        
+	        if ($formId) {
+	        
+		        $query       = (new Query())
+		            ->select(["id"])
+		            ->from('freeform_submissions')
+		            ->filterWhere(
+		                [
+			                'formId'	=> $formId,
+		                    "field_42"	=> $entry->creationId
+		                ]
+		            );
+		        $submissionId = $query->scalar();
+		        
+		        if ($submissionId) {
+	
+			        $payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
+			        
+			        if ($payments && $payments->status == 'active') {
+				        
+				        $html = '<div class="meta">';
+				        
+				        $subscription = $this->getSubscription($payments->resourceId);
+				        
+				        if ($subscription->canceled_at) {
+					        
+					        $html.= 'Subscription Cancelled:<br>'.date('n/j/Y g:i A', $subscription->canceled_at);
+					        
+				        } else {
+				        
+					        $url = UrlHelper::siteUrl().'actions/change-stripe-subscription/default/cancelsubscription?id='.$entry->id;
+				        
+					        $html = '<a class="btn submit cancelSubscription" href="'.$url.'" onclick="return confirm(\'Are you sure?\')">Cancel Subscription</a>
+						        	 <p style="line-height: 1.2;"><small>Cancelling a subscription will both cancel the Stripe subscription and deactivate all members of this organization.</small></p>';
+						
+						}
+						
+						$html.= '</div>';
+						
+			            return $html;
+		            }
+	            }
+	        }
+        }
+    });
 
       // Do something after we're installed
       Event::on(
