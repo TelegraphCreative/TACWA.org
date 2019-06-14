@@ -158,7 +158,7 @@ class ChangeStripeSubscription extends Plugin
 				        
 					        $url = UrlHelper::siteUrl().'actions/change-stripe-subscription/default/cancelsubscription?id='.$entry->id;
 				        
-					        $html.= '<a class="btn submit cancelSubscription" href="'.$url.'" onclick="return confirm(\'Are you sure?\')">Cancel Subscription</a>
+					        $html.= '<a class="btn submit cancelSubscription" href="'.$url.'" onclick="return confirm(\'Caution! This will cancel the membership for this organization and cancel their Stripe payment. Are you sure you want to proceed?\')">Cancel Subscription</a>
 						        	 <p style="line-height: 1.2;"><small>Cancelling a subscription will both cancel the Stripe subscription and deactivate all members of this organization.</small></p>';
 						
 						}
