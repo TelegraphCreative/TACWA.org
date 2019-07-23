@@ -19,17 +19,20 @@
 
       	
 {% set payments = null %}
-{% set submissions = craft.freeform.submissions({
-	form: 'joinTACWApage2'
-}).all() %}
+{% set submissionId = organization.submissionId %}
+{% if submissionId %}
+	{% set payments = craft.freeformPayments.payments(submissionId) %}
+{% else %}
 
-{% for submission in submissions if submission.creationId == organization.creationId %}
-	{% set payments = craft.freeformPayments.payments(submission.id) %}
-{% endfor %}
-
-{# {% set subscription = craft.changestripesubscription.getSubscription(payments.resourceId) %} #}
+	{% set submissions = craft.freeform.submissions({
+		form: 'joinTACWApage2'
+	}).all() %}
+	
+	{% for submission in submissions if submission.creationId == organization.creationId %}
+		{% set payments = craft.freeformPayments.payments(submission.id) %}
+	{% endfor %}
+{% endif %}
  
-{#  {% set planId = (organization.collectionAndTreatmentSystems) ? organization.collectionAndTreatmentSystems : (organization.collectionSystemOnly) ? organization.collectionSystemOnly : organization.affiliateSize %} #}
  {% set planId = (organization.organizationType == 'collectionAndTreatmentSystems') ? organization.collectionAndTreatmentSystems : (organization.organizationType == 'collectionSystemOnly') ? organization.collectionSystemOnly : organization.affiliateSize %}
 
 

@@ -62,7 +62,7 @@
 	    
 	
 	    <form method="POST" class="add-to-cart-form">
-{# 	    	<label>Current Card: *{{ payments.last4 }}<br>Amount: {{ payments.amount|currency('USD') }}</label> #}
+	    	<label>Current Card: *{{ payments.last4 }}<br>Amount: {{ payments.amount|currency('USD') }}</label>
 	        <input type="hidden" name="action" value="change-stripe-subscription/default/update-card">
 	        <input type="hidden" name="orgId" value="{{ currentUser.organizationId }}">
 	        <input type="hidden" name="subscriptionId" value="{{ payments.resourceId }}">
