@@ -94,6 +94,10 @@ class ChangeStripeSubscription extends Plugin
       \craft\helpers\FileHelper::writeToFile($file, $log, ['append' => true]);
     }
     
+    public function getCustomerBySubscription($subscriptionId) {
+	    return 'hey';
+    }
+    
     private $_planId = '';
     private $_subscriptionId = '';
 	
@@ -119,56 +123,62 @@ class ChangeStripeSubscription extends Plugin
 
         // Make sure this is the correct section
         if ($entry->sectionId == 2) { // MEMBERSHIP SECTION
-	        $query = (new Query())
-	        	->select(['id'])
-	        	->from('freeform_forms')
-	        	->filterWhere(
-		        	['handle' => 'joinTACWApage2']
-	        	);
-	        $formId = $query->scalar();
 	        
-	        if ($formId) {
+	        $submissionId = $entry->submissionId;
 	        
-		        $query       = (new Query())
-		            ->select(["id"])
-		            ->from('freeform_submissions')
-		            ->filterWhere(
-		                [
-			                'formId'	=> $formId,
-		                    "field_42"	=> $entry->creationId
-		                ]
-		            );
-		        $submissionId = $query->scalar();
+	        if (!$submissionId) {
+	        
+		        $query = (new Query())
+		        	->select(['id'])
+		        	->from('freeform_forms')
+		        	->filterWhere(
+			        	['handle' => 'joinTACWApage2']
+		        	);
+		        $formId = $query->scalar();
 		        
-		        if ($submissionId) {
-	
-			        $payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
+		        if ($formId) {
+		        
+			        $query       = (new Query())
+			            ->select(["id"])
+			            ->from('freeform_submissions')
+			            ->filterWhere(
+			                [
+				                'formId'	=> $formId,
+			                    "field_42"	=> $entry->creationId
+			                ]
+			            );
+			        $submissionId = $query->scalar();
+			    }
+			}
+		        
+	        if ($submissionId) {
+
+		        $payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
+		        
+		        if ($payments && $payments->status == 'active') {
 			        
-			        if ($payments && $payments->status == 'active') {
+			        $html = '<div class="meta">';
+			        
+			        $subscription = $this->getSubscription($payments->resourceId);
+			        
+			        if ($subscription->canceled_at) {
 				        
-				        $html = '<div class="meta">';
+				        $html.= 'Subscription Cancelled:<br>'.date('n/j/Y g:i A', $subscription->canceled_at);
 				        
-				        $subscription = $this->getSubscription($payments->resourceId);
-				        
-				        if ($subscription->canceled_at) {
-					        
-					        $html.= 'Subscription Cancelled:<br>'.date('n/j/Y g:i A', $subscription->canceled_at);
-					        
-				        } else {
-				        
-					        $url = UrlHelper::siteUrl().'actions/change-stripe-subscription/default/cancelsubscription?id='.$entry->id;
-				        
-					        $html.= '<a class="btn submit cancelSubscription" href="'.$url.'" onclick="return confirm(\'Caution! This will cancel the membership for this organization and cancel their Stripe payment. Are you sure you want to proceed?\')">Cancel Subscription</a>
-						        	 <p style="line-height: 1.2;"><small>Cancelling a subscription will both cancel the Stripe subscription and deactivate all members of this organization.</small></p>';
-						
-						}
-						
-						$html.= '</div>';
-						
-			            return $html;
-		            }
+			        } else {
+			        
+				        $url = UrlHelper::siteUrl().'actions/change-stripe-subscription/default/cancelsubscription?id='.$entry->id;
+			        
+				        $html.= '<a class="btn submit cancelSubscription" href="'.$url.'" onclick="return confirm(\'Caution! This will cancel the membership for this organization and cancel their Stripe payment. Are you sure you want to proceed?\')">Cancel Subscription</a>
+					        	 <p style="line-height: 1.2;"><small>Cancelling a subscription will both cancel the Stripe subscription and deactivate all members of this organization.</small></p>';
+					
+					}
+					
+					$html.= '</div>';
+					
+		            return $html;
 	            }
-	        }
+            }
         }
     });
 
@@ -283,24 +293,33 @@ class ChangeStripeSubscription extends Plugin
 			// WOULD LIKE TO GET SUBSCRIPTION ID FROM PAYMENT DETAIL TO ADD TO ORGANIZATION
 
 			$organization->enabled = true;
+			$organization->submissionId = $submission->id;
 	        Craft::$app->getElements()->saveElement($organization, false);
 	        
 	
-          }
+          } elseif ($form->getHandle() == 'rejoinTACWA') {
+	        $organizationID = $form->get('entryId')->getValue();
+	        $organization = \craft\elements\Entry::find()
+	        	->anyStatus()
+			    ->id($organizationID)
+			    ->one();
+			
+			
+			$organization->enabled = true;
+			$organization->organizationName = $form->get('organizationName')->getValue();
+			$organization->organizationType = $form->get('organizationType')->getValue();
+			$organization->collectionAndTreatmentSystems = $form->get('collectionAndTreatmentSystems')->getValue();
+			$organization->collectionSystemOnly = $form->get('collectionSystemOnly')->getValue();
+			$organization->affiliateSize = $form->get('affiliateSize')->getValue();
+			$organization->organizationStreetAddress = $form->get('streetAddress')->getValue();
+			$organization->organizationCity = $form->get('city')->getValue();
+			$organization->organizationState = $form->get('state')->getValue();
+			$organization->organizationZip = $form->get('zipCode')->getValue();
+			$organization->submissionId = $submission->id;
+	        Craft::$app->getElements()->saveElement($organization, false);
+	      }
         }
       );
-    
-    
-    // STRIPE WEBHOOK - CUSTOMER SUBSCRIPTION DELETED
-    Event::on(
-        \rias\stripewebhooks\records\StripeWebhookCall::class,
-        'stripe-webhooks::customer.subscription.deleted',
-        function (\rias\stripewebhooks\events\WebhookEvent $event) {
-            $webhookCall = $event->model;
-            
-            $this->logg('Webhook Call ('.$webhookCall.')');
-        }
-    );
 
 /**
  * Logging in Craft involves using one of the following methods:

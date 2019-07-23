@@ -82,6 +82,30 @@ class DefaultController extends Controller
 
         return $result;
     }
+    
+    public function actionUpdateCard() {
+		$this->requirePostRequest();
+		
+		$request = Craft::$app->getRequest();
+		
+        $returnUrl = $request->getUrl();
+        $organizationId = $request->getBodyParam('orgId');
+		$subscriptionID = $request->getBodyParam('subscriptionId');
+		$paymentSourceId = $request->getBodyParam('stripeToken');
+        
+		// taken from: https://stripe.com/docs/billing/subscriptions/upgrading-downgrading
+		// we should pull api keys from .env -john
+		\Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
+		
+		// this namespace should work b/c of Composer's autoloading (defined in /web/index.php)
+		// if it doesn't, we'll need some troubleshooting -john
+		$subscription = \Stripe\Subscription::retrieve($subscriptionID);
+		
+// 		$customer = \Stripe\Customer::retrieve($subscription->customer);
+		\Stripe\Customer::update($subscription->customer, ['source' => $paymentSourceId]);
+        
+	    return $this->redirect($returnUrl.'?success='.$subscription->customer);
+    }
 
     /**
      * @return null|Response
@@ -176,51 +200,57 @@ class DefaultController extends Controller
 		    
 		    $html = '<h2>Organization: '.$organization->organizationName.'</h2>';
 		    
-		    $query = (new Query())
-	        	->select(['id'])
-	        	->from('freeform_forms')
-	        	->filterWhere(
-		        	['handle' => 'joinTACWApage2']
-	        	);
-	        $formId = $query->scalar();
-	        
-	        if ($formId) {
-	        
-		        $query       = (new Query())
-		            ->select(["id"])
-		            ->from('freeform_submissions')
-		            ->filterWhere(
-		                [
-			                'formId'	=> $formId,
-		                    "field_42"	=> $organization->creationId
-		                ]
-		            );
-		        $submissionId = $query->scalar();
+		    $submissionId = $organization->submissionId;
+		    if (!$submissionId) {
+			    
+			    $query = (new Query())
+		        	->select(['id'])
+		        	->from('freeform_forms')
+		        	->filterWhere(
+			        	['handle' => 'joinTACWApage2']
+		        	);
+		        $formId = $query->scalar();
 		        
-		        if ($submissionId) {
-				        
-			        $activeUsers = \craft\elements\User::find()
-					    ->search('organizationId::' . $organizationID)
-					    ->all();
-					
-					$suspendedUserCnt = 0;
-					foreach($activeUsers as $user) {
-						if (!$user->admin) {
-							$suspendedUserCnt++;
-							\Craft::$app->users->suspendUser($user);
-						}
+		        if ($formId) {
+		        
+			        $query       = (new Query())
+			            ->select(["id"])
+			            ->from('freeform_submissions')
+			            ->filterWhere(
+			                [
+				                'formId'	=> $formId,
+			                    "field_42"	=> $organization->creationId
+			                ]
+			            );
+			        $submissionId = $query->scalar();
+			    }
+		    }
+		        
+	        if ($submissionId) {
+			        
+/*
+		        $activeUsers = \craft\elements\User::find()
+				    ->search('organizationId::' . $organizationID)
+				    ->all();
+				
+				$suspendedUserCnt = 0;
+				foreach($activeUsers as $user) {
+					if (!$user->admin) {
+						$suspendedUserCnt++;
+						\Craft::$app->users->suspendUser($user);
 					}
-					if ($suspendedUserCnt>0) Craft::$app->getSession()->setNotice('Users suspended: '.$suspendedUserCnt);
-			        
-			        $payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
-			        
-			        if ($payments && $payments->status == 'active') {
-						$subscription = ChangeStripeSubscription::getInstance()->getSubscription($payments->resourceId);
-						$subscription->cancel();
-						Craft::$app->getSession()->setNotice('Stripe Subscription Cancelled');
-		            }
+				}
+				if ($suspendedUserCnt>0) Craft::$app->getSession()->setNotice('Users suspended: '.$suspendedUserCnt);
+*/
+		        
+		        $payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
+		        
+		        if ($payments && $payments->status == 'active') {
+					$subscription = ChangeStripeSubscription::getInstance()->getSubscription($payments->resourceId);
+					$subscription->cancel();
+					Craft::$app->getSession()->setNotice('Stripe Subscription Cancelled');
 	            }
-	        }
+            }
 	        
 	        $organization->enabled = false;
 	        Craft::$app->getElements()->saveElement($organization, false);

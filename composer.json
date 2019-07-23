@@ -10,6 +10,7 @@
   "require": {
     "barrelstrength/sprout-email": "4.0.0",
     "barrelstrength/sprout-fields": "^3.2",
+    "barrelstrength/sprout-reports": "1.2.1",
     "cleaveco/change-stripe-subscription": "^1.0",
     "craftcms/cms": "3.1.29",
     "craftcms/commerce": "2.1.6.1",
@@ -22,7 +23,6 @@
     "nystudio107/craft-imageoptimize": "1.5.6",
     "nystudio107/craft-minify": "^1.2",
     "nystudio107/craft-seomatic": "3.2.7",
-    "rias/craft-stripe-webhooks": "1.0.1",
     "solspace/craft3-calendar": "2.0.20",
     "solspace/craft3-freeform": "2.5.24",
     "solspace/craft3-freeform-payments": "1.0.5",

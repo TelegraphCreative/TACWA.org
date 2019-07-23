@@ -1,0 +1,61 @@
+{#   Join TACWA - Organization Information   #}
+
+{% extends "_layouts/_base" %}
+{% import '_macros/global' as global %}
+{% import '_macros/forms' as form %}
+
+{% requireLogin %}
+{% set organization = craft.entries().anyStatus().id(currentUser.organizationId).one() %}
+{% set planId = (organization.organizationType == 'collectionAndTreatmentSystems') ? organization.collectionAndTreatmentSystems : (organization.organizationType == 'collectionSystemOnly') ? organization.collectionSystemOnly : organization.affiliateSize %}
+{% if not organization %}
+    {% redirect '/account/profile' %}
+{% elseif organization.enabled == 1 %}
+	{% redirect '/jointacwa' %}
+{% endif %}
+
+
+
+{% block content %}
+
+   {#   Page Header   #}
+   {% include '_components/static/page-header'
+      with {
+         'type': 'border',
+         'heading': 'Rejoin TACWA'
+      }
+   %}
+	
+			
+	<div class="form-flow  |  container page1" id="rejoinTacwaForm">
+		<p>Account is no longer active and needs to be activated again.</p>
+
+		<div class="form-flow__wrapper">
+			
+			{{ craft.freeform.form("rejoinTACWA", {
+			  labelClass: "form-label",
+			  inputClass: "form-control",
+			  overrideValues: {
+			    organizationName: organization.organizationName,
+			    organizationType: organization.organizationType,
+			    collectionAndTreatmentSystems: organization.collectionAndTreatmentSystems,
+			    collectionSystemOnly: organization.collectionSystemOnly,
+			    affiliateSize: organization.affiliateSize,
+				subscriptionPlanID: planId,
+			    streetAddress: organization.organizationStreetAddress,
+			    city: organization.organizationCity,
+			    state: organization.organizationState,
+			    zipCode: organization.organizationZip,
+			    entryId: organization.id,
+			    creditCardName: currentUser.fullName,
+			    email: currentUser.email
+			  }
+			}).render }}
+			 
+		</div>
+		
+	</div>
+			
+
+{% endblock %}
+
+{% do view.registerJsFile('/assets/js/set-subscription.js') %}

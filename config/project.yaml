@@ -123,7 +123,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1560355152
+dateModified: 1563888536
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1340,6 +1340,24 @@ fields:
       availableTransforms: '*'
     contentColumnType: text
     fieldGroup: c4ab77de-5173-4d3e-be67-4b4d5ead8e01
+  6dba59de-b6d0-4253-a8e7-0098c7f62c29:
+    name: 'Submission ID'
+    handle: submissionId
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Number
+    settings:
+      defaultValue: null
+      min: '0'
+      max: null
+      decimals: 0
+      size: null
+      prefix: ''
+      suffix: ''
+    contentColumnType: integer(10)
+    fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -2787,6 +2805,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  sprout-reports:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.1.9
 routes:
   aaf119ab-8284-4150-bba5-55f622ac1f62:
     template: /calendar-demo/mini_cal
@@ -3175,6 +3197,13 @@ routes:
     uriPattern: 'jointacwa/<any:[^\/]+>'
     sortOrder: 34
     siteUid: null
+  8571cc9b-9dfe-4096-b77e-312bb501972f:
+    template: /forms/membership/rejoin
+    uriParts:
+      - rejoin
+    uriPattern: rejoin
+    sortOrder: 35
+    siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:
     name: Invoices
@@ -3244,37 +3273,40 @@ sections:
                 fields:
                   3338f043-940d-4b12-828a-9e6bf3c0b903:
                     required: false
-                    sortOrder: 4
+                    sortOrder: 1
                   e1cfca04-1645-4700-8851-1c066e479a72:
                     required: false
-                    sortOrder: 5
+                    sortOrder: 2
                   eb246c49-b328-461b-a536-e45dcb7bc85c:
                     required: false
-                    sortOrder: 6
+                    sortOrder: 3
                   9b9e8cb4-116a-432e-a022-a6fcdb3dcce6:
                     required: false
-                    sortOrder: 7
+                    sortOrder: 4
                   df92811d-6fde-446f-842a-66ba49629aed:
                     required: false
-                    sortOrder: 8
+                    sortOrder: 5
                   52a959a5-3b8f-42cf-830a-45072efd9869:
                     required: false
-                    sortOrder: 9
+                    sortOrder: 6
                   d7e46e92-0f9f-4bc6-a77e-e79a20c46ba7:
                     required: false
-                    sortOrder: 10
+                    sortOrder: 7
                   9064eb7f-43cf-4daf-87b3-7c6b05295a14:
                     required: false
-                    sortOrder: 11
+                    sortOrder: 8
                   4f1e6876-519a-4b6b-9577-6a30811b55d4:
                     required: false
-                    sortOrder: 12
+                    sortOrder: 9
                   3a7edab9-968b-4a65-8837-0e2696094561:
                     required: false
-                    sortOrder: 14
+                    sortOrder: 10
                   46326181-04fa-4006-a80d-0fda8443316d:
                     required: false
-                    sortOrder: 15
+                    sortOrder: 11
+                  6dba59de-b6d0-4253-a8e7-0098c7f62c29:
+                    required: false
+                    sortOrder: 12
   549a0023-c777-4881-95e4-5221b84c4ff8:
     name: Accounts
     handle: accounts
@@ -3983,6 +4015,9 @@ users:
         - registerusers
         - moderateusers
         - assignuserpermissions
+        - 'assignusergroup:a75cb198-4938-4475-b269-040a342a4a59'
+        - 'assignusergroup:3bff8613-3ec3-44a2-b05b-a35edefaa0d5'
+        - assignusergroups
         - editusers
         - 'publishentries:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'
         - 'publishpeerentries:a67807ff-5b97-45d4-abdc-9d1f65e0ebdf'

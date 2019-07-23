@@ -8,7 +8,7 @@ class DefaultVariable
     /**
      * @return Settings
      */
-    public function getSubscription()
+    public function getCustomerBySubscription($subscription_id)
     {
         return 'hey';
     }

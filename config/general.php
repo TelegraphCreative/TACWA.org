@@ -29,7 +29,8 @@ return [
         
 	    'loginPath' => 'login',
 	    'postLoginRedirect' => 'events',
-	    'useEmailAsUsername' => true
+	    'useEmailAsUsername' => true,
+	    'elevatedSessionDuration' => 0
     ],
 
 

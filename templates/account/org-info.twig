@@ -9,9 +9,11 @@
     {% redirect '/account/profile' %}
 {% endif %}
 
-{% set organization = craft.entries().id(currentUser.organizationId).one() %}
+{% set organization = craft.entries().anyStatus().id(currentUser.organizationId).one() %}
 {% if not organization %}
     {% redirect '/account/profile' %}
+{% elseif organization.enabled == 0 %}
+	{% redirect '/rejoin' %}
 {% endif %}
 
 {% block content %}

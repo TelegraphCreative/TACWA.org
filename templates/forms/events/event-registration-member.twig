@@ -83,7 +83,13 @@
 			
 			{% else %}
 			
-			{% set organization = craft.entries().id(currentUser.organizationId).one() %}
+			{% set organization = craft.entries().anyStatus().id(currentUser.organizationId).one() %}
+			{% if not organization %}
+			    {% redirect '/account/profile' %}
+			{% elseif organization.enabled == 0 %}
+				{% redirect '/rejoin?p=' ~ craft.request.path | hash %}
+			{% endif %}
+			
 			
 			{{ craft.freeform.form("eventRegistrationMember", {
 				returnUrl: '/event-registration/member/' ~ eventId ~ '?success=1',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1692bb7da9ea0274650e36416843260a",
+    "content-hash": "4b2afc010f55e8dcac793be33a16ff6a",
     "packages": [
         {
             "name": "99designs/phumbor",
@@ -89,11 +89,11 @@
         },
         {
             "name": "barrelstrength/sprout-base",
-            "version": "5.0.0",
+            "version": "5.0.5",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barrelstrength/craft-sprout-base/zipball/1cc0f605fc082fa0cf669402d5ead0e6e2a8fd47",
-                "reference": "1cc0f605fc082fa0cf669402d5ead0e6e2a8fd47",
+                "url": "https://api.github.com/repos/barrelstrength/craft-sprout-base/zipball/11deb90cd5d9add1fb74bb6517df1d9d81a9678c",
+                "reference": "11deb90cd5d9add1fb74bb6517df1d9d81a9678c",
                 "shasum": ""
             },
             "require": {
@@ -105,7 +105,6 @@
                     "barrelstrength\\sproutbase\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -116,7 +115,14 @@
                 }
             ],
             "description": "Common libraries for Sprout Plugins for Craft CMS",
-            "time": "2019-04-20T22:06:25+00:00"
+            "support": {
+                "email": "sprout@barrelstrengthdesign.com",
+                "issues": "https://github.com/barrelstrength/sprout-base/issues?state=open",
+                "source": "https://github.com/barrelstrength/sprout-base",
+                "docs": "https://github.com/barrelstrength/sprout-base",
+                "rss": "https://github.com/barrelstrength/sprout-base/commits/v2.atom"
+            },
+            "time": "2019-07-02T15:23:11+00:00"
         },
         {
             "name": "barrelstrength/sprout-base-email",
@@ -248,6 +254,44 @@
             "time": "2019-04-21T00:38:14+00:00"
         },
         {
+            "name": "barrelstrength/sprout-base-reports",
+            "version": "1.3.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barrelstrength/craft-sprout-base-reports/zipball/bf4bf308dc6306b4079b0769459b21a9a7af2fff",
+                "reference": "bf4bf308dc6306b4079b0769459b21a9a7af2fff",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.1.0",
+                "league/csv": "^8.2.0"
+            },
+            "type": "yii-module",
+            "autoload": {
+                "psr-4": {
+                    "barrelstrength\\sproutbasereports\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Barrel Strength",
+                    "homepage": "https://www.barrelstrengthdesign.com/"
+                }
+            ],
+            "description": "Common reports libraries for Sprout Plugins for Craft CMS",
+            "support": {
+                "email": "sprout@barrelstrengthdesign.com",
+                "issues": "https://github.com/barrelstrength/craft-sprout-base-reports/issues?state=open",
+                "source": "https://github.com/barrelstrength/craft-sprout-base-reports",
+                "docs": "https://github.com/barrelstrength/craft-sprout-base-reports",
+                "rss": "https://github.com/barrelstrength/craft-sprout-base-reports/commits/v2.atom"
+            },
+            "time": "2019-07-09T23:55:31+00:00"
+        },
+        {
             "name": "barrelstrength/sprout-email",
             "version": "4.0.0",
             "dist": {
@@ -355,6 +399,60 @@
                 "sprout fields"
             ],
             "time": "2019-05-24T21:12:23+00:00"
+        },
+        {
+            "name": "barrelstrength/sprout-reports",
+            "version": "1.2.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barrelstrength/craft-sprout-reports/zipball/b52ad61bd562acb2bc17e0a786c919794fa5d58e",
+                "reference": "b52ad61bd562acb2bc17e0a786c919794fa5d58e",
+                "shasum": ""
+            },
+            "require": {
+                "barrelstrength/sprout-base": "^5.0.1",
+                "barrelstrength/sprout-base-reports": "^1.3.1",
+                "craftcms/cms": "^3.1.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Sprout Reports",
+                "handle": "sprout-reports",
+                "developer": "Barrel Strength",
+                "developerUrl": "https://barrelstrengthdesign.com",
+                "documentationUrl": "https://sprout.barrelstrengthdesign.com/docs/reports",
+                "class": "barrelstrength\\sproutreports\\SproutReports"
+            },
+            "autoload": {
+                "psr-4": {
+                    "barrelstrength\\sproutreports\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Barrel Strength",
+                    "homepage": "https://barrelstrengthdesign.com"
+                }
+            ],
+            "description": "Powerful custom reports.",
+            "keywords": [
+                "cms",
+                "craft",
+                "craftcms",
+                "reports",
+                "sprout reports"
+            ],
+            "support": {
+                "email": "sprout@barrelstrengthdesign.com",
+                "issues": "https://github.com/barrelstrength/sprout-reports/issues?state=open",
+                "source": "https://github.com/barrelstrength/sprout-reports",
+                "docs": "https://sprout.barrelstrengthdesign.com/docs/reports",
+                "rss": "https://github.com/barrelstrength/sprout-reports/commits/v2.atom"
+            },
+            "time": "2019-07-09T23:59:22+00:00"
         },
         {
             "name": "cebe/markdown",
@@ -508,22 +606,16 @@
         },
         {
             "name": "commerceguys/addressing",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/commerceguys/addressing/zipball/0a48fc7e42f95ba69ad6260d624d9b0dd941c151",
-                "reference": "0a48fc7e42f95ba69ad6260d624d9b0dd941c151",
+                "url": "https://api.github.com/repos/commerceguys/addressing/zipball/2d048bfdb3b79f2d87f5d5b078769c059eaa3eb1",
+                "reference": "2d048bfdb3b79f2d87f5d5b078769c059eaa3eb1",
                 "shasum": ""
             },
             "require": {
                 "doctrine/collections": "~1.0",
                 "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "mikey179/vfsstream": "1.*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "2.*",
-                "symfony/validator": ">=3.2"
             },
             "suggest": {
                 "symfony/validator": "to validate addresses"
@@ -539,7 +631,6 @@
                     "CommerceGuys\\Addressing\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -558,7 +649,7 @@
                 "localization",
                 "postal"
             ],
-            "time": "2019-05-31T11:00:28+00:00"
+            "time": "2019-06-27T10:43:27+00:00"
         },
         {
             "name": "commerceguys/intl",
@@ -1490,21 +1581,15 @@
         },
         {
             "name": "doctrine/collections",
-            "version": "v1.6.1",
+            "version": "v1.6.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/d2ae4ef05e25197343b6a39bae1d3c427a2f6956",
-                "reference": "d2ae4ef05e25197343b6a39bae1d3c427a2f6956",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/c5e0bc17b1620e97c968ac409acbff28b8b850be",
+                "reference": "c5e0bc17b1620e97c968ac409acbff28b8b850be",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "^6.0",
-                "phpstan/phpstan-shim": "^0.9.2",
-                "phpunit/phpunit": "^7.0",
-                "vimeo/psalm": "^3.2.2"
             },
             "type": "library",
             "extra": {
@@ -1517,7 +1602,6 @@
                     "Doctrine\\Common\\Collections\\": "lib/Doctrine/Common/Collections"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1551,7 +1635,7 @@
                 "iterators",
                 "php"
             ],
-            "time": "2019-03-25T19:03:48+00:00"
+            "time": "2019-06-09T13:48:14+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -2054,26 +2138,17 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "8.10.13",
+            "version": "8.10.14",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/660a6153fd1e5c25613e57115db27be87052c452",
-                "reference": "660a6153fd1e5c25613e57115db27be87052c452",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/fd2d002edce2c21c49877a95c3d2058dac0e5cc3",
+                "reference": "fd2d002edce2c21c49877a95c3d2058dac0e5cc3",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "giggsey/locale": "^1.7",
                 "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "pear/pear-core-minimal": "^1.9",
-                "pear/pear_exception": "^1.0",
-                "pear/versioncontrol_git": "^0.5",
-                "phing/phing": "^2.7",
-                "php-coveralls/php-coveralls": "^1.0|^2.0",
-                "phpunit/phpunit": "^4.8.36|^5.0",
-                "symfony/console": "^2.8|^3.0"
             },
             "type": "library",
             "extra": {
@@ -2092,7 +2167,6 @@
                     "/src/timezone/data/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -2113,7 +2187,7 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2019-05-30T07:28:51+00:00"
+            "time": "2019-06-19T10:54:35+00:00"
         },
         {
             "name": "giggsey/locale",
@@ -2702,6 +2776,53 @@
             ],
             "description": "Update helper",
             "time": "2019-05-30T21:26:08+00:00"
+        },
+        {
+            "name": "league/csv",
+            "version": "8.2.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/d2aab1e7bde802582c3879acf03d92716577c76d",
+                "reference": "d2aab1e7bde802582c3879acf03d92716577c76d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "8.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Csv\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://github.com/nyamsprod/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Csv data manipulation made easy in PHP",
+            "homepage": "http://csv.thephpleague.com",
+            "keywords": [
+                "csv",
+                "export",
+                "filter",
+                "import",
+                "read",
+                "write"
+            ],
+            "time": "2018-02-06T08:27:03+00:00"
         },
         {
             "name": "league/flysystem",
@@ -4985,56 +5106,6 @@
             ],
             "description": "A polyfill for getallheaders.",
             "time": "2016-02-11T07:05:27+00:00"
-        },
-        {
-            "name": "rias/craft-stripe-webhooks",
-            "version": "1.0.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Rias500/craft-stripe-webhooks/zipball/a1c76587ed13723adc68a619856740d603f3fdff",
-                "reference": "a1c76587ed13723adc68a619856740d603f3fdff",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^3.0.0",
-                "stripe/stripe-php": "^6.10"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "Stripe Webhooks",
-                "handle": "stripe-webhooks",
-                "hasCpSettings": false,
-                "hasCpSection": false,
-                "changelogUrl": "https://raw.githubusercontent.com/Rias500/craft-stripe-webhooks/master/CHANGELOG.md",
-                "class": "rias\\stripewebhooks\\StripeWebhooks"
-            },
-            "autoload": {
-                "psr-4": {
-                    "rias\\stripewebhooks\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rias",
-                    "homepage": "https://rias.be"
-                }
-            ],
-            "description": "Handle Stripe webhooks in a CraftCMS application",
-            "keywords": [
-                "cms",
-                "craft",
-                "craft-plugin",
-                "craftcms",
-                "stripe webhooks"
-            ],
-            "support": {
-                "docs": "https://github.com/Rias500/craft-stripe-webhooks/blob/master/README.md",
-                "issues": "https://github.com/Rias500/craft-stripe-webhooks/issues"
-            },
-            "time": "2018-11-24T12:36:59+00:00"
         },
         {
             "name": "rlanvin/php-rrule",
