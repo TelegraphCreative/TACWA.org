@@ -21,13 +21,19 @@
 
       	
 {% set payments = null %}
-{% set submissions = craft.freeform.submissions({
-	form: 'joinTACWApage2'
-}).all() %}
+{% set submissionId = organization.submissionId %}
+{% if submissionId %}
+	{% set payments = craft.freeformPayments.payments(submissionId) %}
+{% else %}
 
-{% for submission in submissions if submission.creationId == organization.creationId %}
-	{% set payments = craft.freeformPayments.payments(submission.id) %}
-{% endfor %}
+	{% set submissions = craft.freeform.submissions({
+		form: 'joinTACWApage2'
+	}).all() %}
+	
+	{% for submission in submissions if submission.creationId == organization.creationId %}
+		{% set payments = craft.freeformPayments.payments(submission.id) %}
+	{% endfor %}
+{% endif %}
 
 {# {% set customer = craft.changestripesubscription.getCustomerBySubscription(payments.resourceId) %} #}
  
@@ -49,14 +55,14 @@
 
    <div class="form-flow  |  container">
       
-      <div class="form-flow__wrapper creditly-wrapper">
+      <div class="form-flow__wrapper">
       	
 	    <div class="flash">{{ craft.app.session.getFlash('notice') }}</div>
 	    <div class="flash">{{ craft.app.session.getFlash('error') }}</div>
 	    
 	
 	    <form method="POST" class="add-to-cart-form">
-	    	<label>Current Card: *{{ payments.last4 }}<br>Amount: {{ payments.amount|currency('USD') }}</label>
+{# 	    	<label>Current Card: *{{ payments.last4 }}<br>Amount: {{ payments.amount|currency('USD') }}</label> #}
 	        <input type="hidden" name="action" value="change-stripe-subscription/default/update-card">
 	        <input type="hidden" name="orgId" value="{{ currentUser.organizationId }}">
 	        <input type="hidden" name="subscriptionId" value="{{ payments.resourceId }}">
