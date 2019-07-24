@@ -137,8 +137,8 @@ class DefaultController extends Controller
 			if ($name && $email) {
 				
 				$html = '<p>Hello '.$name.',</p><p>You have been invited to join TACWA by '.$organizationName.'. Please <a href="'.$registrationURL.'">click here</a> to register and set up your account.</p>';
-				$html = str_replace('#body#', $html, $template);
-								$rc = \Craft::$app
+				if ($template) $html = str_replace('#body#', $html, $template);
+				$rc = \Craft::$app
 			        ->getMailer()
 			        ->compose()
 			        ->setTo($email)

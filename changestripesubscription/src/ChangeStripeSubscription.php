@@ -161,7 +161,11 @@ class ChangeStripeSubscription extends Plugin
 			        
 			        $subscription = $this->getSubscription($payments->resourceId);
 			        
-			        if ($subscription->canceled_at) {
+			        if ($subscription->cancel_at && $subscription->cancel_at > time()) {
+				        
+				        $html.= 'Subscription Cancels:<br>'.date('n/j/Y g:i A', $subscription->cancel_at);
+				        
+			        } elseif ($subscription->canceled_at) {
 				        
 				        $html.= 'Subscription Cancelled:<br>'.date('n/j/Y g:i A', $subscription->canceled_at);
 				        
@@ -291,8 +295,20 @@ class ChangeStripeSubscription extends Plugin
 			    
 // 			$payments = craft\freeformPayments\payments($submission.id);
 			// WOULD LIKE TO GET SUBSCRIPTION ID FROM PAYMENT DETAIL TO ADD TO ORGANIZATION
+			
+			$payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submission->id);
+			
+			if ($submission->autoRenew != 'Yes') {
+				\Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
+				\Stripe\Subscription::update(
+				  $payments->resourceId,
+				  ['cancel_at_period_end' => true]
+				);
+
+			}
 
 			$organization->enabled = true;
+			$organization->stripeSubscriptionId = $payments->resourceId;
 			$organization->submissionId = $submission->id;
 	        Craft::$app->getElements()->saveElement($organization, false);
 	        
@@ -304,6 +320,16 @@ class ChangeStripeSubscription extends Plugin
 			    ->id($organizationID)
 			    ->one();
 			
+			$payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submission->id);
+			
+			if ($submission->autoRenew != 'Yes') {
+				\Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
+				\Stripe\Subscription::update(
+				  $payments->resourceId,
+				  ['cancel_at_period_end' => true]
+				);
+
+			}
 			
 			$organization->enabled = true;
 			$organization->organizationName = $form->get('organizationName')->getValue();
@@ -315,6 +341,7 @@ class ChangeStripeSubscription extends Plugin
 			$organization->organizationCity = $form->get('city')->getValue();
 			$organization->organizationState = $form->get('state')->getValue();
 			$organization->organizationZip = $form->get('zipCode')->getValue();
+			$organization->stripeSubscriptionId = $payments->resourceId;
 			$organization->submissionId = $submission->id;
 	        Craft::$app->getElements()->saveElement($organization, false);
 	      }
