@@ -104,7 +104,7 @@ class DefaultController extends Controller
 // 		$customer = \Stripe\Customer::retrieve($subscription->customer);
 		\Stripe\Customer::update($subscription->customer, ['source' => $paymentSourceId]);
         
-	    return $this->redirect($returnUrl.'?success='.$subscription->customer);
+	    return $this->redirect($returnUrl.'?success=1');
     }
 
     /**

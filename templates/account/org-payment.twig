@@ -56,9 +56,8 @@
    <div class="form-flow  |  container">
       
       <div class="form-flow__wrapper">
+      
       	
-	    <div class="flash">{{ craft.app.session.getFlash('notice') }}</div>
-	    <div class="flash">{{ craft.app.session.getFlash('error') }}</div>
 	    
 	
 	    <form method="POST" class="add-to-cart-form">
@@ -79,6 +78,13 @@
 	    </form>
     	
       </div>
+      
+      {% set sent = craft.app.request.param('success') %}
+      {% if sent > 0 %}
+      <div class="form-flow__wrapper" style="margin-top:20px;">
+      	Your credit card has been updated.
+      </div>
+      {% endif %}
    </div>
    
    
