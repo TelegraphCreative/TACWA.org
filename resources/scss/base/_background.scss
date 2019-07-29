@@ -17,4 +17,44 @@
          background-position: center 0;
       }
    }
+
+   // Animated Background
+   &.--animate {
+      @apply relative;
+
+      &::before {
+         @apply absolute pin;
+         content: '';
+         background-image: url(../img/background_white_pattern.svg);
+         background-position: center 5rem;
+         background-repeat: no-repeat;
+         background-size: 100% auto;
+         z-index: 0;
+      }
+
+      &::after {
+         content: '';
+         @apply absolute;
+         height: 81px;
+         width: 100%;
+         background: white;
+         top: 0;
+         z-index: 0;
+      }
+
+      background: linear-gradient(321deg, #eaf5fa, #f5fcff, #dbf8fd);
+      background-size: 300% 300%;
+      animation: AnimationName 5s ease infinite;
+
+      > .container {
+         @apply relative;
+         z-index: 1
+      }
+   }
+}
+
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }

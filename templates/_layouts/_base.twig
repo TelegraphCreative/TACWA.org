@@ -37,5 +37,6 @@
 
     {% include '_components/javascript' %}
     {% do view.registerJsFile( mix('/js/app.js') ) %}
+    {% do view.registerJsFile('/assets/js/spin.js') %}
 </html>
 {%- endminify -%}

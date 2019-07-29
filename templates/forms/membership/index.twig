@@ -73,7 +73,7 @@
 				{% set subscriptionDescription = 'size of ' ~ submission.affiliateSize %}
 			{% endif %}
 			
-	      	<div class="form-flow__detail" id="joinSidebar">
+	      	<div class="form-flow__detail" id="joinSidebar">{{ submission.subscriptionPlanID }}
 	      		<h3 class="heading --tiny  |  text-teal">Your Order</h3>
 		  		<p class="form-flow__detail__description">TACWA Annual Membership for Organizations of type {{ submission.organizationType }} with {{ subscriptionDescription }}</p>
 		  		<p class="form-flow__detail__total">Total: {{ subscriptionPrice }}</p>
