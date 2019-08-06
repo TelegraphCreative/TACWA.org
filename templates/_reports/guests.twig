@@ -1,0 +1,24 @@
+{% do craft.sproutReports.addHeaderRow(['First Name', 'Last Name', 'Email', 'Phone', 'Event']) %}
+
+{% set guests = craft.entries({
+    type: 'eventAttendees',
+}).all() %}
+
+{% set events = craft.calendar.events().all() %}
+
+{% for guest in guests %}
+
+    {% set phone = guest.attendeePhone ?: 'N/A' %}
+
+    {% set guestEvent = "Inactive Event" %}
+    {% for event in events %}
+        {% if guest.eventId == event.id %}
+            {% set guestEvent = event.title %}
+        {% endif %}
+    {% endfor %}
+
+    {% set guestArray = [guest.attendeeFirstName, guest.attendeeLastName, guest.attendeeEmail, phone, guestEvent] %}
+
+    {% do craft.sproutReports.addRow(guestArray) %}
+
+{% endfor %}
