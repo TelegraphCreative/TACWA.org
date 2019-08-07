@@ -79,37 +79,62 @@
     
 			{% if registered %}
 			
-			<h3>You are already registered for this event.</h3>
+				<h3>You are already registered for this event.</h3>
 			
 			{% else %}
 			
-			{% set organization = craft.entries().anyStatus().id(currentUser.organizationId).one() %}
-			{% if not organization %}
-			    {% redirect '/account/profile' %}
-			{% elseif organization.enabled == 0 %}
-				{% redirect '/rejoin' %}
-			{% endif %}
-			
-			
-			{{ craft.freeform.form("eventRegistrationMember", {
-				returnUrl: '/event-registration/member/' ~ eventId ~ '?success=1',
-			  labelClass: "form-label",
-			  inputClass: "form-control",
-			  overrideValues: {
-			    firstName: currentUser.firstName,
-				lastName: currentUser.lastName,
-				email: currentUser.email,
-				organizationName: organization.organizationName,
-				JobTitle: currentUser.individualAccountTitle,
-				eventId: eventId,
-				event: eventId,
-				calendarEvent: event.title,
-				eventCostMember: eventPrice,
-				phone: currentUser.phone,
-				user: currentUser.id,
-				emailMessage: event.emailMessage|e('html')
-			  }
-			}).render() }}
+				{% set organization = craft.entries().anyStatus().id(currentUser.organizationId).one() %}
+				{% if not organization %}
+				    {% redirect '/account/profile' %}
+				{% elseif organization.enabled == 0 %}
+					{% redirect '/rejoin' %}
+				{% endif %}
+				
+				{% if eventPrice > 0 %}
+				
+				{{ craft.freeform.form("eventRegistrationMember", {
+					returnUrl: '/event-registration/member/' ~ eventId ~ '?success=1',
+				  labelClass: "form-label",
+				  inputClass: "form-control",
+				  overrideValues: {
+				    firstName: currentUser.firstName,
+					lastName: currentUser.lastName,
+					email: currentUser.email,
+					organizationName: organization.organizationName,
+					JobTitle: currentUser.individualAccountTitle,
+					eventId: eventId,
+					event: eventId,
+					calendarEvent: event.title,
+					eventCostMember: eventPrice,
+					phone: currentUser.phone,
+					user: currentUser.id,
+					emailMessage: event.emailMessage|e('html')
+				  }
+				}).render() }}
+				
+				{% else %}
+				
+				{{ craft.freeform.form("eventRegistrationMemberFree", {
+					returnUrl: '/event-registration/member/' ~ eventId ~ '?success=1',
+				  labelClass: "form-label",
+				  inputClass: "form-control",
+				  overrideValues: {
+				    firstName: currentUser.firstName,
+					lastName: currentUser.lastName,
+					email: currentUser.email,
+					organizationName: organization.organizationName,
+					JobTitle: currentUser.individualAccountTitle,
+					eventId: eventId,
+					event: eventId,
+					calendarEvent: event.title,
+					eventCostMember: eventPrice,
+					phone: currentUser.phone,
+					user: currentUser.id,
+					emailMessage: event.emailMessage|e('html')
+				  }
+				}).render() }}
+				
+				{% endif %}
 			
 			{% endif %}
 

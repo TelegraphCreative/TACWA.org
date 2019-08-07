@@ -17,10 +17,6 @@
    	{% set organization = craft.entries().id(orgId).one() %}
 {% endif %}
 
-{% if organization is not defined or organization is empty %}
-	{% redirect "/" %}
-{% endif %}
-
 {% block content %}
 
    {#   Page Header   #}
@@ -37,15 +33,23 @@
 		{% endif %}
 		
 		<div class="form-flow__wrapper">
+		
+			{% if organization is not defined or organization is empty %}
+				<h3>Sorry, but this link does not seem to be correct. Please try again.</h3>
+			
+			{% else %}
 				
-			{{ craft.freeform.form("accountRegistration", {
-			  labelClass: "form-label",
-			  inputClass: "form-control",
-			  overrideValues: {
-			    organizationId: organization.id,
-			    organizationName: organization.organizationName
-			  }
-			}).render }}			 
+				{{ craft.freeform.form("accountRegistration", {
+				  labelClass: "form-label",
+				  inputClass: "form-control",
+				  overrideValues: {
+				    organizationId: organization.id,
+				    organizationName: organization.organizationName
+				  }
+				}).render }}		
+			
+			{% endif %}
+				 
 		</div>
 	</div>
 

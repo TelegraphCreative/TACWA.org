@@ -18,14 +18,16 @@
       }
    %}
 
-   <div class="form-flow  |  container">
 
       
 
          {#   Form   #}
-    {% set submissions = craft.freeform.submissions({
-	    	form: 'eventRegistrationMember'
-	    }).all() %}
+{#          could use {formId: [2,14]} #}
+    {% 
+		set submissions = craft.freeform.submissions({
+	    	formId: craft.config.memberSubmissionIds
+	    }).all() 
+	%}
 	{% set events = [] %}
     {% for submission in submissions %}
 	    {% if submission.user == currentUser.id %}
@@ -63,7 +65,6 @@
    {% endif %}
    
    
-   </div>
 
 {% endblock %}
 
