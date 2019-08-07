@@ -123,7 +123,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1563888536
+dateModified: 1564431840
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -3203,6 +3203,13 @@ routes:
       - rejoin
     uriPattern: rejoin
     sortOrder: 35
+    siteUid: null
+  a5d2d9a8-6bca-4a92-a48b-2d20c7bb0413:
+    template: /forms/accountregistration
+    uriParts:
+      - accountregistration
+    uriPattern: accountregistration
+    sortOrder: 36
     siteUid: null
 sections:
   e96d2072-4acf-4767-a404-7179172353d7:

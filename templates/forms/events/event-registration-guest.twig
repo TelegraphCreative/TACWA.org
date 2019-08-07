@@ -60,17 +60,34 @@
 				<p class="form-flow__detail__description"><a href="/event/{{ event.slug }}" class="link">{{ event.title }}</a> - Guest Registration</p>
 				<p class="form-flow__detail__total">Total: {{ (eventPrice > 0) ? '$' ~ eventPrice : 'FREE' }}</p>
 			</div>
-						
-			{{ craft.freeform.form("eventRegistrationGuest", {
-				returnUrl: '/event-registration/guest/' ~ eventId ~ '?success=1',
-			  labelClass: "form-label",
-			  inputClass: "form-control",
-			  overrideValues: {
-				eventId: eventId,
-				calendarEvent: event.title,
-				eventCostGuest: eventPrice
-			  }
-			}).render() }}
+			
+			{% if eventPrice > 0 %}
+				
+				{{ craft.freeform.form("eventRegistrationGuest", {
+					returnUrl: '/event-registration/guest/' ~ eventId ~ '?success=1',
+				  labelClass: "form-label",
+				  inputClass: "form-control",
+				  overrideValues: {
+					eventId: eventId,
+					calendarEvent: event.title,
+					eventCostGuest: eventPrice
+				  }
+				}).render() }}
+				
+			{% else %}
+				
+				{{ craft.freeform.form("eventRegistrationGuestFree", {
+					returnUrl: '/event-registration/guest/' ~ eventId ~ '?success=1',
+				  labelClass: "form-label",
+				  inputClass: "form-control",
+				  overrideValues: {
+					eventId: eventId,
+					calendarEvent: event.title,
+					eventCostGuest: eventPrice
+				  }
+				}).render() }}
+			
+			{% endif %}
 
 			 
 		</div>

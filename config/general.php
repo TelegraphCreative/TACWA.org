@@ -38,17 +38,20 @@ return [
     'dev' => [
         // Dev Mode (see https://craftcms.com/guides/what-dev-mode-does)
         'devMode' => true,
+        'memberSubmissionIds' => array(2,14)
     ],
 
     // Staging environment settings
     'staging' => [
         // Prevent administrative changes from being made on staging
         'allowAdminChanges' => true,
+        'memberSubmissionIds' => array(2,14),
     ],
 
     // Production environment settings
     'production' => [
         // Prevent administrative changes from being made on production
         'allowAdminChanges' => true,
+        'memberSubmissionIds' => array(2,12),
     ],
 ];
