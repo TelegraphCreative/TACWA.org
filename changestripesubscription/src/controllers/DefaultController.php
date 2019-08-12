@@ -52,7 +52,7 @@ class DefaultController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something', 'join', 'get-subscriptions'];
+    protected $allowAnonymous = ['index', 'do-something', 'join'];
 
     // Public Methods
     // =========================================================================
@@ -69,48 +69,6 @@ class DefaultController extends Controller
 
         return $result;
     }
-
-
-    /**
-     * Handle a request going to our plugin's actionDoSomething URL,
-     * e.g.: actions/change-stripe-subscription/default/do-something
-     *
-     * @return mixed
-     */
-    public function actionGetSubscriptions()
-    {
-
-		$memberships = \craft\elements\Entry::find()
-			->type('membership')
-			->all();
-
-		foreach ($memberships as $membership) {
-			$membershipArray[$membership['stripeSubscriptionId']] = $membership['title'];
-		}
-
-		\Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_API_KEY'));
-		
-		$ninetyDays = strtotime('+90 days', time());
-		$ninetyDays = strtotime('+10 months', time());
-		$subscriptions = \Stripe\Subscription::all([
-			'current_period_end' => ['lte' => $ninetyDays],
-			// 'limit' => 3,
-		]);
-
-		// $data = $subscriptions;
-		$data = "";
-
-
-		foreach ($subscriptions->autoPagingIterator() as $sub) {
-			if (array_key_exists($sub['id'], $membershipArray)) {
-				$data .= $membershipArray[$sub['id']] . "\n";
-			} else {
-				$data .=  $sub['id'] . "\n";
-			}
-		}
-
-        return $data;
-	}
 
     /**
      * Handle a request going to our plugin's actionDoSomething URL,
