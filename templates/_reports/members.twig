@@ -1,0 +1,25 @@
+{% do craft.sproutReports.addHeaderRow(['First Name', 'Last Name', 'Username', 'Organization']) %}
+
+{% set users = craft.users({
+    orderBy: 'firstName desc',
+    organizationId: 'not null'
+}).all() %}
+
+{% set orgs = craft.entries({
+    type: 'membership'
+}).all() %}
+
+{% for user in users %}
+
+    {% set usersOrg = "Inactive Organization" %}
+    {% for org in orgs %}
+        {% if org.id == user.organizationId %}
+            {% set usersOrg = org.title %}
+        {% endif %}
+    {% endfor %}
+
+    {% set userArray = [user.firstName, user.lastName, user.username, usersOrg] %}
+
+    {% do craft.sproutReports.addRow(userArray) %}
+
+{% endfor %}

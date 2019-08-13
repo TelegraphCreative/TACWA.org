@@ -123,7 +123,7 @@ commerce:
       templatePath: shop/_email.html
       attachPdf: ''
       pdfTemplatePath: ''
-dateModified: 1564431840
+dateModified: 1565199999
 email:
   fromEmail: john@wearetelegraph.com
   fromName: TACWA
@@ -1358,6 +1358,24 @@ fields:
       suffix: ''
     contentColumnType: integer(10)
     fieldGroup: 14a0f5ca-74a8-4e12-9ec5-d0478850696f
+  1553a391-7d57-48ec-9601-ef45f08b7561:
+    name: 'Attendee Host Organization'
+    handle: attendeeHostOrganization
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Number
+    settings:
+      defaultValue: null
+      min: '0'
+      max: null
+      decimals: 0
+      size: null
+      prefix: ''
+      suffix: ''
+    contentColumnType: integer(10)
+    fieldGroup: d5fd3663-5d9c-4a01-8732-221be89b430b
 matrixBlockTypes:
   57de28f9-88c1-4b0f-a9b8-a358643416d0:
     field: 9c2f1f0c-224a-4bc3-b0d6-2c7020707beb
@@ -2809,6 +2827,8 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.1.9
+    settings:
+      pluginNameOverride: Reports
 routes:
   aaf119ab-8284-4150-bba5-55f622ac1f62:
     template: /calendar-demo/mini_cal
@@ -3392,21 +3412,24 @@ sections:
                   538bce48-89cc-4d55-8943-e7028ec7f3f4:
                     required: false
                     sortOrder: 7
-                  e5069548-2240-4d5b-a283-0835dc0b0a0d:
+                  1553a391-7d57-48ec-9601-ef45f08b7561:
                     required: false
                     sortOrder: 8
-                  88ead14e-afd6-4123-9dfc-8fb2a4a667f1:
+                  e5069548-2240-4d5b-a283-0835dc0b0a0d:
                     required: false
                     sortOrder: 9
-                  23d5a028-620e-4b78-8897-75946ee5662a:
+                  88ead14e-afd6-4123-9dfc-8fb2a4a667f1:
                     required: false
                     sortOrder: 10
-                  51e1fa0b-8b10-4be0-bdee-d62bae4d9130:
+                  23d5a028-620e-4b78-8897-75946ee5662a:
                     required: false
                     sortOrder: 11
-                  e0c6dc01-333d-4c7d-8500-648b9df0de0f:
+                  51e1fa0b-8b10-4be0-bdee-d62bae4d9130:
                     required: false
                     sortOrder: 12
+                  e0c6dc01-333d-4c7d-8500-648b9df0de0f:
+                    required: false
+                    sortOrder: 13
   5efb2a03-4709-4bf2-a280-5f3f3d005828:
     name: Home
     handle: home

@@ -1,0 +1,9 @@
+{% do craft.sproutReports.addHeaderRow(['Stripe ID', 'Exp. Date', 'Org. Name', 'Address', 'City', 'State', 'Zip', 'Admins']) %}
+
+{% set expirations = craft.changestripesubscription.getExpiringSubscriptions() %}
+
+{% for expiration in expirations %}
+    
+    {% do craft.sproutReports.addRow(expiration) %}
+
+{% endfor %}

@@ -114,89 +114,99 @@ class ChangeStripeSubscription extends Plugin
     // more here: https://docs.craftcms.com/v3/extend/plugin-guide.html#loading-your-plugin-into-a-craft-project
     public function init()
     {
-      parent::init();
-      self::$plugin = $this;
-      
-      Craft::$app->getView()->hook('cp.entries.edit.details', function(array &$context) {
-        /** @var EntryModel $entry **/
-        $entry = $context['entry'];
-
-        // Make sure this is the correct section
-        if ($entry->sectionId == 2) { // MEMBERSHIP SECTION
-	        
-	        $submissionId = $entry->submissionId;
-	        
-	        if (!$submissionId) {
-	        
-		        $query = (new Query())
-		        	->select(['id'])
-		        	->from('freeform_forms')
-		        	->filterWhere(
-			        	['handle' => 'joinTACWApage2']
-		        	);
-		        $formId = $query->scalar();
-		        
-		        if ($formId) {
-		        
-			        $query       = (new Query())
-			            ->select(["id"])
-			            ->from('freeform_submissions')
-			            ->filterWhere(
-			                [
-				                'formId'	=> $formId,
-			                    "field_42"	=> $entry->creationId
-			                ]
-			            );
-			        $submissionId = $query->scalar();
-			    }
+		parent::init();
+		self::$plugin = $this;
+		
+		Event::on(
+			CraftVariable::class,
+			CraftVariable::EVENT_INIT,
+			function (Event $event) {
+				/** @var CraftVariable $variable */
+				$variable = $event->sender;
+				$variable->set('changestripesubscription', defaultVariable::class);
 			}
-		        
-	        if ($submissionId) {
+		);
+		
+		Craft::$app->getView()->hook('cp.entries.edit.details', function(array &$context) {
+			/** @var EntryModel $entry **/
+			$entry = $context['entry'];
 
-		        $payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
-		        
-		        if ($payments && $payments->status == 'active') {
-			        
-			        $html = '<div class="meta">';
-			        
-			        $subscription = $this->getSubscription($payments->resourceId);
-			        
-			        if ($subscription->cancel_at && $subscription->cancel_at > time()) {
-				        
-				        $html.= 'Subscription Cancels:<br>'.date('n/j/Y g:i A', $subscription->cancel_at);
-				        
-			        } elseif ($subscription->canceled_at) {
-				        
-				        $html.= 'Subscription Cancelled:<br>'.date('n/j/Y g:i A', $subscription->canceled_at);
-				        
-			        } else {
-			        
-				        $url = UrlHelper::siteUrl().'actions/change-stripe-subscription/default/cancelsubscription?id='.$entry->id;
-			        
-				        $html.= '<a class="btn submit cancelSubscription" href="'.$url.'" onclick="return confirm(\'Caution! This will cancel the membership for this organization and cancel their Stripe payment. Are you sure you want to proceed?\')">Cancel Subscription</a>
-					        	 <p style="line-height: 1.2;"><small>Cancelling a subscription will both cancel the Stripe subscription and deactivate the organization.</small></p>';
+			// Make sure this is the correct section
+			if ($entry->sectionId == 2) { // MEMBERSHIP SECTION
+				
+				$submissionId = $entry->submissionId;
+				
+				if (!$submissionId) {
+				
+					$query = (new Query())
+						->select(['id'])
+						->from('freeform_forms')
+						->filterWhere(
+							['handle' => 'joinTACWApage2']
+						);
+					$formId = $query->scalar();
 					
+					if ($formId) {
+					
+						$query       = (new Query())
+							->select(["id"])
+							->from('freeform_submissions')
+							->filterWhere(
+								[
+									'formId'	=> $formId,
+									"field_42"	=> $entry->creationId
+								]
+							);
+						$submissionId = $query->scalar();
 					}
+				}
 					
-					$html.= '</div>';
-					
-		            return $html;
-	            }
-            }
-        }
-    });
+				if ($submissionId) {
 
-      // Do something after we're installed
-      Event::on(
-          Plugins::class,
-          Plugins::EVENT_AFTER_INSTALL_PLUGIN,
-          function (PluginEvent $event) {
-              if ($event->plugin === $this) {
-                  // We were just installed
-                  $this->logg("Logging working");
-              }
-          }
-      );
+					$payments = FreeformPayments::getInstance()->payments->getPaymentDetails($submissionId);
+					
+					if ($payments && $payments->status == 'active') {
+						
+						$html = '<div class="meta">';
+						
+						$subscription = $this->getSubscription($payments->resourceId);
+						
+						if ($subscription->cancel_at && $subscription->cancel_at > time()) {
+							
+							$html.= 'Subscription Cancels:<br>'.date('n/j/Y g:i A', $subscription->cancel_at);
+							
+						} elseif ($subscription->canceled_at) {
+							
+							$html.= 'Subscription Cancelled:<br>'.date('n/j/Y g:i A', $subscription->canceled_at);
+							
+						} else {
+						
+							$url = UrlHelper::siteUrl().'actions/change-stripe-subscription/default/cancelsubscription?id='.$entry->id;
+						
+							$html.= '<a class="btn submit cancelSubscription" href="'.$url.'" onclick="return confirm(\'Caution! This will cancel the membership for this organization and cancel their Stripe payment. Are you sure you want to proceed?\')">Cancel Subscription</a>
+									<p style="line-height: 1.2;"><small>Cancelling a subscription will both cancel the Stripe subscription and deactivate the organization.</small></p>';
+						
+						}
+						
+						$html.= '</div>';
+						
+						return $html;
+					}
+				}
+			}
+		});
+
+		// Do something after we're installed
+		Event::on(
+			Plugins::class,
+			Plugins::EVENT_AFTER_INSTALL_PLUGIN,
+			function (PluginEvent $event) {
+				if ($event->plugin === $this) {
+					// We were just installed
+					$this->logg("Logging working");
+				}
+			}
+		);
       	
       	// CHANGE MEMBERSHIP SUBSCRIPTION
       	Event::on(Elements::class, Elements::EVENT_BEFORE_SAVE_ELEMENT, function (ElementEvent $event) {
