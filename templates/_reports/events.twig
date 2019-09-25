@@ -1,9 +1,13 @@
 {% do craft.sproutReports.addHeaderRow(['First Name', 'Last Name', 'Email', 'Phone', 'Event', 'Hosting Organization', 'Host Admins']) %}
 
+{# {% set eid = craft.app.request.param('eid') %} #}
+
 {% set guests = craft.entries({
     type: 'eventAttendees',
 }).all() %}
+    {# id: eid #}
 
+{# {% set events = craft.calendar.events().id(eid).all() %} #}
 {% set events = craft.calendar.events().all() %}
 
 {% set orgs = craft.entries({
