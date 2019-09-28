@@ -1,9 +1,38 @@
-{% do craft.sproutReports.addHeaderRow(['Stripe ID', 'Exp. Date', 'Org. Name', 'Address', 'City', 'State', 'Zip', 'Admins']) %}
+{% do craft.sproutReports.addHeaderRow(['Exp. Date', 'Org. Name', 'Address', 'City', 'State', 'Zip', 'Admins']) %}
 
-{% set expirations = craft.changestripesubscription.getExpiringSubscriptions() %}
+{# {% set expirations = craft.changestripesubscription.getExpiringSubscriptions() %} #}
 
-{% for expiration in expirations %}
-    
-    {% do craft.sproutReports.addRow(expiration) %}
+{% set start = now|atom %}
+{% set end = now|date_modify('+90 days')|atom %}
 
+{% set memberships = craft.entries({
+    type: 'membership',
+    subscriptionEndDate: ['and', ">= #{start}", "< #{end}"]
+}).all() %}
+
+{% for member in memberships %}
+    {% set admins = "" %}
+    {% for user in craft.users.group('memberAdmin').organizationId(member.id).all() %}
+        {% set admins = admins ~ "(" ~ user.firstName ~ " " ~ user.lastName ~ ", " %}
+        {% if user.individualAccountTitle %}
+            {% set admins = admins ~ user.individualAccountTitle ~ ", " %}
+        {% endif %}
+        {% if user.phone %}
+            {% set admins = admins ~ user.phone ~ ", " %}
+        {% endif %}
+        {% if user.email %}
+            {% set admins = admins ~ user.email %}
+        {% endif %}
+        {% set admins = admins ~ "), " %}
+    {% endfor %}
+    {% set memberRow = [
+        member.subscriptionEndDate|date,
+        member.title,
+        member.organizationStreetAddress,
+        member.organizationCity,
+        member.organizationState,
+        member.organizationZip,
+        admins | trim(", ")
+    ] %}
+    {% do craft.sproutReports.addRow(memberRow) %}
 {% endfor %}
