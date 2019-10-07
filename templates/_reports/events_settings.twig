@@ -1,0 +1,18 @@
+{% import "_includes/forms" as forms %}
+
+{% set events = craft.calendar.events().all() %}
+
+{% set eventOptions = [] %}
+{% for event in events %}
+    {% set eventOptions = eventOptions|merge([{
+        label: event.title,
+        value: event.id
+    }]) %}
+{% endfor %}
+
+{{ forms.selectField({
+	label: "Event"|t,
+	name: "event",
+	options: eventOptions,
+	value: settings.event is defined ? settings.event : eventOptions[0]
+}) }}
