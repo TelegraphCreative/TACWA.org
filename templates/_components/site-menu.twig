@@ -62,7 +62,9 @@
             {% endfor %} 
 
             {% if currentUser and currentUser.admin %}
-               <li class="site-menu__item"><a href="/admin" class="menu-bar__link">Admin Dashboard</a></li>
+                <li class="border-t border-white pt-4 text-12 text-white uppercase tracking-normal font-bold mt-4">Admin</li>
+                <li class="site-menu__item"><a href="/adminjointacwa" class="menu-bar__link"> Join TACWA</a></li>
+                <li class="site-menu__item"><a href="/admin" class="menu-bar__link">Dashboard</a></li>
             {% endif %}
             </ul>
 
